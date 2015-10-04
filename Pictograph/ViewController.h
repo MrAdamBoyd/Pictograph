@@ -10,6 +10,10 @@
 
 @interface ViewController : UIViewController
 
+@property (nonatomic, strong) UIView *navBar;
+@property (nonatomic, strong) UIView *mainView;
+@property (nonatomic, strong) UIButton *encodeButton;
+@property (nonatomic, strong) UIButton *decodeButton;
 
 @end
 
