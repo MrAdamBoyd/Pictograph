@@ -30,6 +30,7 @@
      convert number to have 8 bits
      split into 4 groups of 2
      encode that number in first 4 pixels
+     
      for char in message
         translate char into 8 bits (8 bits per byte)
             split 8 bits into 4 groups of 2
