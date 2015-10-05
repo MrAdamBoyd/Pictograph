@@ -12,6 +12,11 @@
 
 @interface ViewController ()
 
+- (void)showChoosePhotoActionSheet;
+- (UIImagePickerController *)buildImagePickerWithSourceType:(UIImagePickerControllerSourceType)type;
+- (void)startEncodingOrDecoding;
+- (UIAlertController *)buildMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler;
+
 @end
 
 @implementation ViewController
@@ -21,6 +26,7 @@
 @synthesize mainView;
 @synthesize encodeButton;
 @synthesize decodeButton;
+@synthesize currentOption;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -91,6 +97,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark Custom methods
 
 //Showing the action sheet
 - (void)showChoosePhotoActionSheet {
@@ -131,16 +138,70 @@
         [self presentViewController:picker animated:true completion:NULL];
         
     }
+    
+    currentOption = ImageOptionEncoder;
 }
 
 //Builds a UIImagePickerController with source type
-- (UIImagePickerController *)buildImagePickerWithSourceType:(UIImagePickerControllerSourceType) type {
+- (UIImagePickerController *)buildImagePickerWithSourceType:(UIImagePickerControllerSourceType)type {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = NO;
     picker.sourceType = type;
     
     return picker;
+}
+
+//Encoding or decoding the selected image
+- (void)startEncodingOrDecoding {
+    UIImageCoder *coder = [[UIImageCoder alloc] init];
+    
+    if (currentOption == ImageOptionEncoder) {
+        //Encoding the image with a message, need to get message
+        UIAlertController *alertController = [self buildMessageAlertWithConfirmHandler:^(UIAlertAction *action) {
+            
+            //Action that happens when confirm is hit
+            UITextField *messageField = alertController.textFields.firstObject;
+            
+            //Completing the action goes here
+            
+        }];
+        
+        [self presentViewController:alertController animated:true completion:NULL];
+        
+    } else if (currentOption == ImageOptionDecoder) {
+        //Decoding the image
+        
+    }
+}
+
+//Building the alert that gets the message that the user should type
+- (UIAlertController *)buildMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Enter your message" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    //Action for confirming the message
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:handler];
+    [confirmAction setEnabled:false]; //Enabled or disabled based on text input
+    [alertController addAction:confirmAction];
+    
+    
+    //Action for cancelling
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:NULL];
+    [alertController addAction:cancelAction];
+    
+    
+    //Adding message field
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+         textField.placeholder = @"Your message here";
+        
+        //Confirm is only enabled if there is text
+        [[NSNotificationCenter defaultCenter] addObserverForName:UITextFieldTextDidChangeNotification object:textField queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+            [confirmAction setEnabled:![[textField text] isEqualToString:@""]];
+        }];
+        
+     }];
+    
+    return alertController;
 }
 
 #pragma mark UIImagePickerControllerDelegate
@@ -151,11 +212,15 @@
     selectedImage = chosenImage;
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    [self startEncodingOrDecoding];
 }
 
 //User cancelled
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    currentOption = ImageOptionNeither;
 }
 
 @end
