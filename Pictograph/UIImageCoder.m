@@ -108,8 +108,11 @@
             [singleCharacterArrayInBits appendString:[NSString stringWithFormat:@"%@", [singleCharacterArray objectAtIndex:singleCharCounter]]];
         }
         
-        NSLog(@"%@", singleCharacterArrayInBits);
+        //Getting the decimal representation ("1101" -> 13)
+        long decimalRepresentationOfChar = strtol([singleCharacterArrayInBits UTF8String], NULL, 2);
+        char curChar = (char)decimalRepresentationOfChar;
         
+        [message appendFormat:@"%c", curChar];
     }
     
     
