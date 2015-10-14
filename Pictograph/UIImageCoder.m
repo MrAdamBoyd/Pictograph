@@ -40,6 +40,8 @@
         
     }
     
+    [self stringFromBits:arrayOfBits];
+    
     //TODO: Add 2 bits to each pixel
     
     UIImage *encodedImage = [[UIImage alloc] init];
@@ -62,6 +64,7 @@
 
 }
 
+/* Returns the binary representation of a character */
 //http://stackoverflow.com/questions/655792/how-to-convert-nsinteger-to-a-binary-string-value
 //Used the above link as information, but instead decided to use an int array and remove spacing
 -(NSArray *)binaryStringFromInteger:(int)number withSpaceFor:(int)numberOfBits{
@@ -79,6 +82,38 @@
     }
     
     return bitArray;
+}
+
+/* Returns the string based on the length provided in the first 16 bits of the bit array */
+-(NSString *)stringFromBits:(NSArray *)bitArray {
+    NSMutableString *message = [[NSMutableString alloc] init];
+    
+    NSArray *sizeInBits = [bitArray subarrayWithRange:NSMakeRange(0, 16)];
+    NSMutableString *sizeInBitsString = [[NSMutableString alloc] init];
+    
+    //TODO: We need to know the size before we get to this stage, but this is just for building the function
+    for (int sizeCounter = 0; sizeCounter < 16; sizeCounter++) {
+        //Creating a single string with the size, easily convertible to an int
+        [sizeInBitsString appendString:[NSString stringWithFormat:@"%@", [sizeInBits objectAtIndex:sizeCounter]]];
+    }
+    
+    NSArray *characterArrayInBits = [bitArray subarrayWithRange:NSMakeRange(16, [bitArray count] - 16)];
+    for (int charBitCounter = 0; charBitCounter < [bitArray count] - 16; charBitCounter += 8) {
+        //Going through each character
+        NSArray *singleCharacterArray = [characterArrayInBits subarrayWithRange:NSMakeRange(charBitCounter, 8)];
+        NSMutableString *singleCharacterArrayInBits = [[NSMutableString alloc] init];
+        
+        for (int singleCharCounter = 0; singleCharCounter < [singleCharacterArray count]; singleCharCounter++) {
+            //Creating a string of the bits that make up this one character, this is easily convertible to a char
+            [singleCharacterArrayInBits appendString:[NSString stringWithFormat:@"%@", [singleCharacterArray objectAtIndex:singleCharCounter]]];
+        }
+        
+        NSLog(@"%@", singleCharacterArrayInBits);
+        
+    }
+    
+    
+    return message;
 }
 
 @end
