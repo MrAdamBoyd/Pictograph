@@ -29,6 +29,7 @@
     long numberOfBitsNeeded = [message length] * bitCountForCharacter; //8 bits to a char
     long numberOfPixelsNeeded = numberOfBitsNeeded / 2; //Storing 2 bits per pixel, so 4 pixels per char
     
+    //TODO: Check if image is large enough
     
     /* Adding the size of the message here. Always using 16 bits for the size, even though it might only require 8,
      giving a maximum size of 2^16 bits, or 65536 chars */
@@ -46,6 +47,8 @@
     [self stringFromBits:arrayOfBits];
     
     //TODO: Add 2 bits to each pixel
+    
+    [self getRGBAFromImage:image atX:0 andY:0];
     
     UIImage *encodedImage = [[UIImage alloc] init];
     return encodedImage;
@@ -120,6 +123,44 @@
     
     
     return message;
+}
+
+/* Returns the bit representation of the RBGA values for a pixel at x, y */
+//http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
+//Used the above link as inspiration, but heavily modified
+-(NSArray*)getRGBAFromImage:(UIImage*)image atX:(int)x andY:(int)y {
+    
+    // First get the image into your data buffer
+    CGImageRef imageRef = [image CGImage];
+    NSUInteger width = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height,
+                                                 bitsPerComponent, bytesPerRow, colorSpace,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGColorSpaceRelease(colorSpace);
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGContextRelease(context);
+    
+    // Now your rawData contains the image data in the RGBA8888 pixel format.
+    NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+
+    NSMutableArray *bitArrayOfPixel = [[NSMutableArray alloc] init];
+    
+    //Getting the bits for each color space red, green, blue, and alpha
+    [bitArrayOfPixel addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 0] * 1.0) withSpaceFor:bitCountForCharacter]]; //Red
+    [bitArrayOfPixel addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 1] * 1.0) withSpaceFor:bitCountForCharacter]]; //Green
+    [bitArrayOfPixel addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 2] * 1.0) withSpaceFor:bitCountForCharacter]]; //Blue
+    [bitArrayOfPixel addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 3] * 1.0) withSpaceFor:bitCountForCharacter]]; //Alpha
+    
+    free(rawData);
+    
+    return bitArrayOfPixel;
 }
 
 @end
