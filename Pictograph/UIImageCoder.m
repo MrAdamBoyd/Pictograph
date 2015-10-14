@@ -8,6 +8,9 @@
 
 #import "UIImageCoder.h"
 
+#define bitCountForCharacter 8
+#define bitCountForSize 16
+
 @implementation UIImageCoder
 
 //Decodes UIImage image. Returns the encoded message in the image.
@@ -23,20 +26,20 @@
 
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
-    long numberOfBitsNeeded = [message length] * 8; //8 bits to a char
+    long numberOfBitsNeeded = [message length] * bitCountForCharacter; //8 bits to a char
     long numberOfPixelsNeeded = numberOfBitsNeeded / 2; //Storing 2 bits per pixel, so 4 pixels per char
     
     
     /* Adding the size of the message here. Always using 16 bits for the size, even though it might only require 8,
      giving a maximum size of 2^16 bits, or 65536 chars */
     NSMutableArray *arrayOfBits = [[NSMutableArray alloc] init];
-    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)numberOfBitsNeeded withSpaceFor:16]]; //16 bits for spacing
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)numberOfBitsNeeded withSpaceFor:bitCountForSize]]; //16 bits for spacing
     
     for (int charIndex = 0; charIndex < [message length]; charIndex++) {
         //Going through each character
         
         char curChar = [message characterAtIndex:charIndex];
-        [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:curChar withSpaceFor:8]]; //Only 8 bits needed for chars
+        [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:curChar withSpaceFor:bitCountForCharacter]]; //Only 8 bits needed for chars
         
     }
     
@@ -88,19 +91,19 @@
 -(NSString *)stringFromBits:(NSArray *)bitArray {
     NSMutableString *message = [[NSMutableString alloc] init];
     
-    NSArray *sizeInBits = [bitArray subarrayWithRange:NSMakeRange(0, 16)];
+    NSArray *sizeInBits = [bitArray subarrayWithRange:NSMakeRange(0, bitCountForSize)];
     NSMutableString *sizeInBitsString = [[NSMutableString alloc] init];
     
     //TODO: We need to know the size before we get to this stage, but this is just for building the function
-    for (int sizeCounter = 0; sizeCounter < 16; sizeCounter++) {
+    for (int sizeCounter = 0; sizeCounter < bitCountForSize; sizeCounter++) {
         //Creating a single string with the size, easily convertible to an int
         [sizeInBitsString appendString:[NSString stringWithFormat:@"%@", [sizeInBits objectAtIndex:sizeCounter]]];
     }
     
-    NSArray *characterArrayInBits = [bitArray subarrayWithRange:NSMakeRange(16, [bitArray count] - 16)];
-    for (int charBitCounter = 0; charBitCounter < [bitArray count] - 16; charBitCounter += 8) {
+    NSArray *characterArrayInBits = [bitArray subarrayWithRange:NSMakeRange(bitCountForSize, [bitArray count] - bitCountForSize)]; //TODO: This won't be necessary, we can use whole string when done
+    for (int charBitCounter = 0; charBitCounter < [bitArray count] - bitCountForSize; charBitCounter += bitCountForCharacter) {
         //Going through each character
-        NSArray *singleCharacterArray = [characterArrayInBits subarrayWithRange:NSMakeRange(charBitCounter, 8)];
+        NSArray *singleCharacterArray = [characterArrayInBits subarrayWithRange:NSMakeRange(charBitCounter, bitCountForCharacter)];
         NSMutableString *singleCharacterArrayInBits = [[NSMutableString alloc] init];
         
         for (int singleCharCounter = 0; singleCharCounter < [singleCharacterArray count]; singleCharCounter++) {
