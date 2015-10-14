@@ -23,6 +23,7 @@ typedef NS_ENUM(NSInteger, ImageOption) {
 @property (nonatomic, strong) UIButton *encodeButton;
 @property (nonatomic, strong) UIButton *decodeButton;
 @property (nonatomic, assign) ImageOption currentOption;
+@property (nonatomic, strong) UIAlertController *alertController;
 
 @end
 

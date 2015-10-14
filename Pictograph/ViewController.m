@@ -15,7 +15,7 @@
 - (void)showChoosePhotoActionSheet;
 - (UIImagePickerController *)buildImagePickerWithSourceType:(UIImagePickerControllerSourceType)type;
 - (void)startEncodingOrDecoding;
-- (UIAlertController *)buildMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler;
+- (void)buildMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler;
 
 @end
 
@@ -27,6 +27,7 @@
 @synthesize encodeButton;
 @synthesize decodeButton;
 @synthesize currentOption;
+@synthesize alertController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -104,11 +105,11 @@
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         //Device has camera & library, show option to choose
-        UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Select Picture" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        alertController = [UIAlertController alertControllerWithTitle:@"Select Picture" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
         //Cancel action
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) { /* No action needed */ }];
-        [actionSheet addAction:cancelAction];
+        [alertController addAction:cancelAction];
         
         //Library action
         UIAlertAction *libraryAction = [UIAlertAction actionWithTitle:@"Select from Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -118,7 +119,7 @@
             [self presentViewController:picker animated:true completion:NULL];
             
         }];
-        [actionSheet addAction:libraryAction];
+        [alertController addAction:libraryAction];
         
         //Take photo action
         UIAlertAction *takePhotoAction = [UIAlertAction actionWithTitle:@"Take Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -128,9 +129,9 @@
             [self presentViewController:picker animated:true completion:NULL];
             
         }];
-        [actionSheet addAction:takePhotoAction];
+        [alertController addAction:takePhotoAction];
         
-        [self presentViewController:actionSheet animated:true completion:^{}];
+        [self presentViewController:alertController animated:true completion:^{}];
         
     } else {
         //Device has no camera, just show library
@@ -158,12 +159,15 @@
     
     if (currentOption == ImageOptionEncoder) {
         //Encoding the image with a message, need to get message
-        UIAlertController *alertController = [self buildMessageAlertWithConfirmHandler:^(UIAlertAction *action) {
+        [self buildMessageAlertWithConfirmHandler:^(UIAlertAction *action) {
             
             //Action that happens when confirm is hit
             UITextField *messageField = alertController.textFields.firstObject;
             
             //Completing the action goes here
+            UIImageCoder *coder = [[UIImageCoder alloc] init];
+            
+            UIImage *encodedImage = [coder encodeImage:selectedImage withMessage:messageField.text];
             
         }];
         
@@ -176,8 +180,8 @@
 }
 
 //Building the alert that gets the message that the user should type
-- (UIAlertController *)buildMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Enter your message" message:nil preferredStyle:UIAlertControllerStyleAlert];
+- (void)buildMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler {
+    alertController = [UIAlertController alertControllerWithTitle:@"Enter your message" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     //Action for confirming the message
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:handler];
@@ -200,8 +204,6 @@
         }];
         
      }];
-    
-    return alertController;
 }
 
 #pragma mark UIImagePickerControllerDelegate
