@@ -16,7 +16,21 @@
 //Decodes UIImage image. Returns the encoded message in the image.
 - (NSString *)decodeImage:(UIImage *)image {
     
-    NSString *decodedString = @"";
+    NSMutableString *decodedString = [[NSMutableString alloc] init];
+    
+    NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
+    
+    //The first thing that needs to be done is get the size of the message, encoded in the first 8 pixels
+    for (int sizeCounter = 0; sizeCounter < bitCountForSize / 2; sizeCounter++) { //2 bits per pixel
+        NSArray *pixelBitArray = [self getRGBAFromImage:image atX:sizeCounter andY:0 count:1]; //TODO: Implement going to next line
+        
+        [sizeArrayInBits addObjectsFromArray:[pixelBitArray subarrayWithRange:NSMakeRange(6, 2)]]; //2 bits per pixel
+    }
+    
+    long numberOfBitsNeededForImage = [self longFromBits:sizeArrayInBits];
+    
+    
+    
     return decodedString;
     
 }
@@ -47,8 +61,6 @@
     [self stringFromBits:arrayOfBits];
     
     //TODO: Add 2 bits to each pixel
-    
-    [self getRGBAFromImage:image atX:0 andY:0];
     
     UIImage *encodedImage = [[UIImage alloc] init];
     return encodedImage;
@@ -107,15 +119,8 @@
     for (int charBitCounter = 0; charBitCounter < [bitArray count] - bitCountForSize; charBitCounter += bitCountForCharacter) {
         //Going through each character
         NSArray *singleCharacterArray = [characterArrayInBits subarrayWithRange:NSMakeRange(charBitCounter, bitCountForCharacter)];
-        NSMutableString *singleCharacterArrayInBits = [[NSMutableString alloc] init];
-        
-        for (int singleCharCounter = 0; singleCharCounter < [singleCharacterArray count]; singleCharCounter++) {
-            //Creating a string of the bits that make up this one character, this is easily convertible to a char
-            [singleCharacterArrayInBits appendString:[NSString stringWithFormat:@"%@", [singleCharacterArray objectAtIndex:singleCharCounter]]];
-        }
-        
-        //Getting the decimal representation ("1101" -> 13)
-        long decimalRepresentationOfChar = strtol([singleCharacterArrayInBits UTF8String], NULL, 2);
+
+        long decimalRepresentationOfChar = [self longFromBits:singleCharacterArray];
         char curChar = (char)decimalRepresentationOfChar;
         
         [message appendFormat:@"%c", curChar];
@@ -125,10 +130,26 @@
     return message;
 }
 
+/* Returns the long representation of a bit array */
+// For example ("1101" -> 13)
+-(long)longFromBits:(NSArray *)bitArray {
+    
+    NSMutableString *singleCharacterArrayInBits = [[NSMutableString alloc] init];
+    
+    for (int singleCharCounter = 0; singleCharCounter < [bitArray count]; singleCharCounter++) {
+        //Creating a string of the bits that make up this one character, this is easily convertible to a char
+        [singleCharacterArrayInBits appendString:[NSString stringWithFormat:@"%@", [bitArray objectAtIndex:singleCharCounter]]];
+    }
+    
+    long longRep = strtol([singleCharacterArrayInBits UTF8String], NULL, 2);
+    
+    return longRep;
+}
+
 /* Returns the bit representation of the RBGA values for a pixel at x, y */
 //http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
 //Used the above link as inspiration, but heavily modified
--(NSArray*)getRGBAFromImage:(UIImage*)image atX:(int)x andY:(int)y {
+-(NSArray*)getRGBAFromImage:(UIImage*)image atX:(int)x andY:(int)y count:(int)count {
     
     // First get the image into your data buffer
     CGImageRef imageRef = [image CGImage];
@@ -150,17 +171,22 @@
     // Now your rawData contains the image data in the RGBA8888 pixel format.
     NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
 
-    NSMutableArray *bitArrayOfPixel = [[NSMutableArray alloc] init];
+    NSMutableArray *bitArrayOfPixels = [[NSMutableArray alloc] init];
     
-    //Getting the bits for each color space red, green, blue, and alpha
-    [bitArrayOfPixel addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 0] * 1.0) withSpaceFor:bitCountForCharacter]]; //Red
-    [bitArrayOfPixel addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 1] * 1.0) withSpaceFor:bitCountForCharacter]]; //Green
-    [bitArrayOfPixel addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 2] * 1.0) withSpaceFor:bitCountForCharacter]]; //Blue
-    [bitArrayOfPixel addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 3] * 1.0) withSpaceFor:bitCountForCharacter]]; //Alpha
+    for (int counter = 0; counter < 5; counter++) {
+        
+        //Getting the bits for each color space red, green, blue, and alpha
+        [bitArrayOfPixels addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 0] * 1.0) withSpaceFor:bitCountForCharacter]]; //Red
+        [bitArrayOfPixels addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 1] * 1.0) withSpaceFor:bitCountForCharacter]]; //Green
+        [bitArrayOfPixels addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 2] * 1.0) withSpaceFor:bitCountForCharacter]]; //Blue
+        [bitArrayOfPixels addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 3] * 1.0) withSpaceFor:bitCountForCharacter]]; //Alpha
+        byteIndex += bytesPerPixel;
+    
+    }
     
     free(rawData);
     
-    return bitArrayOfPixel;
+    return bitArrayOfPixels;
 }
 
 @end
