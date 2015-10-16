@@ -84,22 +84,30 @@
                 break;
             }
             
-            float red ,green, blue ,alpha ;
+            UIColor *colorOfCurrentPixel = [[self getRBGAFromImage:image atX:widthCounter andY:heightCounter count:1] firstObject];
+            CGFloat red, green, blue, alpha ;
+            [colorOfCurrentPixel getRed:&red green:&green blue:&blue alpha:&alpha];
             
-            CGContextSetRGBFillColor(context, red, green, blue, alpha);
+            //Changing the value of the blue byte
+            NSMutableArray *arrayOfBitsFromBlue = [[NSMutableArray alloc] initWithArray:[self binaryStringFromInteger:blue * 255 withSpaceFor:bitCountForCharacter]];
+            
+            //Changing the least significant bits of the blue byte
+            arrayOfBitsFromBlue[6] = arrayOfBits[encodeCounter];
+            arrayOfBitsFromBlue[7] = arrayOfBits[encodeCounter + 1];
+            
+            long newBlueValue = [self longFromBits:arrayOfBitsFromBlue];
+            
+            CGContextSetRGBFillColor(context, red, green, newBlueValue, alpha);
             CGContextFillRect(context, CGRectMake(widthCounter, heightCounter, 1, 1)); //Only filling in 1 pixel
         
             encodeCounter += 2; //2 bits per pixel, so increase by 2
         }
     }
     
-    [self stringFromBits:arrayOfBits]; //TODO: Remove, this is for testing
-    
-    //TODO: Add 2 bits to each pixel
-    
     CGContextRestoreGState(context);
     
     UIImage *encodedImage = UIGraphicsGetImageFromCurrentImageContext();
+    
     return encodedImage;
 
 }
