@@ -21,6 +21,8 @@
     
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
+    //Getting the size of the string
+    
     NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForSize / 2)];
     
     for (UIColor *color in first8PixelsColors) {
@@ -36,6 +38,8 @@
     }
     
     long numberOfBitsNeededForImage = [self longFromBits:sizeArrayInBits];
+    
+    //Going through all the pixels to get the char value
     
     NSMutableArray *arrayOfBitsForMessage = [[NSMutableArray alloc] init];
 
@@ -128,7 +132,8 @@
             [arrayOfBitsFromBlue replaceObjectAtIndex:6 withObject:arrayOfBits[encodeCounter]];
             [arrayOfBitsFromBlue replaceObjectAtIndex:7 withObject:arrayOfBits[encodeCounter + 1]];
             
-            long newBlueValue = [self longFromBits:arrayOfBitsFromBlue];
+            long newBlueLong = [self longFromBits:arrayOfBitsFromBlue];
+            CGFloat newBlueValue = (newBlueLong * 1.0) / 255;
             
             CGContextSetRGBFillColor(context, red, green, newBlueValue, alpha);
             CGContextFillRect(context, CGRectMake(widthCounter, heightCounter, 1, 1)); //Only filling in 1 pixel
