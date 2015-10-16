@@ -155,7 +155,6 @@
 
 //Encoding or decoding the selected image
 - (void)startEncodingOrDecoding {
-    UIImageCoder *coder = [[UIImageCoder alloc] init];
     
     if (currentOption == ImageOptionEncoder) {
         //Encoding the image with a message, need to get message
@@ -168,6 +167,15 @@
             UIImageCoder *coder = [[UIImageCoder alloc] init];
             
             UIImage *encodedImage = [coder encodeImage:selectedImage withMessage:messageField.text];
+            
+            if (encodedImage) {
+                //Show the share sheet if the image exists
+                UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[encodedImage] applicationActivities:nil];
+                [self presentViewController:activityController animated:YES completion:nil];
+            
+            } else {
+                //TODO: Show an error here, most likely the image was too small or the message was too big
+            }
             
         }];
         

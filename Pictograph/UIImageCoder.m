@@ -79,7 +79,7 @@
             //Going through each bit 2 by 2, that means we need to encode the pixel at position
             //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
         
-            if (encodeCounter > [arrayOfBits count]) {
+            if (encodeCounter >= [arrayOfBits count]) {
                 //If the message has been fully encoded, break
                 break;
             }
@@ -92,8 +92,8 @@
             NSMutableArray *arrayOfBitsFromBlue = [[NSMutableArray alloc] initWithArray:[self binaryStringFromInteger:blue * 255 withSpaceFor:bitCountForCharacter]];
             
             //Changing the least significant bits of the blue byte
-            arrayOfBitsFromBlue[6] = arrayOfBits[encodeCounter];
-            arrayOfBitsFromBlue[7] = arrayOfBits[encodeCounter + 1];
+            [arrayOfBitsFromBlue replaceObjectAtIndex:6 withObject:arrayOfBits[encodeCounter]];
+            [arrayOfBitsFromBlue replaceObjectAtIndex:7 withObject:arrayOfBits[encodeCounter + 1]];
             
             long newBlueValue = [self longFromBits:arrayOfBitsFromBlue];
             
