@@ -15,7 +15,8 @@
 - (void)showChoosePhotoActionSheet;
 - (UIImagePickerController *)buildImagePickerWithSourceType:(UIImagePickerControllerSourceType)type;
 - (void)startEncodingOrDecoding;
-- (void)buildMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler;
+- (void)buildAndShowMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler;
+- (void)showShareSheetWithImage:(UIImage *)image;
 
 @end
 
@@ -158,7 +159,7 @@
     
     if (currentOption == ImageOptionEncoder) {
         //Encoding the image with a message, need to get message
-        [self buildMessageAlertWithConfirmHandler:^(UIAlertAction *action) {
+        [self buildAndShowMessageAlertWithConfirmHandler:^(UIAlertAction *action) {
             
             //Action that happens when confirm is hit
             UITextField *messageField = alertController.textFields.firstObject;
@@ -170,16 +171,13 @@
             
             if (encodedImage) {
                 //Show the share sheet if the image exists
-                UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[encodedImage] applicationActivities:nil];
-                [self presentViewController:activityController animated:YES completion:nil];
+                [self showShareSheetWithImage:encodedImage];
             
             } else {
                 //TODO: Show an error here, most likely the image was too small or the message was too big
             }
             
         }];
-        
-        [self presentViewController:alertController animated:true completion:NULL];
         
     } else if (currentOption == ImageOptionDecoder) {
         //Decoding the image
@@ -188,7 +186,7 @@
 }
 
 //Building the alert that gets the message that the user should type
-- (void)buildMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler {
+- (void)buildAndShowMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler {
     alertController = [UIAlertController alertControllerWithTitle:@"Enter your message" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     //Action for confirming the message
@@ -212,6 +210,14 @@
         }];
         
      }];
+    
+    [self presentViewController:alertController animated:true completion:NULL];
+}
+
+//Shows the share sheet with the UIImage image
+- (void)showShareSheetWithImage:(UIImage *)image {
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
 }
 
 #pragma mark UIImagePickerControllerDelegate
