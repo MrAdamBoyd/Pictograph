@@ -64,7 +64,7 @@
     
     //Encode button
     encodeButton = [[UIButton alloc] init];
-    [encodeButton addTarget:self action:@selector(showChoosePhotoActionSheet) forControlEvents:UIControlEventTouchUpInside];
+    [encodeButton addTarget:self action:@selector(encodeMessage) forControlEvents:UIControlEventTouchUpInside];
     [encodeButton setBackgroundColor:[UIColor whiteColor]];
     [encodeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [encodeButton setTitle:@"Encode Message" forState:UIControlStateNormal];
@@ -80,6 +80,7 @@
     
     //Decode button
     decodeButton = [[UIButton alloc] init];
+    [decodeButton addTarget:self action:@selector(decodeMessage) forControlEvents:UIControlEventTouchUpInside];
     [decodeButton setBackgroundColor:[UIColor whiteColor]];
     [decodeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [decodeButton setTitle:@"Decode Message" forState:UIControlStateNormal];
@@ -100,6 +101,16 @@
 }
 
 #pragma mark Custom methods
+
+- (void)encodeMessage {
+    currentOption = ImageOptionEncoder;
+    [self showChoosePhotoActionSheet];
+}
+
+- (void)decodeMessage {
+    currentOption = ImageOptionDecoder;
+    [self showChoosePhotoActionSheet];
+}
 
 //Showing the action sheet
 - (void)showChoosePhotoActionSheet {
@@ -140,8 +151,6 @@
         [self presentViewController:picker animated:true completion:NULL];
         
     }
-    
-    currentOption = ImageOptionEncoder;
 }
 
 //Builds a UIImagePickerController with source type
@@ -182,6 +191,14 @@
     } else if (currentOption == ImageOptionDecoder) {
         //Decoding the image
         
+        UIImageCoder *coder = [[UIImageCoder alloc] init];
+        
+        NSString *decodedMessage = [coder decodeImage:selectedImage];
+        
+        if (decodedMessage) {
+            [self showDecodedMessageInAlertController:decodedMessage];
+        }
+        
     }
 }
 
@@ -217,7 +234,17 @@
 //Shows the share sheet with the UIImage image
 - (void)showShareSheetWithImage:(UIImage *)image {
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:nil];
-    [self presentViewController:activityController animated:YES completion:nil];
+    [self presentViewController:activityController animated:YES completion:NULL];
+}
+
+//Shows the decoded message in an alert controller
+- (void)showDecodedMessageInAlertController:(NSString *)message {
+    alertController = [UIAlertController alertControllerWithTitle:@"Decoded Message" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:NULL];
+    [alertController addAction:dismissAction];
+    
+    [self presentViewController:alertController animated:true completion:NULL];
 }
 
 #pragma mark UIImagePickerControllerDelegate

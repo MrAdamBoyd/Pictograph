@@ -21,15 +21,48 @@
     
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
-    //The first thing that needs to be done is get the size of the message, encoded in the first 8 pixels
-    for (int sizeCounter = 0; sizeCounter < bitCountForSize / 2; sizeCounter++) { //2 bits per pixel
-        NSArray *pixelBitArray = [self getRGBABitsFromImage:image atX:sizeCounter andY:0 count:1]; //TODO: Implement going to next line
+    NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForSize / 2)];
+    
+    for (UIColor *color in first8PixelsColors) {
+        //Going through each color that contains the size of the message
+        CGFloat red, green, blue, alpha;
+        [color getRed:&red green:&green blue:&blue alpha:&alpha];
         
-        [sizeArrayInBits addObjectsFromArray:[pixelBitArray subarrayWithRange:NSMakeRange(6, 2)]]; //2 bits per pixel
+        
+        NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * 255) withSpaceFor:bitCountForCharacter];
+        
+        [sizeArrayInBits addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
+        [sizeArrayInBits addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
     }
     
     long numberOfBitsNeededForImage = [self longFromBits:sizeArrayInBits];
     
+    NSMutableArray *arrayOfBitsForMessage = [[NSMutableArray alloc] init];
+
+    NSArray *arrayOfColors = [self getRBGAFromImage:image atX:8 andY:0 count:((int)numberOfBitsNeededForImage / 2)];
+    
+    for (UIColor *color in arrayOfColors) {
+        CGFloat red, green, blue, alpha;
+        [color getRed:&red green:&green blue:&blue alpha:&alpha];
+        
+        
+        NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * 255) withSpaceFor:bitCountForCharacter];
+        
+        [arrayOfBitsForMessage addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
+        [arrayOfBitsForMessage addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
+        
+        
+        if ([arrayOfBitsForMessage count] == bitCountForCharacter) {
+            //If there are now enough bits to make a char
+            
+            long longChar = [self longFromBits:arrayOfBitsForMessage];
+            
+            [decodedString appendFormat:@"%c", (char)longChar];
+            
+            [arrayOfBitsForMessage removeAllObjects]; //Reset the array for the next char
+        }
+        
+    }
     
     
     return decodedString;
