@@ -104,6 +104,11 @@
     UIGraphicsBeginImageContext(image.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
+    //A lot of OS X libraries use the lower left corner as (0,0), this is transforming the image to be rightside up"
+    //http://stackoverflow.com/questions/506622/cgcontextdrawimage-draws-image-upside-down-when-passed-uiimage-cgimage
+    CGContextTranslateCTM(context, 0, image.size.height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    
     //Save current status of graphics context
     CGContextSaveGState(context);
     CGContextDrawImage(context, imageRect, image.CGImage);
@@ -111,8 +116,8 @@
     
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
     //for (int encodeCounter = 0; encodeCounter < [arrayOfBits count]; encodeCounter += 2) {
-    for (int heightCounter = 0 ; heightCounter < image.size.height; heightCounter++) {
-        for (int widthCounter = 0 ; widthCounter < image.size.width ; widthCounter++){
+    for (int heightCounter = image.size.height; heightCounter >= 0; heightCounter--) {
+        for (int widthCounter = 0; widthCounter < image.size.width ; widthCounter++){
             //Going through each bit 2 by 2, that means we need to encode the pixel at position
             //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
         
@@ -121,7 +126,7 @@
                 break;
             }
             
-            UIColor *colorOfCurrentPixel = [[self getRBGAFromImage:image atX:widthCounter andY:heightCounter count:1] firstObject];
+            UIColor *colorOfCurrentPixel = [[self getRBGAFromImage:image atX:widthCounter andY:(image.size.height - heightCounter) count:1] firstObject];
             CGFloat red, green, blue, alpha ;
             [colorOfCurrentPixel getRed:&red green:&green blue:&blue alpha:&alpha];
             
