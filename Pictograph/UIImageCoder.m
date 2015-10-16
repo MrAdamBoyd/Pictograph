@@ -10,6 +10,7 @@
 
 #define bitCountForCharacter 8
 #define bitCountForSize 16
+#define bytesPerPixel 4
 
 @implementation UIImageCoder
 
@@ -22,7 +23,7 @@
     
     //The first thing that needs to be done is get the size of the message, encoded in the first 8 pixels
     for (int sizeCounter = 0; sizeCounter < bitCountForSize / 2; sizeCounter++) { //2 bits per pixel
-        NSArray *pixelBitArray = [self getRGBAFromImage:image atX:sizeCounter andY:0 count:1]; //TODO: Implement going to next line
+        NSArray *pixelBitArray = [self getRGBABitsFromImage:image atX:sizeCounter andY:0 count:1]; //TODO: Implement going to next line
         
         [sizeArrayInBits addObjectsFromArray:[pixelBitArray subarrayWithRange:NSMakeRange(6, 2)]]; //2 bits per pixel
     }
@@ -58,27 +59,48 @@
         
     }
     
-    [self stringFromBits:arrayOfBits];
+    //Right here we have all the bits that are needed to encode the data in the image
+    
+    
+    CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
+    
+    UIGraphicsBeginImageContext(image.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    //Save current status of graphics context
+    CGContextSaveGState(context);
+    CGContextDrawImage(context, imageRect, image.CGImage);
+    
+    
+    int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
+    //for (int encodeCounter = 0; encodeCounter < [arrayOfBits count]; encodeCounter += 2) {
+    for (int heightCounter = 0 ; heightCounter < image.size.height; heightCounter++) {
+        for (int widthCounter = 0 ; widthCounter < image.size.width ; widthCounter++){
+            //Going through each bit 2 by 2, that means we need to encode the pixel at position
+            //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
+        
+            if (encodeCounter > [arrayOfBits count]) {
+                //If the message has been fully encoded, break
+                break;
+            }
+            
+            float red ,green, blue ,alpha ;
+            
+            CGContextSetRGBFillColor(context, red, green, blue, alpha);
+            CGContextFillRect(context, CGRectMake(widthCounter, heightCounter, 1, 1)); //Only filling in 1 pixel
+        
+            encodeCounter += 2; //2 bits per pixel, so increase by 2
+        }
+    }
+    
+    [self stringFromBits:arrayOfBits]; //TODO: Remove, this is for testing
     
     //TODO: Add 2 bits to each pixel
     
-    UIImage *encodedImage = [[UIImage alloc] init];
-    return encodedImage;
+    CGContextRestoreGState(context);
     
-    /*
-     figure out how many pixels needed (# of chars * 4)
-     convert number to bits
-     convert number to have 8 bits
-     split into 4 groups of 2
-     encode that number in first 4 pixels
-     
-     for char in message
-        translate char into 8 bits (8 bits per byte)
-            split 8 bits into 4 groups of 2
-            for group in groups
-                convert pixel into bits
-                2 least significant bits = group bits
-     */
+    UIImage *encodedImage = UIGraphicsGetImageFromCurrentImageContext();
+    return encodedImage;
 
 }
 
@@ -146,34 +168,21 @@
     return longRep;
 }
 
-/* Returns the bit representation of the RBGA values for a pixel at x, y */
+/* Returns the bit representation of the RBGA values for pixels starting at x, y for count number of pixels*/
 //http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
 //Used the above link as inspiration, but heavily modified
--(NSArray*)getRGBAFromImage:(UIImage*)image atX:(int)x andY:(int)y count:(int)count {
+-(NSArray*)getRGBABitsFromImage:(UIImage*)image atX:(int)x andY:(int)y count:(int)count {
     
-    // First get the image into your data buffer
-    CGImageRef imageRef = [image CGImage];
-    NSUInteger width = CGImageGetWidth(imageRef);
-    NSUInteger height = CGImageGetHeight(imageRef);
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
-    NSUInteger bytesPerPixel = 4;
+    //Getting the raw data
+    unsigned char *rawData = [self getRawPixelDataForImage:image];
+    
+    NSUInteger width = CGImageGetWidth(image.CGImage);
     NSUInteger bytesPerRow = bytesPerPixel * width;
-    NSUInteger bitsPerComponent = 8;
-    CGContextRef context = CGBitmapContextCreate(rawData, width, height,
-                                                 bitsPerComponent, bytesPerRow, colorSpace,
-                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    CGColorSpaceRelease(colorSpace);
-    
-    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
-    CGContextRelease(context);
-    
-    // Now your rawData contains the image data in the RGBA8888 pixel format.
     NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
 
     NSMutableArray *bitArrayOfPixels = [[NSMutableArray alloc] init];
     
-    for (int counter = 0; counter < 5; counter++) {
+    for (int counter = 0; counter < count; counter++) {
         
         //Getting the bits for each color space red, green, blue, and alpha
         [bitArrayOfPixels addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 0] * 1.0) withSpaceFor:bitCountForCharacter]]; //Red
@@ -187,6 +196,56 @@
     free(rawData);
     
     return bitArrayOfPixels;
+}
+
+/* Returns an array of UIColors for the pixels starting at x, y for count number of pixels */
+-(NSArray *)getRBGAFromImage:(UIImage*)image atX:(int)x andY:(int)y count:(int)count {
+    
+    //Getting the raw data
+    unsigned char *rawData = [self getRawPixelDataForImage:image];
+
+    NSUInteger width = CGImageGetWidth(image.CGImage);
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
+    
+    NSMutableArray *colorArray = [[NSMutableArray alloc] init];
+    
+    for (int counter = 0; counter < count; counter++) {
+        //Getting the bits for each color space red, green, blue, and alpha
+        CGFloat red   = (rawData[byteIndex]     * 1.0) / 255.0;
+        CGFloat green = (rawData[byteIndex + 1] * 1.0) / 255.0;
+        CGFloat blue  = (rawData[byteIndex + 2] * 1.0) / 255.0;
+        CGFloat alpha = (rawData[byteIndex + 3] * 1.0) / 255.0;
+        byteIndex += bytesPerPixel;
+        
+        UIColor *newColor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+        
+        [colorArray addObject:newColor];
+        
+    }
+    
+    free(rawData);
+    
+    return colorArray;
+}
+
+/* Returns the raw pixel data for a UIImage image */
+-(unsigned char *)getRawPixelDataForImage:(UIImage *)image {
+    // First get the image into your data buffer
+    CGImageRef imageRef = [image CGImage];
+    NSUInteger width = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGColorSpaceRelease(colorSpace);
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGContextRelease(context);
+    
+    return rawData;
 }
 
 @end
