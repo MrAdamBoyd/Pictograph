@@ -30,7 +30,6 @@
         CGFloat red, green, blue, alpha;
         [color getRed:&red green:&green blue:&blue alpha:&alpha];
         
-        
         NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * 255) withSpaceFor:bitCountForCharacter];
         
         [sizeArrayInBits addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
@@ -117,7 +116,7 @@
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
     //for (int encodeCounter = 0; encodeCounter < [arrayOfBits count]; encodeCounter += 2) {
     for (int heightCounter = image.size.height; heightCounter >= 0; heightCounter--) {
-        for (int widthCounter = 0; widthCounter < image.size.width ; widthCounter++){
+        for (int widthCounter = 0; widthCounter < image.size.width; widthCounter++){
             //Going through each bit 2 by 2, that means we need to encode the pixel at position
             //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
         
@@ -125,6 +124,8 @@
                 //If the message has been fully encoded, break
                 break;
             }
+
+            NSLog(@"Pixel change at %i, %i", widthCounter, (int)(image.size.height - heightCounter));
             
             UIColor *colorOfCurrentPixel = [[self getRBGAFromImage:image atX:widthCounter andY:(image.size.height - heightCounter) count:1] firstObject];
             CGFloat red, green, blue, alpha ;
@@ -141,8 +142,8 @@
             CGFloat newBlueValue = (newBlueLong * 1.0) / 255;
             
             CGContextSetRGBFillColor(context, red, green, newBlueValue, alpha);
-            CGContextFillRect(context, CGRectMake(widthCounter, heightCounter, 1, 1)); //Only filling in 1 pixel
-        
+            CGContextFillRect(context, CGRectMake(widthCounter, heightCounter - 1, 1, 1)); //Only filling in 1 pixel
+            
             encodeCounter += 2; //2 bits per pixel, so increase by 2
         }
     }
@@ -150,6 +151,11 @@
     CGContextRestoreGState(context);
     
     UIImage *encodedImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    NSLog(@"New Image top left: %@, old image top left: %@", [[self getRBGAFromImage:encodedImage atX:0 andY:0 count:1] firstObject], [[self getRBGAFromImage:oldImage atX:0 andY:0 count:1] firstObject]);
+    NSLog(@"New Image bottom left: %@, old image bottom left: %@", [[self getRBGAFromImage:encodedImage atX:0 andY:image.size.height count:1] firstObject], [[self getRBGAFromImage:oldImage atX:0 andY:image.size.height count:1] firstObject]);
+    NSLog(@"New Image top right: %@, old image top right: %@", [[self getRBGAFromImage:encodedImage atX:image.size.width andY:0 count:1] firstObject], [[self getRBGAFromImage:oldImage atX:image.size.width andY:0 count:1] firstObject]);
+    NSLog(@"New Image bottom right: %@, old image bottom right: %@", [[self getRBGAFromImage:encodedImage atX:image.size.width andY:image.size.height count:1] firstObject], [[self getRBGAFromImage:oldImage atX:image.size.width andY:image.size.height count:1] firstObject]);
     
     return encodedImage;
 
