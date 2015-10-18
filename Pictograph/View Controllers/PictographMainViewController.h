@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImageCoder.h"
+#import "PictographTopBar.h"
 
 @interface PictographMainViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -18,7 +19,7 @@ typedef NS_ENUM(NSInteger, ImageOption) {
 };
 
 @property (nonatomic, strong) UIImage *selectedImage;
-@property (nonatomic, strong) UIView *navBar;
+@property (nonatomic, strong) PictographTopBar *topBar;
 @property (nonatomic, strong) UIView *mainView;
 @property (nonatomic, strong) UIButton *encodeButton;
 @property (nonatomic, strong) UIButton *decodeButton;

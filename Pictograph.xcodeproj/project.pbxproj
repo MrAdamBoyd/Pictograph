@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		137C6F8685BF99E1DBE5220E /* libPods-Pictograph.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC9BC52212F355074F8E00C /* libPods-Pictograph.a */; };
+		661571F81BD348B6001D6B8F /* PictographTopBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 661571F71BD348B6001D6B8F /* PictographTopBar.m */; settings = {ASSET_TAGS = (); }; };
 		662CFC871BC2215F00A9FF28 /* UIImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* UIImageCoder.m */; settings = {ASSET_TAGS = (); }; };
 		665883171BBCC72A00CA21A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 665883161BBCC72A00CA21A9 /* main.m */; };
 		6658831A1BBCC72A00CA21A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 665883191BBCC72A00CA21A9 /* AppDelegate.m */; };
@@ -39,6 +40,8 @@
 /* Begin PBXFileReference section */
 		0CC9BC52212F355074F8E00C /* libPods-Pictograph.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pictograph.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A3CCD2596C223F883999854 /* Pods-Pictograph.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictograph.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pictograph/Pods-Pictograph.release.xcconfig"; sourceTree = "<group>"; };
+		661571F61BD348B6001D6B8F /* PictographTopBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PictographTopBar.h; path = Views/PictographTopBar.h; sourceTree = "<group>"; };
+		661571F71BD348B6001D6B8F /* PictographTopBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PictographTopBar.m; path = Views/PictographTopBar.m; sourceTree = "<group>"; };
 		662CFC851BC2215F00A9FF28 /* UIImageCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageCoder.h; path = Functional/UIImageCoder.h; sourceTree = "<group>"; };
 		662CFC861BC2215F00A9FF28 /* UIImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageCoder.m; path = Functional/UIImageCoder.m; sourceTree = "<group>"; };
 		664C8C0EC2E69E14466709C5 /* Pods-Pictograph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictograph.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pictograph/Pods-Pictograph.debug.xcconfig"; sourceTree = "<group>"; };
@@ -121,6 +124,15 @@
 			name = Functional;
 			sourceTree = "<group>";
 		};
+		661571F51BD3488A001D6B8F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				661571F61BD348B6001D6B8F /* PictographTopBar.h */,
+				661571F71BD348B6001D6B8F /* PictographTopBar.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		665883091BBCC72A00CA21A9 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +160,7 @@
 			children = (
 				665883181BBCC72A00CA21A9 /* AppDelegate.h */,
 				665883191BBCC72A00CA21A9 /* AppDelegate.m */,
+				661571F51BD3488A001D6B8F /* Views */,
 				661571F41BD34761001D6B8F /* Functional */,
 				661571F31BD3474D001D6B8F /* View Controllers */,
 				665883151BBCC72A00CA21A9 /* Supporting Files */,
@@ -350,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				661571F81BD348B6001D6B8F /* PictographTopBar.m in Sources */,
 				6658831D1BBCC72A00CA21A9 /* PictographMainViewController.m in Sources */,
 				6658831A1BBCC72A00CA21A9 /* AppDelegate.m in Sources */,
 				665883171BBCC72A00CA21A9 /* main.m in Sources */,
