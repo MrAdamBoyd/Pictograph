@@ -219,37 +219,9 @@
     return longRep;
 }
 
-/* Returns the bit representation of the RBGA values for pixels starting at x, y for count number of pixels*/
+/* Returns an array of UIColors for the pixels starting at x, y for count number of pixels */
 //http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
 //Used the above link as inspiration, but heavily modified
--(NSArray*)getRGBABitsFromImage:(UIImage*)image atX:(int)x andY:(int)y count:(int)count {
-    
-    //Getting the raw data
-    unsigned char *rawData = [self getRawPixelDataForImage:image];
-    
-    NSUInteger width = CGImageGetWidth(image.CGImage);
-    NSUInteger bytesPerRow = bytesPerPixel * width;
-    NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
-
-    NSMutableArray *bitArrayOfPixels = [[NSMutableArray alloc] init];
-    
-    for (int counter = 0; counter < count; counter++) {
-        
-        //Getting the bits for each color space red, green, blue, and alpha
-        [bitArrayOfPixels addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 0] * 1.0) withSpaceFor:bitCountForCharacter]]; //Red
-        [bitArrayOfPixels addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 1] * 1.0) withSpaceFor:bitCountForCharacter]]; //Green
-        [bitArrayOfPixels addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 2] * 1.0) withSpaceFor:bitCountForCharacter]]; //Blue
-        [bitArrayOfPixels addObjectsFromArray:[self binaryStringFromInteger:(rawData[byteIndex + 3] * 1.0) withSpaceFor:bitCountForCharacter]]; //Alpha
-        byteIndex += bytesPerPixel;
-    
-    }
-    
-    free(rawData);
-    
-    return bitArrayOfPixels;
-}
-
-/* Returns an array of UIColors for the pixels starting at x, y for count number of pixels */
 -(NSArray *)getRBGAFromImage:(UIImage*)image atX:(int)x andY:(int)y count:(int)count {
     
     //Getting the raw data
