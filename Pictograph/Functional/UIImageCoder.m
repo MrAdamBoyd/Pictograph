@@ -26,12 +26,30 @@
 - (NSString *)decodeImage:(UIImage *)image {
     
     NSMutableString *decodedString = [[NSMutableString alloc] init];
-    
+    NSMutableArray *infoArrayInBits = [[NSMutableArray alloc] init];
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
-    //Getting the size of the string
+    //Getting information about the encoded message
+    NSArray *first4PixelsInfo = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForCharacter / 2)];
+    for (UIColor *color in first4PixelsInfo) {
+        //Going through each color that contains information about the message
+        CGFloat red, green, blue, alpha;
+        [color getRed:&red green:&green blue:&blue alpha:&alpha];
+        
+        NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * maxIntFor8Bits) withSpaceFor:bitCountForCharacter];
+        
+        [infoArrayInBits addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
+        [infoArrayInBits addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
+    }
     
-    NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForSize / 2)];
+    long informationAboutString = [self longFromBits:infoArrayInBits];
+    
+    if (informationAboutString == 1) {
+        //TODO: String is encrypted, need to prompt for key
+    }
+    
+    //Getting the size of the string
+    NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:4 andY:0 count:(bitCountForSize / 2)];
     
     for (UIColor *color in first8PixelsColors) {
         //Going through each color that contains the size of the message
@@ -50,7 +68,7 @@
     
     NSMutableArray *arrayOfBitsForMessage = [[NSMutableArray alloc] init];
 
-    NSArray *arrayOfColors = [self getRBGAFromImage:image atX:8 andY:0 count:((int)numberOfBitsNeededForImage / 2)];
+    NSArray *arrayOfColors = [self getRBGAFromImage:image atX:12 andY:0 count:((int)numberOfBitsNeededForImage / 2)];
     
     for (UIColor *color in arrayOfColors) {
         CGFloat red, green, blue, alpha;
@@ -77,7 +95,6 @@
     
     
     return decodedString;
-    
 }
 
 //Encodes UIImage image with message message. Returns the modified UIImage
@@ -86,7 +103,7 @@
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
     long numberOfBitsNeeded = [message length] * bitCountForCharacter; //8 bits to a char
-    long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForSize / 2);
+    long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForSize / 2) + (bitCountForCharacter / 2);
     
     if ((image.size.height * image.size.width) <= numberOfPixelsNeeded) {
         //Makes sure the image is large enough to handle the message
@@ -94,8 +111,16 @@
     }
     
     /* Adding the size of the message here. Always using 16 bits for the size, even though it might only require 8,
-     giving a maximum size of 2^16 bits, or 65536 chars */
+     giving a maximum size of 2^16 bits, or 65536 chars. Preceded by 8 bits of information regarding message */
     NSMutableArray *arrayOfBits = [[NSMutableArray alloc] init];
+    
+    //Using 8 bits for future proofing
+    /*
+     (0) 00000000 - Normal message, proceed as normal
+     (1) 00000001 - Encrypted message
+     */
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:0 withSpaceFor:bitCountForCharacter]];
+    
     [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)numberOfBitsNeeded withSpaceFor:bitCountForSize]]; //16 bits for spacing
     
     for (int charIndex = 0; charIndex < [message length]; charIndex++) {
