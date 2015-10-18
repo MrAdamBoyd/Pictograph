@@ -210,6 +210,7 @@
 				6658830F1BBCC72A00CA21A9 /* Frameworks */,
 				665883101BBCC72A00CA21A9 /* Resources */,
 				C78AF5EDCF10F97A0815D9E2 /* Copy Pods Resources */,
+				09E92D9C895D235D1CC124D5 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -326,6 +327,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		09E92D9C895D235D1CC124D5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pictograph/Pods-Pictograph-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C78AF5EDCF10F97A0815D9E2 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
