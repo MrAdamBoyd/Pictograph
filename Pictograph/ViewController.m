@@ -16,7 +16,7 @@
 - (UIImagePickerController *)buildImagePickerWithSourceType:(UIImagePickerControllerSourceType)type;
 - (void)startEncodingOrDecoding;
 - (void)buildAndShowMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler;
-- (void)showShareSheetWithImage:(UIImage *)image;
+- (void)showShareSheetWithImage:(NSData *)image;
 
 @end
 
@@ -176,7 +176,7 @@
             //Completing the action goes here
             UIImageCoder *coder = [[UIImageCoder alloc] init];
             
-            UIImage *encodedImage = [coder encodeImage:selectedImage withMessage:messageField.text];
+            NSData *encodedImage = [coder encodeImage:selectedImage withMessage:messageField.text];
             
             if (encodedImage) {
                 //Show the share sheet if the image exists
@@ -232,7 +232,7 @@
 }
 
 //Shows the share sheet with the UIImage image
-- (void)showShareSheetWithImage:(UIImage *)image {
+- (void)showShareSheetWithImage:(NSData *)image {
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:nil];
     [self presentViewController:activityController animated:YES completion:NULL];
 }

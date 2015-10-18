@@ -12,6 +12,6 @@
 @interface UIImageCoder : NSObject
 
 - (NSString *)decodeImage:(UIImage *)image;
-- (UIImage *)encodeImage:(UIImage *)image withMessage:(NSString *)message;
+- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message;
 
 @end

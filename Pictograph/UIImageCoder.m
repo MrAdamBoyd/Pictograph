@@ -73,12 +73,11 @@
 }
 
 //Encodes UIImage image with message message. Returns the modified UIImage
-- (UIImage *)encodeImage:(UIImage *)image withMessage:(NSString *)message {
+- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message {
 
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
     long numberOfBitsNeeded = [message length] * bitCountForCharacter; //8 bits to a char
-    long numberOfPixelsNeeded = numberOfBitsNeeded / 2; //Storing 2 bits per pixel, so 4 pixels per char
     
     //TODO: Check if image is large enough
     
@@ -150,15 +149,8 @@
     
     CGContextRestoreGState(context);
     
-    UIImage *encodedImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    NSLog(@"New Image top left: %@, old image top left: %@", [[self getRBGAFromImage:encodedImage atX:0 andY:0 count:1] firstObject], [[self getRBGAFromImage:oldImage atX:0 andY:0 count:1] firstObject]);
-    NSLog(@"New Image bottom left: %@, old image bottom left: %@", [[self getRBGAFromImage:encodedImage atX:0 andY:image.size.height count:1] firstObject], [[self getRBGAFromImage:oldImage atX:0 andY:image.size.height count:1] firstObject]);
-    NSLog(@"New Image top right: %@, old image top right: %@", [[self getRBGAFromImage:encodedImage atX:image.size.width andY:0 count:1] firstObject], [[self getRBGAFromImage:oldImage atX:image.size.width andY:0 count:1] firstObject]);
-    NSLog(@"New Image bottom right: %@, old image bottom right: %@", [[self getRBGAFromImage:encodedImage atX:image.size.width andY:image.size.height count:1] firstObject], [[self getRBGAFromImage:oldImage atX:image.size.width andY:image.size.height count:1] firstObject]);
-    
-    return encodedImage;
-
+    //Returning a PNG of the image, as PNG as lossless
+    return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
 }
 
 /* Returns the binary representation of a character */
