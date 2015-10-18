@@ -33,13 +33,7 @@
     NSArray *first4PixelsInfo = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForCharacter / 2)];
     for (UIColor *color in first4PixelsInfo) {
         //Going through each color that contains information about the message
-        CGFloat red, green, blue, alpha;
-        [color getRed:&red green:&green blue:&blue alpha:&alpha];
-        
-        NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * maxIntFor8Bits) withSpaceFor:bitCountForCharacter];
-        
-        [infoArrayInBits addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
-        [infoArrayInBits addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
+        [self addBlueBitsFromColor:color toArray:infoArrayInBits];
     }
     
     long informationAboutString = [self longFromBits:infoArrayInBits];
@@ -53,13 +47,7 @@
     
     for (UIColor *color in first8PixelsColors) {
         //Going through each color that contains the size of the message
-        CGFloat red, green, blue, alpha;
-        [color getRed:&red green:&green blue:&blue alpha:&alpha];
-        
-        NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * maxIntFor8Bits) withSpaceFor:bitCountForCharacter];
-        
-        [sizeArrayInBits addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
-        [sizeArrayInBits addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
+        [self addBlueBitsFromColor:color toArray:sizeArrayInBits];
     }
     
     long numberOfBitsNeededForImage = [self longFromBits:sizeArrayInBits];
@@ -71,15 +59,8 @@
     NSArray *arrayOfColors = [self getRBGAFromImage:image atX:12 andY:0 count:((int)numberOfBitsNeededForImage / 2)];
     
     for (UIColor *color in arrayOfColors) {
-        CGFloat red, green, blue, alpha;
-        [color getRed:&red green:&green blue:&blue alpha:&alpha];
         
-        
-        NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * maxIntFor8Bits) withSpaceFor:bitCountForCharacter];
-        
-        [arrayOfBitsForMessage addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
-        [arrayOfBitsForMessage addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
-        
+        [self addBlueBitsFromColor:color toArray:arrayOfBitsForMessage];
         
         if ([arrayOfBitsForMessage count] == bitCountForCharacter) {
             //If there are now enough bits to make a char
@@ -95,6 +76,18 @@
     
     
     return decodedString;
+}
+
+- (void)addBlueBitsFromColor:(UIColor *)color toArray:(NSMutableArray *)array {
+    CGFloat red, green, blue, alpha;
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    
+    NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * maxIntFor8Bits) withSpaceFor:bitCountForCharacter];
+    
+    [array addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
+    [array addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
+    
 }
 
 //Encodes UIImage image with message message. Returns the modified UIImage
