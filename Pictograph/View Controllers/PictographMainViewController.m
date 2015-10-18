@@ -67,7 +67,7 @@
     
     
     //Encode button
-    encodeButton = [[UIButton alloc] init];
+    encodeButton = [[PictographButton alloc] init];
     [encodeButton addTarget:self action:@selector(encodeMessage) forControlEvents:UIControlEventTouchUpInside];
     [encodeButton setBackgroundColor:[UIColor whiteColor]];
     [encodeButton setTitleColor:mainAppColor forState:UIControlStateNormal];
@@ -89,7 +89,7 @@
     
     
     //Decode button
-    decodeButton = [[UIButton alloc] init];
+    decodeButton = [[PictographButton alloc] init];
     [decodeButton addTarget:self action:@selector(decodeMessage) forControlEvents:UIControlEventTouchUpInside];
     [decodeButton setBackgroundColor:[UIColor whiteColor]];
     [decodeButton setTitleColor:mainAppColor forState:UIControlStateNormal];
