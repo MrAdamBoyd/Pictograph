@@ -20,6 +20,7 @@
 - (void)startEncodingOrDecoding;
 - (void)buildAndShowMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler;
 - (void)showShareSheetWithImage:(NSData *)image;
+- (void)showDecodedMessageInAlertController:(NSString *)message;
 
 @end
 
@@ -184,28 +185,40 @@
     
     if (currentOption == ImageOptionEncoder) {
         //Encoding the image with a message, need to get message
+        
         [self buildAndShowMessageAlertWithConfirmHandler:^(UIAlertAction *action) {
             
-            //Action that happens when confirm is hit
-            UITextField *messageField = alertController.textFields.firstObject;
+            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             
-            //Completing the action goes here
-            UIImageCoder *coder = [[UIImageCoder alloc] init];
+            //Dispatching this task after a small amount of time as per MBProgressHUD's recommendations
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             
-            NSData *encodedImage = [coder encodeImage:selectedImage withMessage:messageField.text];
-            
-            if (encodedImage) {
-                //Show the share sheet if the image exists
-                [self showShareSheetWithImage:encodedImage];
-            
-            } else {
-                //TODO: Show an error here, most likely the image was too small or the message was too big
-            }
-            
+                //Action that happens when confirm is hit
+                UITextField *messageField = alertController.textFields.firstObject;
+                
+                //Completing the action goes here
+                UIImageCoder *coder = [[UIImageCoder alloc] init];
+                
+                NSData *encodedImage = [coder encodeImage:selectedImage withMessage:messageField.text];
+                
+                if (encodedImage) {
+                    //Show the share sheet if the image exists
+                    [self showShareSheetWithImage:encodedImage];
+                
+                } else {
+                    //TODO: Show an error here, most likely the image was too small or the message was too big
+                }
+                
+                //Hiding the HUD
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+            });
         }];
         
     } else if (currentOption == ImageOptionDecoder) {
         //Decoding the image
+        
+        //No need to show HUD because this won't take long
         
         UIImageCoder *coder = [[UIImageCoder alloc] init];
         

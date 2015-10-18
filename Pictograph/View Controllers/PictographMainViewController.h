@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIImageCoder.h"
 #import "PictographTopBar.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface PictographMainViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -25,6 +26,7 @@ typedef NS_ENUM(NSInteger, ImageOption) {
 @property (nonatomic, strong) UIButton *decodeButton;
 @property (nonatomic, assign) ImageOption currentOption;
 @property (nonatomic, strong) UIAlertController *alertController;
+@property (nonatomic, strong) MBProgressHUD *progressHUD;
 
 @end
 
