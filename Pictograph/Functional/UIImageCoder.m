@@ -86,8 +86,12 @@
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
     long numberOfBitsNeeded = [message length] * bitCountForCharacter; //8 bits to a char
+    long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForSize / 2);
     
-    //TODO: Check if image is large enough
+    if ((image.size.height * image.size.width) <= numberOfPixelsNeeded) {
+        //Makes sure the image is large enough to handle the message
+        //TODO: Throw error
+    }
     
     /* Adding the size of the message here. Always using 16 bits for the size, even though it might only require 8,
      giving a maximum size of 2^16 bits, or 65536 chars */
@@ -188,13 +192,12 @@
     NSArray *sizeInBits = [bitArray subarrayWithRange:NSMakeRange(0, bitCountForSize)];
     NSMutableString *sizeInBitsString = [[NSMutableString alloc] init];
     
-    //TODO: We need to know the size before we get to this stage, but this is just for building the function
     for (int sizeCounter = 0; sizeCounter < bitCountForSize; sizeCounter++) {
         //Creating a single string with the size, easily convertible to an int
         [sizeInBitsString appendString:[NSString stringWithFormat:@"%@", [sizeInBits objectAtIndex:sizeCounter]]];
     }
     
-    NSArray *characterArrayInBits = [bitArray subarrayWithRange:NSMakeRange(bitCountForSize, [bitArray count] - bitCountForSize)]; //TODO: This won't be necessary, we can use whole string when done
+    NSArray *characterArrayInBits = [bitArray subarrayWithRange:NSMakeRange(bitCountForSize, [bitArray count] - bitCountForSize)];
     for (int charBitCounter = 0; charBitCounter < [bitArray count] - bitCountForSize; charBitCounter += bitCountForCharacter) {
         //Going through each character
         NSArray *singleCharacterArray = [characterArrayInBits subarrayWithRange:NSMakeRange(charBitCounter, bitCountForCharacter)];
