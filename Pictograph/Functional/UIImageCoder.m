@@ -140,6 +140,7 @@
     CGContextSaveGState(context);
     CGContextDrawImage(context, imageRect, image.CGImage);
     
+    NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfPixelsNeeded];
     
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
     //for (int encodeCounter = 0; encodeCounter < [arrayOfBits count]; encodeCounter += 2) {
@@ -155,7 +156,9 @@
 
             DLog(@"Pixel change at %i, %i", widthCounter, (int)(image.size.height - heightCounter));
             
-            UIColor *colorOfCurrentPixel = [[self getRBGAFromImage:image atX:widthCounter andY:(image.size.height - heightCounter) count:1] firstObject];
+            int currentPixelIndex = widthCounter * (image.size.height - heightCounter + 1);
+            
+            UIColor *colorOfCurrentPixel = [arrayOfAllNeededColors objectAtIndex:currentPixelIndex];
             CGFloat red, green, blue, alpha ;
             [colorOfCurrentPixel getRed:&red green:&green blue:&blue alpha:&alpha];
             
