@@ -14,6 +14,12 @@
 #define maxIntFor8Bits 255
 #define maxFloatFor8Bits 255.0
 
+#ifdef DEBUG
+#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#define DLog(...) do {} while (0)
+#endif
+
 @implementation UIImageCoder
 
 //Decodes UIImage image. Returns the encoded message in the image.
@@ -126,7 +132,7 @@
                 break;
             }
 
-            NSLog(@"Pixel change at %i, %i", widthCounter, (int)(image.size.height - heightCounter));
+            DLog(@"Pixel change at %i, %i", widthCounter, (int)(image.size.height - heightCounter));
             
             UIColor *colorOfCurrentPixel = [[self getRBGAFromImage:image atX:widthCounter andY:(image.size.height - heightCounter) count:1] firstObject];
             CGFloat red, green, blue, alpha ;
