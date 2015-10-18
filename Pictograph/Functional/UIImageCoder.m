@@ -78,16 +78,15 @@
     return decodedString;
 }
 
+//Adds the last 2 bits of the blue value from UIColor color to the NSMutableArray array
 - (void)addBlueBitsFromColor:(UIColor *)color toArray:(NSMutableArray *)array {
     CGFloat red, green, blue, alpha;
     [color getRed:&red green:&green blue:&blue alpha:&alpha];
-    
     
     NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * maxIntFor8Bits) withSpaceFor:bitCountForCharacter];
     
     [array addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
     [array addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
-    
 }
 
 //Encodes UIImage image with message message. Returns the modified UIImage
