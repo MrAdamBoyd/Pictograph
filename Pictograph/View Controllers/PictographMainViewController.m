@@ -15,6 +15,8 @@
 
 @interface PictographMainViewController ()
 
+- (void)encodeMessage;
+- (void)decodeMessage;
 - (void)showChoosePhotoActionSheet;
 - (UIImagePickerController *)buildImagePickerWithSourceType:(UIImagePickerControllerSourceType)type;
 - (void)startEncodingOrDecoding;
@@ -28,7 +30,6 @@
 
 @synthesize selectedImage;
 @synthesize topBar;
-@synthesize mainView;
 @synthesize encodeButton;
 @synthesize decodeButton;
 @synthesize currentOption;
@@ -53,26 +54,13 @@
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:topBar attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:44]];
     
     
-    //Main view, contains buttons and imageview
-    mainView = [[UIView alloc] init];
-    [mainView setBackgroundColor:mainAppColor];
-    [mainView setTranslatesAutoresizingMaskIntoConstraints:false];
-    [self.view addSubview:mainView];
-    
-    //0px from bottom of topBar, 0px from left, right, bottom
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:mainView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:topBar attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:mainView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:mainView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:mainView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
-    
-    
     //Encode button
     encodeButton = [[PictographButton alloc] init];
     [encodeButton addTarget:self action:@selector(encodeMessage) forControlEvents:UIControlEventTouchUpInside];
     [encodeButton setBackgroundColor:[UIColor whiteColor]];
     [encodeButton setTitleColor:mainAppColor forState:UIControlStateNormal];
     [encodeButton setTitleColor:mainAppColorHighlighted forState:UIControlStateHighlighted];
-    [encodeButton setTitle:@"Encode Message" forState:UIControlStateNormal];
+    [encodeButton setTitle:@"Hide Message" forState:UIControlStateNormal];
     [encodeButton setTranslatesAutoresizingMaskIntoConstraints:false];
     
     //Setting the border
@@ -81,9 +69,9 @@
     
     [self.view addSubview:encodeButton];
     
-    //0px from left, bottom, center, 60px tall
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encodeButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encodeButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
+    //-1px from left, 1px from bottom, 0px from center, 60px tall
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encodeButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:1]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encodeButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:-1]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encodeButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encodeButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:kButtonHeight]];
     
@@ -94,7 +82,7 @@
     [decodeButton setBackgroundColor:[UIColor whiteColor]];
     [decodeButton setTitleColor:mainAppColor forState:UIControlStateNormal];
     [decodeButton setTitleColor:mainAppColorHighlighted forState:UIControlStateHighlighted];
-    [decodeButton setTitle:@"Decode Message" forState:UIControlStateNormal];
+    [decodeButton setTitle:@"Reveal Message" forState:UIControlStateNormal];
     [decodeButton setTranslatesAutoresizingMaskIntoConstraints:false];
 
     //Setting the border
@@ -103,13 +91,11 @@
     
     [self.view addSubview:decodeButton];
     
-    //0px from bottom, right, center, 60px tall
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    //1px from bottom, 1px from right, 0px from center, 60px tall
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:1]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:1]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:kButtonHeight]];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,11 +109,13 @@
 
 #pragma mark Custom methods
 
+//Starting the encode process
 - (void)encodeMessage {
     currentOption = ImageOptionEncoder;
     [self showChoosePhotoActionSheet];
 }
 
+//Starting the decoding process
 - (void)decodeMessage {
     currentOption = ImageOptionDecoder;
     [self showChoosePhotoActionSheet];

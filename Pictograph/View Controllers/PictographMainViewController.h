@@ -22,7 +22,6 @@ typedef NS_ENUM(NSInteger, ImageOption) {
 
 @property (nonatomic, strong) UIImage *selectedImage;
 @property (nonatomic, strong) PictographTopBar *topBar;
-@property (nonatomic, strong) UIView *mainView;
 @property (nonatomic, strong) PictographButton *encodeButton;
 @property (nonatomic, strong) PictographButton *decodeButton;
 @property (nonatomic, assign) ImageOption currentOption;
