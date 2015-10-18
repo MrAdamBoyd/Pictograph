@@ -11,7 +11,7 @@
 		662CFC871BC2215F00A9FF28 /* UIImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* UIImageCoder.m */; settings = {ASSET_TAGS = (); }; };
 		665883171BBCC72A00CA21A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 665883161BBCC72A00CA21A9 /* main.m */; };
 		6658831A1BBCC72A00CA21A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 665883191BBCC72A00CA21A9 /* AppDelegate.m */; };
-		6658831D1BBCC72A00CA21A9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658831C1BBCC72A00CA21A9 /* ViewController.m */; };
+		6658831D1BBCC72A00CA21A9 /* PictographMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658831C1BBCC72A00CA21A9 /* PictographMainViewController.m */; };
 		665883201BBCC72A00CA21A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6658831E1BBCC72A00CA21A9 /* Main.storyboard */; };
 		665883221BBCC72A00CA21A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 665883211BBCC72A00CA21A9 /* Assets.xcassets */; };
 		665883251BBCC72A00CA21A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 665883231BBCC72A00CA21A9 /* LaunchScreen.storyboard */; };
@@ -39,15 +39,15 @@
 /* Begin PBXFileReference section */
 		0CC9BC52212F355074F8E00C /* libPods-Pictograph.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pictograph.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A3CCD2596C223F883999854 /* Pods-Pictograph.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictograph.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pictograph/Pods-Pictograph.release.xcconfig"; sourceTree = "<group>"; };
-		662CFC851BC2215F00A9FF28 /* UIImageCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageCoder.h; sourceTree = "<group>"; };
-		662CFC861BC2215F00A9FF28 /* UIImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageCoder.m; sourceTree = "<group>"; };
+		662CFC851BC2215F00A9FF28 /* UIImageCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIImageCoder.h; path = Functional/UIImageCoder.h; sourceTree = "<group>"; };
+		662CFC861BC2215F00A9FF28 /* UIImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIImageCoder.m; path = Functional/UIImageCoder.m; sourceTree = "<group>"; };
 		664C8C0EC2E69E14466709C5 /* Pods-Pictograph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictograph.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pictograph/Pods-Pictograph.debug.xcconfig"; sourceTree = "<group>"; };
 		665883121BBCC72A00CA21A9 /* Pictograph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pictograph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		665883161BBCC72A00CA21A9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		665883181BBCC72A00CA21A9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		665883191BBCC72A00CA21A9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		6658831B1BBCC72A00CA21A9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6658831C1BBCC72A00CA21A9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		6658831B1BBCC72A00CA21A9 /* PictographMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PictographMainViewController.h; path = "View Controllers/PictographMainViewController.h"; sourceTree = "<group>"; };
+		6658831C1BBCC72A00CA21A9 /* PictographMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PictographMainViewController.m; path = "View Controllers/PictographMainViewController.m"; sourceTree = "<group>"; };
 		6658831F1BBCC72A00CA21A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		665883211BBCC72A00CA21A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		665883241BBCC72A00CA21A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -103,6 +103,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		661571F31BD3474D001D6B8F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6658831B1BBCC72A00CA21A9 /* PictographMainViewController.h */,
+				6658831C1BBCC72A00CA21A9 /* PictographMainViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		661571F41BD34761001D6B8F /* Functional */ = {
+			isa = PBXGroup;
+			children = (
+				662CFC851BC2215F00A9FF28 /* UIImageCoder.h */,
+				662CFC861BC2215F00A9FF28 /* UIImageCoder.m */,
+			);
+			name = Functional;
+			sourceTree = "<group>";
+		};
 		665883091BBCC72A00CA21A9 = {
 			isa = PBXGroup;
 			children = (
@@ -130,14 +148,8 @@
 			children = (
 				665883181BBCC72A00CA21A9 /* AppDelegate.h */,
 				665883191BBCC72A00CA21A9 /* AppDelegate.m */,
-				6658831B1BBCC72A00CA21A9 /* ViewController.h */,
-				6658831C1BBCC72A00CA21A9 /* ViewController.m */,
-				662CFC851BC2215F00A9FF28 /* UIImageCoder.h */,
-				662CFC861BC2215F00A9FF28 /* UIImageCoder.m */,
-				6658831E1BBCC72A00CA21A9 /* Main.storyboard */,
-				665883211BBCC72A00CA21A9 /* Assets.xcassets */,
-				665883231BBCC72A00CA21A9 /* LaunchScreen.storyboard */,
-				665883261BBCC72A00CA21A9 /* Info.plist */,
+				661571F41BD34761001D6B8F /* Functional */,
+				661571F31BD3474D001D6B8F /* View Controllers */,
 				665883151BBCC72A00CA21A9 /* Supporting Files */,
 			);
 			path = Pictograph;
@@ -146,6 +158,10 @@
 		665883151BBCC72A00CA21A9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6658831E1BBCC72A00CA21A9 /* Main.storyboard */,
+				665883211BBCC72A00CA21A9 /* Assets.xcassets */,
+				665883231BBCC72A00CA21A9 /* LaunchScreen.storyboard */,
+				665883261BBCC72A00CA21A9 /* Info.plist */,
 				665883161BBCC72A00CA21A9 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -334,7 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6658831D1BBCC72A00CA21A9 /* ViewController.m in Sources */,
+				6658831D1BBCC72A00CA21A9 /* PictographMainViewController.m in Sources */,
 				6658831A1BBCC72A00CA21A9 /* AppDelegate.m in Sources */,
 				665883171BBCC72A00CA21A9 /* main.m in Sources */,
 				662CFC871BC2215F00A9FF28 /* UIImageCoder.m in Sources */,

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIImageCoder.h"
 
-@interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface PictographMainViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 typedef NS_ENUM(NSInteger, ImageOption) {
     ImageOptionEncoder,

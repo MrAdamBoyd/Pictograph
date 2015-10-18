@@ -6,11 +6,11 @@
 //  Copyright © 2015 Adam Boyd. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "PictographMainViewController.h"
 
 #define kButtonHeight 60
 
-@interface ViewController ()
+@interface PictographMainViewController ()
 
 - (void)showChoosePhotoActionSheet;
 - (UIImagePickerController *)buildImagePickerWithSourceType:(UIImagePickerControllerSourceType)type;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation ViewController
+@implementation PictographMainViewController
 
 @synthesize selectedImage;
 @synthesize navBar;
