@@ -9,6 +9,9 @@
 #import "PictographMainViewController.h"
 
 #define kButtonHeight 60
+#define mainAppColor [UIColor redColor]
+#define mainAppColorHighlighted [[UIColor redColor] colorWithAlphaComponent:0.5]
+#define buttonBorderWidth 0.5
 
 @interface PictographMainViewController ()
 
@@ -34,11 +37,11 @@
     [super viewDidLoad];
     
     //Background color
-    [self.view setBackgroundColor:[UIColor redColor]];
+    [self.view setBackgroundColor:mainAppColor];
     
     //Nav bar
     topBar = [[PictographTopBar alloc] init];
-    [topBar setBackgroundColor:[UIColor redColor]];
+    [topBar setBackgroundColor:mainAppColor];
     [topBar setTranslatesAutoresizingMaskIntoConstraints:false];
     [self.view addSubview:topBar];
     
@@ -51,7 +54,7 @@
     
     //Main view, contains buttons and imageview
     mainView = [[UIView alloc] init];
-    [mainView setBackgroundColor:[UIColor whiteColor]];
+    [mainView setBackgroundColor:mainAppColor];
     [mainView setTranslatesAutoresizingMaskIntoConstraints:false];
     [self.view addSubview:mainView];
     
@@ -66,9 +69,15 @@
     encodeButton = [[UIButton alloc] init];
     [encodeButton addTarget:self action:@selector(encodeMessage) forControlEvents:UIControlEventTouchUpInside];
     [encodeButton setBackgroundColor:[UIColor whiteColor]];
-    [encodeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [encodeButton setTitleColor:mainAppColor forState:UIControlStateNormal];
+    [encodeButton setTitleColor:mainAppColorHighlighted forState:UIControlStateHighlighted];
     [encodeButton setTitle:@"Encode Message" forState:UIControlStateNormal];
     [encodeButton setTranslatesAutoresizingMaskIntoConstraints:false];
+    
+    //Setting the border
+    [encodeButton.layer setBorderColor:mainAppColor.CGColor];
+    [encodeButton.layer setBorderWidth:buttonBorderWidth];
+    
     [self.view addSubview:encodeButton];
     
     //0px from left, bottom, center, 60px tall
@@ -82,9 +91,15 @@
     decodeButton = [[UIButton alloc] init];
     [decodeButton addTarget:self action:@selector(decodeMessage) forControlEvents:UIControlEventTouchUpInside];
     [decodeButton setBackgroundColor:[UIColor whiteColor]];
-    [decodeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [decodeButton setTitleColor:mainAppColor forState:UIControlStateNormal];
+    [decodeButton setTitleColor:mainAppColorHighlighted forState:UIControlStateHighlighted];
     [decodeButton setTitle:@"Decode Message" forState:UIControlStateNormal];
     [decodeButton setTranslatesAutoresizingMaskIntoConstraints:false];
+
+    //Setting the border
+    [decodeButton.layer setBorderColor:mainAppColor.CGColor];
+    [decodeButton.layer setBorderWidth:buttonBorderWidth];
+    
     [self.view addSubview:decodeButton];
     
     //0px from bottom, right, center, 60px tall
@@ -92,6 +107,7 @@
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:kButtonHeight]];
+    
     
 }
 
