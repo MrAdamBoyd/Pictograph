@@ -11,6 +11,8 @@
 #define bitCountForCharacter 8
 #define bitCountForSize 16
 #define bytesPerPixel 4
+#define maxIntFor8Bits 255
+#define maxFloatFor8Bits 255.0
 
 @implementation UIImageCoder
 
@@ -30,7 +32,7 @@
         CGFloat red, green, blue, alpha;
         [color getRed:&red green:&green blue:&blue alpha:&alpha];
         
-        NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * 255) withSpaceFor:bitCountForCharacter];
+        NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * maxIntFor8Bits) withSpaceFor:bitCountForCharacter];
         
         [sizeArrayInBits addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
         [sizeArrayInBits addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
@@ -49,7 +51,7 @@
         [color getRed:&red green:&green blue:&blue alpha:&alpha];
         
         
-        NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * 255) withSpaceFor:bitCountForCharacter];
+        NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:(blue * maxIntFor8Bits) withSpaceFor:bitCountForCharacter];
         
         [arrayOfBitsForMessage addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
         [arrayOfBitsForMessage addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
@@ -131,14 +133,14 @@
             [colorOfCurrentPixel getRed:&red green:&green blue:&blue alpha:&alpha];
             
             //Changing the value of the blue byte
-            NSMutableArray *arrayOfBitsFromBlue = [[NSMutableArray alloc] initWithArray:[self binaryStringFromInteger:blue * 255 withSpaceFor:bitCountForCharacter]];
+            NSMutableArray *arrayOfBitsFromBlue = [[NSMutableArray alloc] initWithArray:[self binaryStringFromInteger:blue * maxIntFor8Bits withSpaceFor:bitCountForCharacter]];
             
             //Changing the least significant bits of the blue byte
             [arrayOfBitsFromBlue replaceObjectAtIndex:6 withObject:arrayOfBits[encodeCounter]];
             [arrayOfBitsFromBlue replaceObjectAtIndex:7 withObject:arrayOfBits[encodeCounter + 1]];
             
             long newBlueLong = [self longFromBits:arrayOfBitsFromBlue];
-            CGFloat newBlueValue = (newBlueLong * 1.0) / 255;
+            CGFloat newBlueValue = (newBlueLong * 1.0) / maxIntFor8Bits;
             
             CGContextSetRGBFillColor(context, red, green, newBlueValue, alpha);
             CGContextFillRect(context, CGRectMake(widthCounter, heightCounter - 1, 1, 1)); //Only filling in 1 pixel
@@ -261,10 +263,10 @@
     
     for (int counter = 0; counter < count; counter++) {
         //Getting the bits for each color space red, green, blue, and alpha
-        CGFloat red   = (rawData[byteIndex]     * 1.0) / 255.0;
-        CGFloat green = (rawData[byteIndex + 1] * 1.0) / 255.0;
-        CGFloat blue  = (rawData[byteIndex + 2] * 1.0) / 255.0;
-        CGFloat alpha = (rawData[byteIndex + 3] * 1.0) / 255.0;
+        CGFloat red   = (rawData[byteIndex]     * 1.0) / maxFloatFor8Bits;
+        CGFloat green = (rawData[byteIndex + 1] * 1.0) / maxFloatFor8Bits;
+        CGFloat blue  = (rawData[byteIndex + 2] * 1.0) / maxFloatFor8Bits;
+        CGFloat alpha = (rawData[byteIndex + 3] * 1.0) / maxFloatFor8Bits;
         byteIndex += bytesPerPixel;
         
         UIColor *newColor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
