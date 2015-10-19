@@ -22,7 +22,7 @@
 - (void)startEncodingOrDecoding;
 - (void)buildAndShowMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler;
 - (void)showShareSheetWithImage:(NSData *)image;
-- (void)showDecodedMessageInAlertController:(NSString *)message;
+- (void)showMessageInAlertController:(NSString *)message withTitle:(NSString *)title;
 
 @end
 
@@ -189,17 +189,19 @@
                 //Action that happens when confirm is hit
                 UITextField *messageField = alertController.textFields.firstObject;
                 
-                //Completing the action goes here
                 UIImageCoder *coder = [[UIImageCoder alloc] init];
                 
-                NSData *encodedImage = [coder encodeImage:selectedImage withMessage:messageField.text];
+                NSError *error;
+                
+                NSData *encodedImage = [coder encodeImage:selectedImage withMessage:messageField.text error:&error];
                 
                 if (encodedImage) {
                     //Show the share sheet if the image exists
                     [self showShareSheetWithImage:encodedImage];
                 
                 } else {
-                    //TODO: Show an error here, most likely the image was too small or the message was too big
+                    //Showing the error, either the image was too small or the message was too big
+                    [self showMessageInAlertController:[error localizedDescription] withTitle:@"Error"];
                 }
                 
                 //Hiding the HUD
@@ -217,7 +219,7 @@
         NSString *decodedMessage = [coder decodeImage:selectedImage];
         
         if (decodedMessage) {
-            [self showDecodedMessageInAlertController:decodedMessage];
+            [self showMessageInAlertController:decodedMessage withTitle:@"Hidden Message"];
         }
         
     }
@@ -259,8 +261,8 @@
 }
 
 //Shows the decoded message in an alert controller
-- (void)showDecodedMessageInAlertController:(NSString *)message {
-    alertController = [UIAlertController alertControllerWithTitle:@"Decoded Message" message:message preferredStyle:UIAlertControllerStyleAlert];
+- (void)showMessageInAlertController:(NSString *)message withTitle:(NSString *)title {
+    alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:NULL];
     [alertController addAction:dismissAction];

@@ -64,6 +64,7 @@
 		665883361BBCC72A00CA21A9 /* PictographUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PictographUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6658833A1BBCC72A00CA21A9 /* PictographUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictographUITests.m; sourceTree = "<group>"; };
 		6658833C1BBCC72A00CA21A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		669DFD0E1BD561FA00A0BAC2 /* EncodingErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EncodingErrors.h; path = Errors/EncodingErrors.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +166,7 @@
 			children = (
 				665883181BBCC72A00CA21A9 /* AppDelegate.h */,
 				665883191BBCC72A00CA21A9 /* AppDelegate.m */,
+				669DFD0D1BD561CF00A0BAC2 /* Errors */,
 				661571F51BD3488A001D6B8F /* Views */,
 				661571F41BD34761001D6B8F /* Functional */,
 				661571F31BD3474D001D6B8F /* View Controllers */,
@@ -201,6 +203,14 @@
 				6658833C1BBCC72A00CA21A9 /* Info.plist */,
 			);
 			path = PictographUITests;
+			sourceTree = "<group>";
+		};
+		669DFD0D1BD561CF00A0BAC2 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				669DFD0E1BD561FA00A0BAC2 /* EncodingErrors.h */,
+			);
+			name = Errors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

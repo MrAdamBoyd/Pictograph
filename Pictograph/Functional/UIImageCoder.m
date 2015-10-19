@@ -90,7 +90,7 @@
 }
 
 //Encodes UIImage image with message message. Returns the modified UIImage
-- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message {
+- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message error:(NSError **)error {
 
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
@@ -99,7 +99,13 @@
     
     if ((image.size.height * image.size.width) <= numberOfPixelsNeeded) {
         //Makes sure the image is large enough to handle the message
-        //TODO: Throw error
+        DLog(@"User's selected image was too small");
+        
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Image was too small, please select a larger image."};
+        
+        *error = [NSError errorWithDomain:PictographErrorDomain code:ImageTooSmallError userInfo:userInfo];
+        
+        return nil;
     }
     
     /* Adding the size of the message here. Always using 16 bits for the size, even though it might only require 8,

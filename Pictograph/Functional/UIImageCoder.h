@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "EncodingErrors.h"
 
 @interface UIImageCoder : NSObject
 
 - (NSString *)decodeImage:(UIImage *)image;
-- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message;
+- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message error:(NSError **)error;
 
 @end
