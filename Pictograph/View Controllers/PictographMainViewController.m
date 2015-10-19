@@ -305,7 +305,7 @@
                 
                 NSError *error;
                 
-                NSData *encodedImage = [coder encodeImage:selectedImage withMessage:messageField.text error:&error];
+                NSData *encodedImage = [coder encodeImage:selectedImage withMessage:messageField.text encrypted:[[PictographDataController sharedController] getUserEncryptionEnabled] withPassword:[[PictographDataController sharedController] getUserEncryptionKey] error:&error];
                 
                 if (encodedImage) {
                     //Show the share sheet if the image exists

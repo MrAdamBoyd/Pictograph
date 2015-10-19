@@ -38,9 +38,20 @@
     
     long informationAboutString = [self longFromBits:infoArrayInBits];
     
+    BOOL messageIsEncrypted = NO;
+    
+    //Using 8 bits for future proofing
+    //Only using 1 bit right now
+    /*
+     (0) 00000000 - Normal message, proceed as normal
+     (1) 00000001 - Encrypted message
+     */
     if (informationAboutString == 1) {
+        messageIsEncrypted = YES;
         //TODO: String is encrypted, need to prompt for key
     }
+    
+    NSString *password = @"Password";
     
     //Getting the size of the string
     NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:4 andY:0 count:(bitCountForSize / 2)];
@@ -55,11 +66,12 @@
     //Going through all the pixels to get the char value
     
     NSMutableArray *arrayOfBitsForMessage = [[NSMutableArray alloc] init];
-
+    NSMutableData *encryptedData = [[NSMutableData alloc] init];
+    
     NSArray *arrayOfColors = [self getRBGAFromImage:image atX:12 andY:0 count:((int)numberOfBitsNeededForImage / 2)];
     
     for (UIColor *color in arrayOfColors) {
-        
+        //Going through each pixel
         [self addBlueBitsFromColor:color toArray:arrayOfBitsForMessage];
         
         if ([arrayOfBitsForMessage count] == bitCountForCharacter) {
@@ -67,13 +79,64 @@
             
             long longChar = [self longFromBits:arrayOfBitsForMessage];
             
-            [decodedString appendFormat:@"%c", (char)longChar];
-            
+            if (messageIsEncrypted) {
+                //If the string is encrypted, add it to the encrypted data
+                char curChar = (char)longChar;
+                
+                [encryptedData appendBytes:&curChar length:1];
+                
+            } else {
+                //Not encrypted, just add it to string
+                [decodedString appendFormat:@"%c", (char)longChar];
+            }
+                
             [arrayOfBitsForMessage removeAllObjects]; //Reset the array for the next char
         }
-        
     }
     
+    if (messageIsEncrypted) {
+        //If message is encrypted, decrypt it and save it
+        NSError *error = nil;
+        NSData *encodedString = [RNCryptor decryptData:encryptedData password:password error:&error];
+        decodedString = [[NSString alloc] initWithData:encodedString encoding:NSUTF8StringEncoding];
+        if (error != nil) {
+            NSLog(@"ERROR: %@", error);
+        }
+    }
+    
+    
+//    NSData *stringData = [decodedString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSString *password = @"LOL!";
+//    NSData *cipherData = [RNCryptor encryptData:stringData password:password];
+//    
+//    const char *bytes = [cipherData bytes];
+//    
+//    NSMutableData *newData = [[NSMutableData alloc] init];
+//    
+//    for (int i = 0; i < [cipherData length]; i++) {
+//        NSLog(@"%c", bytes[i]);
+//        
+//        [newData appendBytes:&bytes[i] length:1];
+//    }
+//    
+//    
+//    NSError *error;
+////    NSData *afterCipherData = [[NSData alloc] initWithBase64EncodedString:cipherData options:0];
+//    NSData *plaintextData = [RNCryptor decryptData:cipherData password:password error:&error];
+//    NSString *decoded = [[NSString alloc] initWithData:plaintextData encoding:NSUTF8StringEncoding];
+//
+    
+//    NSData *data = [decodedString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSData *ciphertext = [RNCryptor encryptData:data password:password];
+    
+    // Decryption
+//    NSError *error = nil;
+//    NSData *plaintext = [RNCryptor decryptData:encryptedData password:password error:&error];
+//    
+//    NSString *newString = [[NSString alloc] initWithData:plaintext encoding:NSUTF8StringEncoding];
+//    if (error != nil) {
+//        NSLog(@"ERROR: %@", error);
+//    }
     
     return decodedString;
 }
@@ -90,11 +153,32 @@
 }
 
 //Encodes UIImage image with message message. Returns the modified UIImage
-- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message error:(NSError **)error {
+- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message encrypted:(BOOL)encryptedBool withPassword:(NSString *)password error:(NSError **)error {
 
+    NSString *toEncode = [[NSMutableString alloc] init];
+    
+    if (encryptedBool) {
+        //If the user wants to encrypt the string, encrypt it
+        NSData *stringData = [message dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *cipherData = [RNCryptor encryptData:stringData password:password];
+        const char *bytes = [cipherData bytes];
+        NSMutableString *stringOfBytes = [[NSMutableString alloc] init];
+        
+        for (int i = 0; i < [cipherData length]; i++) {
+            //Converting the data into bytes to it can easily be converted into bits
+            [stringOfBytes appendFormat:@"%c", bytes[i]];
+        }
+        
+        toEncode = [NSString stringWithString:stringOfBytes];
+        
+    } else {
+        //No need to encode
+        toEncode = message;
+    }
+    
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
-    long numberOfBitsNeeded = [message length] * bitCountForCharacter; //8 bits to a char
+    long numberOfBitsNeeded = [toEncode length] * bitCountForCharacter; //8 bits to a char
     long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForSize / 2) + (bitCountForCharacter / 2);
     
     if ((image.size.height * image.size.width) <= numberOfPixelsNeeded) {
@@ -117,14 +201,17 @@
      (0) 00000000 - Normal message, proceed as normal
      (1) 00000001 - Encrypted message
      */
-    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:0 withSpaceFor:bitCountForCharacter]];
+    
+    int encryptedOrNotBit = encryptedBool ? 1 : 0;
+    
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:encryptedOrNotBit withSpaceFor:bitCountForCharacter]];
     
     [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)numberOfBitsNeeded withSpaceFor:bitCountForSize]]; //16 bits for spacing
     
-    for (int charIndex = 0; charIndex < [message length]; charIndex++) {
+    for (int charIndex = 0; charIndex < [toEncode length]; charIndex++) {
         //Going through each character
         
-        char curChar = [message characterAtIndex:charIndex];
+        char curChar = [toEncode characterAtIndex:charIndex];
         [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:curChar withSpaceFor:bitCountForCharacter]]; //Only 8 bits needed for chars
         
     }
@@ -233,7 +320,6 @@
         
         [message appendFormat:@"%c", curChar];
     }
-    
     
     return message;
 }

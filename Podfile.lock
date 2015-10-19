@@ -1,10 +1,13 @@
 PODS:
   - MBProgressHUD (0.9.1)
+  - RNCryptor (4.0.0)
 
 DEPENDENCIES:
   - MBProgressHUD (~> 0.9.1)
+  - RNCryptor
 
 SPEC CHECKSUMS:
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  RNCryptor: 59d6483908115af5c12b884db23392024e52a5fe
 
 COCOAPODS: 0.39.0
