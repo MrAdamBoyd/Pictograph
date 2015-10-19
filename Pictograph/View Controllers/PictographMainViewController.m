@@ -13,8 +13,12 @@
 #define mainAppColorHighlighted [[UIColor redColor] colorWithAlphaComponent:0.5]
 #define buttonBorderWidth 0.5
 
+#define kEncryptionMargin 40
+#define kEncryptionVerticalMargin 40
+
 @interface PictographMainViewController ()
 
+- (void)switchToggled:(id)sender;
 - (void)encodeMessage;
 - (void)decodeMessage;
 - (void)promptUserForPhotoWithOptionForCamera:(BOOL)showCamera;
@@ -30,6 +34,10 @@
 
 @synthesize selectedImage;
 @synthesize topBar;
+@synthesize encryptionInfoViewBorder;
+@synthesize encryptionLabel;
+@synthesize encryptionSwitch;
+@synthesize encryptionKeyField;
 @synthesize encodeButton;
 @synthesize decodeButton;
 @synthesize currentOption;
@@ -96,6 +104,67 @@
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:1]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:decodeButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:kButtonHeight]];
+
+    
+    //Textfield where encryption key is stored
+    encryptionKeyField = [[PictographTextField alloc] init];
+    BOOL encryptionEnabled = [[PictographDataController sharedController] getUserEncryptionEnabled];
+    [encryptionKeyField setAlpha:encryptionEnabled ? 1.0 : 0.5];
+    [encryptionKeyField setEnabled:encryptionEnabled];
+    [encryptionKeyField setDelegate:self];
+    [encryptionKeyField setBackgroundColor:[UIColor whiteColor]];
+    [encryptionKeyField setFont:[UIFont systemFontOfSize:20]];
+    [encryptionKeyField setPlaceholder:@"Encryption Key"];
+    [encryptionKeyField setText:[[PictographDataController sharedController] getUserEncryptionKey]];
+    [encryptionKeyField setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:encryptionKeyField];
+    
+    //50px from left, right, -20px (above) center y
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionKeyField attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1 constant:-kEncryptionVerticalMargin]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionKeyField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:kEncryptionMargin]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionKeyField attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:-kEncryptionMargin]];
+    
+    
+    
+    //Label for enabling encryption
+    encryptionLabel = [[UILabel alloc] init];
+    [encryptionLabel setText:@"Enable Encryption"];
+    [encryptionLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    [encryptionLabel setTextColor:[UIColor whiteColor]];
+    [encryptionLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:encryptionLabel];
+    
+    //0px from left, -20px (above) the top of encryptionKeyField
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:kEncryptionMargin]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:encryptionKeyField attribute:NSLayoutAttributeTop multiplier:1 constant:-kEncryptionVerticalMargin]];
+    
+    
+    
+    //Switch for enabling encryption
+    encryptionSwitch = [[UISwitch alloc] init];
+    [encryptionSwitch setOn:encryptionEnabled];
+    [encryptionSwitch addTarget:self action:@selector(switchToggled:) forControlEvents:UIControlEventValueChanged];
+    [encryptionSwitch setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:encryptionSwitch];
+    
+    //50px from right, center Y = encryptionLabel's center y
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionSwitch attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:-kEncryptionMargin]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionSwitch attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:encryptionLabel attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+ 
+    
+    //Border between text label and switch for enabling and disabling encryption
+    encryptionInfoViewBorder = [[UIView alloc] init];
+    [encryptionInfoViewBorder setBackgroundColor:[UIColor whiteColor]];
+    [encryptionInfoViewBorder setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:encryptionInfoViewBorder];
+    
+    //Halfway between the switch and the textfield, 40px from left, right, 1px tall
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionInfoViewBorder attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:encryptionKeyField attribute:NSLayoutAttributeTop multiplier:1 constant:-kEncryptionVerticalMargin / 2]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionInfoViewBorder attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:kEncryptionMargin - 10]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionInfoViewBorder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:-kEncryptionMargin + 10]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionInfoViewBorder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:1]];
+     
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,7 +176,40 @@
     return UIStatusBarStyleLightContent;
 }
 
+//Touching anywhere on the screen so the textfield can resign first responder
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+    
+    //Saving the text
+    [[PictographDataController sharedController] setUserEncryptionKey:encryptionKeyField.text];
+}
+
+#pragma mark UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    
+    //Saving the text
+    [[PictographDataController sharedController] setUserEncryptionKey:textField.text];
+    return NO;
+}
+
 #pragma mark Custom methods
+
+//Encryption enabled switch changed
+- (void)switchToggled:(id)sender {
+    UISwitch *mySwitch = (UISwitch *)sender;
+    BOOL enabledOrDisabled = [mySwitch isOn];
+    
+    //Disabling or enabling the textfield based on whether encryption is enabled
+    [encryptionKeyField setEnabled:enabledOrDisabled];
+    
+    //Animating the alpha of the textfield
+    [UIView animateWithDuration:0.25 animations:^{
+        [encryptionKeyField setAlpha:enabledOrDisabled ? 1.0 : 0.5];
+    }];
+    
+    [[PictographDataController sharedController] setUserEncryptionEnabled:enabledOrDisabled];
+}
 
 //Starting the encode process
 - (void)encodeMessage {

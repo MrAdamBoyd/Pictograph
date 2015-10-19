@@ -19,6 +19,9 @@
 		665883251BBCC72A00CA21A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 665883231BBCC72A00CA21A9 /* LaunchScreen.storyboard */; };
 		665883301BBCC72A00CA21A9 /* PictographTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658832F1BBCC72A00CA21A9 /* PictographTests.m */; };
 		6658833B1BBCC72A00CA21A9 /* PictographUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658833A1BBCC72A00CA21A9 /* PictographUITests.m */; };
+		669BC1101BD569AF00DD4C6F /* CurrentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 669BC10F1BD569AF00DD4C6F /* CurrentUser.m */; settings = {ASSET_TAGS = (); }; };
+		669BC1131BD56D4100DD4C6F /* PictographDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 669BC1121BD56D4100DD4C6F /* PictographDataController.m */; settings = {ASSET_TAGS = (); }; };
+		669BC1171BD578DC00DD4C6F /* PictographTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 669BC1161BD578DC00DD4C6F /* PictographTextField.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,12 @@
 		665883361BBCC72A00CA21A9 /* PictographUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PictographUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6658833A1BBCC72A00CA21A9 /* PictographUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictographUITests.m; sourceTree = "<group>"; };
 		6658833C1BBCC72A00CA21A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		669BC10E1BD569AF00DD4C6F /* CurrentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CurrentUser.h; path = Models/CurrentUser.h; sourceTree = "<group>"; };
+		669BC10F1BD569AF00DD4C6F /* CurrentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CurrentUser.m; path = Models/CurrentUser.m; sourceTree = "<group>"; };
+		669BC1111BD56D4100DD4C6F /* PictographDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PictographDataController.h; path = "Other Controllers/PictographDataController.h"; sourceTree = "<group>"; };
+		669BC1121BD56D4100DD4C6F /* PictographDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PictographDataController.m; path = "Other Controllers/PictographDataController.m"; sourceTree = "<group>"; };
+		669BC1151BD578DC00DD4C6F /* PictographTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PictographTextField.h; path = Views/PictographTextField.h; sourceTree = "<group>"; };
+		669BC1161BD578DC00DD4C6F /* PictographTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PictographTextField.m; path = Views/PictographTextField.m; sourceTree = "<group>"; };
 		669DFD0E1BD561FA00A0BAC2 /* EncodingErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EncodingErrors.h; path = Errors/EncodingErrors.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +142,8 @@
 			children = (
 				661571F91BD41B9F001D6B8F /* PictographButton.h */,
 				661571FA1BD41B9F001D6B8F /* PictographButton.m */,
+				669BC1151BD578DC00DD4C6F /* PictographTextField.h */,
+				669BC1161BD578DC00DD4C6F /* PictographTextField.m */,
 				661571F61BD348B6001D6B8F /* PictographTopBar.h */,
 				661571F71BD348B6001D6B8F /* PictographTopBar.m */,
 			);
@@ -167,8 +178,10 @@
 				665883181BBCC72A00CA21A9 /* AppDelegate.h */,
 				665883191BBCC72A00CA21A9 /* AppDelegate.m */,
 				669DFD0D1BD561CF00A0BAC2 /* Errors */,
-				661571F51BD3488A001D6B8F /* Views */,
 				661571F41BD34761001D6B8F /* Functional */,
+				669BC10D1BD5699D00DD4C6F /* Models */,
+				669BC1141BD56D4C00DD4C6F /* Other Controllers */,
+				661571F51BD3488A001D6B8F /* Views */,
 				661571F31BD3474D001D6B8F /* View Controllers */,
 				665883151BBCC72A00CA21A9 /* Supporting Files */,
 			);
@@ -203,6 +216,24 @@
 				6658833C1BBCC72A00CA21A9 /* Info.plist */,
 			);
 			path = PictographUITests;
+			sourceTree = "<group>";
+		};
+		669BC10D1BD5699D00DD4C6F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				669BC10E1BD569AF00DD4C6F /* CurrentUser.h */,
+				669BC10F1BD569AF00DD4C6F /* CurrentUser.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		669BC1141BD56D4C00DD4C6F /* Other Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				669BC1111BD56D4100DD4C6F /* PictographDataController.h */,
+				669BC1121BD56D4100DD4C6F /* PictographDataController.m */,
+			);
+			name = "Other Controllers";
 			sourceTree = "<group>";
 		};
 		669DFD0D1BD561CF00A0BAC2 /* Errors */ = {
@@ -398,8 +429,11 @@
 				661571F81BD348B6001D6B8F /* PictographTopBar.m in Sources */,
 				6658831D1BBCC72A00CA21A9 /* PictographMainViewController.m in Sources */,
 				6658831A1BBCC72A00CA21A9 /* AppDelegate.m in Sources */,
+				669BC1131BD56D4100DD4C6F /* PictographDataController.m in Sources */,
+				669BC1171BD578DC00DD4C6F /* PictographTextField.m in Sources */,
 				665883171BBCC72A00CA21A9 /* main.m in Sources */,
 				662CFC871BC2215F00A9FF28 /* UIImageCoder.m in Sources */,
+				669BC1101BD569AF00DD4C6F /* CurrentUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
