@@ -17,7 +17,7 @@
 
 - (void)encodeMessage;
 - (void)decodeMessage;
-- (void)showChoosePhotoActionSheet;
+- (void)promptUserForPhotoWithOptionForCamera:(BOOL)showCamera;
 - (UIImagePickerController *)buildImagePickerWithSourceType:(UIImagePickerControllerSourceType)type;
 - (void)startEncodingOrDecoding;
 - (void)buildAndShowMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler;
@@ -112,19 +112,19 @@
 //Starting the encode process
 - (void)encodeMessage {
     currentOption = ImageOptionEncoder;
-    [self showChoosePhotoActionSheet];
+    [self promptUserForPhotoWithOptionForCamera:true];
 }
 
 //Starting the decoding process
 - (void)decodeMessage {
     currentOption = ImageOptionDecoder;
-    [self showChoosePhotoActionSheet];
+    [self promptUserForPhotoWithOptionForCamera:false]; //Doesn't make sense to show the camera here
 }
 
 //Showing the action sheet
-- (void)showChoosePhotoActionSheet {
+- (void)promptUserForPhotoWithOptionForCamera:(BOOL)showCamera {
     
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] && showCamera) {
         //Device has camera & library, show option to choose
         alertController = [UIAlertController alertControllerWithTitle:@"Select Picture" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
