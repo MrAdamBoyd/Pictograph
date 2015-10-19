@@ -213,8 +213,18 @@
 
 //Starting the encode process
 - (void)encodeMessage {
-    currentOption = ImageOptionEncoder;
-    [self promptUserForPhotoWithOptionForCamera:true];
+    /*
+     True if encryption is enabled AND the key isn't blank
+     OR encryption is disbled
+     */
+    if ((![[[PictographDataController sharedController] getUserEncryptionKey] isEqualToString:@""] && [[PictographDataController sharedController] getUserEncryptionEnabled]) || ![[PictographDataController sharedController] getUserEncryptionEnabled]) {
+        //If the user has an encr
+        currentOption = ImageOptionEncoder;
+        [self promptUserForPhotoWithOptionForCamera:true];
+    } else {
+        //Show message: encryption is enabled and key is blank
+        [self showMessageInAlertController:@"Encryption is enabled but your key is blank, please enter a key." withTitle:@"No Encryption Key"];
+    }
 }
 
 //Starting the decoding process
