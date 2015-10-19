@@ -23,7 +23,7 @@
 @implementation UIImageCoder
 
 //Decodes UIImage image. Returns the encoded message in the image.
-- (NSString *)decodeImage:(UIImage *)image {
+- (NSString *)decodeImage:(UIImage *)image error:(NSError **)error {
     
     NSMutableString *decodedString = [[NSMutableString alloc] init];
     NSMutableArray *infoArrayInBits = [[NSMutableArray alloc] init];
@@ -35,6 +35,8 @@
         //Going through each color that contains information about the message
         [self addBlueBitsFromColor:color toArray:infoArrayInBits];
     }
+    
+    //TODO: Need to determine if the image actually contains a hidden message
     
     long informationAboutString = [self longFromBits:infoArrayInBits];
     
@@ -96,11 +98,15 @@
     
     if (messageIsEncrypted) {
         //If message is encrypted, decrypt it and save it
-        NSError *error = nil;
-        NSData *encodedString = [RNCryptor decryptData:encryptedData password:password error:&error];
+        NSError *decryptError = nil;
+        NSData *encodedString = [RNCryptor decryptData:encryptedData password:password error:&decryptError];
         decodedString = [[NSMutableString alloc] initWithData:encodedString encoding:NSUTF8StringEncoding];
-        if (error != nil) {
-            NSLog(@"ERROR: %@", error);
+        
+        if (error) {
+            //If there was an error, alert the user
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"The password you entered was incorrect. Please try again."};
+            *error = [NSError errorWithDomain:PictographErrorDomain code:PasswordIncorrectError userInfo:userInfo];
+            return nil;
         }
     }
     
@@ -141,6 +147,8 @@
         //No need to encode
         toEncode = message;
     }
+    
+    //TODO: Limit message's size to 256 characters
     
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */

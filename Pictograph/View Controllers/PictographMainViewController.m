@@ -128,7 +128,7 @@
     
     //Label for enabling encryption
     encryptionLabel = [[UILabel alloc] init];
-    [encryptionLabel setText:@"Enable Encryption"];
+    [encryptionLabel setText:@"Encrypt images"];
     [encryptionLabel setFont:[UIFont boldSystemFontOfSize:20]];
     [encryptionLabel setTextColor:[UIColor whiteColor]];
     [encryptionLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -302,7 +302,6 @@
                 UITextField *messageField = alertController.textFields.firstObject;
                 
                 UIImageCoder *coder = [[UIImageCoder alloc] init];
-                
                 NSError *error;
                 
                 NSData *encodedImage = [coder encodeImage:selectedImage withMessage:messageField.text encrypted:[[PictographDataController sharedController] getUserEncryptionEnabled] withPassword:[[PictographDataController sharedController] getUserEncryptionKey] error:&error];
@@ -327,13 +326,16 @@
         //No need to show HUD because this won't take long
         
         UIImageCoder *coder = [[UIImageCoder alloc] init];
+        NSError *error;
         
-        NSString *decodedMessage = [coder decodeImage:selectedImage];
+        NSString *decodedMessage = [coder decodeImage:selectedImage error:&error];
         
-        if (decodedMessage) {
+        if (!error) {
+            //If there is no error
             [self showMessageInAlertController:decodedMessage withTitle:@"Hidden Message"];
+        } else {
+            [self showMessageInAlertController:[error localizedDescription] withTitle:@"Error Decoding"];
         }
-        
     }
 }
 

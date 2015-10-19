@@ -12,5 +12,6 @@ static NSString *PictographErrorDomain = @"com.adam.Pictograph.ErrorDomain";
 
 enum {
     ImageTooSmallError,
-    MessageTooLongError
+    MessageTooLongError,
+    PasswordIncorrectError
 };

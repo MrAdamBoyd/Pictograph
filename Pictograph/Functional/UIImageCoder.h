@@ -13,7 +13,7 @@
 
 @interface UIImageCoder : NSObject
 
-- (NSString *)decodeImage:(UIImage *)image;
+- (NSString *)decodeImage:(UIImage *)image error:(NSError **)error;
 - (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message encrypted:(BOOL)encryptedBool withPassword:(NSString *)password error:(NSError **)error;
 
 @end
