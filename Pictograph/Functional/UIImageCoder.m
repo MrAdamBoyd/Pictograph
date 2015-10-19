@@ -30,8 +30,8 @@
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting information about the encoded message
-    NSArray *first4PixelsInfo = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForCharacter / 2)];
-    for (UIColor *color in first4PixelsInfo) {
+    NSArray *first8PixelsInfo = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForSize / 2)];
+    for (UIColor *color in first8PixelsInfo) {
         //Going through each color that contains information about the message
         [self addBlueBitsFromColor:color toArray:infoArrayInBits];
     }
@@ -48,15 +48,25 @@
      (0) 00000000 - Normal message, proceed as normal
      (1) 00000001 - Encrypted message
      */
-    if (informationAboutString == 1) {
-        messageIsEncrypted = YES;
-        //TODO: String is encrypted, need to prompt for key
+    switch (informationAboutString) {
+        case 0:
+            messageIsEncrypted = NO;
+            break;
+            
+        case 1:
+            messageIsEncrypted = YES;
+            //TODO: String is encrypted, need to prompt for key
+            break;
+            
+        default:
+            //There is no message hidden in this image
+            break;
     }
     
     NSString *password = @"Password";
     
     //Getting the size of the string
-    NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:4 andY:0 count:(bitCountForSize / 2)];
+    NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:8 andY:0 count:(bitCountForSize / 2)];
     
     for (UIColor *color in first8PixelsColors) {
         //Going through each color that contains the size of the message
@@ -70,7 +80,7 @@
     NSMutableArray *arrayOfBitsForMessage = [[NSMutableArray alloc] init];
     NSMutableData *encryptedData = [[NSMutableData alloc] init];
     
-    NSArray *arrayOfColors = [self getRBGAFromImage:image atX:12 andY:0 count:((int)numberOfBitsNeededForImage / 2)];
+    NSArray *arrayOfColors = [self getRBGAFromImage:image atX:16 andY:0 count:((int)numberOfBitsNeededForImage / 2)];
     
     for (UIColor *color in arrayOfColors) {
         //Going through each pixel
@@ -102,7 +112,7 @@
         NSData *encodedString = [RNCryptor decryptData:encryptedData password:password error:&decryptError];
         decodedString = [[NSMutableString alloc] initWithData:encodedString encoding:NSUTF8StringEncoding];
         
-        if (error) {
+        if (decryptError) {
             //If there was an error, alert the user
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"The password you entered was incorrect. Please try again."};
             *error = [NSError errorWithDomain:PictographErrorDomain code:PasswordIncorrectError userInfo:userInfo];
@@ -153,7 +163,7 @@
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
     long numberOfBitsNeeded = [toEncode length] * bitCountForCharacter; //8 bits to a char
-    long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForSize / 2) + (bitCountForCharacter / 2);
+    long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForSize / 2) + (bitCountForSize / 2);
     
     if ((image.size.height * image.size.width) <= numberOfPixelsNeeded) {
         //Makes sure the image is large enough to handle the message
@@ -178,7 +188,7 @@
     
     int encryptedOrNotBit = encryptedBool ? 1 : 0;
     
-    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:encryptedOrNotBit withSpaceFor:bitCountForCharacter]];
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:encryptedOrNotBit withSpaceFor:bitCountForSize]]; //16 bits for future proofing
     
     [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)numberOfBitsNeeded withSpaceFor:bitCountForSize]]; //16 bits for spacing
     
