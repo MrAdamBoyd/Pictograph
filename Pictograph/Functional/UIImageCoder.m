@@ -98,45 +98,11 @@
         //If message is encrypted, decrypt it and save it
         NSError *error = nil;
         NSData *encodedString = [RNCryptor decryptData:encryptedData password:password error:&error];
-        decodedString = [[NSString alloc] initWithData:encodedString encoding:NSUTF8StringEncoding];
+        decodedString = [[NSMutableString alloc] initWithData:encodedString encoding:NSUTF8StringEncoding];
         if (error != nil) {
             NSLog(@"ERROR: %@", error);
         }
     }
-    
-    
-//    NSData *stringData = [decodedString dataUsingEncoding:NSUTF8StringEncoding];
-//    NSString *password = @"LOL!";
-//    NSData *cipherData = [RNCryptor encryptData:stringData password:password];
-//    
-//    const char *bytes = [cipherData bytes];
-//    
-//    NSMutableData *newData = [[NSMutableData alloc] init];
-//    
-//    for (int i = 0; i < [cipherData length]; i++) {
-//        NSLog(@"%c", bytes[i]);
-//        
-//        [newData appendBytes:&bytes[i] length:1];
-//    }
-//    
-//    
-//    NSError *error;
-////    NSData *afterCipherData = [[NSData alloc] initWithBase64EncodedString:cipherData options:0];
-//    NSData *plaintextData = [RNCryptor decryptData:cipherData password:password error:&error];
-//    NSString *decoded = [[NSString alloc] initWithData:plaintextData encoding:NSUTF8StringEncoding];
-//
-    
-//    NSData *data = [decodedString dataUsingEncoding:NSUTF8StringEncoding];
-//    NSData *ciphertext = [RNCryptor encryptData:data password:password];
-    
-    // Decryption
-//    NSError *error = nil;
-//    NSData *plaintext = [RNCryptor decryptData:encryptedData password:password error:&error];
-//    
-//    NSString *newString = [[NSString alloc] initWithData:plaintext encoding:NSUTF8StringEncoding];
-//    if (error != nil) {
-//        NSLog(@"ERROR: %@", error);
-//    }
     
     return decodedString;
 }
