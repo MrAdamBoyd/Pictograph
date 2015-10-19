@@ -9,7 +9,7 @@
 #import "UIImageCoder.h"
 
 #define bitCountForCharacter 8
-#define bitCountForSize 16
+#define bitCountForInfo 16
 #define bytesPerPixel 4
 #define maxIntFor8Bits 255
 #define maxFloatFor8Bits 255.0
@@ -30,7 +30,7 @@
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting information about the encoded message
-    NSArray *first8PixelsInfo = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForSize / 2)];
+    NSArray *first8PixelsInfo = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForInfo / 2)];
     for (UIColor *color in first8PixelsInfo) {
         //Going through each color that contains information about the message
         [self addBlueBitsFromColor:color toArray:infoArrayInBits];
@@ -42,11 +42,11 @@
     
     BOOL messageIsEncrypted = NO;
     
-    //Using 8 bits for future proofing
+    //Using 16 bits for future proofing
     //Only using 1 bit right now
     /*
-     (0) 00000000 - Normal message, proceed as normal
-     (1) 00000001 - Encrypted message
+     (0) 00000000 00000000 - Normal message, proceed as normal
+     (1) 00000000 00000001 - Encrypted message
      */
     switch (informationAboutString) {
         case 0:
@@ -66,7 +66,7 @@
     NSString *password = @"Password";
     
     //Getting the size of the string
-    NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:8 andY:0 count:(bitCountForSize / 2)];
+    NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:8 andY:0 count:(bitCountForInfo / 2)];
     
     for (UIColor *color in first8PixelsColors) {
         //Going through each color that contains the size of the message
@@ -163,7 +163,7 @@
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
     long numberOfBitsNeeded = [toEncode length] * bitCountForCharacter; //8 bits to a char
-    long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForSize / 2) + (bitCountForSize / 2);
+    long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForInfo / 2) + (bitCountForInfo / 2);
     
     if ((image.size.height * image.size.width) <= numberOfPixelsNeeded) {
         //Makes sure the image is large enough to handle the message
@@ -180,17 +180,18 @@
      giving a maximum size of 2^16 bits, or 65536 chars. Preceded by 8 bits of information regarding message */
     NSMutableArray *arrayOfBits = [[NSMutableArray alloc] init];
     
-    //Using 8 bits for future proofing
+    //Using 16 bits for future proofing
+    //Only using 1 bit right now
     /*
-     (0) 00000000 - Normal message, proceed as normal
-     (1) 00000001 - Encrypted message
+     (0) 00000000 00000000 - Normal message, proceed as normal
+     (1) 00000000 00000001 - Encrypted message
      */
     
     int encryptedOrNotBit = encryptedBool ? 1 : 0;
     
-    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:encryptedOrNotBit withSpaceFor:bitCountForSize]]; //16 bits for future proofing
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:encryptedOrNotBit withSpaceFor:bitCountForInfo]]; //16 bits for future proofing
     
-    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)numberOfBitsNeeded withSpaceFor:bitCountForSize]]; //16 bits for spacing
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)numberOfBitsNeeded withSpaceFor:bitCountForInfo]]; //16 bits for spacing
     
     for (int charIndex = 0; charIndex < [toEncode length]; charIndex++) {
         //Going through each character
@@ -286,16 +287,16 @@
 -(NSString *)stringFromBits:(NSArray *)bitArray {
     NSMutableString *message = [[NSMutableString alloc] init];
     
-    NSArray *sizeInBits = [bitArray subarrayWithRange:NSMakeRange(0, bitCountForSize)];
+    NSArray *sizeInBits = [bitArray subarrayWithRange:NSMakeRange(0, bitCountForInfo)];
     NSMutableString *sizeInBitsString = [[NSMutableString alloc] init];
     
-    for (int sizeCounter = 0; sizeCounter < bitCountForSize; sizeCounter++) {
+    for (int sizeCounter = 0; sizeCounter < bitCountForInfo; sizeCounter++) {
         //Creating a single string with the size, easily convertible to an int
         [sizeInBitsString appendString:[NSString stringWithFormat:@"%@", [sizeInBits objectAtIndex:sizeCounter]]];
     }
     
-    NSArray *characterArrayInBits = [bitArray subarrayWithRange:NSMakeRange(bitCountForSize, [bitArray count] - bitCountForSize)];
-    for (int charBitCounter = 0; charBitCounter < [bitArray count] - bitCountForSize; charBitCounter += bitCountForCharacter) {
+    NSArray *characterArrayInBits = [bitArray subarrayWithRange:NSMakeRange(bitCountForInfo, [bitArray count] - bitCountForInfo)];
+    for (int charBitCounter = 0; charBitCounter < [bitArray count] - bitCountForInfo; charBitCounter += bitCountForCharacter) {
         //Going through each character
         NSArray *singleCharacterArray = [characterArrayInBits subarrayWithRange:NSMakeRange(charBitCounter, bitCountForCharacter)];
 
