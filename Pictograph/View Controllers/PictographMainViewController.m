@@ -329,9 +329,8 @@
         UIImageCoder *coder = [[UIImageCoder alloc] init];
         NSError *error;
         
-        NSString *decodedMessage = [coder decodeImage:selectedImage error:&error passwordHandler:^NSString * {
-            return @"Password";
-        }];
+        NSString *providedPassword = [encryptionSwitch isOn] ? encryptionKeyField.text : @""; //Provide no password if encryption/decryption is off
+        NSString *decodedMessage = [coder decodeImage:selectedImage encryptedWithPassword:providedPassword error:&error];
         
         if (!error) {
             //If there is no error

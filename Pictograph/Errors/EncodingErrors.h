@@ -14,5 +14,6 @@ enum {
     ImageTooSmallError,
     MessageTooLongError,
     PasswordIncorrectError,
+    NoPasswordProvidedError,
     NoMessageInImageError
 };

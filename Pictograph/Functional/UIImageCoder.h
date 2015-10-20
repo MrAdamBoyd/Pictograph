@@ -13,7 +13,7 @@
 
 @interface UIImageCoder : NSObject
 
-- (NSString *)decodeImage:(UIImage *)image error:(NSError **)error  passwordHandler:(NSString *(^)(void))handler;
-- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message encrypted:(BOOL)encryptedBool withPassword:(NSString *)password error:(NSError **)error;
+- (NSString * _Nonnull)decodeImage:(UIImage * _Nonnull)image encryptedWithPassword:(NSString * _Nullable)password error:(NSError * _Nonnull * _Nonnull)error;
+- (NSData * _Nonnull)encodeImage:(UIImage * _Nonnull)image withMessage:(NSString * _Nonnull)message encrypted:(BOOL)encryptedBool withPassword:(NSString *_Nonnull)password error:(NSError * _Nonnull * _Nonnull)error;
 
 @end

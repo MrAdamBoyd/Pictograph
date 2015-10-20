@@ -24,7 +24,7 @@
 
 //Decodes UIImage image. Returns the encoded message in the image.
 //Password handler has no parameters and returns an NSString *
-- (NSString *)decodeImage:(UIImage *)image error:(NSError **)error passwordHandler:(NSString *(^)(void))handler {
+- (NSString *)decodeImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
     
     NSMutableArray *infoArrayInBits = [[NSMutableArray alloc] init];
     
@@ -53,6 +53,13 @@
         case 1:
             messageIsEncrypted = YES;
             //TODO: String is encrypted, need to prompt for key
+            
+            if ([password isEqualToString:@""]) {
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"The image you provided is encrypted and you didn't provide a password. Please enter the password."};
+                *error = [NSError errorWithDomain:PictographErrorDomain code:NoPasswordProvidedError userInfo:userInfo];
+                return nil;
+            }
+            
             break;
             
         default: {
@@ -63,17 +70,11 @@
         }
     }
     
-    if (messageIsEncrypted) {
-        //If the message is encrypted, get the password first
-        NSString *password = handler();
-        return [self messageFromImage:image needsPassword:messageIsEncrypted password:password error:error];
-    
-    } else {
-        //Message is not encrypted, send with blank password
-        return [self messageFromImage:image needsPassword:messageIsEncrypted password:@"" error:error];
-    }
+    //Message is not encrypted, send with blank password
+    return [self messageFromImage:image needsPassword:messageIsEncrypted password:password error:error];
 }
 
+//Returns the message from the image given an optional password
 - (NSString *)messageFromImage:(UIImage *)image needsPassword:(BOOL)isEncrypted password:(NSString *)password error:(NSError **)error {
     
     NSMutableString *decodedString = [[NSMutableString alloc] init];
