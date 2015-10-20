@@ -221,7 +221,7 @@
     if ((![[[PictographDataController sharedController] getUserEncryptionKey] isEqualToString:@""] && [[PictographDataController sharedController] getUserEncryptionEnabled]) || ![[PictographDataController sharedController] getUserEncryptionEnabled]) {
         //If the user has an encr
         currentOption = ImageOptionEncoder;
-        [self promptUserForPhotoWithOptionForCamera:true];
+        [self promptUserForPhotoWithOptionForCamera:YES];
     } else {
         //Show message: encryption is enabled and key is blank
         [self showMessageInAlertController:@"Encryption is enabled but your key is blank, please enter a key." withTitle:@"No Encryption Key"];
@@ -231,7 +231,7 @@
 //Starting the decoding process
 - (void)decodeMessage {
     currentOption = ImageOptionDecoder;
-    [self promptUserForPhotoWithOptionForCamera:false]; //Doesn't make sense to show the camera here
+    [self promptUserForPhotoWithOptionForCamera:NO]; //Doesn't make sense to show the camera here
 }
 
 //Showing the action sheet
@@ -250,7 +250,7 @@
             
             //Choose photo from library, present library view controller
             UIImagePickerController *picker = [self buildImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-            [self presentViewController:picker animated:true completion:NULL];
+            [self presentViewController:picker animated:YES completion:nil];
             
         }];
         [alertController addAction:libraryAction];
@@ -260,17 +260,17 @@
             
             //Take a photo
             UIImagePickerController *picker = [self buildImagePickerWithSourceType:UIImagePickerControllerSourceTypeCamera];
-            [self presentViewController:picker animated:true completion:NULL];
+            [self presentViewController:picker animated:YES completion:nil];
             
         }];
         [alertController addAction:takePhotoAction];
         
-        [self presentViewController:alertController animated:true completion:^{}];
+        [self presentViewController:alertController animated:YES completion:^{}];
         
     } else {
         //Device has no camera, just show library
         UIImagePickerController *picker = [self buildImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-        [self presentViewController:picker animated:true completion:NULL];
+        [self presentViewController:picker animated:YES completion:nil];
         
     }
 }
@@ -353,7 +353,7 @@
     
     
     //Action for cancelling
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:NULL];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:cancelAction];
     
     
@@ -369,23 +369,23 @@
         
      }];
     
-    [self presentViewController:alertController animated:true completion:NULL];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 //Shows the share sheet with the UIImage image
 - (void)showShareSheetWithImage:(NSData *)image {
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[image] applicationActivities:nil];
-    [self presentViewController:activityController animated:YES completion:NULL];
+    [self presentViewController:activityController animated:YES completion:nil];
 }
 
 //Shows the decoded message in an alert controller
 - (void)showMessageInAlertController:(NSString *)message withTitle:(NSString *)title {
     alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:NULL];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:dismissAction];
     
-    [self presentViewController:alertController animated:true completion:NULL];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark UIImagePickerControllerDelegate
@@ -395,14 +395,14 @@
     UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     selectedImage = chosenImage;
     
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [picker dismissViewControllerAnimated:YES completion:nil];
     
     [self startEncodingOrDecoding];
 }
 
 //User cancelled
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [picker dismissViewControllerAnimated:YES completion:nil];
     
     currentOption = ImageOptionNeither;
 }
