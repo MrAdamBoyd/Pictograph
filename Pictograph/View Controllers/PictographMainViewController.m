@@ -25,7 +25,7 @@
 - (void)promptUserForPhotoWithOptionForCamera:(BOOL)showCamera;
 - (UIImagePickerController *)buildImagePickerWithSourceType:(UIImagePickerControllerSourceType)type;
 - (void)startEncodingOrDecoding;
-- (void)buildAndShowMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler;
+- (void)buildAndShowAlertWithTitle:(NSString *)title message:(NSString *)message isSecure:(BOOL)secureText withPlaceHolder:(NSString *)placeholder confirmHandler:(void (^ __nullable)(UIAlertAction *action))handler;
 - (void)showShareSheetWithImage:(NSData *)image;
 - (void)showMessageInAlertController:(NSString *)message withTitle:(NSString *)title;
 
@@ -291,7 +291,7 @@
     if (currentOption == ImageOptionEncoder) {
         //Encoding the image with a message, need to get message
         
-        [self buildAndShowMessageAlertWithConfirmHandler:^(UIAlertAction *action) {
+        [self buildAndShowAlertWithTitle:@"Enter your message" message:nil isSecure:NO withPlaceHolder:@"Your message here" confirmHandler:^(UIAlertAction *action) {
             
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             
@@ -300,7 +300,7 @@
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             
                 //Action that happens when confirm is hit
-                UITextField *messageField = alertController.textFields.firstObject;
+                UITextField *messageField = [alertController.textFields firstObject];
                 
                 UIImageCoder *coder = [[UIImageCoder alloc] init];
                 NSError *error;
@@ -329,7 +329,9 @@
         UIImageCoder *coder = [[UIImageCoder alloc] init];
         NSError *error;
         
-        NSString *decodedMessage = [coder decodeImage:selectedImage error:&error];
+        NSString *decodedMessage = [coder decodeImage:selectedImage error:&error passwordHandler:^NSString * {
+            return @"Password";
+        }];
         
         if (!error) {
             //If there is no error
@@ -341,8 +343,9 @@
 }
 
 //Building the alert that gets the message that the user should type
-- (void)buildAndShowMessageAlertWithConfirmHandler:(void (^ __nullable)(UIAlertAction *action))handler {
-    alertController = [UIAlertController alertControllerWithTitle:@"Enter your message" message:nil preferredStyle:UIAlertControllerStyleAlert];
+- (void)buildAndShowAlertWithTitle:(NSString *)title message:(NSString *)message isSecure:(BOOL)secureText withPlaceHolder:(NSString *)placeholder confirmHandler:(void (^ __nullable)(UIAlertAction *action))handler {
+    
+    alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     
     //Action for confirming the message
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:handler];
@@ -357,7 +360,8 @@
     
     //Adding message field
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-         textField.placeholder = @"Your message here";
+         textField.placeholder = placeholder;
+        textField.secureTextEntry = secureText;
         
         //Confirm is only enabled if there is text
         [[NSNotificationCenter defaultCenter] addObserverForName:UITextFieldTextDidChangeNotification object:textField queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {

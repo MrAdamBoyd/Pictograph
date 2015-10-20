@@ -23,11 +23,10 @@
 @implementation UIImageCoder
 
 //Decodes UIImage image. Returns the encoded message in the image.
-- (NSString *)decodeImage:(UIImage *)image error:(NSError **)error {
+//Password handler has no parameters and returns an NSString *
+- (NSString *)decodeImage:(UIImage *)image error:(NSError **)error passwordHandler:(NSString *(^)(void))handler {
     
-    NSMutableString *decodedString = [[NSMutableString alloc] init];
     NSMutableArray *infoArrayInBits = [[NSMutableArray alloc] init];
-    NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting information about the encoded message
     NSArray *first8PixelsInfo = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForInfo / 2)];
@@ -64,7 +63,21 @@
         }
     }
     
-    NSString *password = @"Password";
+    if (messageIsEncrypted) {
+        //If the message is encrypted, get the password first
+        NSString *password = handler();
+        return [self messageFromImage:image needsPassword:messageIsEncrypted password:password error:error];
+    
+    } else {
+        //Message is not encrypted, send with blank password
+        return [self messageFromImage:image needsPassword:messageIsEncrypted password:@"" error:error];
+    }
+}
+
+- (NSString *)messageFromImage:(UIImage *)image needsPassword:(BOOL)isEncrypted password:(NSString *)password error:(NSError **)error {
+    
+    NSMutableString *decodedString = [[NSMutableString alloc] init];
+    NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting the size of the string
     NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:8 andY:0 count:(bitCountForInfo / 2)];
@@ -92,7 +105,7 @@
             
             long longChar = [self longFromBits:arrayOfBitsForMessage];
             
-            if (messageIsEncrypted) {
+            if (isEncrypted) {
                 //If the string is encrypted, add it to the encrypted data
                 char curChar = (char)longChar;
                 
@@ -102,12 +115,12 @@
                 //Not encrypted, just add it to string
                 [decodedString appendFormat:@"%c", (char)longChar];
             }
-                
+            
             [arrayOfBitsForMessage removeAllObjects]; //Reset the array for the next char
         }
     }
     
-    if (messageIsEncrypted) {
+    if (isEncrypted) {
         //If message is encrypted, decrypt it and save it
         NSError *decryptError = nil;
         NSData *encodedString = [RNCryptor decryptData:encryptedData password:password error:&decryptError];
@@ -122,6 +135,7 @@
     }
     
     return decodedString;
+
 }
 
 //Adds the last 2 bits of the blue value from UIColor color to the NSMutableArray array
