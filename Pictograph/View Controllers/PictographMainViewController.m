@@ -9,9 +9,10 @@
 #import "PictographMainViewController.h"
 
 #define kButtonHeight 60
-#define mainAppColor [UIColor redColor]
-#define mainAppColorHighlighted [[UIColor redColor] colorWithAlphaComponent:0.5]
-#define buttonBorderWidth 0.5
+#define kMainAppColor [UIColor redColor]
+#define kMainAppColorHighlighted [[UIColor redColor] colorWithAlphaComponent:0.5]
+#define kButtonBorderWidth 0.5
+#define kMainFontSize 20
 
 #define kEncryptionMargin 40
 #define kEncryptionVerticalMargin 40
@@ -47,11 +48,11 @@
     [super viewDidLoad];
     
     //Background color
-    [self.view setBackgroundColor:mainAppColor];
+    [self.view setBackgroundColor:kMainAppColor];
     
     //Nav bar
     topBar = [[PictographTopBar alloc] init];
-    [topBar setBackgroundColor:mainAppColor];
+    [topBar setBackgroundColor:kMainAppColor];
     [topBar setTranslatesAutoresizingMaskIntoConstraints:false];
     [self.view addSubview:topBar];
     
@@ -66,14 +67,14 @@
     encodeButton = [[PictographButton alloc] init];
     [encodeButton addTarget:self action:@selector(encodeMessage) forControlEvents:UIControlEventTouchUpInside];
     [encodeButton setBackgroundColor:[UIColor whiteColor]];
-    [encodeButton setTitleColor:mainAppColor forState:UIControlStateNormal];
-    [encodeButton setTitleColor:mainAppColorHighlighted forState:UIControlStateHighlighted];
+    [encodeButton setTitleColor:kMainAppColor forState:UIControlStateNormal];
+    [encodeButton setTitleColor:kMainAppColorHighlighted forState:UIControlStateHighlighted];
     [encodeButton setTitle:@"Hide Message" forState:UIControlStateNormal];
     [encodeButton setTranslatesAutoresizingMaskIntoConstraints:false];
     
     //Setting the border
-    [encodeButton.layer setBorderColor:mainAppColor.CGColor];
-    [encodeButton.layer setBorderWidth:buttonBorderWidth];
+    [encodeButton.layer setBorderColor:kMainAppColor.CGColor];
+    [encodeButton.layer setBorderWidth:kButtonBorderWidth];
     
     [self.view addSubview:encodeButton];
     
@@ -88,14 +89,14 @@
     decodeButton = [[PictographButton alloc] init];
     [decodeButton addTarget:self action:@selector(decodeMessage) forControlEvents:UIControlEventTouchUpInside];
     [decodeButton setBackgroundColor:[UIColor whiteColor]];
-    [decodeButton setTitleColor:mainAppColor forState:UIControlStateNormal];
-    [decodeButton setTitleColor:mainAppColorHighlighted forState:UIControlStateHighlighted];
+    [decodeButton setTitleColor:kMainAppColor forState:UIControlStateNormal];
+    [decodeButton setTitleColor:kMainAppColorHighlighted forState:UIControlStateHighlighted];
     [decodeButton setTitle:@"Reveal Message" forState:UIControlStateNormal];
     [decodeButton setTranslatesAutoresizingMaskIntoConstraints:false];
 
     //Setting the border
-    [decodeButton.layer setBorderColor:mainAppColor.CGColor];
-    [decodeButton.layer setBorderWidth:buttonBorderWidth];
+    [decodeButton.layer setBorderColor:kMainAppColor.CGColor];
+    [decodeButton.layer setBorderWidth:kButtonBorderWidth];
     
     [self.view addSubview:decodeButton];
     
@@ -113,7 +114,7 @@
     [encryptionKeyField setEnabled:encryptionEnabled];
     [encryptionKeyField setDelegate:self];
     [encryptionKeyField setBackgroundColor:[UIColor whiteColor]];
-    [encryptionKeyField setFont:[UIFont systemFontOfSize:20]];
+    [encryptionKeyField setFont:[UIFont systemFontOfSize:kMainFontSize]];
     [encryptionKeyField setPlaceholder:@"Encryption Key"];
     [encryptionKeyField setText:[[PictographDataController sharedController] getUserEncryptionKey]];
     [encryptionKeyField setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -128,8 +129,8 @@
     
     //Label for enabling encryption
     encryptionLabel = [[UILabel alloc] init];
-    [encryptionLabel setText:@"Encrypt images"];
-    [encryptionLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    [encryptionLabel setText:@"Encrypt Message"];
+    [encryptionLabel setFont:[UIFont boldSystemFontOfSize:kMainFontSize]];
     [encryptionLabel setTextColor:[UIColor whiteColor]];
     [encryptionLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:encryptionLabel];
