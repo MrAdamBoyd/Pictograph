@@ -36,8 +36,6 @@
         [self addBlueBitsFromColor:color toArray:infoArrayInBits];
     }
     
-    //TODO: Need to determine if the image actually contains a hidden message
-    
     long informationAboutString = [self longFromBits:infoArrayInBits];
     
     BOOL messageIsEncrypted = NO;
@@ -58,9 +56,12 @@
             //TODO: String is encrypted, need to prompt for key
             break;
             
-        default:
-            //There is no message hidden in this image
-            break;
+        default: {
+            //If there was an error, alert the user
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"The image you provided does not contain a hidden message."};
+            *error = [NSError errorWithDomain:PictographErrorDomain code:NoMessageInImageError userInfo:userInfo];
+            return nil;
+        }
     }
     
     NSString *password = @"Password";
