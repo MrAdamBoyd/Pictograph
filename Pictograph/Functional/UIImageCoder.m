@@ -70,6 +70,9 @@
         }
     }
     
+    //Sending the analytics
+    [[PictographDataController sharedController] analyticsDecodeSend:messageIsEncrypted];
+    
     //Message is not encrypted, send with blank password
     return [self messageFromImage:image needsPassword:messageIsEncrypted password:password error:error];
 }
@@ -134,6 +137,9 @@
             return nil;
         }
     }
+    
+    //Sending the analytics
+    [[PictographDataController sharedController] analyticsDecodeSend:isEncrypted];
     
     return decodedString;
 

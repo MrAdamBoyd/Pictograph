@@ -13,9 +13,13 @@
 @implementation PictographDataController
 
 @synthesize user;
+@synthesize tracker;
 
 - (id)init {
     if (self = [super init]) {
+        //Setting the analytics object
+        tracker = [[GAI sharedInstance] defaultTracker];
+        
         //Getting the current user
         NSData *unarchivedObject = [[NSUserDefaults standardUserDefaults] objectForKey:kCurrentUserKey];
         CurrentUser *newUser;
@@ -79,6 +83,24 @@
 - (void)setUserEncryptionKey:(NSString *)newKey {
     [user setEncryptionKey:newKey];
     [self saveCurrentUser];
+}
+
+# pragma mark analytics methods
+- (void)analyticsEncodeSend:(BOOL)encrypted {
+    NSString *encryptedOrNot = encrypted ? @"Encrypted" : @"Unencrypted";
+    
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Encode Decode Action"
+                                                          action:@"Encode"
+                                                           label:encryptedOrNot
+                                                           value:@1] build]];
+}
+- (void)analyticsDecodeSend:(BOOL)encrypted {
+    NSString *encryptedOrNot = encrypted ? @"Encrypted" : @"Unencrypted";
+    
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Encode Decode Action"
+                                                          action:@"Decode"
+                                                           label:encryptedOrNot
+                                                           value:@1] build]];
 }
 
 @end

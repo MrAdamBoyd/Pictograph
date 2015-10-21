@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "CurrentUser.h"
+#import <Google/Analytics.h>
 
 @interface PictographDataController : NSObject
 
 @property (nonatomic, strong) CurrentUser *user;
+@property (nonatomic, strong) id<GAITracker> tracker;
 
 + (id)sharedController;
 
@@ -22,4 +24,6 @@
 - (void)setUserEncryptionEnabled:(BOOL)enabledOrNot;
 - (NSString *)getUserEncryptionKey;
 - (void)setUserEncryptionKey:(NSString *)newKey;
+- (void)analyticsEncodeSend:(BOOL)encrypted;
+- (void)analyticsDecodeSend:(BOOL)encrypted;
 @end
