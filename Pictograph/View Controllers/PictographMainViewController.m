@@ -17,8 +17,18 @@
 #define kEncryptionMargin 40
 #define kEncryptionVerticalMargin 40
 
+//For the intro views
+#define kIntroViewTitleFont [UIFont systemFontOfSize:35]
+#define kIntroViewDescFont [UIFont systemFontOfSize:20]
+#define kIntroViewTitleY [[UIScreen mainScreen] bounds].size.height - 50
+#define kIntroViewDescY [[UIScreen mainScreen] bounds].size.height - 100
+#define kIntroPage1Color [UIColor colorWithRed:24/255.0 green:120/255.0 blue:217/255.0 alpha:1]
+#define kIntroPage2Color [UIColor colorWithRed:220/255.0 green:141/255.0 blue:56/255.0 alpha:1]
+
 @interface PictographMainViewController ()
 
+- (BOOL)setUpAndShowIntroViews;
+- (void)setAlphaOfUIElementsTo:(CGFloat)alpha;
 - (void)switchToggled:(id)sender;
 - (void)encodeMessage;
 - (void)decodeMessage;
@@ -164,6 +174,12 @@
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionInfoViewBorder attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:kEncryptionMargin - 10]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionInfoViewBorder attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:-kEncryptionMargin + 10]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:encryptionInfoViewBorder attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:1]];
+    
+    
+    if ([self setUpAndShowIntroViews]) {
+        //If intro views are shown, hide UI elements
+        [self setAlphaOfUIElementsTo:0];
+    }
      
     
 }
@@ -194,7 +210,72 @@
     return NO;
 }
 
+#pragma mark EAIntroDelegate
+- (void)introDidFinish:(EAIntroView *)introView {
+    [[PictographDataController sharedController] setUserFirstTimeOpeningApp:NO];
+    
+    //Animating the views in
+    [UIView animateWithDuration:1.f animations:^{
+        [self setAlphaOfUIElementsTo:1.0];
+    }];
+}
+
 #pragma mark Custom methods
+
+//Shows the intro views if the user hasn't opened the app and/or if we don't have authorization to use gps
+- (BOOL)setUpAndShowIntroViews {
+    NSMutableArray<EAIntroPage *> *introViewArray = [[NSMutableArray alloc] init];
+    
+    if ([[PictographDataController sharedController] getUserFirstTimeOpeningApp]) {
+        //Introducing the app
+        EAIntroPage *page1 = [[EAIntroPage alloc] init];
+        page1.title = @"Steganography";
+        page1.titleFont = kIntroViewTitleFont;
+        page1.titlePositionY = kIntroViewTitleY;
+        page1.desc = @"Steganography is the practice of hiding messages.\n\nUsing Pictograph, you can hide messages in images, and the images won't look any different.";
+        page1.descFont = kIntroViewDescFont;
+        page1.descPositionY = kIntroViewDescY;
+        page1.bgColor = kIntroPage1Color;
+        [introViewArray addObject:page1];
+        
+        //Asking for permission for GPS while using the app
+        EAIntroPage *page2 = [[EAIntroPage alloc] init];
+        page2.title = @"Encryption";
+        page2.titleFont = kIntroViewTitleFont;
+        page2.titlePositionY = kIntroViewTitleY;
+        page2.desc = @"Pictograph also allows you to encrypt your messages. You will have to give the password to whoever you want to read the message.";
+        page2.descFont = kIntroViewDescFont;
+        page2.descPositionY = kIntroViewDescY;
+        page2.bgColor = kIntroPage2Color;
+        [introViewArray addObject:page2];
+    }
+    
+    if (introViewArray.count > 0) {
+        CGRect frameRect = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height + 10);
+        EAIntroView *introView = [[EAIntroView alloc] initWithFrame:frameRect];
+        introView.pages = introViewArray;
+        introView.delegate = self;
+        [introView showInView:self.view animateDuration:0];
+        
+        //We did show intro views
+        return YES;
+    }
+    
+    //We didn't show any intro views
+    return NO;
+    
+}
+
+//Sets the alpha of all UI elements on screen
+- (void)setAlphaOfUIElementsTo:(CGFloat)alpha {
+    [topBar setAlpha:alpha];
+    [encryptionInfoViewBorder setAlpha:alpha];
+    [encryptionLabel setAlpha:alpha];
+    [encryptionSwitch setAlpha:alpha];
+    [encryptionKeyField setAlpha:alpha];
+    [encodeButton setAlpha:alpha];
+    [decodeButton setAlpha:alpha];
+}
 
 //Encryption enabled switch changed
 - (void)switchToggled:(id)sender {

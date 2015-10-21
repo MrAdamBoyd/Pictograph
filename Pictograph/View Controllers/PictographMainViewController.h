@@ -13,8 +13,9 @@
 #import "PictographDataController.h"
 #import "PictographTextField.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "EAIntroView.h"
 
-@interface PictographMainViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
+@interface PictographMainViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate>
 
 typedef NS_ENUM(NSInteger, ImageOption) {
     ImageOptionEncoder,
@@ -23,6 +24,11 @@ typedef NS_ENUM(NSInteger, ImageOption) {
 };
 
 @property (nonatomic, strong) UIImage *selectedImage;
+@property (nonatomic, assign) ImageOption currentOption;
+@property (nonatomic, strong) UIAlertController *alertController;
+@property (nonatomic, strong) MBProgressHUD *progressHUD;
+
+//UI elements
 @property (nonatomic, strong) PictographTopBar *topBar;
 @property (nonatomic, strong) UIView *encryptionInfoViewBorder;
 @property (nonatomic, strong) UILabel *encryptionLabel;
@@ -30,9 +36,6 @@ typedef NS_ENUM(NSInteger, ImageOption) {
 @property (nonatomic, strong) PictographTextField *encryptionKeyField;
 @property (nonatomic, strong) PictographButton *encodeButton;
 @property (nonatomic, strong) PictographButton *decodeButton;
-@property (nonatomic, assign) ImageOption currentOption;
-@property (nonatomic, strong) UIAlertController *alertController;
-@property (nonatomic, strong) MBProgressHUD *progressHUD;
 
 @end
 

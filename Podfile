@@ -5,6 +5,7 @@ use_frameworks!
 target 'Pictograph' do
   pod 'MBProgressHUD', '~> 0.9.1'
   pod 'RNCryptor'
+  pod 'EAIntroView', '~> 2.7.0'
 end
 
 target 'PictographTests' do
