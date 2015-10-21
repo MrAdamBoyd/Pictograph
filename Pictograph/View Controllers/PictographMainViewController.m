@@ -268,11 +268,19 @@
 
 //Sets the alpha of all UI elements on screen
 - (void)setAlphaOfUIElementsTo:(CGFloat)alpha {
+    
+    CGFloat keyFieldAlpha = alpha;
+    if (alpha != 0) {
+        //If the alpha is not 0, set the text entry field's alpha to the appropriate level
+        BOOL encryptionEnabled = [[PictographDataController sharedController] getUserEncryptionEnabled];
+        keyFieldAlpha = encryptionEnabled ? 1.0 : 0.5;
+    }
+    
     [topBar setAlpha:alpha];
     [encryptionInfoViewBorder setAlpha:alpha];
     [encryptionLabel setAlpha:alpha];
     [encryptionSwitch setAlpha:alpha];
-    [encryptionKeyField setAlpha:alpha];
+    [encryptionKeyField setAlpha:keyFieldAlpha];
     [encodeButton setAlpha:alpha];
     [decodeButton setAlpha:alpha];
 }
