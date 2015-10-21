@@ -52,9 +52,9 @@
             
         case 1:
             messageIsEncrypted = YES;
-            //TODO: String is encrypted, need to prompt for key
             
             if ([password isEqualToString:@""]) {
+                //The message is encrypted and the user has no password entered, alert user
                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"The image you provided is encrypted and you didn't provide a password. Please enter the password."};
                 *error = [NSError errorWithDomain:PictographErrorDomain code:NoPasswordProvidedError userInfo:userInfo];
                 return nil;
@@ -174,7 +174,15 @@
         toEncode = message;
     }
     
-    //TODO: Limit message's size to 256 characters
+    if ([message length] > maxIntFor8Bits) {
+        //Makes sure user's message is under 256 characters. Will charge for this later.
+        DLog(@"User's message was too large: %lu characters", (unsigned long)[message length]);
+        
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Your message was too large. Please shorten your message or split it into multple images."};
+        *error = [NSError errorWithDomain:PictographErrorDomain code:ImageTooSmallError userInfo:userInfo];
+        
+        return nil;
+    }
     
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
@@ -187,7 +195,7 @@
         
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Image was too small, please select a larger image."};
         
-        *error = [NSError errorWithDomain:PictographErrorDomain code:ImageTooSmallError userInfo:userInfo];
+        *error = [NSError errorWithDomain:PictographErrorDomain code:MessageTooLongError userInfo:userInfo];
         
         return nil;
     }
