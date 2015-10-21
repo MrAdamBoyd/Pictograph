@@ -9,8 +9,8 @@
 #import "PictographMainViewController.h"
 
 #define kButtonHeight 60
-#define kMainAppColor [UIColor redColor]
-#define kMainAppColorHighlighted [[UIColor redColor] colorWithAlphaComponent:0.5]
+#define kMainAppColor [UIColor colorWithRed:220/255.0 green:0 blue:0 alpha:1]
+#define kMainAppColorHighlighted [kMainAppColor colorWithAlphaComponent:0.5]
 #define kButtonBorderWidth 0.5
 #define kMainFontSize 20
 
