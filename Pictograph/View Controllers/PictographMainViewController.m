@@ -139,7 +139,7 @@
     
     //Label for enabling encryption
     encryptionLabel = [[UILabel alloc] init];
-    [encryptionLabel setText:@"Encrypt Message"];
+    [encryptionLabel setText:@"Use Password"];
     [encryptionLabel setFont:[UIFont boldSystemFontOfSize:kMainFontSize]];
     [encryptionLabel setTextColor:[UIColor whiteColor]];
     [encryptionLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
