@@ -6,6 +6,7 @@ target 'Pictograph' do
   pod 'MBProgressHUD', '~> 0.9.1'
   pod 'RNCryptor'
   pod 'EAIntroView', '~> 2.7.0'
+  pod 'Google/Analytics', '~> 1.0.0'
 end
 
 target 'PictographTests' do
