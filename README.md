@@ -1,16 +1,9 @@
 # Pictograph
 Pictograph is the best steganography app available for iOS. Easily send hidden messages to anyone you want. You can even encrypt the messages with a password.
 
-[![CI Status](http://img.shields.io/travis/Adam Boyd/SwiftBus.svg?style=flat)](https://travis-ci.org/Adam Boyd/SwiftBus)
-[![Version](https://img.shields.io/cocoapods/v/SwiftBus.svg?style=flat)](http://cocoapods.org/pods/SwiftBus)
-[![License](https://img.shields.io/cocoapods/l/SwiftBus.svg?style=flat)](http://cocoapods.org/pods/SwiftBus)
-[![Platform](https://img.shields.io/cocoapods/p/SwiftBus.svg?style=flat)](http://cocoapods.org/pods/SwiftBus)
-
 ## Contents
 * [Steganography](#steganography)
 * [Encryption](#encryption)
-* [Requirements](#requirements)
-* [NSAppTransportSecurity](#nsapptransportsecurity)
 * [Author](#author)
 * [Changelog](#changelog)
 * [License](#license)
