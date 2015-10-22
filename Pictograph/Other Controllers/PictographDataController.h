@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "CurrentUser.h"
-#import <Google/Analytics.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface PictographDataController : NSObject
 
 @property (nonatomic, strong) CurrentUser *user;
-@property (nonatomic, strong) id<GAITracker> tracker;
 
 + (id)sharedController;
 

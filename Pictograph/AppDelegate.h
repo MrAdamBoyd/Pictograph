@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Google/Analytics.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
