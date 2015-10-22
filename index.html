@@ -1,47 +1,37 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
     <title>Pictograph by MrAdamBoyd</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
   </head>
+
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/MrAdamBoyd/Pictograph">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/MrAdamBoyd/Pictograph/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/MrAdamBoyd/Pictograph/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
 
-    <div class="wrapper">
+    <header>
+      <div class="container">
+        <h1>Pictograph</h1>
+        <h2>Steganography on iOS</h2>
 
-      <section>
-        <div id="title">
-          <h1>Pictograph</h1>
-          <p>Steganography on iOS</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/MrAdamBoyd">MrAdamBoyd</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+        <section id="downloads">
+          <a href="https://github.com/MrAdamBoyd/Pictograph/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/MrAdamBoyd/Pictograph/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/MrAdamBoyd/Pictograph" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
 
+    <div class="container">
+      <section id="main_content">
         <h2>
 <a id="steganography" class="anchor" href="#steganography" aria-hidden="true"><span class="octicon octicon-link"></span></a>Steganography</h2>
 
-<p>Steganography is the practice of hiding messages in plain sight. Pictograph changes the least significant bits in an to hide the message. And because each pixel is changed only a very small amount, the change is imperceptible to human eyes.</p>
+<p>Steganography is the practice of hiding messages in plain sight. Pictograph works by changing the least significant bits in each pixel in a specific way so that a message can be hidden. Because Pictograph only changes the least significant bits in a pixel, the change is imperceptible to human eyes.</p>
 
 <h2>
 <a id="encryption" class="anchor" href="#encryption" aria-hidden="true"><span class="octicon octicon-link"></span></a>Encryption</h2>
@@ -57,9 +47,8 @@
 
 <p>My website is <a href="http://www.adamjboyd.com">adamjboyd.com</a>.</p>
       </section>
-
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
     
   </body>
 </html>
