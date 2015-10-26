@@ -19,6 +19,7 @@
 + (id)sharedController;
 
 //Getting and setting information about the user
+- (void)saveCurrentUser;
 - (BOOL)getUserFirstTimeOpeningApp;
 - (void)setUserFirstTimeOpeningApp:(BOOL)firstTime;
 - (BOOL)getUserEncryptionEnabled;
