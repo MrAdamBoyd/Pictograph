@@ -220,7 +220,7 @@ class PictographMainViewController: UIViewController, UIImagePickerControllerDel
     func setUpAndShowIntroViews() -> Bool {
         var introViewArray:[EAIntroPage] = []
         
-        if (PictographDataController.sharedController.getUserEncryptionEnabled()) {
+        if (PictographDataController.sharedController.getUserFirstTimeOpeningApp()) {
             //Introducing the app
             let page1 = EAIntroPage()
             page1.title = "Steganography"
