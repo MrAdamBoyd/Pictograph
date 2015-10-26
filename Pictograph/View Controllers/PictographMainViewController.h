@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImageCoder.h"
-#import "PictographDataController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "EAIntroView.h"
 

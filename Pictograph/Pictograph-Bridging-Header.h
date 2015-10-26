@@ -11,6 +11,4 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
-#import "PictographDataController.h"
-
 #endif /* Pictograph_Bridging_Header_h */

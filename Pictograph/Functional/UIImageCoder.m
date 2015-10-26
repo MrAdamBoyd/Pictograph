@@ -7,6 +7,7 @@
 //
 
 #import "UIImageCoder.h"
+#import "Pictograph-Swift.h"
 
 #define bitCountForCharacter 8
 #define bitCountForInfo 16

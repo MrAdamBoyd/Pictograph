@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "EncodingErrors.h"
-#import "PictographDataController.h"
 @import RNCryptor;
 
 @interface UIImageCoder : NSObject
