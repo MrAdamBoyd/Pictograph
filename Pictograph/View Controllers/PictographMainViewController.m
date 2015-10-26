@@ -7,6 +7,7 @@
 //
 
 #import "PictographMainViewController.h"
+#import "Pictograph-Swift.h"
 
 #define kButtonHeight 60
 #define kMainAppColor [UIColor colorWithRed:220/255.0 green:0 blue:0 alpha:1]
@@ -74,7 +75,7 @@
     
     
     //Encode button
-    encodeButton = [[PictographButton alloc] init];
+    encodeButton = [[PictographHighlightButton alloc] init];
     [encodeButton addTarget:self action:@selector(encodeMessage) forControlEvents:UIControlEventTouchUpInside];
     [encodeButton setBackgroundColor:[UIColor whiteColor]];
     [encodeButton setTitleColor:kMainAppColor forState:UIControlStateNormal];
@@ -96,7 +97,7 @@
     
     
     //Decode button
-    decodeButton = [[PictographButton alloc] init];
+    decodeButton = [[PictographHighlightButton alloc] init];
     [decodeButton addTarget:self action:@selector(decodeMessage) forControlEvents:UIControlEventTouchUpInside];
     [decodeButton setBackgroundColor:[UIColor whiteColor]];
     [decodeButton setTitleColor:kMainAppColor forState:UIControlStateNormal];

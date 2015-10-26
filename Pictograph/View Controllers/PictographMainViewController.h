@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "UIImageCoder.h"
 #import "PictographTopBar.h"
-#import "PictographButton.h"
 #import "PictographDataController.h"
 #import "PictographTextField.h"
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "EAIntroView.h"
+
+@class PictographHighlightButton;
 
 @interface PictographMainViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate>
 
@@ -34,8 +35,8 @@ typedef NS_ENUM(NSInteger, ImageOption) {
 @property (nonatomic, strong) UILabel *encryptionLabel;
 @property (nonatomic, strong) UISwitch *encryptionSwitch;
 @property (nonatomic, strong) PictographTextField *encryptionKeyField;
-@property (nonatomic, strong) PictographButton *encodeButton;
-@property (nonatomic, strong) PictographButton *decodeButton;
+@property (nonatomic, strong) PictographHighlightButton *encodeButton;
+@property (nonatomic, strong) PictographHighlightButton *decodeButton;
 
 @end
 
