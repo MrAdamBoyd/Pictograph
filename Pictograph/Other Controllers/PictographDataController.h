@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CurrentUser.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+
+@class CurrentUser;
 
 @interface PictographDataController : NSObject
 

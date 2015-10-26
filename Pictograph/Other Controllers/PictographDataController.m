@@ -7,6 +7,7 @@
 //
 
 #import "PictographDataController.h"
+#import "Pictograph-Swift.h"
 
 #define kCurrentUserKey @"kCurrentUserKey"
 
@@ -74,11 +75,11 @@
 }
 
 - (NSString *)getUserEncryptionKey {
-    return user.encryptionKey;
+    return user.encryptionPassword;
 }
 
 - (void)setUserEncryptionKey:(NSString *)newKey {
-    [user setEncryptionKey:newKey];
+    [user setEncryptionPassword:newKey];
     [self saveCurrentUser];
 }
 

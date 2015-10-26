@@ -62,7 +62,7 @@
     [self.view setBackgroundColor:kMainAppColor];
     
     //Nav bar
-    topBar = [[PictographTopBar alloc] init];
+    topBar = [[PictographTopBarView alloc] init];
     [topBar setBackgroundColor:kMainAppColor];
     [topBar setTranslatesAutoresizingMaskIntoConstraints:false];
     [self.view addSubview:topBar];
@@ -119,7 +119,7 @@
 
     
     //Textfield where encryption key is stored
-    encryptionKeyField = [[PictographTextField alloc] init];
+    encryptionKeyField = [[PictographInsetTextField alloc] init];
     BOOL encryptionEnabled = [[PictographDataController sharedController] getUserEncryptionEnabled];
     [encryptionKeyField setAlpha:encryptionEnabled ? 1.0 : 0.5];
     [encryptionKeyField setEnabled:encryptionEnabled];
