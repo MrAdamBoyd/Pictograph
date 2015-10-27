@@ -20,14 +20,6 @@ private let mainFontSize: CGFloat = 20
 private let encryptionMargin: CGFloat = 40
 private let encryptionVerticalMargin: CGFloat = 40
 
-//For the intro views
-private let introViewTitleFont = UIFont.systemFontOfSize(35)
-private let introViewDescFont = UIFont.systemFontOfSize(20)
-private let introViewTitleY = UIScreen.mainScreen().bounds.height - 50
-private let introViewDescY = UIScreen.mainScreen().bounds.height - 100
-private let introPage1Color = UIColor(red: 24/255.0, green: 120/255.0, blue: 217/255.0, alpha: 1)
-private let introPage2Color = UIColor(red: 220/255.0, green: 141/255.0, blue: 56/255.0, alpha: 1)
-
 //What we are currently doing
 enum ImageOption: Int {
     case Encoding = 0, Decoding, Nothing
@@ -218,31 +210,7 @@ class PictographMainViewController: UIViewController, UIImagePickerControllerDel
     
     //Shows the intro views if the user hasn't opened the app and/or if we don't have authorization to use gps
     func setUpAndShowIntroViews() -> Bool {
-        var introViewArray:[EAIntroPage] = []
-        
-        if (PictographDataController.sharedController.getUserFirstTimeOpeningApp()) {
-            //Introducing the app
-            let page1 = EAIntroPage()
-            page1.title = "Steganography"
-            page1.titleFont = introViewTitleFont
-            page1.titlePositionY = introViewTitleY
-            page1.desc = "Steganography is the practice of hiding messages.\n\nUsing Pictograph, you can hide messages in images, and the images won't look any different."
-            page1.descFont = introViewDescFont
-            page1.descPositionY = introViewDescY
-            page1.bgColor = introPage1Color
-            introViewArray.append(page1)
-            
-            //Asking for permission for GPS while using the app
-            let page2 = EAIntroPage()
-            page2.title = "Encryption";
-            page2.titleFont = introViewTitleFont
-            page2.titlePositionY = introViewTitleY
-            page2.desc = "Pictograph also allows you to encrypt your messages. You will have to give the password to whoever you want to read the message."
-            page2.descFont = introViewDescFont
-            page2.descPositionY = introViewDescY
-            page2.bgColor = introPage2Color
-            introViewArray.append(page2)
-        }
+        let introViewArray = IntroViewBuilder.buildIntroViews()
         
         if introViewArray.count > 0 {
             //If there are intro views to show
