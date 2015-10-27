@@ -121,14 +121,6 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     
     //Set the alpha of all UI elements on screen
     func setAlphaOfUIElementsTo(alpha: CGFloat) {
-        
-        var keyFieldAlpha = alpha;
-        if alpha != 0 {
-            //The key field's alpha depends on whether encryption is enabled or not
-            let encryptionEnabled = PictographDataController.sharedController.getUserEncryptionEnabled()
-            keyFieldAlpha = encryptionEnabled ? 1.0 : 0.5
-        }
-        
         topBar.alpha = alpha
         mainEncodeView.alpha = alpha
     }
