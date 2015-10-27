@@ -16,6 +16,8 @@
 		6647B4391BDDB91900235E04 /* PictographDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B4381BDDB91800235E04 /* PictographDataController.swift */; };
 		6647B43B1BDDCE9800235E04 /* PictographMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B43A1BDDCE9800235E04 /* PictographMainViewController.swift */; };
 		6647B43D1BDEF5BF00235E04 /* IntroViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B43C1BDEF5BF00235E04 /* IntroViewBuilder.swift */; };
+		6647B43F1BDF022E00235E04 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B43E1BDF022E00235E04 /* SettingsViewController.swift */; };
+		6647B4411BDF052E00235E04 /* PictographViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B4401BDF052E00235E04 /* PictographViewController.swift */; };
 		665883201BBCC72A00CA21A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6658831E1BBCC72A00CA21A9 /* Main.storyboard */; };
 		665883221BBCC72A00CA21A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 665883211BBCC72A00CA21A9 /* Assets.xcassets */; };
 		665883251BBCC72A00CA21A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 665883231BBCC72A00CA21A9 /* LaunchScreen.storyboard */; };
@@ -54,6 +56,8 @@
 		6647B4381BDDB91800235E04 /* PictographDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictographDataController.swift; path = "Other Controllers/PictographDataController.swift"; sourceTree = "<group>"; };
 		6647B43A1BDDCE9800235E04 /* PictographMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictographMainViewController.swift; path = "View Controllers/PictographMainViewController.swift"; sourceTree = "<group>"; };
 		6647B43C1BDEF5BF00235E04 /* IntroViewBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewBuilder.swift; path = Functional/IntroViewBuilder.swift; sourceTree = "<group>"; };
+		6647B43E1BDF022E00235E04 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "View Controllers/SettingsViewController.swift"; sourceTree = "<group>"; };
+		6647B4401BDF052E00235E04 /* PictographViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictographViewController.swift; path = "View Controllers/PictographViewController.swift"; sourceTree = "<group>"; };
 		664C8C0EC2E69E14466709C5 /* Pods-Pictograph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictograph.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pictograph/Pods-Pictograph.debug.xcconfig"; sourceTree = "<group>"; };
 		665883121BBCC72A00CA21A9 /* Pictograph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pictograph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6658831F1BBCC72A00CA21A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -116,7 +120,9 @@
 		661571F31BD3474D001D6B8F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6647B4421BDF05C000235E04 /* Base View Controllers */,
 				6647B43A1BDDCE9800235E04 /* PictographMainViewController.swift */,
+				6647B43E1BDF022E00235E04 /* SettingsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -139,6 +145,14 @@
 				660BA0631BDDAF6900605EE8 /* PictographTopBarView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		6647B4421BDF05C000235E04 /* Base View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6647B4401BDF052E00235E04 /* PictographViewController.swift */,
+			);
+			name = "Base View Controllers";
 			sourceTree = "<group>";
 		};
 		665883091BBCC72A00CA21A9 = {
@@ -432,12 +446,14 @@
 				6647B43B1BDDCE9800235E04 /* PictographMainViewController.swift in Sources */,
 				6647B43D1BDEF5BF00235E04 /* IntroViewBuilder.swift in Sources */,
 				662CFC871BC2215F00A9FF28 /* UIImageCoder.m in Sources */,
+				6647B43F1BDF022E00235E04 /* SettingsViewController.swift in Sources */,
 				6647B4391BDDB91900235E04 /* PictographDataController.swift in Sources */,
 				660BA0601BDDAB0E00605EE8 /* PictographHighlightButton.swift in Sources */,
 				660BA0641BDDAF6900605EE8 /* PictographTopBarView.swift in Sources */,
 				660BA01B1BDDA59F00605EE8 /* AppDelegate.swift in Sources */,
 				660BA0621BDDAE9D00605EE8 /* PictographInsetTextField.swift in Sources */,
 				660BA0661BDDB1AE00605EE8 /* CurrentUser.swift in Sources */,
+				6647B4411BDF052E00235E04 /* PictographViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

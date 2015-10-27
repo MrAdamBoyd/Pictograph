@@ -25,7 +25,7 @@ enum ImageOption: Int {
     case Encoding = 0, Decoding, Nothing
 }
 
-class PictographMainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate {
+class PictographMainViewController: PictographViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate {
     
     //Saved data
     var selectedImage: UIImage!
@@ -34,7 +34,6 @@ class PictographMainViewController: UIViewController, UIImagePickerControllerDel
     var currentOption: ImageOption = .Nothing
     
     //UI elements
-    var topBar: PictographTopBarView!
     var encryptionInfoViewBorder: UIView!
     var encryptionLabel: UILabel!
     var encryptionSwitch: UISwitch!
@@ -47,20 +46,11 @@ class PictographMainViewController: UIViewController, UIImagePickerControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Background color
-        self.view.backgroundColor = mainAppColor
-        
-        //Nav bar
-        topBar = PictographTopBarView()
-        topBar.backgroundColor = mainAppColor
-        topBar.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(topBar)
-        
-        //10px from top, 0px from left & right, 44px height
-        self.view.addConstraint(NSLayoutConstraint(item: topBar, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1, constant: 10))
-        self.view.addConstraint(NSLayoutConstraint(item: topBar, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: topBar, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: topBar, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 44))
+        //Setting the title, button title, and action
+        topBar.setTitle("Pictograph", accessoryButtonTitle: "Settings", accessoryButtonHandler: {() -> Void in
+            //Open the settings view controller
+            self.presentViewController(SettingsViewController(), animated: true, completion: nil)
+        })
         
         
         //Encode button
@@ -170,11 +160,6 @@ class PictographMainViewController: UIViewController, UIImagePickerControllerDel
             //If intro views are shown, hide UI elements
             setAlphaOfUIElementsTo(1.0)
         }
-    }
-    
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
