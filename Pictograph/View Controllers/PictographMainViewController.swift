@@ -300,6 +300,16 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     //Shows the share sheet with the UIImage in PNG form
     func showShareSheetWithImage(image: NSData) {
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        if  UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad {
+            //On an iPad, show the popover from the button
+            activityController.modalPresentationStyle = .Popover
+            activityController.popoverPresentationController!.sourceView = mainEncodeView.encodeButton
+            //Presenting it from the middle of the encode button
+            activityController.popoverPresentationController!.sourceRect = CGRectMake(mainEncodeView.encodeButton.frame.width / 2, mainEncodeView.encodeButton.frame.height / 2, 0, 0)
+        }
+        
+        //Showing the share sheet
         presentViewController(activityController, animated: true, completion: nil)
     }
     
