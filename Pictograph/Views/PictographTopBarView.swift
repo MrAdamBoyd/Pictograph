@@ -43,9 +43,9 @@ class PictographTopBarView: UIView {
         accessoryButton.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(accessoryButton)
         
-        //Bottom = titleLabel.bottom + 3, 15px from right
+        //Bottom = titleLabel.bottom + 3, 16px from right
         self.addConstraint(NSLayoutConstraint(item: accessoryButton, attribute: .Bottom, relatedBy: .Equal, toItem: titleLabel, attribute: .Bottom, multiplier: 1, constant: 3))
-        self.addConstraint(NSLayoutConstraint(item: accessoryButton, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1, constant: -15))
+        self.addConstraint(NSLayoutConstraint(item: accessoryButton, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1, constant: -16))
         
     }
 

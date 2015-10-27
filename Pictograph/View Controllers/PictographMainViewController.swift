@@ -12,8 +12,6 @@ import EAIntroView
 import MBProgressHUD
 
 private let bigButtonHeight: CGFloat = 60
-private let mainAppColor = UIColor(red: 220/255.0, green: 0, blue: 0, alpha: 1)
-private let mainAppColorHighlighted = mainAppColor.colorWithAlphaComponent(0.5)
 private let buttonBorderWidth: CGFloat = 0.5
 private let mainFontSize: CGFloat = 20
 
@@ -195,7 +193,7 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     
     //Shows the intro views if the user hasn't opened the app and/or if we don't have authorization to use gps
     func setUpAndShowIntroViews() -> Bool {
-        let introViewArray = IntroViewBuilder.buildIntroViews()
+        let introViewArray = IntroView.buildIntroViews()
         
         if introViewArray.count > 0 {
             //If there are intro views to show

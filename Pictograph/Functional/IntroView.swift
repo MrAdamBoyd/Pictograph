@@ -17,7 +17,7 @@ private let introViewDescY = UIScreen.mainScreen().bounds.height - 100
 private let introPage1Color = UIColor(red: 24/255.0, green: 120/255.0, blue: 217/255.0, alpha: 1)
 private let introPage2Color = UIColor(red: 220/255.0, green: 141/255.0, blue: 56/255.0, alpha: 1)
 
-class IntroViewBuilder {
+class IntroView {
     class func buildIntroViews() -> [EAIntroPage] {
         var introViewArray:[EAIntroPage] = []
         

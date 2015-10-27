@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-private let mainAppColor = UIColor(red: 220/255.0, green: 0, blue: 0, alpha: 1)
-private let mainAppColorHighlighted = mainAppColor.colorWithAlphaComponent(0.5)
+let mainAppColor = UIColor(red: 220/255.0, green: 0, blue: 0, alpha: 1)
+let mainAppColorHighlighted = mainAppColor.colorWithAlphaComponent(0.5)
 
 class PictographViewController: UIViewController {
     
