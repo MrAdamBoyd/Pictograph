@@ -35,7 +35,19 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         //Setting the title, button title, and action
         topBar.setTitle("Pictograph", accessoryButtonTitle: "Settings", accessoryButtonHandler: {() -> Void in
             //Open the settings view controller
-            self.presentViewController(SettingsViewController(), animated: true, completion: nil)
+            
+            let settings = SettingsViewController()
+            
+            if  UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad {
+                //On an iPad, show the popover from the button
+                settings.modalPresentationStyle = .Popover
+                settings.popoverPresentationController!.sourceView = self.topBar.accessoryButton
+                //Presenting it from the middle of the encode button
+                settings.popoverPresentationController!.sourceRect = CGRectMake(self.topBar.accessoryButton.frame.width / 2, self.topBar.accessoryButton.frame.height, 0, 0)
+                settings.popoverPresentationController!.backgroundColor = mainAppColor
+            }
+            
+            self.presentViewController(settings, animated: true, completion: nil)
         })
         
         //Adding all the UI elements to the screen
