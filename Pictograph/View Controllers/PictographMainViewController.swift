@@ -11,13 +11,6 @@ import UIKit
 import EAIntroView
 import MBProgressHUD
 
-private let bigButtonHeight: CGFloat = 60
-private let buttonBorderWidth: CGFloat = 0.5
-private let mainFontSize: CGFloat = 20
-
-private let encryptionMargin: CGFloat = 40
-private let encryptionVerticalMargin: CGFloat = 40
-
 //What we are currently doing
 enum ImageOption: Int {
     case Encoding = 0, Decoding, Nothing
@@ -32,12 +25,7 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     var currentOption: ImageOption = .Nothing
     
     //UI elements
-    var encodeButton = PictographHighlightButton()
-    var decodeButton = PictographHighlightButton()
-    var encryptionKeyField = PictographInsetTextField()
-    var encryptionLabel = UILabel()
-    var encryptionSwitch = UISwitch()
-    var encryptionInfoViewBorder = UIView()
+    let mainEncodeView = MainEncodingView()
     
     //MARK: - UIViewController
     
@@ -50,108 +38,26 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
             self.presentViewController(SettingsViewController(), animated: true, completion: nil)
         })
         
+        //Adding all the UI elements to the screen
+        mainEncodeView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(mainEncodeView)
         
-        //Encode button
-        encodeButton.addTarget(self, action: Selector("encodeMessage"), forControlEvents: .TouchUpInside)
-        encodeButton.backgroundColor = UIColor.whiteColor()
-        encodeButton.setTitleColor(mainAppColor, forState: .Normal)
-        encodeButton.setTitleColor(mainAppColorHighlighted, forState: .Highlighted)
-        encodeButton.setTitle("Hide Message", forState: .Normal)
-        encodeButton.translatesAutoresizingMaskIntoConstraints = false
+        //0px from bottom of topBar, 0px from left, right, bottom
+        self.view.addConstraint(NSLayoutConstraint(item: mainEncodeView, attribute: .Top, relatedBy: .Equal, toItem: topBar, attribute: .Bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: mainEncodeView, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: mainEncodeView, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: mainEncodeView, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 0))
         
-        //Setting the border
-        encodeButton.layer.borderColor = mainAppColor.CGColor
-        encodeButton.layer.borderWidth = buttonBorderWidth
-        
-        self.view.addSubview(encodeButton)
-        
-        //-1px from left, 1px from bottom, 0px from center, 60px tall
-        self.view.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 1))
-        self.view.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: -1))
-        self.view.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: bigButtonHeight))
-        
-        
-        //Decode button
-        decodeButton.addTarget(self, action: Selector("decodeMessage"), forControlEvents: .TouchUpInside)
-        decodeButton.backgroundColor = UIColor.whiteColor()
-        decodeButton.setTitleColor(mainAppColor, forState: .Normal)
-        decodeButton.setTitleColor(mainAppColorHighlighted, forState: .Highlighted)
-        decodeButton.setTitle("Reveal Message", forState: .Normal)
-        decodeButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        //Setting the border
-        decodeButton.layer.borderColor = mainAppColor.CGColor
-        decodeButton.layer.borderWidth = buttonBorderWidth
-        
-        self.view.addSubview(decodeButton)
-        
-        //1px from bottom, 1px from right, 0px from center, 60px tall
-        self.view.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 1))
-        self.view.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .CenterX, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: 1))
-        self.view.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: bigButtonHeight))
-        
-        
-        //Textfield where encryption key is stored
-        let encryptionEnabled = PictographDataController.sharedController.getUserEncryptionEnabled()
-        encryptionKeyField.alpha = encryptionEnabled ? 1.0 : 0.5
-        encryptionKeyField.enabled = encryptionEnabled
-        encryptionKeyField.secureTextEntry = !PictographDataController.sharedController.getUserShowPasswordOnScreen()
-        encryptionKeyField.delegate = self
-        encryptionKeyField.backgroundColor = UIColor.whiteColor()
-        encryptionKeyField.font = UIFont.systemFontOfSize(mainFontSize)
-        encryptionKeyField.placeholder = "Encryption Key"
-        encryptionKeyField.text = PictographDataController.sharedController.getUserEncryptionKey()
-        encryptionKeyField.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(encryptionKeyField)
-        
-        //50px from left, right, -20px (above) center y
-        self.view.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .Bottom, relatedBy: .Equal, toItem:self.view, attribute:.CenterY, multiplier:1, constant:-encryptionVerticalMargin))
-        self.view.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .Left, relatedBy:.Equal, toItem:self.view, attribute: .Left, multiplier:1, constant:encryptionMargin))
-        self.view.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .Right, relatedBy: .Equal, toItem:self.view,  attribute: .Right, multiplier:1, constant:-encryptionMargin))
-        
-        
-        
-        //Label for enabling encryption
-        encryptionLabel.text = "Use Password"
-        encryptionLabel.font = UIFont.boldSystemFontOfSize(mainFontSize)
-        encryptionLabel.textColor = UIColor.whiteColor()
-        encryptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(encryptionLabel)
-        
-        //0px from left, -20px (above) the top of encryptionKeyField
-        self.view.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .Left, relatedBy: .Equal, toItem:self.view, attribute: .Left, multiplier:1, constant:encryptionMargin))
-        self.view.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .Bottom, relatedBy: .Equal, toItem:encryptionKeyField, attribute: .Top, multiplier:1, constant:-encryptionVerticalMargin))
-        
-        
-        
-        //Switch for enabling encryption
-        encryptionSwitch.on = encryptionEnabled
-        encryptionSwitch.addTarget(self, action: Selector("switchToggled:"), forControlEvents: .ValueChanged)
-        encryptionSwitch.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(encryptionSwitch)
-        
-        //50px from right, center Y = encryptionLabel's center y
-        self.view.addConstraint(NSLayoutConstraint(item: encryptionSwitch, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: -encryptionMargin))
-        self.view.addConstraint(NSLayoutConstraint(item: encryptionSwitch, attribute: .CenterY, relatedBy: .Equal, toItem: encryptionLabel, attribute: .CenterY, multiplier: 1, constant: 0))
-        
-        
-        //Border between text label and switch for enabling and disabling encryption
-        encryptionInfoViewBorder.backgroundColor = UIColor.whiteColor()
-        encryptionInfoViewBorder.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(encryptionInfoViewBorder)
-        
-        //Halfway between the switch and the textfield, 40px from left, right, 1px tall
-        self.view.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .Bottom, relatedBy: .Equal, toItem: encryptionKeyField, attribute: .Top, multiplier: 1, constant: -encryptionVerticalMargin / 2))
-        self.view.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: encryptionMargin - 10))
-        self.view.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: -encryptionMargin + 10))
-        self.view.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 1))
+        //Setting up the actions for the elements
+        mainEncodeView.encodeButton.addTarget(self, action: Selector("encodeMessage"), forControlEvents: .TouchUpInside)
+        mainEncodeView.decodeButton.addTarget(self, action: Selector("decodeMessage"), forControlEvents: .TouchUpInside)
+        mainEncodeView.encryptionKeyField.delegate = self
+        mainEncodeView.encryptionSwitch.addTarget(self, action: Selector("switchToggled:"), forControlEvents: .ValueChanged)
         
         
         if (setUpAndShowIntroViews()) {
             //If intro views are shown, hide UI elements
-            setAlphaOfUIElementsTo(1.0)
+            setAlphaOfUIElementsTo(0)
         }
         
         //Setting up the notifications for the settings
@@ -162,7 +68,7 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         self.view.endEditing(true)
         
         //Saving the text
-        PictographDataController.sharedController.setUserEncryptionKey(encryptionKeyField.text!)
+        PictographDataController.sharedController.setUserEncryptionKey(mainEncodeView.encryptionKeyField.text!)
     }
     
     //For NSNotificationCenter
@@ -224,12 +130,7 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         }
         
         topBar.alpha = alpha
-        encryptionInfoViewBorder.alpha = alpha
-        encryptionLabel.alpha = alpha
-        encryptionSwitch.alpha = alpha
-        encryptionKeyField.alpha = keyFieldAlpha
-        encodeButton.alpha = alpha
-        decodeButton.alpha = alpha
+        mainEncodeView.alpha = alpha
     }
     
     func switchToggled(sender: AnyObject) {
@@ -237,11 +138,11 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         let enabledOrDisabled = mySwitch.on
         
         //Disabling or enabling the textfield based on whether encryption is enabled
-        encryptionKeyField.enabled = enabledOrDisabled
+        mainEncodeView.encryptionKeyField.enabled = enabledOrDisabled
         
         //Animiating the alpha of the textfield
         UIView.animateWithDuration(0.25, animations: {() -> Void in
-            self.encryptionKeyField.alpha = enabledOrDisabled ? 1.0 : 0.5
+            self.mainEncodeView.encryptionKeyField.alpha = enabledOrDisabled ? 1.0 : 0.5
         })
         
         PictographDataController.sharedController.setUserEncryptionEnabled(enabledOrDisabled)
@@ -358,7 +259,7 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
             let coder = UIImageCoder()
             
             //Provide no password if encryption/decryption is off
-            let providedPassword = encryptionSwitch.on ? encryptionKeyField.text : ""
+            let providedPassword = mainEncodeView.encryptionSwitch.on ? mainEncodeView.encryptionKeyField.text : ""
             var error: NSError?
             let decodedMessage = coder.decodeImage(selectedImage, encryptedWithPassword: providedPassword, error: &error)
                 
@@ -424,7 +325,7 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     
     func showPasswordOnScreenChanged() {
         //Set the opposite of what it currently is
-        encryptionKeyField.secureTextEntry = !encryptionKeyField.secureTextEntry
+        mainEncodeView.encryptionKeyField.secureTextEntry = !mainEncodeView.encryptionKeyField.secureTextEntry
     }
     
     //MARK: - UIImagePickerControllerDelegate
