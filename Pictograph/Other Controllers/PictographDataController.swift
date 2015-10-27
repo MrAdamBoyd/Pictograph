@@ -86,4 +86,12 @@ class PictographDataController: NSObject {
     
         Answers.logCustomEventWithName("Decode Message", customAttributes: ["Encryption" : encryptedOrNot])
     }
+    
+    //MARK: - Other methods
+    
+    //Opens the website in Safari
+    func goToWebsite() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://adamjboyd.com")!)
+    }
+    
 }
