@@ -12,16 +12,20 @@ import Foundation
 private let firstTimeOpeningAppKey = "kFirstTimeOpeningAppKey"
 private let encryptionEnabledKey = "kEncryptionEnabledKey"
 private let encryptionPasswordKey = "kEncryptionKey"
+private let showPasswordOnScreenKey = "showPasswordOnScreenKey"
 
 class CurrentUser: NSObject, NSCoding, NSSecureCoding {
     var firstTimeOpeningApp: Bool = true
     var encryptionEnabled: Bool = false
     var encryptionPassword : NSString = ""
-
+    var showPasswordOnScreen: Bool = true
+    
     override init() { super.init() }
     
     //MARK: - NSCoding
     required init?(coder aDecoder: NSCoder) {
+        //Variables in from start
+        
         //First time opening app
         if let firstTimeOpeningAppNumber = aDecoder.decodeObjectOfClass(NSNumber.self, forKey: firstTimeOpeningAppKey) {
             firstTimeOpeningApp = firstTimeOpeningAppNumber.boolValue
@@ -37,6 +41,16 @@ class CurrentUser: NSObject, NSCoding, NSSecureCoding {
             encryptionPassword = storedEncryptionPassword
         }
         
+        
+        //Variables added in 1.1
+        
+        //Showing the password on screen
+        if let showPasswordOnScreenNumber = aDecoder.decodeObjectOfClass(NSNumber.self, forKey: showPasswordOnScreenKey) {
+            showPasswordOnScreen = showPasswordOnScreenNumber.boolValue
+        } else {
+            showPasswordOnScreen = true
+        }
+        
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -47,6 +61,9 @@ class CurrentUser: NSObject, NSCoding, NSSecureCoding {
         aCoder.encodeObject(encryptionEnabledNumber, forKey: encryptionEnabledKey)
         
         aCoder.encodeObject(encryptionPassword, forKey: encryptionPasswordKey)
+        
+        let showPasswordOnScreenNumber = NSNumber(bool: showPasswordOnScreen)
+        aCoder.encodeObject(showPasswordOnScreenNumber, forKey: showPasswordOnScreenKey)
     }
     
     //MARK: - NSSecureCoding

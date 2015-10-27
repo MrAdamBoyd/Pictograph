@@ -43,15 +43,25 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = PictographSettingsTableViewCell()
         
-        cell.setTitle("Show Password", switchStartsOn: false, withHandler: {(enabledOrNot: Bool) -> Void in
-            print("\(enabledOrNot)")
+        cell.setTitle("Show Password", switchStartsOn: PictographDataController.sharedController.getUserShowPasswordOnScreen(), withHandler: {(enabledOrNot: Bool) -> Void in
+            
+            //Changing the setting for showing the password on screen
+            PictographDataController.sharedController.setUserShowPasswordOnScreen(enabledOrNot)
+            NSNotificationCenter.defaultCenter().postNotificationName(pictographShowPasswordOnScreenSettingChangedNotification, object: nil)
+            print("Show password on screen: \(PictographDataController.sharedController.getUserShowPasswordOnScreen())")
         })
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //Only 1 cell for now
         return 1
+    }
+    
+    //Immediately deselect cell when selected
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {

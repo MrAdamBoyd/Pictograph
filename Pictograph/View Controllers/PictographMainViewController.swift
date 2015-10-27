@@ -32,12 +32,12 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     var currentOption: ImageOption = .Nothing
     
     //UI elements
-    var encryptionInfoViewBorder: UIView!
-    var encryptionLabel: UILabel!
-    var encryptionSwitch: UISwitch!
-    var encryptionKeyField: PictographInsetTextField!
-    var encodeButton: PictographHighlightButton!
-    var decodeButton: PictographHighlightButton!
+    var encodeButton = PictographHighlightButton()
+    var decodeButton = PictographHighlightButton()
+    var encryptionKeyField = PictographInsetTextField()
+    var encryptionLabel = UILabel()
+    var encryptionSwitch = UISwitch()
+    var encryptionInfoViewBorder = UIView()
     
     //MARK: - UIViewController
     
@@ -52,7 +52,6 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         
         
         //Encode button
-        encodeButton = PictographHighlightButton()
         encodeButton.addTarget(self, action: Selector("encodeMessage"), forControlEvents: .TouchUpInside)
         encodeButton.backgroundColor = UIColor.whiteColor()
         encodeButton.setTitleColor(mainAppColor, forState: .Normal)
@@ -74,7 +73,6 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         
         
         //Decode button
-        decodeButton = PictographHighlightButton()
         decodeButton.addTarget(self, action: Selector("decodeMessage"), forControlEvents: .TouchUpInside)
         decodeButton.backgroundColor = UIColor.whiteColor()
         decodeButton.setTitleColor(mainAppColor, forState: .Normal)
@@ -96,10 +94,10 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         
         
         //Textfield where encryption key is stored
-        encryptionKeyField = PictographInsetTextField()
         let encryptionEnabled = PictographDataController.sharedController.getUserEncryptionEnabled()
         encryptionKeyField.alpha = encryptionEnabled ? 1.0 : 0.5
         encryptionKeyField.enabled = encryptionEnabled
+        encryptionKeyField.secureTextEntry = !PictographDataController.sharedController.getUserShowPasswordOnScreen()
         encryptionKeyField.delegate = self
         encryptionKeyField.backgroundColor = UIColor.whiteColor()
         encryptionKeyField.font = UIFont.systemFontOfSize(mainFontSize)
@@ -116,7 +114,6 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         
         
         //Label for enabling encryption
-        encryptionLabel = UILabel()
         encryptionLabel.text = "Use Password"
         encryptionLabel.font = UIFont.boldSystemFontOfSize(mainFontSize)
         encryptionLabel.textColor = UIColor.whiteColor()
@@ -130,7 +127,6 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         
         
         //Switch for enabling encryption
-        encryptionSwitch = UISwitch()
         encryptionSwitch.on = encryptionEnabled
         encryptionSwitch.addTarget(self, action: Selector("switchToggled:"), forControlEvents: .ValueChanged)
         encryptionSwitch.translatesAutoresizingMaskIntoConstraints = false
@@ -142,7 +138,6 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         
         
         //Border between text label and switch for enabling and disabling encryption
-        encryptionInfoViewBorder = UIView()
         encryptionInfoViewBorder.backgroundColor = UIColor.whiteColor()
         encryptionInfoViewBorder.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(encryptionInfoViewBorder)
@@ -158,6 +153,9 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
             //If intro views are shown, hide UI elements
             setAlphaOfUIElementsTo(1.0)
         }
+        
+        //Setting up the notifications for the settings
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showPasswordOnScreenChanged"), name: pictographShowPasswordOnScreenSettingChangedNotification, object: nil)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -167,6 +165,10 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         PictographDataController.sharedController.setUserEncryptionKey(encryptionKeyField.text!)
     }
     
+    //For NSNotificationCenter
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     //MARK: - UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -187,7 +189,6 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
             self.setAlphaOfUIElementsTo(1.0)
         })
     }
-    
     
     //MARK: - Custom methods
     
@@ -419,6 +420,12 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         presentViewController(alertController, animated: true, completion: nil)
     }
     
+    //MARK: - Methods for when the settings change
+    
+    func showPasswordOnScreenChanged() {
+        //Set the opposite of what it currently is
+        encryptionKeyField.secureTextEntry = !encryptionKeyField.secureTextEntry
+    }
     
     //MARK: - UIImagePickerControllerDelegate
     

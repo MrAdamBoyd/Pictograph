@@ -15,7 +15,7 @@ private let currentUserKey = "kCurrentUserKey"
 class PictographDataController: NSObject {
     
     static let sharedController = PictographDataController()
-    var user = CurrentUser()
+    private var user = CurrentUser()
     
     //When the singleton is first initialized
     private override init() {
@@ -67,6 +67,15 @@ class PictographDataController: NSObject {
     
     func setUserEncryptionKey(newKey: String) {
         user.encryptionPassword = newKey
+        saveCurrentUser()
+    }
+    
+    func getUserShowPasswordOnScreen() -> Bool {
+        return user.showPasswordOnScreen
+    }
+    
+    func setUserShowPasswordOnScreen(enabledOrNot: Bool) {
+        user.showPasswordOnScreen = enabledOrNot
         saveCurrentUser()
     }
     
