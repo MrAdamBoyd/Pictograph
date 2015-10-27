@@ -12,8 +12,9 @@ private let mainFontSize: CGFloat = 20
 
 private let bigButtonHeight: CGFloat = 60
 private let buttonBorderWidth: CGFloat = 0.5
+private let buttonCenterMargin: CGFloat = 5
 
-private let encryptionMargin: CGFloat = 40
+private let encryptionMargin: CGFloat = 25
 private let encryptionVerticalMargin: CGFloat = 20
 
 class MainEncodingView: UIView {
@@ -31,36 +32,28 @@ class MainEncodingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        //Textfield where encryption key is stored, location of all views based off of this view
         let encryptionEnabled = PictographDataController.sharedController.getUserEncryptionEnabled()
-        encryptionKeyField.alpha = encryptionEnabled ? 1.0 : 0.5
-        encryptionKeyField.enabled = encryptionEnabled
-        encryptionKeyField.secureTextEntry = !PictographDataController.sharedController.getUserShowPasswordOnScreen()
-        encryptionKeyField.backgroundColor = UIColor.whiteColor()
-        encryptionKeyField.font = UIFont.systemFontOfSize(mainFontSize)
-        encryptionKeyField.placeholder = "Encryption Key"
-        encryptionKeyField.text = PictographDataController.sharedController.getUserEncryptionKey()
-        encryptionKeyField.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(encryptionKeyField)
         
-        //50px from left, right, -80px (above) center y
-        addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .Bottom, relatedBy: .Equal, toItem:self, attribute:.CenterY, multiplier:1, constant:-encryptionVerticalMargin * 4))
-        addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .Left, relatedBy:.Equal, toItem:self, attribute: .Left, multiplier:1, constant:encryptionMargin))
-        addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .Right, relatedBy: .Equal, toItem:self,  attribute: .Right, multiplier:1, constant:-encryptionMargin))
-        
-        
-        
-        //Label for enabling encryption
+        //Label for enabling encryption, location for views based off this view
         encryptionLabel.text = "Use Password"
         encryptionLabel.font = UIFont.boldSystemFontOfSize(mainFontSize)
         encryptionLabel.textColor = UIColor.whiteColor()
         encryptionLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(encryptionLabel)
         
-        //0px from left, -20px (above) the top of encryptionKeyField
+        //0px from left
         addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .Left, relatedBy: .Equal, toItem:self, attribute: .Left, multiplier:1, constant:encryptionMargin))
-        addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .Bottom, relatedBy: .Equal, toItem:encryptionKeyField, attribute: .Top, multiplier:1, constant:-encryptionVerticalMargin))
         
+        let screenSize = max(UIScreen.mainScreen().bounds.height, UIScreen.mainScreen().bounds.width)
+        if screenSize <= 568 {
+            //iPhone 5 and iPhone 4 size screens
+            //20px from top of screen
+            addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .Top, relatedBy: .Equal, toItem:self, attribute: .Top, multiplier:1, constant:encryptionVerticalMargin))
+        } else {
+            //All other devices
+            //-140px(above) center of view
+            addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .Top, relatedBy: .Equal, toItem:self, attribute: .CenterY, multiplier:1, constant:-encryptionVerticalMargin * 7))
+        }
         
         
         //Switch for enabling encryption
@@ -71,6 +64,22 @@ class MainEncodingView: UIView {
         //50px from right, center Y = encryptionLabel's center y
         addConstraint(NSLayoutConstraint(item: encryptionSwitch, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1, constant: -encryptionMargin))
         addConstraint(NSLayoutConstraint(item: encryptionSwitch, attribute: .CenterY, relatedBy: .Equal, toItem: encryptionLabel, attribute: .CenterY, multiplier: 1, constant: 0))
+        
+        //Textfield where encryption key is stored
+        encryptionKeyField.alpha = encryptionEnabled ? 1.0 : 0.5
+        encryptionKeyField.enabled = encryptionEnabled
+        encryptionKeyField.secureTextEntry = !PictographDataController.sharedController.getUserShowPasswordOnScreen()
+        encryptionKeyField.backgroundColor = UIColor.whiteColor()
+        encryptionKeyField.font = UIFont.systemFontOfSize(mainFontSize)
+        encryptionKeyField.placeholder = "Encryption Password"
+        encryptionKeyField.text = PictographDataController.sharedController.getUserEncryptionKey()
+        encryptionKeyField.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(encryptionKeyField)
+        
+        //50px from left, right, -80px (above) center y
+        addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .Top, relatedBy: .Equal, toItem:encryptionLabel, attribute:.Bottom, multiplier:1, constant:encryptionVerticalMargin))
+        addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .Left, relatedBy:.Equal, toItem:self, attribute: .Left, multiplier:1, constant:encryptionMargin))
+        addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .Right, relatedBy: .Equal, toItem:self,  attribute: .Right, multiplier:1, constant:-encryptionMargin))
         
         
         //Border between text label and switch for enabling and disabling encryption
@@ -100,7 +109,7 @@ class MainEncodingView: UIView {
         //20px from border, 40px from left, right, 60px tall
         addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .Top, relatedBy: .Equal, toItem: encryptionInfoViewBorder, attribute: .Bottom, multiplier: 1, constant: encryptionVerticalMargin))
         addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .Left, relatedBy: .Equal, toItem: self, attribute: .Left, multiplier: 1, constant: encryptionMargin))
-        addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1, constant: -encryptionMargin))
+        addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: -buttonCenterMargin))
         addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: bigButtonHeight))
         
         
@@ -108,7 +117,7 @@ class MainEncodingView: UIView {
         decodeButton.backgroundColor = UIColor.whiteColor()
         decodeButton.setTitleColor(mainAppColor, forState: .Normal)
         decodeButton.setTitleColor(mainAppColorHighlighted, forState: .Highlighted)
-        decodeButton.setTitle("Reveal Message", forState: .Normal)
+        decodeButton.setTitle("Show Message", forState: .Normal)
         decodeButton.translatesAutoresizingMaskIntoConstraints = false
         
         //Setting the corner radius
@@ -117,8 +126,8 @@ class MainEncodingView: UIView {
         addSubview(decodeButton)
         
         //20px from encodeButton, 40px from left, right, 60px tall
-        addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Top, relatedBy: .Equal, toItem: encodeButton, attribute: .Bottom, multiplier: 1, constant: encryptionVerticalMargin))
-        addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Left, relatedBy: .Equal, toItem: self, attribute: .Left, multiplier: 1, constant: encryptionMargin))
+        addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Top, relatedBy: .Equal, toItem: encryptionInfoViewBorder, attribute: .Bottom, multiplier: 1, constant: encryptionVerticalMargin))
+        addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Left, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: buttonCenterMargin))
         addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1, constant: -encryptionMargin))
         addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: bigButtonHeight))
         
