@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import EAIntroView
 import MBProgressHUD
+import PromiseKit
 
 //What we are currently doing
 enum ImageOption: Int {

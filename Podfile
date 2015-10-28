@@ -8,6 +8,7 @@ target 'Pictograph' do
   pod 'EAIntroView', '~> 2.7.0'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'PromiseKit', '~> 3.0'
 end
 
 target 'PictographTests' do
