@@ -264,14 +264,16 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
             
             //Provide no password if encryption/decryption is off
             let providedPassword = mainEncodeView.encryptionSwitch.on ? mainEncodeView.encryptionKeyField.text : ""
-            var error: NSError?
-            let decodedMessage = coder.decodeImage(selectedImage, encryptedWithPassword: providedPassword, error: &error)
-                
-            if let error = error {
-                showMessageInAlertController(error.localizedDescription, title: "Error Decoding")
-            } else {
-                //There is no error
+            
+            do {
+                let decodedMessage = try coder.decodeMessageInImage(selectedImage, encryptedWithPassword: providedPassword)
+                //Show the message if it was successfully decoded
                 showMessageInAlertController(decodedMessage, title: "Hidden Message")
+                
+            } catch let error as NSError {
+                //Catch the error
+                
+                showMessageInAlertController(error.localizedDescription, title: "Error Decoding")
             }
                 
         }

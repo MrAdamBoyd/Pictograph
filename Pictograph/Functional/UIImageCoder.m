@@ -23,9 +23,11 @@
 
 @implementation UIImageCoder
 
+//MARK: - Decoding a message hidden in an image
+
 //Decodes UIImage image. Returns the encoded message in the image.
 //Password handler has no parameters and returns an NSString *
-- (NSString *)decodeImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
+- (NSString *)decodeMessageInImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
     
     NSMutableArray *infoArrayInBits = [[NSMutableArray alloc] init];
     
@@ -156,6 +158,8 @@
     [array addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
     [array addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
 }
+
+//MARK: - Encoding message in an image
 
 //Encodes UIImage image with message message. Returns the modified UIImage
 - (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message encrypted:(BOOL)encryptedBool withPassword:(NSString *)password error:(NSError **)error {
@@ -293,6 +297,8 @@
     //Returning a PNG of the image, as PNG as lossless
     return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
 }
+
+//MARK: - Methods used for both encoding and decoding
 
 /* Returns the binary representation of a character */
 //http://stackoverflow.com/questions/655792/how-to-convert-nsinteger-to-a-binary-string-value
