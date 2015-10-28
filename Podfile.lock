@@ -7,6 +7,25 @@ PODS:
     - Fabric/Base (= 1.5.5)
   - Fabric/Base (1.5.5)
   - MBProgressHUD (0.9.1)
+  - OMGHTTPURLRQ (3.0.2):
+    - OMGHTTPURLRQ/RQ (= 3.0.2)
+  - OMGHTTPURLRQ/FormURLEncode (3.0.2)
+  - OMGHTTPURLRQ/RQ (3.0.2):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (3.0.2)
+  - PromiseKit (3.0.0):
+    - PromiseKit/Foundation (= 3.0.0)
+    - PromiseKit/QuartzCore (= 3.0.0)
+    - PromiseKit/UIKit (= 3.0.0)
+  - PromiseKit/CorePromise (3.0.0)
+  - PromiseKit/Foundation (3.0.0):
+    - OMGHTTPURLRQ (~> 3.0.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (3.0.0):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (3.0.0):
+    - PromiseKit/CorePromise
   - RNCryptor (4.0.0)
 
 DEPENDENCIES:
@@ -14,6 +33,7 @@ DEPENDENCIES:
   - EAIntroView (~> 2.7.0)
   - Fabric
   - MBProgressHUD (~> 0.9.1)
+  - PromiseKit (~> 3.0)
   - RNCryptor
 
 SPEC CHECKSUMS:
@@ -22,6 +42,8 @@ SPEC CHECKSUMS:
   EARestrictedScrollView: f86d61e16c61d3e93c84f8e96e83122a2a3b7631
   Fabric: 190bf1a6eb65f7500de1347d027d2e59a7e53db1
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  OMGHTTPURLRQ: 8376dc887d76a5a7e2a67881dc788f917a2f437c
+  PromiseKit: 665540a1eb43156446872dcf49ed7dee6ebbe13b
   RNCryptor: 59d6483908115af5c12b884db23392024e52a5fe
 
 COCOAPODS: 0.39.0
