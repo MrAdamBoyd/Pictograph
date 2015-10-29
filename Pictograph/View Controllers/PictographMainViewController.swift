@@ -42,7 +42,7 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
                 //On an iPad, show the popover from the button
                 settings.modalPresentationStyle = .Popover
                 settings.popoverPresentationController!.sourceView = self.topBar.accessoryButton
-                //Presenting it from the middle of the encode button
+                //Presenting it from the middle of the settings button
                 settings.popoverPresentationController!.sourceRect = CGRectMake(self.topBar.accessoryButton.frame.width / 2, self.topBar.accessoryButton.frame.height, 0, 0)
                 settings.popoverPresentationController!.backgroundColor = mainAppColor
             }
