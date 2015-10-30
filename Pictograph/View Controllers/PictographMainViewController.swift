@@ -20,7 +20,6 @@ enum ImageOption: Int {
 class PictographMainViewController: PictographViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate {
     
     //Saved data
-    var selectedImage: UIImage!
     var alertController: UIAlertController!
     var progressHUD: MBProgressHUD!
     var currentOption: ImageOption = .Nothing
@@ -223,7 +222,7 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     
     
     //Encoding or decoding the selected image
-    func startEncodingOrDecoding() {
+    func startEncodingOrDecoding(userImage: UIImage) {
     
         if (currentOption == .Encoding) {
             //Encoding the image with a message, need to get message
@@ -244,7 +243,7 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
                     MBProgressHUD.hideHUDForView(self.view, animated: true)
 
                     do {
-                        let encodedImage = try coder.encodeImage(self.selectedImage, withMessage: messageField.text!, encrypted: PictographDataController.sharedController.getUserEncryptionEnabled(), withPassword: PictographDataController.sharedController.getUserEncryptionKey())
+                        let encodedImage = try coder.encodeImage(userImage, withMessage: messageField.text!, encrypted: PictographDataController.sharedController.getUserEncryptionEnabled(), withPassword: PictographDataController.sharedController.getUserEncryptionKey())
                         //Show the share sheet if the image exists
                         self.showShareSheetWithImage(encodedImage)
                         
@@ -267,7 +266,7 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
             let providedPassword = mainEncodeView.encryptionSwitch.on ? mainEncodeView.encryptionKeyField.text : ""
             
             do {
-                let decodedMessage = try coder.decodeMessageInImage(selectedImage, encryptedWithPassword: providedPassword)
+                let decodedMessage = try coder.decodeMessageInImage(userImage, encryptedWithPassword: providedPassword)
                 //Show the message if it was successfully decoded
                 showMessageInAlertController(decodedMessage, title: "Hidden Message")
                 
@@ -350,11 +349,10 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     //User picked image
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        selectedImage = chosenImage
+        let userImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         picker.dismissViewControllerAnimated(true, completion: nil)
         
-        startEncodingOrDecoding()
+        startEncodingOrDecoding(userImage)
     }
     
     //User cancelled
