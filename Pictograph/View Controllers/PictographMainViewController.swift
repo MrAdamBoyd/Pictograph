@@ -17,11 +17,10 @@ enum ImageOption: Int {
     case Encoding = 0, Decoding, Nothing
 }
 
-class PictographMainViewController: PictographViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate {
+class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate {
     
     //Saved data
     var alertController: UIAlertController!
-    var progressHUD: MBProgressHUD!
     var currentOption: ImageOption = .Nothing
     
     //UI elements
@@ -188,23 +187,36 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
                 
                 //Choose photo from library, present library view controller
                 let picker = self.buildImagePickerWithSourceType(.PhotoLibrary)
-                self.presentViewController(picker, animated: true, completion: nil)
+                
+                self.promiseViewController(picker).then({ image in
+                    //Start encoding or decoding when the image has been picked
+                    self.startEncodingOrDecoding(image)
+                })
             })
             alertController.addAction(libraryAction)
             
             //Take photo action
             let takePhotoAction = UIAlertAction(title: "Take Photo", style: .Default, handler: {(action: UIAlertAction) -> Void in
                 let picker = self.buildImagePickerWithSourceType(.Camera)
-                self.presentViewController(picker, animated: true, completion: nil)
+                
+                self.promiseViewController(picker).then({ image in
+                    //Start encoding or decoding when the image has been picked
+                    self.startEncodingOrDecoding(image)
+                })
             })
             alertController.addAction(takePhotoAction)
             
             presentViewController(alertController, animated: true, completion: nil)
+            
         
         } else {
             //Device has no camera, just show library
             let picker = buildImagePickerWithSourceType(.PhotoLibrary)
-            presentViewController(picker, animated: true, completion: nil)
+            
+            promiseViewController(picker).then({ image in
+                //Start encoding or decoding when the image has been picked
+                self.startEncodingOrDecoding(image)
+            })
         
         }
     }
@@ -213,7 +225,6 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     //Builds a UIImagePickerController with source type
     func buildImagePickerWithSourceType(type: UIImagePickerControllerSourceType) -> UIImagePickerController {
         let picker = UIImagePickerController()
-        picker.delegate = self
         picker.allowsEditing = false
         picker.sourceType = type
         
@@ -342,23 +353,5 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     func showPasswordOnScreenChanged() {
         //Set the opposite of what it currently is
         mainEncodeView.encryptionKeyField.secureTextEntry = !mainEncodeView.encryptionKeyField.secureTextEntry
-    }
-    
-    //MARK: - UIImagePickerControllerDelegate
-    
-    //User picked image
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        let userImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
-        startEncodingOrDecoding(userImage)
-    }
-    
-    //User cancelled
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
-        currentOption = .Nothing
     }
 }
