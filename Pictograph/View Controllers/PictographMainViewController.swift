@@ -13,15 +13,14 @@ import MBProgressHUD
 import PromiseKit
 
 //What we are currently doing
-enum ImageOption: Int {
-    case Encoding = 0, Decoding, Nothing
+enum PictographAction: Int {
+    case EncodingMessage = 0, DecodingMessage
 }
 
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate {
     
     //Saved data
     var alertController: UIAlertController!
-    var currentOption: ImageOption = .Nothing
     
     //UI elements
     let mainEncodeView = MainEncodingView()
@@ -158,8 +157,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         */
         if ((PictographDataController.sharedController.getUserEncryptionKey() != "" && PictographDataController.sharedController.getUserEncryptionEnabled()) || !PictographDataController.sharedController.getUserEncryptionEnabled()) {
             //Getting the photo the user wants to use
-            currentOption = .Encoding
-            promptUserForPhotoWithOptionForCamera(true)
+            promptUserForPhotoWithOptionForCamera(true, userAction: .EncodingMessage)
         } else {
             //Show message: encryption is enabled and the key is blank
             showMessageInAlertController("Encryption is enabled but your password is blank, please enter a password.", title: "No Encryption Key")
@@ -168,12 +166,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Starting the decoding process
     func decodeMessage() {
-        currentOption = .Decoding
-        promptUserForPhotoWithOptionForCamera(false)
+        promptUserForPhotoWithOptionForCamera(false, userAction: .DecodingMessage)
     }
     
     //Showing the action sheet
-    func promptUserForPhotoWithOptionForCamera(showCamera: Bool) {
+    func promptUserForPhotoWithOptionForCamera(showCamera: Bool, userAction: PictographAction) {
         if UIImagePickerController.isSourceTypeAvailable(.Camera) && showCamera {
             //Device has camera & library, show option to choose
             alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .ActionSheet)
@@ -190,7 +187,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 
                 self.promiseViewController(picker).then({ image in
                     //Start encoding or decoding when the image has been picked
-                    self.startEncodingOrDecoding(image)
+                    self.startEncodingOrDecoding(image, userAction: userAction)
                 })
             })
             alertController.addAction(libraryAction)
@@ -201,7 +198,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 
                 self.promiseViewController(picker).then({ image in
                     //Start encoding or decoding when the image has been picked
-                    self.startEncodingOrDecoding(image)
+                    self.startEncodingOrDecoding(image, userAction: userAction)
                 })
             })
             alertController.addAction(takePhotoAction)
@@ -215,7 +212,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
             promiseViewController(picker).then({ image in
                 //Start encoding or decoding when the image has been picked
-                self.startEncodingOrDecoding(image)
+                self.startEncodingOrDecoding(image, userAction: userAction)
             })
         
         }
@@ -231,11 +228,10 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         return picker
     }
     
-    
     //Encoding or decoding the selected image
-    func startEncodingOrDecoding(userImage: UIImage) {
+    func startEncodingOrDecoding(userImage: UIImage, userAction: PictographAction) {
     
-        if (currentOption == .Encoding) {
+        if (userAction == .EncodingMessage) {
             //Encoding the image with a message, need to get message
             
             buildAndShowAlertWithTitle("Enter your message", message: nil, isSecure: false, withPlaceHolder: "Your message here", confirmHandler: {(action: UIAlertAction) -> Void in
