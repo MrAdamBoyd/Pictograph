@@ -173,61 +173,29 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     func promptUserForPhotoWithOptionForCamera(showCamera: Bool, userAction: PictographAction) {
         if UIImagePickerController.isSourceTypeAvailable(.Camera) && showCamera {
             //Device has camera & library, show option to choose
-            alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .ActionSheet)
-            
-            //Cancel action
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-            alertController.addAction(cancelAction)
-            
-            //Library action
-            let libraryAction = UIAlertAction(title: "Select from Library", style: .Default, handler: {(action: UIAlertAction) -> Void in
-                
-                //Choose photo from library, present library view controller
-                let picker = self.buildImagePickerWithSourceType(.PhotoLibrary)
-                
-                self.promiseViewController(picker).then({ image in
-                    //Start encoding or decoding when the image has been picked
-                    self.startEncodingOrDecoding(image, userAction: userAction)
-                })
-            })
-            alertController.addAction(libraryAction)
-            
-            //Take photo action
-            let takePhotoAction = UIAlertAction(title: "Take Photo", style: .Default, handler: {(action: UIAlertAction) -> Void in
-                let picker = self.buildImagePickerWithSourceType(.Camera)
-                
-                self.promiseViewController(picker).then({ image in
-                    //Start encoding or decoding when the image has been picked
-                    self.startEncodingOrDecoding(image, userAction: userAction)
-                })
-            })
-            alertController.addAction(takePhotoAction)
-            
-            presentViewController(alertController, animated: true, completion: nil)
            
-            
-            //TODO: Will use when PromiseKit bug is fixed, or I find out what I'm doing wrong (though I'm pretty sure it's the first one)
-//            let imagePopup = PMKAlertController(title: "Select Picture", message: nil, preferredStyle: .ActionSheet)
-//            imagePopup.addActionWithTitle("Select from Library")
-//            let takePhotoPickerAction = imagePopup.addActionWithTitle("Take Photo")
-//            imagePopup.addActionWithTitle("Cancel", style: .Cancel)
-//
-//            promiseViewController(imagePopup).then { action in
-//                var pickerType = UIImagePickerControllerSourceType.PhotoLibrary
-//
-//                if action == takePhotoPickerAction {
-//                    //If the user chose to use the camera
-//                    pickerType = .Camera
-//                }
-//
-//                let picker = self.buildImagePickerWithSourceType(pickerType)
-//
-//                return self.promiseViewController(picker)
-//                
-//            }.then { image in
-//                //Start encoding or decoding when the image has been picked
-//                self.startEncodingOrDecoding(image, userAction: userAction)
-//            }
+            //Building the picker to choose the type of input
+            let imagePopup = PMKAlertController(title: "Select Picture", message: nil, preferredStyle: .ActionSheet)
+            imagePopup.addActionWithTitle("Select from Library")
+            let takePhotoPickerAction = imagePopup.addActionWithTitle("Take Photo")
+            imagePopup.addActionWithTitle("Cancel", style: .Cancel)
+
+            promiseViewController(imagePopup).then { action in
+                var pickerType = UIImagePickerControllerSourceType.PhotoLibrary
+
+                if action == takePhotoPickerAction {
+                    //If the user chose to use the camera
+                    pickerType = .Camera
+                }
+
+                let picker = self.buildImagePickerWithSourceType(pickerType)
+
+                return self.promiseViewController(picker)
+                
+            }.then { image in
+                //Start encoding or decoding when the image has been picked
+                self.startEncodingOrDecoding(image, userAction: userAction)
+            }
         
         } else {
             //Device has no camera, just show library
