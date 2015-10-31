@@ -204,7 +204,30 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             alertController.addAction(takePhotoAction)
             
             presentViewController(alertController, animated: true, completion: nil)
+           
             
+            //TODO: Will use when PromiseKit bug is fixed, or I find out what I'm doing wrong (though I'm pretty sure it's the first one)
+//            let imagePopup = PMKAlertController(title: "Select Picture", message: nil, preferredStyle: .ActionSheet)
+//            imagePopup.addActionWithTitle("Select from Library")
+//            let takePhotoPickerAction = imagePopup.addActionWithTitle("Take Photo")
+//            imagePopup.addActionWithTitle("Cancel", style: .Cancel)
+//
+//            promiseViewController(imagePopup).then { action in
+//                var pickerType = UIImagePickerControllerSourceType.PhotoLibrary
+//
+//                if action == takePhotoPickerAction {
+//                    //If the user chose to use the camera
+//                    pickerType = .Camera
+//                }
+//
+//                let picker = self.buildImagePickerWithSourceType(pickerType)
+//
+//                return self.promiseViewController(picker)
+//                
+//            }.then { image in
+//                //Start encoding or decoding when the image has been picked
+//                self.startEncodingOrDecoding(image, userAction: userAction)
+//            }
         
         } else {
             //Device has no camera, just show library
@@ -214,10 +237,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 //Start encoding or decoding when the image has been picked
                 self.startEncodingOrDecoding(image, userAction: userAction)
             })
-        
         }
     }
-    
     
     //Builds a UIImagePickerController with source type
     func buildImagePickerWithSourceType(type: UIImagePickerControllerSourceType) -> UIImagePickerController {
