@@ -56,8 +56,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.view.addConstraint(NSLayoutConstraint(item: mainEncodeView, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 0))
         
         //Setting up the actions for the elements
-        mainEncodeView.encodeButton.addTarget(self, action: Selector("encodeMessage"), forControlEvents: .TouchUpInside)
-        mainEncodeView.decodeButton.addTarget(self, action: Selector("decodeMessage"), forControlEvents: .TouchUpInside)
+        mainEncodeView.encodeButton.addTarget(self, action: Selector("startEncodeProcess"), forControlEvents: .TouchUpInside)
+        mainEncodeView.decodeButton.addTarget(self, action: Selector("startDecodeProcess"), forControlEvents: .TouchUpInside)
         mainEncodeView.encryptionKeyField.delegate = self
         mainEncodeView.encryptionSwitch.addTarget(self, action: Selector("switchToggled:"), forControlEvents: .ValueChanged)
         
@@ -148,7 +148,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Starting the encode process
-    func encodeMessage() {
+    func startEncodeProcess() {
         /* True if encrytption is enabled AND the key isn't blank
         OR encrytion is disabled
         */
@@ -162,7 +162,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Starting the decoding process
-    func decodeMessage() {
+    func startDecodeProcess() {
         promptUserForPhotoWithOptionForCamera(false, userAction: .DecodingMessage)
     }
     
