@@ -220,7 +220,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         if (userAction == .EncodingMessage) {
             //Encoding the image with a message, need to get message
             
-            buildAndShowAlertWithTitle("Enter your message", message: nil, isSecure: false, withPlaceHolder: "Your message here", confirmHandler: {(textField: UITextField) -> Void in
+            let getMessageController = buildGetMessageController("Enter your message", message: nil, isSecure: false, withPlaceHolder: "Your message here")
+            promiseViewController(getMessageController).then({ alert in
+                //After the user hit confirm
                 MBProgressHUD.showHUDAddedTo(self.view, animated: true)
                 
                 //Dispatching the task after  small amount of time as per MBProgressHUD's recommendation
@@ -228,18 +230,18 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 dispatch_after(popTime, dispatch_get_main_queue(), {() -> Void in
                     
                     let coder = UIImageCoder()
-
+                    
                     //Hide the HUD
                     MBProgressHUD.hideHUDForView(self.view, animated: true)
-
+                    
                     do {
-                        let encodedImage = try coder.encodeImage(userImage, withMessage: textField.text!, encrypted: PictographDataController.sharedController.getUserEncryptionEnabled(), withPassword: PictographDataController.sharedController.getUserEncryptionKey())
+                        let encodedImage = try coder.encodeImage(userImage, withMessage: getMessageController.textFields!.first!.text!, encrypted: PictographDataController.sharedController.getUserEncryptionEnabled(), withPassword: PictographDataController.sharedController.getUserEncryptionKey())
                         //Show the share sheet if the image exists
                         self.showShareSheetWithImage(encodedImage)
                         
                     } catch let error as NSError {
-                        //Catch the error
                         
+                        //Catch the error
                         self.showMessageInAlertController("Error", message: error.localizedDescription)
                     }
                 })
@@ -261,23 +263,23 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 showMessageInAlertController("Hidden Message", message: decodedMessage)
                 
             } catch let error as NSError {
-                //Catch the error
                 
+                //Catch the error
                 showMessageInAlertController("Error Decoding", message: error.localizedDescription)
             }
                 
         }
     }
     
-    //Building the alert that gets the message that the user should type
-    func buildAndShowAlertWithTitle(title: String, message: String?, isSecure: Bool, withPlaceHolder placeHolder:String, confirmHandler:(UITextField) -> Void) {
-        
+    //Building the alert that gets the message that the user wants to encode
+    func buildGetMessageController(title: String, message: String?, isSecure: Bool, withPlaceHolder placeHolder:String) -> PMKAlertController {
         let getMessageController = PMKAlertController(title: title, message: message, preferredStyle: .Alert)
         let confirmAction = getMessageController.addActionWithTitle("Confirm")
         getMessageController.addActionWithTitle("Cancel", style: .Cancel)
         getMessageController.addTextFieldWithConfigurationHandler({(textField: UITextField) -> Void in
             textField.placeholder = placeHolder
             textField.secureTextEntry = isSecure
+            confirmAction.enabled = false
             
             //Confirm is only enabled if there is text
             NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue(), usingBlock: {(notification: NSNotification) -> Void in
@@ -287,9 +289,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
         })
         
-        promiseViewController(getMessageController).then { action in
-            confirmHandler(getMessageController.textFields!.first!)
-        }
+        return getMessageController
     }
     
     //Shows the share sheet with the UIImage in PNG form
