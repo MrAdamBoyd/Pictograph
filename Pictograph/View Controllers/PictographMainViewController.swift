@@ -154,7 +154,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         */
         if ((PictographDataController.sharedController.getUserEncryptionKey() != "" && PictographDataController.sharedController.getUserEncryptionEnabled()) || !PictographDataController.sharedController.getUserEncryptionEnabled()) {
             //Getting the photo the user wants to use
-            promptUserForPhotoWithOptionForCamera(true, userAction: .EncodingMessage)
+            getPhotoForEncodingOrDecoding(true, userAction: .EncodingMessage)
         } else {
             //Show message: encryption is enabled and the key is blank
             showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.")
@@ -163,18 +163,18 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Starting the decoding process
     func startDecodeProcess() {
-        promptUserForPhotoWithOptionForCamera(false, userAction: .DecodingMessage)
+        getPhotoForEncodingOrDecoding(false, userAction: .DecodingMessage)
     }
     
     //Showing the action sheet
-    func promptUserForPhotoWithOptionForCamera(showCamera: Bool, userAction: PictographAction) {
+    func getPhotoForEncodingOrDecoding(showCamera: Bool, userAction: PictographAction) {
         if UIImagePickerController.isSourceTypeAvailable(.Camera) && showCamera {
             //Device has camera & library, show option to choose
            
             //Building the picker to choose the type of input
             let imagePopup = PMKAlertController(title: "Select Picture", message: nil, preferredStyle: .ActionSheet)
             imagePopup.addActionWithTitle("Select from Library")
-            let takePhotoPickerAction = imagePopup.addActionWithTitle("Take Photo")
+            let takePhotoPickerAction = imagePopup.addActionWithTitle("Take Photo") //Saving the take photo action so we can show the proper picker later
             imagePopup.addActionWithTitle("Cancel", style: .Cancel)
 
             promiseViewController(imagePopup).then { action in
@@ -191,7 +191,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 
             }.then { image in
                 //Start encoding or decoding when the image has been picked
-                self.startEncodingOrDecoding(image, userAction: userAction)
+                self.encodeOrDecodeImage(image, userAction: userAction)
             }
         
         } else {
@@ -200,7 +200,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
             promiseViewController(picker).then({ image in
                 //Start encoding or decoding when the image has been picked
-                self.startEncodingOrDecoding(image, userAction: userAction)
+                self.encodeOrDecodeImage(image, userAction: userAction)
             })
         }
     }
@@ -215,7 +215,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Encoding or decoding the selected image
-    func startEncodingOrDecoding(userImage: UIImage, userAction: PictographAction) {
+    func encodeOrDecodeImage(userImage: UIImage, userAction: PictographAction) {
     
         if (userAction == .EncodingMessage) {
             //Encoding the image with a message, need to get message
@@ -273,9 +273,12 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Building the alert that gets the message that the user wants to encode
     func buildGetMessageController(title: String, message: String?, isSecure: Bool, withPlaceHolder placeHolder:String) -> PMKAlertController {
+        
         let getMessageController = PMKAlertController(title: title, message: message, preferredStyle: .Alert)
-        let confirmAction = getMessageController.addActionWithTitle("Confirm")
+        let confirmAction = getMessageController.addActionWithTitle("Confirm") //Saving the confirmAction so it can be enabled/disabled
         getMessageController.addActionWithTitle("Cancel", style: .Cancel)
+        
+        //Building the text field with the correct settings
         getMessageController.addTextFieldWithConfigurationHandler({(textField: UITextField) -> Void in
             textField.placeholder = placeHolder
             textField.secureTextEntry = isSecure
