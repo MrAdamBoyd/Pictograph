@@ -153,8 +153,28 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         OR encrytion is disabled
         */
         if ((PictographDataController.sharedController.getUserEncryptionKey() != "" && PictographDataController.sharedController.getUserEncryptionEnabled()) || !PictographDataController.sharedController.getUserEncryptionEnabled()) {
+            
+            let getMessageController = self.buildGetMessageController("Enter your message", message: nil, isSecure: false, withPlaceHolder: "Your message here")
+            var userImage: UIImage!
+            
             //Getting the photo the user wants to use
-            getPhotoForEncodingOrDecoding(true, userAction: .EncodingMessage)
+            getPhotoForEncodingOrDecoding(true).then { image in
+                
+                //Saving the image first
+                userImage = image
+                
+            }.then { image in
+                
+                //Getting the message from the user
+                return self.promiseViewController(getMessageController)
+            
+            }.then { alert in
+                    
+                //Encoding the message in the image
+                self.encodeMessage(getMessageController.textFields!.first!.text!, inImage: userImage)
+                    
+            }
+            
         } else {
             //Show message: encryption is enabled and the key is blank
             showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.")
@@ -163,11 +183,15 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Starting the decoding process
     func startDecodeProcess() {
-        getPhotoForEncodingOrDecoding(false, userAction: .DecodingMessage)
+        getPhotoForEncodingOrDecoding(false).then { image in
+            //Start encoding or decoding when the image has been picked
+            //self.encodeOrDecodeImage(image, userAction: .DecodingMessage, messageToEncode: nil)
+            self.decodeMessageInImage(image)
+        }
     }
     
     //Showing the action sheet
-    func getPhotoForEncodingOrDecoding(showCamera: Bool, userAction: PictographAction) {
+    func getPhotoForEncodingOrDecoding(showCamera: Bool) -> Promise<UIImage> {
         if UIImagePickerController.isSourceTypeAvailable(.Camera) && showCamera {
             //Device has camera & library, show option to choose
            
@@ -177,7 +201,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             let takePhotoPickerAction = imagePopup.addActionWithTitle("Take Photo") //Saving the take photo action so we can show the proper picker later
             imagePopup.addActionWithTitle("Cancel", style: .Cancel)
 
-            promiseViewController(imagePopup).then { action in
+            return promiseViewController(imagePopup).then { action in
                 var pickerType = UIImagePickerControllerSourceType.PhotoLibrary
 
                 if action == takePhotoPickerAction {
@@ -188,20 +212,13 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 let picker = self.buildImagePickerWithSourceType(pickerType)
 
                 return self.promiseViewController(picker)
-                
-            }.then { image in
-                //Start encoding or decoding when the image has been picked
-                self.encodeOrDecodeImage(image, userAction: userAction)
             }
         
         } else {
             //Device has no camera, just show library
             let picker = buildImagePickerWithSourceType(.PhotoLibrary)
             
-            promiseViewController(picker).then({ image in
-                //Start encoding or decoding when the image has been picked
-                self.encodeOrDecodeImage(image, userAction: userAction)
-            })
+            return promiseViewController(picker)
         }
     }
     
@@ -214,60 +231,51 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         return picker
     }
     
-    //Encoding or decoding the selected image
-    func encodeOrDecodeImage(userImage: UIImage, userAction: PictographAction) {
-    
-        if (userAction == .EncodingMessage) {
-            //Encoding the image with a message, need to get message
-            
-            let getMessageController = buildGetMessageController("Enter your message", message: nil, isSecure: false, withPlaceHolder: "Your message here")
-            promiseViewController(getMessageController).then({ alert in
-                //After the user hit confirm
-                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-                
-                //Dispatching the task after  small amount of time as per MBProgressHUD's recommendation
-                let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.01 * Double(NSEC_PER_SEC)))
-                dispatch_after(popTime, dispatch_get_main_queue(), {() -> Void in
-                    
-                    let coder = UIImageCoder()
-                    
-                    //Hide the HUD
-                    MBProgressHUD.hideHUDForView(self.view, animated: true)
-                    
-                    do {
-                        let encodedImage = try coder.encodeImage(userImage, withMessage: getMessageController.textFields!.first!.text!, encrypted: PictographDataController.sharedController.getUserEncryptionEnabled(), withPassword: PictographDataController.sharedController.getUserEncryptionKey())
-                        //Show the share sheet if the image exists
-                        self.showShareSheetWithImage(encodedImage)
-                        
-                    } catch let error as NSError {
-                        
-                        //Catch the error
-                        self.showMessageInAlertController("Error", message: error.localizedDescription)
-                    }
-                })
-            })
-            
-        } else {
-            //Decoding the image
-            
-            //No need to show HUD because this doesn't take long
+    func encodeMessage(messageToEncode: String, inImage userImage: UIImage) {
+        //After the user hit confirm
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        //Dispatching the task after  small amount of time as per MBProgressHUD's recommendation
+        let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.01 * Double(NSEC_PER_SEC)))
+        dispatch_after(popTime, dispatch_get_main_queue(), {() -> Void in
             
             let coder = UIImageCoder()
             
-            //Provide no password if encryption/decryption is off
-            let providedPassword = mainEncodeView.encryptionSwitch.on ? mainEncodeView.encryptionKeyField.text : ""
+            //Hide the HUD
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
             
             do {
-                let decodedMessage = try coder.decodeMessageInImage(userImage, encryptedWithPassword: providedPassword)
-                //Show the message if it was successfully decoded
-                showMessageInAlertController("Hidden Message", message: decodedMessage)
+                let encodedImage = try coder.encodeImage(userImage, withMessage: messageToEncode, encrypted: PictographDataController.sharedController.getUserEncryptionEnabled(), withPassword: PictographDataController.sharedController.getUserEncryptionKey())
+                //Show the share sheet if the image exists
+                self.showShareSheetWithImage(encodedImage)
                 
             } catch let error as NSError {
                 
                 //Catch the error
-                showMessageInAlertController("Error Decoding", message: error.localizedDescription)
+                self.showMessageInAlertController("Error", message: error.localizedDescription)
             }
-                
+        })
+    }
+    
+    //Decoding a message that is hidden in an image
+    func decodeMessageInImage(userImage: UIImage) {
+        
+        //No need to show HUD because this doesn't take long
+        
+        let coder = UIImageCoder()
+        
+        //Provide no password if encryption/decryption is off
+        let providedPassword = mainEncodeView.encryptionSwitch.on ? mainEncodeView.encryptionKeyField.text : ""
+        
+        do {
+            let decodedMessage = try coder.decodeMessageInImage(userImage, encryptedWithPassword: providedPassword)
+            //Show the message if it was successfully decoded
+            showMessageInAlertController("Hidden Message", message: decodedMessage)
+            
+        } catch let error as NSError {
+            
+            //Catch the error
+            showMessageInAlertController("Error Decoding", message: error.localizedDescription)
         }
     }
     
