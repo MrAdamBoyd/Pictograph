@@ -10,19 +10,14 @@ import Foundation
 import UIKit
 import EAIntroView
 import MBProgressHUD
+import PromiseKit
 
 //What we are currently doing
-enum ImageOption: Int {
-    case Encoding = 0, Decoding, Nothing
+enum PictographAction: Int {
+    case EncodingMessage = 0, DecodingMessage
 }
 
-class PictographMainViewController: PictographViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate {
-    
-    //Saved data
-    var selectedImage: UIImage!
-    var alertController: UIAlertController!
-    var progressHUD: MBProgressHUD!
-    var currentOption: ImageOption = .Nothing
+class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate {
     
     //UI elements
     let mainEncodeView = MainEncodingView()
@@ -61,8 +56,8 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
         self.view.addConstraint(NSLayoutConstraint(item: mainEncodeView, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 0))
         
         //Setting up the actions for the elements
-        mainEncodeView.encodeButton.addTarget(self, action: Selector("encodeMessage"), forControlEvents: .TouchUpInside)
-        mainEncodeView.decodeButton.addTarget(self, action: Selector("decodeMessage"), forControlEvents: .TouchUpInside)
+        mainEncodeView.encodeButton.addTarget(self, action: Selector("startEncodeProcess"), forControlEvents: .TouchUpInside)
+        mainEncodeView.decodeButton.addTarget(self, action: Selector("startDecodeProcess"), forControlEvents: .TouchUpInside)
         mainEncodeView.encryptionKeyField.delegate = self
         mainEncodeView.encryptionSwitch.addTarget(self, action: Selector("switchToggled:"), forControlEvents: .ValueChanged)
         
@@ -153,151 +148,149 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     }
     
     //Starting the encode process
-    func encodeMessage() {
+    func startEncodeProcess() {
         /* True if encrytption is enabled AND the key isn't blank
         OR encrytion is disabled
         */
         if ((PictographDataController.sharedController.getUserEncryptionKey() != "" && PictographDataController.sharedController.getUserEncryptionEnabled()) || !PictographDataController.sharedController.getUserEncryptionEnabled()) {
+            
+            let getMessageController = self.buildGetMessageController("Enter your message", message: nil, isSecure: false, withPlaceHolder: "Your message here")
+            var userImage: UIImage!
+            
             //Getting the photo the user wants to use
-            currentOption = .Encoding
-            promptUserForPhotoWithOptionForCamera(true)
+            getPhotoForEncodingOrDecoding(true).then { image in
+                
+                //Saving the image first
+                userImage = image
+                
+            }.then { image in
+                
+                //Getting the message from the user
+                return self.promiseViewController(getMessageController)
+            
+            }.then { alert in
+                    
+                //Encoding the message in the image
+                self.encodeMessage(getMessageController.textFields!.first!.text!, inImage: userImage)
+                    
+            }
+            
         } else {
             //Show message: encryption is enabled and the key is blank
-            showMessageInAlertController("Encryption is enabled but your password is blank, please enter a password.", title: "No Encryption Key")
+            showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.")
         }
     }
     
     //Starting the decoding process
-    func decodeMessage() {
-        currentOption = .Decoding
-        promptUserForPhotoWithOptionForCamera(false)
+    func startDecodeProcess() {
+        getPhotoForEncodingOrDecoding(false).then { image in
+            //Start encoding or decoding when the image has been picked
+            //self.encodeOrDecodeImage(image, userAction: .DecodingMessage, messageToEncode: nil)
+            self.decodeMessageInImage(image)
+        }
     }
     
     //Showing the action sheet
-    func promptUserForPhotoWithOptionForCamera(showCamera: Bool) {
+    func getPhotoForEncodingOrDecoding(showCamera: Bool) -> Promise<UIImage> {
         if UIImagePickerController.isSourceTypeAvailable(.Camera) && showCamera {
             //Device has camera & library, show option to choose
-            alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .ActionSheet)
-            
-            //Cancel action
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-            alertController.addAction(cancelAction)
-            
-            //Library action
-            let libraryAction = UIAlertAction(title: "Select from Library", style: .Default, handler: {(action: UIAlertAction) -> Void in
-                
-                //Choose photo from library, present library view controller
-                let picker = self.buildImagePickerWithSourceType(.PhotoLibrary)
-                self.presentViewController(picker, animated: true, completion: nil)
-            })
-            alertController.addAction(libraryAction)
-            
-            //Take photo action
-            let takePhotoAction = UIAlertAction(title: "Take Photo", style: .Default, handler: {(action: UIAlertAction) -> Void in
-                let picker = self.buildImagePickerWithSourceType(.Camera)
-                self.presentViewController(picker, animated: true, completion: nil)
-            })
-            alertController.addAction(takePhotoAction)
-            
-            presentViewController(alertController, animated: true, completion: nil)
+           
+            //Building the picker to choose the type of input
+            let imagePopup = PMKAlertController(title: "Select Picture", message: nil, preferredStyle: .ActionSheet)
+            imagePopup.addActionWithTitle("Select from Library")
+            let takePhotoPickerAction = imagePopup.addActionWithTitle("Take Photo") //Saving the take photo action so we can show the proper picker later
+            imagePopup.addActionWithTitle("Cancel", style: .Cancel)
+
+            return promiseViewController(imagePopup).then { action in
+                var pickerType = UIImagePickerControllerSourceType.PhotoLibrary
+
+                if action == takePhotoPickerAction {
+                    //If the user chose to use the camera
+                    pickerType = .Camera
+                }
+
+                let picker = self.buildImagePickerWithSourceType(pickerType)
+
+                return self.promiseViewController(picker)
+            }
         
         } else {
             //Device has no camera, just show library
             let picker = buildImagePickerWithSourceType(.PhotoLibrary)
-            presentViewController(picker, animated: true, completion: nil)
-        
+            
+            return promiseViewController(picker)
         }
     }
-    
     
     //Builds a UIImagePickerController with source type
     func buildImagePickerWithSourceType(type: UIImagePickerControllerSourceType) -> UIImagePickerController {
         let picker = UIImagePickerController()
-        picker.delegate = self
         picker.allowsEditing = false
         picker.sourceType = type
         
         return picker
     }
     
-    
-    //Encoding or decoding the selected image
-    func startEncodingOrDecoding() {
-    
-        if (currentOption == .Encoding) {
-            //Encoding the image with a message, need to get message
-            
-            buildAndShowAlertWithTitle("Enter your message", message: nil, isSecure: false, withPlaceHolder: "Your message here", confirmHandler: {(action: UIAlertAction) -> Void in
-                MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-                
-                //Dispatching the task after  small amount of time as per MBProgressHUD's recommendation
-                let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.01 * Double(NSEC_PER_SEC)))
-                dispatch_after(popTime, dispatch_get_main_queue(), {() -> Void in
-                    
-                    //Action that happens when confirm is hit
-                    let messageField = self.alertController.textFields!.first!
-                    
-                    let coder = UIImageCoder()
-
-                    //Hide the HUD
-                    MBProgressHUD.hideHUDForView(self.view, animated: true)
-
-                    do {
-                        let encodedImage = try coder.encodeImage(self.selectedImage, withMessage: messageField.text!, encrypted: PictographDataController.sharedController.getUserEncryptionEnabled(), withPassword: PictographDataController.sharedController.getUserEncryptionKey())
-                        //Show the share sheet if the image exists
-                        self.showShareSheetWithImage(encodedImage)
-                        
-                    } catch let error as NSError {
-                        //Catch the error
-                        
-                        self.showMessageInAlertController(error.localizedDescription, title: "Error")
-                    }
-                })
-            })
-            
-        } else {
-            //Decoding the image
-            
-            //No need to show HUD because this doesn't take long
+    func encodeMessage(messageToEncode: String, inImage userImage: UIImage) {
+        //After the user hit confirm
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        //Dispatching the task after  small amount of time as per MBProgressHUD's recommendation
+        let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.01 * Double(NSEC_PER_SEC)))
+        dispatch_after(popTime, dispatch_get_main_queue(), {() -> Void in
             
             let coder = UIImageCoder()
             
-            //Provide no password if encryption/decryption is off
-            let providedPassword = mainEncodeView.encryptionSwitch.on ? mainEncodeView.encryptionKeyField.text : ""
+            //Hide the HUD
+            MBProgressHUD.hideHUDForView(self.view, animated: true)
             
             do {
-                let decodedMessage = try coder.decodeMessageInImage(selectedImage, encryptedWithPassword: providedPassword)
-                //Show the message if it was successfully decoded
-                showMessageInAlertController(decodedMessage, title: "Hidden Message")
+                let encodedImage = try coder.encodeImage(userImage, withMessage: messageToEncode, encrypted: PictographDataController.sharedController.getUserEncryptionEnabled(), withPassword: PictographDataController.sharedController.getUserEncryptionKey())
+                //Show the share sheet if the image exists
+                self.showShareSheetWithImage(encodedImage)
                 
             } catch let error as NSError {
+                
                 //Catch the error
-                
-                showMessageInAlertController(error.localizedDescription, title: "Error Decoding")
+                self.showMessageInAlertController("Error", message: error.localizedDescription)
             }
-                
-        }
-        
+        })
     }
     
-    //Building the alert that gets the message that the user should type
-    func buildAndShowAlertWithTitle(title: String, message: String?, isSecure: Bool, withPlaceHolder placeHolder:String, confirmHandler:(UIAlertAction) -> Void) {
+    //Decoding a message that is hidden in an image
+    func decodeMessageInImage(userImage: UIImage) {
         
-        alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        //No need to show HUD because this doesn't take long
         
-        //Action for confirming the message
-        let confirmAction = UIAlertAction(title: "Confirm", style: .Default, handler: confirmHandler)
-        confirmAction.enabled = false //Enabled or disabled based on text input
-        alertController.addAction(confirmAction)
+        let coder = UIImageCoder()
         
-        //Action for cancelling
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        alertController.addAction(cancelAction)
+        //Provide no password if encryption/decryption is off
+        let providedPassword = mainEncodeView.encryptionSwitch.on ? mainEncodeView.encryptionKeyField.text : ""
         
-        //Adding message field
-        alertController.addTextFieldWithConfigurationHandler({(textField: UITextField) -> Void in
+        do {
+            let decodedMessage = try coder.decodeMessageInImage(userImage, encryptedWithPassword: providedPassword)
+            //Show the message if it was successfully decoded
+            showMessageInAlertController("Hidden Message", message: decodedMessage)
+            
+        } catch let error as NSError {
+            
+            //Catch the error
+            showMessageInAlertController("Error Decoding", message: error.localizedDescription)
+        }
+    }
+    
+    //Building the alert that gets the message that the user wants to encode
+    func buildGetMessageController(title: String, message: String?, isSecure: Bool, withPlaceHolder placeHolder:String) -> PMKAlertController {
+        
+        let getMessageController = PMKAlertController(title: title, message: message, preferredStyle: .Alert)
+        let confirmAction = getMessageController.addActionWithTitle("Confirm") //Saving the confirmAction so it can be enabled/disabled
+        getMessageController.addActionWithTitle("Cancel", style: .Cancel)
+        
+        //Building the text field with the correct settings
+        getMessageController.addTextFieldWithConfigurationHandler({(textField: UITextField) -> Void in
             textField.placeholder = placeHolder
             textField.secureTextEntry = isSecure
+            confirmAction.enabled = false
             
             //Confirm is only enabled if there is text
             NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue(), usingBlock: {(notification: NSNotification) -> Void in
@@ -307,8 +300,7 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
             
         })
         
-        presentViewController(alertController, animated: true, completion: nil)
-        
+        return getMessageController
     }
     
     //Shows the share sheet with the UIImage in PNG form
@@ -328,13 +320,11 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     }
     
     //Shows the decoded message in an alert controller
-    func showMessageInAlertController(message: String, title:String) {
-        alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    func showMessageInAlertController(title:String, message: String) {
+        let showMessageController = PMKAlertController(title: title, message: message, preferredStyle: .Alert)
+        showMessageController.addActionWithTitle("Dismiss", style: .Default)
         
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .Default, handler: nil)
-        alertController.addAction(dismissAction)
-        
-        presentViewController(alertController, animated: true, completion: nil)
+        promiseViewController(showMessageController)
     }
     
     //MARK: - Methods for when the settings change
@@ -342,24 +332,5 @@ class PictographMainViewController: PictographViewController, UIImagePickerContr
     func showPasswordOnScreenChanged() {
         //Set the opposite of what it currently is
         mainEncodeView.encryptionKeyField.secureTextEntry = !mainEncodeView.encryptionKeyField.secureTextEntry
-    }
-    
-    //MARK: - UIImagePickerControllerDelegate
-    
-    //User picked image
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        selectedImage = chosenImage
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
-        startEncodingOrDecoding()
-    }
-    
-    //User cancelled
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        picker.dismissViewControllerAnimated(true, completion: nil)
-        
-        currentOption = .Nothing
     }
 }

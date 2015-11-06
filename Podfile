@@ -1,5 +1,4 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '6.0'
+platform :ios, '9.0'
 
 use_frameworks!
 target 'Pictograph' do
@@ -8,6 +7,7 @@ target 'Pictograph' do
   pod 'EAIntroView', '~> 2.7.0'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'PromiseKit', '~> 3.0'
 end
 
 target 'PictographTests' do
