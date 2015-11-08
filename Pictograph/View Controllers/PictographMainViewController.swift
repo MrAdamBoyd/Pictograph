@@ -245,7 +245,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             MBProgressHUD.hideHUDForView(self.view, animated: true)
             
             do {
-                let encodedImage = try coder.encodeImage(userImage, withMessage: messageToEncode, encrypted: PictographDataController.sharedController.getUserEncryptionEnabled(), withPassword: PictographDataController.sharedController.getUserEncryptionKey())
+                let encodedImage = try coder.encodeImage(userImage, withMessage: messageToEncode, encryptedWithPassword: PictographDataController.sharedController.getUserEncryptionKey())
                 //Show the share sheet if the image exists
                 self.showShareSheetWithImage(encodedImage)
                 

@@ -162,9 +162,11 @@
 #pragma mark Encoding message in an image
 
 //Encodes UIImage image with message message. Returns the modified UIImage
-- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message encrypted:(BOOL)encryptedBool withPassword:(NSString *)password error:(NSError **)error {
+- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message encryptedWithPassword:(NSString *)password error:(NSError **)error {
 
     NSString *toEncode = [[NSMutableString alloc] init];
+    
+    BOOL encryptedBool = (password != nil);
     
     if (encryptedBool) {
         //If the user wants to encrypt the string, encrypt it
@@ -424,7 +426,7 @@
 #pragma mark Hiding one image within another
 
 /* Returns the original image with the imageToHide hidden within it */
-- (NSData *)encodeImage:(UIImage *)imageToHide withinImage:(UIImage *)image encrypted:(BOOL)encryptedBool withPassword:(NSString *)password error:(NSError **)error {
+- (NSData *)encodeImage:(UIImage *)imageToHide withinImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
     return [[NSData alloc] init];
 }
 
