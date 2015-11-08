@@ -23,7 +23,7 @@
 
 @implementation UIImageCoder
 
-//MARK: - Decoding a message hidden in an image
+#pragma mark Decoding a message hidden in an image
 
 //Decodes UIImage image. Returns the encoded message in the image.
 //Password handler has no parameters and returns an NSString *
@@ -159,7 +159,7 @@
     [array addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
 }
 
-//MARK: - Encoding message in an image
+#pragma mark Encoding message in an image
 
 //Encodes UIImage image with message message. Returns the modified UIImage
 - (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message encrypted:(BOOL)encryptedBool withPassword:(NSString *)password error:(NSError **)error {
@@ -298,7 +298,7 @@
     return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
 }
 
-//MARK: - Methods used for both encoding and decoding
+#pragma mark Methods used for both encoding and decoding
 
 /* Returns the binary representation of a character */
 //http://stackoverflow.com/questions/655792/how-to-convert-nsinteger-to-a-binary-string-value
@@ -346,8 +346,8 @@
     return message;
 }
 
-/* Returns the long representation of a bit array */
-// For example ("1101" -> 13)
+/* Returns the long representation of a bit array
+   For example ("1101" -> 13) */
 -(long)longFromBits:(NSArray *)bitArray {
     
     NSMutableString *singleCharacterArrayInBits = [[NSMutableString alloc] init];
@@ -362,9 +362,9 @@
     return longRep;
 }
 
-/* Returns an array of UIColors for the pixels starting at x, y for count number of pixels */
-//http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
-//Used the above link as inspiration, but heavily modified
+/* Returns an array of UIColors for the pixels starting at x, y for count number of pixels
+   http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
+   Used the above link as inspiration, but heavily modified */
 -(NSArray *)getRBGAFromImage:(UIImage*)image atX:(int)x andY:(int)y count:(int)count {
     
     //Getting the raw data
@@ -412,6 +412,20 @@
     CGContextRelease(context);
     
     return rawData;
+}
+
+#pragma mark Revealing image hidden within another
+
+/* Returns the PNG representation of the image hidden in the original image */
+- (NSData *)decodeImageInImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
+    return [[NSData alloc] init];
+}
+
+#pragma mark Hiding one image within another
+
+/* Returns the original image with the imageToHide hidden within it */
+- (NSData *)encodeImage:(UIImage *)imageToHide withinImage:(UIImage *)image encrypted:(BOOL)encryptedBool withPassword:(NSString *)password error:(NSError **)error {
+    return [[NSData alloc] init];
 }
 
 @end
