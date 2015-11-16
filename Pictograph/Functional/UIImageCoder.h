@@ -15,7 +15,7 @@
 
 //Messages
 - (NSString * _Nullable)decodeMessageInImage:(UIImage * _Nonnull)image encryptedWithPassword:(NSString * _Nullable)password error:(NSError * _Nonnull * _Nonnull)error;
-- (NSData * _Nullable)encodeImage:(UIImage * _Nonnull)image withMessage:(NSString * _Nonnull)message encryptedWithPassword:(NSString *_Nullable)password error:(NSError * _Nonnull * _Nonnull)error;
+- (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(UIImage * _Nonnull)image encryptedWithPassword:(NSString * _Nullable)password error:(NSError * _Nonnull * _Nonnull)error;
 
 - (NSData * _Nullable)decodeImageInImage:(UIImage * _Nonnull)image encryptedWithPassword:(NSString * _Nullable)password error:(NSError * _Nonnull * _Nonnull)error;
 - (NSData * _Nullable)encodeImage:(UIImage * _Nonnull)imageToHide withinImage:(UIImage * _Nonnull)image encryptedWithPassword:(NSString * _Nullable)password error:(NSError * _Nonnull * _Nonnull)error;

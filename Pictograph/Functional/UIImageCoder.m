@@ -162,7 +162,7 @@
 #pragma mark Encoding message in an image
 
 //Encodes UIImage image with message message. Returns the modified UIImage
-- (NSData *)encodeImage:(UIImage *)image withMessage:(NSString *)message encryptedWithPassword:(NSString *)password error:(NSError **)error {
+- (NSData *)encodeMessage:(NSString *)message inImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
 
     NSString *toEncode = [[NSMutableString alloc] init];
     
