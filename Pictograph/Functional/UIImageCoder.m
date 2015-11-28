@@ -238,66 +238,114 @@
         
     }
     
+    return [self saveImageToGraphicsContextAndEncodeBitsInImage:image numberofPixelsNeeded:numberOfBitsNeeded arrayOfBits:arrayOfBits];
+}
+
+//Saves the image to the graphics context and starts encoding the bits in that image
+- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(UIImage *)image numberofPixelsNeeded:(long)numberOfPixelsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
     //Right here we have all the bits that are needed to encode the data in the image
-    
-    
     CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
     
     UIGraphicsBeginImageContext(image.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    //A lot of OS X libraries use the lower left corner as (0,0), this is transforming the image to be rightside up"
-    //http://stackoverflow.com/questions/506622/cgcontextdrawimage-draws-image-upside-down-when-passed-uiimage-cgimage
-    CGContextTranslateCTM(context, 0, image.size.height);
-    CGContextScaleCTM(context, 1.0, -1.0);
-    
-    //Save current status of graphics context
-    CGContextSaveGState(context);
-    CGContextDrawImage(context, imageRect, image.CGImage);
-    
     NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfPixelsNeeded];
-    
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
-    //for (int encodeCounter = 0; encodeCounter < [arrayOfBits count]; encodeCounter += 2) {
-    for (int heightCounter = image.size.height; heightCounter >= 0; heightCounter--) {
-        for (int widthCounter = 0; widthCounter < image.size.width; widthCounter++){
-            //Going through each bit 2 by 2, that means we need to encode the pixel at position
-            //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
+    
+    /**
+     *  When images are taken with the camera, sometimes they are given in incorrect image orientatin value (usually straight up images are given the orientation of right), so this deals with having them rotated incorrectly
+     */
+    if (image.imageOrientation == UIImageOrientationRight) {
+        [image drawAtPoint:CGPointMake(0,0)];
         
-            if (encodeCounter >= [arrayOfBits count]) {
-                //If the message has been fully encoded, break
-                break;
+        //Save current status of graphics context
+        CGContextSaveGState(context);
+        
+        //for (int encodeCounter = 0; encodeCounter < [arrayOfBits count]; encodeCounter += 2) {
+        for (int heightCounter = 1; heightCounter < image.size.height; heightCounter++) {
+            for (int widthCounter = 0; widthCounter < image.size.width; widthCounter++){
+                //Going through each bit 2 by 2, that means we need to encode the pixel at position
+                //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
+                
+                if (encodeCounter >= [arrayOfBits count]) {
+                    //If the message has been fully encoded, break
+                    CGContextRestoreGState(context);
+                    
+                    //Returning a PNG of the image, as PNG as lossless
+                    return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
+                }
+                
+                DLog(@"Pixel change at %i, %i", widthCounter, (heightCounter - 1));
+                
+                encodeCounter = [self changePixelValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image withinContext:context startFromBottomLeft:false];
             }
+        }
+        
+    } else {
+        //A lot of OS X libraries use the lower left corner as (0,0), this is transforming the image to be rightside up
+        //http://stackoverflow.com/questions/506622/cgcontextdrawimage-draws-image-upside-down-when-passed-uiimage-cgimage
+        CGContextTranslateCTM(context, 0, image.size.height);
+        CGContextScaleCTM(context, 1.0, -1.0);
+        CGContextDrawImage(context, imageRect, [image CGImage]);
+    
+        //Save current status of graphics context
+        CGContextSaveGState(context);
 
-            DLog(@"Pixel change at %i, %i", widthCounter, (int)(image.size.height - heightCounter));
-            
-            int currentPixelIndex = widthCounter * (image.size.height - heightCounter + 1);
-            
-            UIColor *colorOfCurrentPixel = [arrayOfAllNeededColors objectAtIndex:currentPixelIndex];
-            CGFloat red, green, blue, alpha ;
-            [colorOfCurrentPixel getRed:&red green:&green blue:&blue alpha:&alpha];
-            
-            //Changing the value of the blue byte
-            NSMutableArray *arrayOfBitsFromBlue = [[NSMutableArray alloc] initWithArray:[self binaryStringFromInteger:blue * maxIntFor8Bits withSpaceFor:bitCountForCharacter]];
-            
-            //Changing the least significant bits of the blue byte
-            [arrayOfBitsFromBlue replaceObjectAtIndex:6 withObject:arrayOfBits[encodeCounter]];
-            [arrayOfBitsFromBlue replaceObjectAtIndex:7 withObject:arrayOfBits[encodeCounter + 1]];
-            
-            long newBlueLong = [self longFromBits:arrayOfBitsFromBlue];
-            CGFloat newBlueValue = (newBlueLong * 1.0) / maxIntFor8Bits;
-            
-            CGContextSetRGBFillColor(context, red, green, newBlueValue, alpha);
-            CGContextFillRect(context, CGRectMake(widthCounter, heightCounter - 1, 1, 1)); //Only filling in 1 pixel
-            
-            encodeCounter += 2; //2 bits per pixel, so increase by 2
+        //Changing all the pixel colors
+        for (int heightCounter = image.size.height; heightCounter >= 0; heightCounter--) {
+            for (int widthCounter = 0; widthCounter < image.size.width; widthCounter++){
+                //Going through each bit 2 by 2, that means we need to encode the pixel at position
+                //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
+                
+                if (encodeCounter >= [arrayOfBits count]) {
+                    //If the message has been fully encoded, break
+                    CGContextRestoreGState(context);
+                    
+                    //Returning a PNG of the image, as PNG as lossless
+                    return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
+                }
+                
+                DLog(@"Pixel change at %i, %i", widthCounter, (int)(image.size.height - heightCounter));
+                
+                encodeCounter = [self changePixelValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image withinContext:context startFromBottomLeft:true];
+            }
         }
     }
     
-    CGContextRestoreGState(context);
+    return nil;
+}
+
+//Replaces the value of the color at the current width and height counter with the correct one from the array of bits that are needed to be encoded
+- (int)changePixelValueAtWidth:(int)widthCounter andHeight:(int)heightCounter encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(UIImage *)image withinContext:(CGContextRef)context startFromBottomLeft:(BOOL)startFromBottomLeft {
+    int currentPixelIndex;
     
-    //Returning a PNG of the image, as PNG as lossless
-    return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
+    //If we're starting from the bottom left, take the height of the image into account, if not, can just use the height counter provided
+    if (startFromBottomLeft) {
+        currentPixelIndex = widthCounter * (image.size.height - heightCounter + 1);
+    } else {
+        currentPixelIndex = widthCounter * heightCounter;
+    }
+        
+    UIColor *colorOfCurrentPixel = [arrayOfAllNeededColors objectAtIndex:currentPixelIndex];
+    CGFloat red, green, blue, alpha ;
+    [colorOfCurrentPixel getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    //Changing the value of the blue byte
+    NSMutableArray *arrayOfBitsFromBlue = [[NSMutableArray alloc] initWithArray:[self binaryStringFromInteger:blue * maxIntFor8Bits withSpaceFor:bitCountForCharacter]];
+    
+    //Changing the least significant bits of the blue byte
+    [arrayOfBitsFromBlue replaceObjectAtIndex:6 withObject:arrayOfBits[encodeCounter]];
+    [arrayOfBitsFromBlue replaceObjectAtIndex:7 withObject:arrayOfBits[encodeCounter + 1]];
+    
+    long newBlueLong = [self longFromBits:arrayOfBitsFromBlue];
+    CGFloat newBlueValue = (newBlueLong * 1.0) / maxIntFor8Bits;
+    
+    CGContextSetRGBFillColor(context, red, green, newBlueValue, alpha);
+    CGContextFillRect(context, CGRectMake(widthCounter, heightCounter - 1, 1, 1)); //Only filling in 1 pixel
+    
+    encodeCounter += 2; //2 bits per pixel, so increase by 2
+    
+    return encodeCounter;
 }
 
 #pragma mark Methods used for both encoding and decoding
