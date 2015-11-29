@@ -70,6 +70,14 @@ class PictographDataController: NSObject {
         return password
     }
     
+    func getUserEncryptionKeyIfEnabled() -> String? {
+        if user.encryptionEnabled {
+            return self.getUserEncryptionKey()
+        }
+        
+        return nil
+    }
+    
     func setUserEncryptionKey(newKey: String) {
         user.encryptionPassword = newKey
         saveCurrentUser()
