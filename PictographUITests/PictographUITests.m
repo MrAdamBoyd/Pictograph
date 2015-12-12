@@ -32,10 +32,30 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)testEncodeWithEncEnabledAndNoPassword {
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
     
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElement *encSwitch = app.switches[@"0"];
+    [encSwitch tap];
+    [app.buttons[@"Hide Message"] tap];
+    [app.alerts[@"No Encryption Key"].collectionViews.buttons[@"Dismiss"] tap];
+    
+    [[[XCUIApplication alloc] init].switches[@"1"] tap];
+}
+
+- (void)testDecodeWithEncEnabledAndNoPassword {
+    // Use recording to get started writing UI tests.
+    // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElement *encSwitch = app.switches[@"0"];
+    [encSwitch tap];
+    [app.buttons[@"Show Message"] tap];
+    [app.alerts[@"No Encryption Key"].collectionViews.buttons[@"Dismiss"] tap];
+    
+    [[[XCUIApplication alloc] init].switches[@"1"] tap];
 }
 
 @end
