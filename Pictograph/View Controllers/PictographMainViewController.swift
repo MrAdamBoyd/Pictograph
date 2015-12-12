@@ -195,8 +195,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         if UIImagePickerController.isSourceTypeAvailable(.Camera) && showCamera {
             //Device has camera & library, show option to choose
            
+            //If the device is an iPad, popup in the middle of screen
+            let alertStyle:UIAlertControllerStyle = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad) ? .Alert : .ActionSheet
+            
             //Building the picker to choose the type of input
-            let imagePopup = PMKAlertController(title: "Select Picture", message: nil, preferredStyle: .ActionSheet)
+            let imagePopup = PMKAlertController(title: "Select Picture", message: nil, preferredStyle: alertStyle)
             imagePopup.addActionWithTitle("Select from Library")
             let takePhotoPickerAction = imagePopup.addActionWithTitle("Take Photo") //Saving the take photo action so we can show the proper picker later
             imagePopup.addActionWithTitle("Cancel", style: .Cancel)
