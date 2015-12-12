@@ -152,7 +152,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         /* True if encrytption is enabled AND the key isn't blank
         OR encrytion is disabled
         */
-        if ((PictographDataController.sharedController.getUserEncryptionKey() != "" && PictographDataController.sharedController.getUserEncryptionEnabled()) || !PictographDataController.sharedController.getUserEncryptionEnabled()) {
+        if ((PictographDataController.sharedController.getUserEncryptionKeyString() != "" && PictographDataController.sharedController.getUserEncryptionEnabled()) || !PictographDataController.sharedController.getUserEncryptionEnabled()) {
             
             let getMessageController = self.buildGetMessageController("Enter your message", message: nil, isSecure: false, withPlaceHolder: "Your message here")
             var userImage: UIImage!
@@ -183,10 +183,17 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Starting the decoding process
     func startDecodeProcess() {
-        getPhotoForEncodingOrDecoding(false).then { image in
-            //Start encoding or decoding when the image has been picked
-            //self.encodeOrDecodeImage(image, userAction: .DecodingMessage, messageToEncode: nil)
-            self.decodeMessageInImage(image)
+        if ((PictographDataController.sharedController.getUserEncryptionKeyString() != "" && PictographDataController.sharedController.getUserEncryptionEnabled()) || !PictographDataController.sharedController.getUserEncryptionEnabled()) {
+            
+            //If the user has encryption enabled and the password isn't blank or encryption is not enabled
+            getPhotoForEncodingOrDecoding(false).then { image in
+                //Start encoding or decoding when the image has been picked
+                //self.encodeOrDecodeImage(image, userAction: .DecodingMessage, messageToEncode: nil)
+                self.decodeMessageInImage(image)
+            }
+        } else {
+            //Show message: encryption is enabled and the key is blank
+            showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.")
         }
     }
     
