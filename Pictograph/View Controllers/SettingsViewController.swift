@@ -43,20 +43,30 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = PictographSettingsTableViewCell()
         
-        cell.setTitle("Show Password", switchStartsOn: PictographDataController.sharedController.getUserShowPasswordOnScreen(), withHandler: {(enabledOrNot: Bool) -> Void in
-            
-            //Changing the setting for showing the password on screen
-            PictographDataController.sharedController.setUserShowPasswordOnScreen(enabledOrNot)
-            NSNotificationCenter.defaultCenter().postNotificationName(pictographShowPasswordOnScreenSettingChangedNotification, object: nil)
-            print("Show password on screen: \(PictographDataController.sharedController.getUserShowPasswordOnScreen())")
-        })
+        if indexPath.row == 0 {
+            cell.setTitle("Show Password", switchStartsOn: PictographDataController.sharedController.getUserShowPasswordOnScreen(), withHandler: {(enabledOrNot: Bool) -> Void in
+                
+                //Changing the setting for showing the password on screen
+                PictographDataController.sharedController.setUserShowPasswordOnScreen(enabledOrNot)
+                NSNotificationCenter.defaultCenter().postNotificationName(pictographShowPasswordOnScreenSettingChangedNotification, object: nil)
+                print("Show password on screen: \(PictographDataController.sharedController.getUserShowPasswordOnScreen())")
+            })
+        } else {
+            cell.setTitle("Night Mode", switchStartsOn: PictographDataController.sharedController.getUserNightModeEnabled(), withHandler: {(enabledOrNot: Bool) -> Void in
+                
+                //Changing the setting for showing the password on screen
+                PictographDataController.sharedController.setUserDarkModeEnabled(enabledOrNot)
+                NSNotificationCenter.defaultCenter().postNotificationName(pictographNightModeSettingChangedNotification, object: nil)
+                print("Night Mode Enabled: \(PictographDataController.sharedController.getUserNightModeEnabled())")
+            })
+        }
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //Only 1 cell for now
-        return 1
+        //Only 2 cells for now
+        return 2
     }
     
     //Immediately deselect cell when selected

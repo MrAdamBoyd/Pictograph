@@ -98,6 +98,15 @@ class PictographDataController: NSObject {
         saveCurrentUser()
     }
     
+    func getUserNightModeEnabled() -> Bool {
+        return user.nightModeEnabled
+    }
+    
+    func setUserDarkModeEnabled(enabledOrNot: Bool) {
+        user.nightModeEnabled = enabledOrNot
+        saveCurrentUser()
+    }
+    
     
     //MARK: - analytics methods
     
