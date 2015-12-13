@@ -26,8 +26,8 @@
 		665883201BBCC72A00CA21A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6658831E1BBCC72A00CA21A9 /* Main.storyboard */; };
 		665883221BBCC72A00CA21A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 665883211BBCC72A00CA21A9 /* Assets.xcassets */; };
 		665883251BBCC72A00CA21A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 665883231BBCC72A00CA21A9 /* LaunchScreen.storyboard */; };
-		665883301BBCC72A00CA21A9 /* PictographTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658832F1BBCC72A00CA21A9 /* PictographTests.m */; };
 		6658833B1BBCC72A00CA21A9 /* PictographUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658833A1BBCC72A00CA21A9 /* PictographUITests.m */; };
+		66C58B6A1C1D2FF700C10A06 /* PictographTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C58B691C1D2FF700C10A06 /* PictographTests.swift */; };
 		B111E6C67ADBE9753545B28D /* Pods_Pictograph.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D332E1B67FC39E1B020ADC8D /* Pods_Pictograph.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,12 +75,13 @@
 		665883241BBCC72A00CA21A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		665883261BBCC72A00CA21A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6658832B1BBCC72A00CA21A9 /* PictographTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PictographTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6658832F1BBCC72A00CA21A9 /* PictographTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictographTests.m; sourceTree = "<group>"; };
 		665883311BBCC72A00CA21A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		665883361BBCC72A00CA21A9 /* PictographUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PictographUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6658833A1BBCC72A00CA21A9 /* PictographUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictographUITests.m; sourceTree = "<group>"; };
 		6658833C1BBCC72A00CA21A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		669DFD0E1BD561FA00A0BAC2 /* EncodingErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EncodingErrors.h; path = Errors/EncodingErrors.h; sourceTree = "<group>"; };
+		66C58B681C1D2FF700C10A06 /* PictographTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PictographTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		66C58B691C1D2FF700C10A06 /* PictographTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictographTests.swift; sourceTree = "<group>"; };
 		D332E1B67FC39E1B020ADC8D /* Pods_Pictograph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pictograph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -230,7 +231,8 @@
 		6658832E1BBCC72A00CA21A9 /* PictographTests */ = {
 			isa = PBXGroup;
 			children = (
-				6658832F1BBCC72A00CA21A9 /* PictographTests.m */,
+				66C58B681C1D2FF700C10A06 /* PictographTests-Bridging-Header.h */,
+				66C58B691C1D2FF700C10A06 /* PictographTests.swift */,
 				665883311BBCC72A00CA21A9 /* Info.plist */,
 			);
 			path = PictographTests;
@@ -335,7 +337,7 @@
 		6658830A1BBCC72A00CA21A9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Adam Boyd";
 				TargetAttributes = {
@@ -489,7 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				665883301BBCC72A00CA21A9 /* PictographTests.m in Sources */,
+				66C58B6A1C1D2FF700C10A06 /* PictographTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,10 +659,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = PictographTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Boyd.PictographTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PictographTests/PictographTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pictograph.app/Pictograph";
 			};
 			name = Debug;
@@ -669,10 +674,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = PictographTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Boyd.PictographTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PictographTests/PictographTests-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pictograph.app/Pictograph";
 			};
 			name = Release;
