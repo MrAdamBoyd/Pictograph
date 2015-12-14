@@ -58,6 +58,12 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
                 PictographDataController.sharedController.setUserDarkModeEnabled(enabledOrNot)
                 NSNotificationCenter.defaultCenter().postNotificationName(pictographNightModeSettingChangedNotification, object: nil)
                 print("Night Mode Enabled: \(PictographDataController.sharedController.getUserNightModeEnabled())")
+                
+                UIView.animateWithDuration(0.5) {
+                    //Animate the color in
+                    self.view.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+                    self.topBar.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+                }
             })
         }
         

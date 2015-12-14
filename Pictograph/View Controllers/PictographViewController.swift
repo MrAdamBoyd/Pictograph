@@ -12,6 +12,8 @@ import UIKit
 let mainAppColor = UIColor(red: 220/255.0, green: 0, blue: 0, alpha: 1)
 let mainAppColorHighlighted = mainAppColor.colorWithAlphaComponent(0.5)
 
+let mainAppColorNight = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
+
 class PictographViewController: UIViewController {
     
     var topBar: PictographTopBarView!
@@ -20,11 +22,11 @@ class PictographViewController: UIViewController {
         super.viewDidLoad()
         
         //Background color
-        self.view.backgroundColor = mainAppColor
+        self.view.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
         
         //Nav bar
         topBar = PictographTopBarView()
-        topBar.backgroundColor = mainAppColor
+        topBar.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
         topBar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(topBar)
         
@@ -34,6 +36,13 @@ class PictographViewController: UIViewController {
         self.view.addConstraint(NSLayoutConstraint(item: topBar, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: topBar, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 44))
     
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.view.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+        topBar.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
     }
     
     //White status bar text
