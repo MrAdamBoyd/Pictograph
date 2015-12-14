@@ -7,7 +7,7 @@
 
 #import "EAIntroView/EAIntroPage.h"
 #import "EAIntroView/EAIntroView.h"
-#import "MBProgressHUD/MBProgressHUD.h"
+#import "SVProgressHUD/SVProgressHUD.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "UIImageCoder.h"

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import EAIntroView
-import MBProgressHUD
+import SVProgressHUD
 import PromiseKit
 
 //What we are currently doing
@@ -249,7 +249,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     func encodeMessage(messageToEncode: String, inImage userImage: UIImage) {
         //After the user hit confirm
-        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        SVProgressHUD.show()
         
         //Dispatching the task after  small amount of time as per MBProgressHUD's recommendation
         let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.01 * Double(NSEC_PER_SEC)))
@@ -258,7 +258,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             let coder = UIImageCoder()
             
             //Hide the HUD
-            MBProgressHUD.hideHUDForView(self.view, animated: true)
+            SVProgressHUD.dismiss()
             
             do {
                 let encodedImage = try coder.encodeMessage(messageToEncode, inImage: userImage, encryptedWithPassword: PictographDataController.sharedController.getUserEncryptionKeyIfEnabled())
