@@ -32,7 +32,7 @@ class PictographTests: XCTestCase {
     
     func testEncryptedEncode() {
         let testString = "This is only a test"
-        let password = "Password"
+        let password = "password"
         
         let imageCoder = UIImageCoder()
         

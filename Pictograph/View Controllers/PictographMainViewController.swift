@@ -71,6 +71,12 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showPasswordOnScreenChanged"), name: pictographShowPasswordOnScreenSettingChangedNotification, object: nil)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.mainEncodeView.encryptionKeyField.keyboardAppearance = PictographDataController.sharedController.getUserNightModeEnabled() ? .Dark : .Default
+    }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
         

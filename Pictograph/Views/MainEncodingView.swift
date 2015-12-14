@@ -73,6 +73,8 @@ class MainEncodingView: UIView {
         encryptionKeyField.font = UIFont.systemFontOfSize(mainFontSize)
         encryptionKeyField.placeholder = "Encryption Password"
         encryptionKeyField.text = PictographDataController.sharedController.getUserEncryptionKey()
+        encryptionKeyField.autocapitalizationType = .None
+        encryptionKeyField.autocorrectionType = .No
         encryptionKeyField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(encryptionKeyField)
         
