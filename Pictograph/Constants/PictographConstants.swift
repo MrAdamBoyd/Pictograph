@@ -9,3 +9,4 @@
 import Foundation
 
 let pictographShowPasswordOnScreenSettingChangedNotification = "pictographShowPasswordOnScreenSettingChangedNotification"
+let pictographNightModeSettingChangedNotification = "pictographNightModeSettingChangedNotification"

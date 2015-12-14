@@ -13,12 +13,14 @@ private let firstTimeOpeningAppKey = "kFirstTimeOpeningAppKey"
 private let encryptionEnabledKey = "kEncryptionEnabledKey"
 private let encryptionPasswordKey = "kEncryptionKey"
 private let showPasswordOnScreenKey = "showPasswordOnScreenKey"
+private let nightModeEnabledKey = "nightModeEnabledKey"
 
 class CurrentUser: NSObject, NSCoding, NSSecureCoding {
     var firstTimeOpeningApp: Bool = true
     var encryptionEnabled: Bool = false
     var encryptionPassword : NSString = ""
     var showPasswordOnScreen: Bool = true
+    var nightModeEnabled: Bool = false
     
     override init() { super.init() }
     
@@ -47,8 +49,13 @@ class CurrentUser: NSObject, NSCoding, NSSecureCoding {
         //Showing the password on screen
         if let showPasswordOnScreenNumber = aDecoder.decodeObjectOfClass(NSNumber.self, forKey: showPasswordOnScreenKey) {
             showPasswordOnScreen = showPasswordOnScreenNumber.boolValue
-        } else {
-            showPasswordOnScreen = true
+        }
+        
+        //Variables added in 1.2
+        
+        //If night mode is enabled
+        if let nightModeEnabledNumber = aDecoder.decodeObjectOfClass(NSNumber.self, forKey: nightModeEnabledKey) {
+            nightModeEnabled = nightModeEnabledNumber.boolValue
         }
         
     }
@@ -64,6 +71,9 @@ class CurrentUser: NSObject, NSCoding, NSSecureCoding {
         
         let showPasswordOnScreenNumber = NSNumber(bool: showPasswordOnScreen)
         aCoder.encodeObject(showPasswordOnScreenNumber, forKey: showPasswordOnScreenKey)
+        
+        let nightModeEnabledNumber = NSNumber(bool: nightModeEnabled)
+        aCoder.encodeObject(nightModeEnabledNumber, forKey: nightModeEnabledKey)
     }
     
     //MARK: - NSSecureCoding
