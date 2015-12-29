@@ -17,11 +17,13 @@ private let buttonCenterMargin: CGFloat = 5
 private let encryptionMargin: CGFloat = 25
 private let encryptionVerticalMargin: CGFloat = 20
 
-class MainEncodingView: UIView {
+class MainEncodingView: UIScrollView {
     
     //UI elements
     var encodeButton = PictographHighlightButton()
     var decodeButton = PictographHighlightButton()
+    var encodeImageButton = PictographHighlightButton()
+    var decodeImageButton = PictographHighlightButton()
     var encryptionKeyField = PictographInsetTextField()
     var encryptionLabel = UILabel()
     var encryptionSwitch = UISwitch()
@@ -31,6 +33,8 @@ class MainEncodingView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.alwaysBounceVertical = true
         
         let encryptionEnabled = PictographDataController.sharedController.getUserEncryptionEnabled()
         
@@ -126,6 +130,37 @@ class MainEncodingView: UIView {
         addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Left, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: buttonCenterMargin))
         addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1, constant: -encryptionMargin))
         addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: bigButtonHeight))
+        
+        //Encode Image Button
+        self.encodeImageButton.setTitle("Hide Image", forState: .Normal)
+        self.encodeImageButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        //Setting the corner radius
+        self.encodeImageButton.layer.cornerRadius = 2.0
+        
+        self.addSubview(self.encodeImageButton)
+        
+        //20px from border, 40px from left, right, 60px tall
+        self.addConstraint(NSLayoutConstraint(item: self.encodeImageButton, attribute: .Top, relatedBy: .Equal, toItem: self.encodeButton, attribute: .Bottom, multiplier: 1, constant: encryptionVerticalMargin))
+        self.addConstraint(NSLayoutConstraint(item: self.encodeImageButton, attribute: .Left, relatedBy: .Equal, toItem: self, attribute: .Left, multiplier: 1, constant: encryptionMargin))
+        self.addConstraint(NSLayoutConstraint(item: self.encodeImageButton, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: -buttonCenterMargin))
+        self.addConstraint(NSLayoutConstraint(item: self.encodeImageButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: bigButtonHeight))
+        
+        
+        //Encode Image Button
+        self.decodeImageButton.setTitle("Show Image", forState: .Normal)
+        self.decodeImageButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        //Setting the corner radius
+        self.decodeImageButton.layer.cornerRadius = 2.0
+        
+        self.addSubview(self.decodeImageButton)
+        
+        //20px from encodeImageButton, 40px from left, right, 60px tall
+        addConstraint(NSLayoutConstraint(item: self.decodeImageButton, attribute: .Top, relatedBy: .Equal, toItem: self.decodeButton, attribute: .Bottom, multiplier: 1, constant: encryptionVerticalMargin))
+        addConstraint(NSLayoutConstraint(item: self.decodeImageButton, attribute: .Left, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1, constant: buttonCenterMargin))
+        addConstraint(NSLayoutConstraint(item: self.decodeImageButton, attribute: .Right, relatedBy: .Equal, toItem: self, attribute: .Right, multiplier: 1, constant: -encryptionMargin))
+        addConstraint(NSLayoutConstraint(item: self.decodeImageButton, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: bigButtonHeight))
         
     }
 

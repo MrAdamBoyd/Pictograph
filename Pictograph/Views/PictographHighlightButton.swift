@@ -17,12 +17,23 @@ class PictographHighlightButton: UIButton {
     override var highlighted: Bool {
         didSet {
             if (highlighted) {
-                if let bgColor = self.backgroundColor {
-                    self.backgroundColor = bgColor.colorWithAlphaComponent(0.8)
-                }
+                self.backgroundColor = self.backgroundColor?.colorWithAlphaComponent(0.8)
             }
             else {
                 self.backgroundColor = self.highlightColor
+            }
+        }
+    }
+    
+    override var enabled: Bool {
+        didSet {
+            if enabled {
+                //If enabled, set all alphas to 1.0
+                self.alpha = 1.0
+            
+            } else {
+                //If disabled, set alphas to 0.5
+                self.alpha = 0.5
             }
         }
     }

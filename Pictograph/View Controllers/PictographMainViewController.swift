@@ -56,10 +56,12 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.view.addConstraint(NSLayoutConstraint(item: mainEncodeView, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 0))
         
         //Setting up the actions for the elements
-        mainEncodeView.encodeButton.addTarget(self, action: Selector("startEncodeProcess"), forControlEvents: .TouchUpInside)
-        mainEncodeView.decodeButton.addTarget(self, action: Selector("startDecodeProcess"), forControlEvents: .TouchUpInside)
-        mainEncodeView.encryptionKeyField.delegate = self
-        mainEncodeView.encryptionSwitch.addTarget(self, action: Selector("switchToggled:"), forControlEvents: .ValueChanged)
+        self.mainEncodeView.encodeButton.addTarget(self, action: Selector("startEncodeProcess"), forControlEvents: .TouchUpInside)
+        self.mainEncodeView.decodeButton.addTarget(self, action: Selector("startDecodeProcess"), forControlEvents: .TouchUpInside)
+        self.mainEncodeView.encodeImageButton.addTarget(self, action: Selector("startEncodeImageProcess"), forControlEvents: .TouchUpInside)
+        self.mainEncodeView.decodeImageButton.addTarget(self, action: Selector("startDecodeImageProcess"), forControlEvents: .TouchUpInside)
+        self.mainEncodeView.encryptionKeyField.delegate = self
+        self.mainEncodeView.encryptionSwitch.addTarget(self, action: Selector("switchToggled:"), forControlEvents: .ValueChanged)
         
         
         if (setUpAndShowIntroViews()) {
@@ -79,7 +81,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Setting the color of the keyboard
         self.mainEncodeView.encryptionKeyField.keyboardAppearance = nightMode ? .Dark : .Default
         
-        for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.decodeButton] {
+        for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.decodeButton, self.mainEncodeView.encodeImageButton, self.mainEncodeView.decodeImageButton] {
 
             //Button background
             button.backgroundColor = nightMode ? mainAppColorNight : UIColor.whiteColor()
@@ -97,7 +99,10 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             } else {
                 button.layer.borderWidth = 0
             }
+            
         }
+        
+        self.enableOrDisableImageButtons(!PictographDataController.sharedController.getUserEncryptionEnabled()) //Disabled if encryption is enabled
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -171,6 +176,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Animiating the alpha of the textfield
         UIView.animateWithDuration(0.25, animations: {() -> Void in
             self.mainEncodeView.encryptionKeyField.alpha = enabledOrDisabled ? 1.0 : 0.5
+            self.enableOrDisableImageButtons(!enabledOrDisabled)
         })
         
         PictographDataController.sharedController.setUserEncryptionEnabled(enabledOrDisabled)
@@ -224,6 +230,15 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             //Show message: encryption is enabled and the key is blank
             showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.")
         }
+    }
+    
+    //Starting to encode an image in another image
+    func startEncodeImageProcess() {
+        print("Hello!")
+    }
+    
+    func startDecodeImageProcess() {
+        print("Hello there")
     }
     
     //Showing the action sheet
@@ -340,6 +355,16 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         })
         
         return getMessageController
+    }
+    
+    /**
+     Sets the state of the decode and encode image buttons to be enabled or disabled based on encryption being enabled or disabled
+     */
+    func enableOrDisableImageButtons(enable: Bool) {
+        for button in [self.mainEncodeView.encodeImageButton, self.mainEncodeView.decodeImageButton] {
+            //If encryption is enabled, disable encoding or decoding images within other images
+            button.enabled = enable
+        }
     }
     
     //Shows the share sheet with the UIImage in PNG form
