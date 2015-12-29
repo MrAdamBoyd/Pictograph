@@ -1,5 +1,6 @@
 PODS:
   - Crashlytics (3.3.4)
+  - CustomIOSAlertView (0.9.3)
   - EAIntroView (2.7.4):
     - EARestrictedScrollView (~> 0.2.0)
   - EARestrictedScrollView (0.2.0)
@@ -30,6 +31,7 @@ PODS:
 
 DEPENDENCIES:
   - Crashlytics
+  - CustomIOSAlertView (~> 0.9.3)
   - EAIntroView (~> 2.7.0)
   - Fabric
   - PromiseKit (~> 3.0)
@@ -38,6 +40,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Crashlytics: 41c082440d2e14da444186fff65e79c0b4b35d4c
+  CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
   EAIntroView: 50b85eedf414260e61330070ffe5947e72493a62
   EARestrictedScrollView: f86d61e16c61d3e93c84f8e96e83122a2a3b7631
   Fabric: 190bf1a6eb65f7500de1347d027d2e59a7e53db1

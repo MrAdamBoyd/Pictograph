@@ -11,13 +11,14 @@ import UIKit
 import EAIntroView
 import SVProgressHUD
 import PromiseKit
+import CustomIOSAlertView
 
 //What we are currently doing
 enum PictographAction: Int {
     case EncodingMessage = 0, DecodingMessage
 }
 
-class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate {
+class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate{
     
     //UI elements
     let mainEncodeView = MainEncodingView()
@@ -461,15 +462,28 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Shows an image in an alert controller, allows user to dismiss and save
     func showImageInAlertController(title: String, image: NSData) {
-        let showImageController = PMKAlertController(title: title, message: nil, preferredStyle: .Alert)
-        let shareAction = showImageController.addActionWithTitle("Save", style: .Default)
-        showImageController.addActionWithTitle("Dismiss", style: .Cancel)
+
+        //Creating the custom alert view
+        let alertView = CustomIOSAlertView()
         
-        promiseViewController(showImageController).then({ action in
-            if action == shareAction {
+        //Adding the image to the container view
+        let imageView = UIImageView(image: UIImage(data: image))
+        imageView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width - 20, UIScreen.mainScreen().bounds.size.width - 20)
+        imageView.contentMode = .ScaleAspectFit
+        alertView.containerView = imageView
+        
+        alertView.buttonTitles = ["Dismiss", "Save"]
+        
+        alertView.onButtonTouchUpInside = ({ (alertView, buttonIndex) -> Void in
+            //If the button index is 1 (save button), show the share sheet
+            if buttonIndex == 1 {
+                alertView.close()
                 self.showShareSheetWithImage(image)
             }
         })
+
+        
+        alertView.show()
     }
     
     //MARK: - Methods for when the settings change

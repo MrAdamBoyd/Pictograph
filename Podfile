@@ -8,6 +8,7 @@ target 'Pictograph' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'PromiseKit', '~> 3.0'
+  pod 'CustomIOSAlertView', '~> 0.9.3'
 end
 
 target 'PictographTests' do

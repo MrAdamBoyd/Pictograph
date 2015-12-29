@@ -503,8 +503,9 @@
     long widthOfImage = [self longFromBits:widthArrayInBits];
     
     
-    
-    return [[NSData alloc] init];
+
+    return UIImagePNGRepresentation(image);
+//    return [[NSData alloc] init];
 }
 
 #pragma mark Hiding one image within another
