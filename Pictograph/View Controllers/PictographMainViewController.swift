@@ -47,14 +47,14 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         })
         
         //Adding all the UI elements to the screen
-        mainEncodeView.translatesAutoresizingMaskIntoConstraints = false
+        self.mainEncodeView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(mainEncodeView)
         
         //0px from bottom of topBar, 0px from left, right, bottom
-        self.view.addConstraint(NSLayoutConstraint(item: mainEncodeView, attribute: .Top, relatedBy: .Equal, toItem: topBar, attribute: .Bottom, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: mainEncodeView, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: mainEncodeView, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: mainEncodeView, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Top, relatedBy: .Equal, toItem: topBar, attribute: .Bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 0))
         
         //Setting up the actions for the elements
         self.mainEncodeView.encodeButton.addTarget(self, action: Selector("startEncodeProcess"), forControlEvents: .TouchUpInside)
@@ -104,6 +104,16 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
         
         self.enableOrDisableImageButtons(!PictographDataController.sharedController.getUserEncryptionEnabled()) //Disabled if encryption is enabled
+        
+        self.mainEncodeView.contentSize.width = UIScreen.mainScreen().bounds.width
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        
+        //Adjusting the content size of the scroll view when the device rotates
+        self.mainEncodeView.elementContainer.frame = CGRectMake(0, 0, size.width, max(size.height-44, 320))
+        self.mainEncodeView.contentSize = CGSizeMake(size.width, max(size.height-64, 320))
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -234,7 +244,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Starting to encode an image in another image
     func startEncodeImageProcess() {
-        print("Hello!")
+
         var imageToHide: UIImage!
         var outerImage: UIImage!
         
