@@ -35,7 +35,7 @@ class MainEncodingView: UIView {
         let encryptionEnabled = PictographDataController.sharedController.getUserEncryptionEnabled()
         
         //Label for enabling encryption, location for views based off this view
-        encryptionLabel.text = "Use Password"
+        encryptionLabel.text = "Use Encryption"
         encryptionLabel.font = UIFont.boldSystemFontOfSize(mainFontSize)
         encryptionLabel.textColor = UIColor.whiteColor()
         encryptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -97,9 +97,6 @@ class MainEncodingView: UIView {
         
         
         //Encode button
-        encodeButton.backgroundColor = UIColor.whiteColor()
-        encodeButton.setTitleColor(mainAppColor, forState: .Normal)
-        encodeButton.setTitleColor(mainAppColorHighlighted, forState: .Highlighted)
         encodeButton.setTitle("Hide Message", forState: .Normal)
         encodeButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -116,9 +113,6 @@ class MainEncodingView: UIView {
         
         
         //Decode button
-        decodeButton.backgroundColor = UIColor.whiteColor()
-        decodeButton.setTitleColor(mainAppColor, forState: .Normal)
-        decodeButton.setTitleColor(mainAppColorHighlighted, forState: .Highlighted)
         decodeButton.setTitle("Show Message", forState: .Normal)
         decodeButton.translatesAutoresizingMaskIntoConstraints = false
         

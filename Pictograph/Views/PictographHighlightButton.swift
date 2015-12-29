@@ -11,6 +11,9 @@ import UIKit
 
 @objc
 class PictographHighlightButton: UIButton {
+    
+    var highlightColor = UIColor.whiteColor()
+    
     override var highlighted: Bool {
         didSet {
             if (highlighted) {
@@ -19,7 +22,7 @@ class PictographHighlightButton: UIButton {
                 }
             }
             else {
-                self.backgroundColor = UIColor.whiteColor()
+                self.backgroundColor = self.highlightColor
             }
         }
     }

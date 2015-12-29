@@ -13,6 +13,7 @@ let mainAppColor = UIColor(red: 220/255.0, green: 0, blue: 0, alpha: 1)
 let mainAppColorHighlighted = mainAppColor.colorWithAlphaComponent(0.5)
 
 let mainAppColorNight = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
+let mainAppColorNightHighlighted = mainAppColorNight.colorWithAlphaComponent(0.5)
 
 class PictographViewController: UIViewController {
     

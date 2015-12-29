@@ -74,7 +74,30 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.mainEncodeView.encryptionKeyField.keyboardAppearance = PictographDataController.sharedController.getUserNightModeEnabled() ? .Dark : .Default
+        let nightMode = PictographDataController.sharedController.getUserNightModeEnabled()
+        
+        //Setting the color of the keyboard
+        self.mainEncodeView.encryptionKeyField.keyboardAppearance = nightMode ? .Dark : .Default
+        
+        for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.decodeButton] {
+
+            //Button background
+            button.backgroundColor = nightMode ? mainAppColorNight : UIColor.whiteColor()
+            
+            button.highlightColor = nightMode ? mainAppColorNight : UIColor.whiteColor()
+            
+            //Text color
+            button.setTitleColor(nightMode ? UIColor.whiteColor() : mainAppColor, forState: .Normal)
+            button.setTitleColor(nightMode ? UIColor.whiteColor().colorWithAlphaComponent(0.5) : mainAppColorHighlighted, forState: .Highlighted)
+            
+            if nightMode {
+                //Add a border
+                button.layer.borderColor = UIColor.whiteColor().CGColor
+                button.layer.borderWidth = 1
+            } else {
+                button.layer.borderWidth = 0
+            }
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
