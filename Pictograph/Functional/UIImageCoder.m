@@ -467,14 +467,14 @@
 #pragma mark Revealing image hidden within another
 
 /* Returns the PNG representation of the image hidden in the original image */
-- (NSData *)decodeImageInImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
+- (NSData *)decodeImageInImage:(UIImage *)image error:(NSError **)error {
     return [[NSData alloc] init];
 }
 
 #pragma mark Hiding one image within another
 
 /* Returns the original image with the imageToHide hidden within it */
-- (NSData *)encodeImage:(UIImage *)imageToHide withinImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
+- (NSData *)encodeImage:(UIImage *)imageToHide withinImage:(UIImage *)image error:(NSError **)error {
     return [[NSData alloc] init];
 }
 
