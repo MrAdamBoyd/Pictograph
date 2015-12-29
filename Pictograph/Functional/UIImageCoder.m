@@ -11,6 +11,7 @@
 
 #define bitCountForCharacter 8
 #define bitCountForInfo 16
+#define bitCountForImageInfo 32
 #define bytesPerPixel 4
 #define maxIntFor8Bits 255
 #define maxFloatFor8Bits 255.0
@@ -468,6 +469,41 @@
 
 /* Returns the PNG representation of the image hidden in the original image */
 - (NSData *)decodeImageInImage:(UIImage *)image error:(NSError **)error {
+    NSMutableString *decodedString = [[NSMutableString alloc] init];
+    NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
+    NSMutableArray *heightArrayInBits = [[NSMutableArray alloc] init];
+    NSMutableArray *widthArrayInBits = [[NSMutableArray alloc] init];
+    
+    //Getting the size of the string
+    NSArray *first16PixelsColors = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForImageInfo / 2)];
+    
+    for (UIColor *color in first16PixelsColors) {
+        //Going through each color that contains the size of the message
+        [self addBlueBitsFromColor:color toArray:sizeArrayInBits];
+    }
+    
+    //Getting the height
+    NSArray *second16PixelsColors = [self getRBGAFromImage:image atX:16 andY:0 count:(bitCountForImageInfo / 2)];
+    
+    for (UIColor *color in second16PixelsColors) {
+        //Going through each color that contains the size of the message
+        [self addBlueBitsFromColor:color toArray:heightArrayInBits];
+    }
+    
+    //Getting the width
+    NSArray *third16PixelsColors = [self getRBGAFromImage:image atX:32 andY:0 count:(bitCountForImageInfo / 2)];
+    
+    for (UIColor *color in third16PixelsColors) {
+        //Going through each color that contains the size of the message
+        [self addBlueBitsFromColor:color toArray:widthArrayInBits];
+    }
+    
+    long numberOfBitsNeededForImage = [self longFromBits:sizeArrayInBits];
+    long heightOfImage = [self longFromBits:heightArrayInBits];
+    long widthOfImage = [self longFromBits:widthArrayInBits];
+    
+    
+    
     return [[NSData alloc] init];
 }
 
@@ -475,6 +511,14 @@
 
 /* Returns the original image with the imageToHide hidden within it */
 - (NSData *)encodeImage:(UIImage *)imageToHide withinImage:(UIImage *)image error:(NSError **)error {
+    
+    long numberOfPixelsInOuterImage = image.size.height * image.size.width;
+    long numberOfPixelsNeededToHideImage = (imageToHide.size.height * imageToHide.size.width + (3 * 16)) * bytesPerPixel; //3 * 16 to account for size, height, width
+    float totalScale = (float)numberOfPixelsInOuterImage / numberOfPixelsNeededToHideImage;
+    float scale = roundf(totalScale * 100.0)/100.0; //Rounding to 2 digits
+
+    //TODO: Encode length, height, width in 32 bits each
+    
     return [[NSData alloc] init];
 }
 
