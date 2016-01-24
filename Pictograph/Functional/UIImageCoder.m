@@ -239,18 +239,18 @@
         
     }
     
-    return [self saveImageToGraphicsContextAndEncodeBitsInImage:image numberofPixelsNeeded:numberOfBitsNeeded arrayOfBits:arrayOfBits];
+    return [self saveImageToGraphicsContextAndEncodeBitsInImage:image numberOfBitsNeeded:numberOfBitsNeeded arrayOfBits:arrayOfBits];
 }
 
 //Saves the image to the graphics context and starts encoding the bits in that image
-- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(UIImage *)image numberofPixelsNeeded:(long)numberOfPixelsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
+- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(UIImage *)image numberOfBitsNeeded:(long)numberOfBitsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
     //Right here we have all the bits that are needed to encode the data in the image
     CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
     
     UIGraphicsBeginImageContext(image.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfPixelsNeeded];
+    NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
     
     /**
@@ -515,12 +515,52 @@
     
     long numberOfPixelsInOuterImage = image.size.height * image.size.width;
     long numberOfPixelsNeededToHideImage = (imageToHide.size.height * imageToHide.size.width + (3 * 16)) * bytesPerPixel; //3 * 16 to account for size, height, width
+    long numberOfBitsNeeded = numberOfPixelsNeededToHideImage * 8;
     float totalScale = (float)numberOfPixelsInOuterImage / numberOfPixelsNeededToHideImage;
     float scale = roundf(totalScale * 100.0)/100.0; //Rounding to 2 digits
-
-    //TODO: Encode length, height, width in 32 bits each
+    CGSize newSize = CGSizeMake(image.size.width / scale, image.size.height / scale);
     
-    return [[NSData alloc] init];
+    UIImage *resizedImage = [self imageWithImage:imageToHide scaledToSize:newSize];
+    
+    NSData *resizedImageData = UIImagePNGRepresentation(resizedImage);
+    
+    const char *bytes = [resizedImageData bytes];
+    NSMutableString *stringOfBytes = [[NSMutableString alloc] init];
+    
+    //Appending the data for the pixel color
+    for (int i = 0; i < [resizedImageData length]; i++) {
+        //Converting the data into bytes to it can easily be converted into bits
+        [stringOfBytes appendFormat:@"%c", bytes[i]];
+    }
+    
+    NSMutableArray *arrayOfBits = [[NSMutableArray alloc] init];
+    
+    //Adding the information about the image: # of pixels the image takes up, width, height
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)numberOfPixelsNeededToHideImage withSpaceFor:bitCountForInfo]]; //16 bits for spacing
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)newSize.width withSpaceFor:bitCountForInfo]]; //Width
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)newSize.height withSpaceFor:bitCountForInfo]]; //Height
+    
+    for (int charIndex = 0; charIndex < [stringOfBytes length]; charIndex++) {
+        //Going through each character
+        
+        char curChar = [stringOfBytes characterAtIndex:charIndex];
+        [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:curChar withSpaceFor:bitCountForCharacter]]; //Only 8 bits needed for chars
+        
+    }
+    
+    return [self saveImageToGraphicsContextAndEncodeBitsInImage:image numberOfBitsNeeded:numberOfBitsNeeded arrayOfBits:arrayOfBits];
+}
+
+//http://stackoverflow.com/questions/2658738/the-simplest-way-to-resize-an-uiimage
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 @end
