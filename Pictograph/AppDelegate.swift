@@ -18,6 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        let navigationController = UINavigationController(rootViewController: PictographMainViewController())
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+        
         //Setting up Fabric
         Fabric.with([Crashlytics()])
         
