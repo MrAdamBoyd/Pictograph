@@ -7,8 +7,8 @@ target 'Pictograph' do
   pod 'EAIntroView', '~> 2.7.0'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'PromiseKit', '~> 3.0'
   pod 'CustomIOSAlertView', '~> 0.9.3'
+  pod 'PromiseKit', :git => 'https://github.com/MrAdamBoyd/PromiseKit.git', :branch => 'pmkalertcontroller_button_fix'
 end
 
 target 'PictographTests' do

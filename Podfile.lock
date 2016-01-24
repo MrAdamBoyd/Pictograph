@@ -34,9 +34,19 @@ DEPENDENCIES:
   - CustomIOSAlertView (~> 0.9.3)
   - EAIntroView (~> 2.7.0)
   - Fabric
-  - PromiseKit (~> 3.0)
+  - PromiseKit (from `https://github.com/MrAdamBoyd/PromiseKit.git`, branch `pmkalertcontroller_button_fix`)
   - RNCryptor
   - SVProgressHUD
+
+EXTERNAL SOURCES:
+  PromiseKit:
+    :branch: pmkalertcontroller_button_fix
+    :git: https://github.com/MrAdamBoyd/PromiseKit.git
+
+CHECKOUT OPTIONS:
+  PromiseKit:
+    :commit: 057841ccb41a380578d104188a75eb1562f231b4
+    :git: https://github.com/MrAdamBoyd/PromiseKit.git
 
 SPEC CHECKSUMS:
   Crashlytics: 41c082440d2e14da444186fff65e79c0b4b35d4c
