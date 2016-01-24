@@ -188,8 +188,9 @@
         toEncode = message;
     }
     
-    if ([message length] > maxIntFor8Bits) {
-        //Makes sure user's message is under 256 characters. Will charge for this later.
+    int maxMessageLengthForImage = (image.size.width * image.size.height) / 8;
+    if ([message length] > maxMessageLengthForImage) {
+        //Makes sure message length is under
         DLog(@"User's message was too large: %lu characters", (unsigned long)[message length]);
         
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Your message was too large. Please shorten your message or split it into multple images."};
