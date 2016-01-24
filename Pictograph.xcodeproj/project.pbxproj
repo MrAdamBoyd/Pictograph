@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660069791C552C6100BA1672 /* AppDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660069781C552C6100BA1672 /* AppDelegateExtension.swift */; };
 		660BA01B1BDDA59F00605EE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA01A1BDDA59F00605EE8 /* AppDelegate.swift */; };
 		660BA0601BDDAB0E00605EE8 /* PictographHighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA05F1BDDAB0D00605EE8 /* PictographHighlightButton.swift */; };
 		660BA0621BDDAE9D00605EE8 /* PictographInsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA0611BDDAE9D00605EE8 /* PictographInsetTextField.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		1A3CCD2596C223F883999854 /* Pods-Pictograph.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictograph.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pictograph/Pods-Pictograph.release.xcconfig"; sourceTree = "<group>"; };
+		660069781C552C6100BA1672 /* AppDelegateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegateExtension.swift; path = Extensions/AppDelegateExtension.swift; sourceTree = "<group>"; };
 		660BA0191BDDA59F00605EE8 /* Pictograph-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pictograph-Bridging-Header.h"; sourceTree = "<group>"; };
 		660BA01A1BDDA59F00605EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		660BA05F1BDDAB0D00605EE8 /* PictographHighlightButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PictographHighlightButton.swift; path = Views/PictographHighlightButton.swift; sourceTree = "<group>"; };
@@ -126,6 +128,14 @@
 				D332E1B67FC39E1B020ADC8D /* Pods_Pictograph.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6600697A1C552C6D00BA1672 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				660069781C552C6100BA1672 /* AppDelegateExtension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		661571F31BD3474D001D6B8F /* View Controllers */ = {
@@ -206,6 +216,7 @@
 				660BA01A1BDDA59F00605EE8 /* AppDelegate.swift */,
 				6647B44B1BDF295C00235E04 /* Constants */,
 				669DFD0D1BD561CF00A0BAC2 /* Errors */,
+				6600697A1C552C6D00BA1672 /* Extensions */,
 				661571F41BD34761001D6B8F /* Functional */,
 				669BC10D1BD5699D00DD4C6F /* Models */,
 				669BC1141BD56D4C00DD4C6F /* Other Controllers */,
@@ -483,6 +494,7 @@
 				660BA0621BDDAE9D00605EE8 /* PictographInsetTextField.swift in Sources */,
 				660BA0661BDDB1AE00605EE8 /* CurrentUser.swift in Sources */,
 				6647B4411BDF052E00235E04 /* PictographViewController.swift in Sources */,
+				660069791C552C6100BA1672 /* AppDelegateExtension.swift in Sources */,
 				6647B44D1BDF2CE700235E04 /* MainEncodingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
