@@ -59,8 +59,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Setting up the actions for the elements
         self.mainEncodeView.encodeButton.addTarget(self, action: Selector("startEncodeProcess"), forControlEvents: .TouchUpInside)
         self.mainEncodeView.decodeButton.addTarget(self, action: Selector("startDecodeProcess"), forControlEvents: .TouchUpInside)
-        self.mainEncodeView.encodeImageButton.addTarget(self, action: Selector("startEncodeImageProcess"), forControlEvents: .TouchUpInside)
-        self.mainEncodeView.decodeImageButton.addTarget(self, action: Selector("startDecodeImageProcess"), forControlEvents: .TouchUpInside)
         self.mainEncodeView.encryptionKeyField.delegate = self
         self.mainEncodeView.encryptionSwitch.addTarget(self, action: Selector("switchToggled:"), forControlEvents: .ValueChanged)
         
@@ -82,7 +80,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Setting the color of the keyboard
         self.mainEncodeView.encryptionKeyField.keyboardAppearance = nightMode ? .Dark : .Default
         
-        for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.decodeButton, self.mainEncodeView.encodeImageButton, self.mainEncodeView.decodeImageButton] {
+        for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.decodeButton] {
 
             //Button background
             button.backgroundColor = nightMode ? mainAppColorNight : UIColor.whiteColor()
@@ -102,8 +100,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             }
             
         }
-        
-        self.enableOrDisableImageButtons(!PictographDataController.sharedController.getUserEncryptionEnabled()) //Disabled if encryption is enabled
         
         self.mainEncodeView.contentSize.width = UIScreen.mainScreen().bounds.width
     }
@@ -187,7 +183,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Animiating the alpha of the textfield
         UIView.animateWithDuration(0.25, animations: {() -> Void in
             self.mainEncodeView.encryptionKeyField.alpha = enabledOrDisabled ? 1.0 : 0.5
-            self.enableOrDisableImageButtons(!enabledOrDisabled)
         })
         
         PictographDataController.sharedController.setUserEncryptionEnabled(enabledOrDisabled)
@@ -239,34 +234,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         } else {
             //Show message: encryption is enabled and the key is blank
             showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.")
-        }
-    }
-    
-    //Starting to encode an image in another image
-    func startEncodeImageProcess() {
-
-        var imageToHide: UIImage!
-        var outerImage: UIImage!
-        
-        self.getPhotoForEncodingOrDecoding(true, showMessageInHUD: "First, select the image you want to hide").then { image in
-            //Get the image that is being hidden
-            imageToHide = image
-        }.then { image in
-            return self.getPhotoForEncodingOrDecoding(true, showMessageInHUD: "Now, select the image that you want to hide the first image in")
-        }.then { image in
-            //Get the image that the first is being hidden in
-            
-            outerImage = image
-        }.then { image in
-            self.encodeImage(imageToHide, withinImage: outerImage)
-        }
-    }
-    
-    //Gets the image for decoding
-    func startDecodeImageProcess() {
-        getPhotoForEncodingOrDecoding(false).then { image in
-            //Start encoding or decoding when the image has been picked
-            self.decodeImageInImage(image)
         }
     }
     
@@ -367,51 +334,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
     }
     
-    //Hiding an image within another image
-    func encodeImage(imageToEncode: UIImage, withinImage outerImage: UIImage) {
-        //After the user hit confirm
-        SVProgressHUD.show()
-        
-        //Dispatching the task after  small amount of time as per MBProgressHUD's recommendation
-        let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.01 * Double(NSEC_PER_SEC)))
-        dispatch_after(popTime, dispatch_get_main_queue(), {() -> Void in
-            
-            let coder = UIImageCoder()
-            
-            //Hide the HUD
-            SVProgressHUD.dismiss()
-            
-            do {
-                let encodedImage = try coder.encodeImage(imageToEncode, withinImage: outerImage)
-                //Show the share sheet if the image exists
-                self.showShareSheetWithImage(encodedImage)
-                
-            } catch let error as NSError {
-                
-                //Catch the error
-                self.showMessageInAlertController("Error", message: error.localizedDescription)
-            }
-        })
-    }
-    
-    //Revealing an image within another image
-    func decodeImageInImage(userImage: UIImage) {
-        //No need to show HUD because this doesn't take long
-        
-        let coder = UIImageCoder()
-        
-        do {
-            let decodedImage = try coder.decodeImageInImage(userImage)
-            //Show the message if it was successfully decoded
-            showImageInAlertController("Hidden Image", image: decodedImage)
-            
-        } catch let error as NSError {
-            
-            //Catch the error
-            showMessageInAlertController("Error Decoding", message: error.localizedDescription)
-        }
-    }
-    
     //Building the alert that gets the message that the user wants to encode
     func buildGetMessageController(title: String, message: String?, isSecure: Bool, withPlaceHolder placeHolder:String) -> PMKAlertController {
         
@@ -434,16 +356,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         })
         
         return getMessageController
-    }
-    
-    /**
-     Sets the state of the decode and encode image buttons to be enabled or disabled based on encryption being enabled or disabled
-     */
-    func enableOrDisableImageButtons(enable: Bool) {
-        for button in [self.mainEncodeView.encodeImageButton, self.mainEncodeView.decodeImageButton] {
-            //If encryption is enabled, disable encoding or decoding images within other images
-            button.enabled = enable
-        }
     }
     
     //Shows the share sheet with the UIImage in PNG form
