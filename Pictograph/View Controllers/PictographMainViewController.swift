@@ -22,6 +22,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //UI elements
     let mainEncodeView = MainEncodingView()
+    var settingsNavVC: UINavigationController! //Stored to animate nightMode
     
     //MARK: - UIViewController
     
@@ -57,37 +58,13 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         //Setting up the notifications for the settings
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showPasswordOnScreenChanged"), name: pictographShowPasswordOnScreenSettingChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeNightModeAnimated", name: pictographNightModeSettingChangedNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let nightMode = PictographDataController.sharedController.getUserNightModeEnabled()
-        
-        //Setting the color of the keyboard
-        self.mainEncodeView.encryptionKeyField.keyboardAppearance = nightMode ? .Dark : .Default
-        
-        for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.decodeButton] {
-
-            //Button background
-            button.backgroundColor = nightMode ? mainAppColorNight : UIColor.whiteColor()
-            
-            button.highlightColor = nightMode ? mainAppColorNight : UIColor.whiteColor()
-            
-            //Text color
-            button.setTitleColor(nightMode ? UIColor.whiteColor() : mainAppColor, forState: .Normal)
-            button.setTitleColor(nightMode ? UIColor.whiteColor().colorWithAlphaComponent(0.5) : mainAppColorHighlighted, forState: .Highlighted)
-            
-            if nightMode {
-                //Add a border
-                button.layer.borderColor = UIColor.whiteColor().CGColor
-                button.layer.borderWidth = 1
-            } else {
-                button.layer.borderWidth = 0
-            }
-            
-        }
-        
+        self.changeNightMode()
         self.mainEncodeView.contentSize.width = UIScreen.mainScreen().bounds.width
     }
     
@@ -109,12 +86,13 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     func openSettings() {
         //Setting the title, button title, and action
         let settings = SettingsViewController.createWithNavigationController()
+        self.settingsNavVC = settings
         
         if  UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad {
             //On an iPad, show the popover from the button
             settings.modalPresentationStyle = .Popover
-            settings.popoverPresentationController!.barButtonItem = self.navigationItem.rightBarButtonItem
-            settings.popoverPresentationController!.backgroundColor = mainAppColor
+            settings.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+            settings.popoverPresentationController?.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
         }
         
         self.presentViewController(settings, animated: true, completion: nil)
@@ -414,5 +392,44 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     func showPasswordOnScreenChanged() {
         //Set the opposite of what it currently is
         mainEncodeView.encryptionKeyField.secureTextEntry = !mainEncodeView.encryptionKeyField.secureTextEntry
+    }
+    
+    //Animates night mode changing when on an iPad
+    func changeNightModeAnimated() {
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.changeNightMode()
+            self.settingsNavVC.popoverPresentationController?.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+        }
+    }
+    
+    //Changes the look of all the UI elements that need to change when night mode is activated
+    func changeNightMode() {
+        self.view.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+        self.navigationController?.navigationBar.barTintColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+        
+        let nightMode = PictographDataController.sharedController.getUserNightModeEnabled()
+        
+        //Setting the color of the keyboard
+        self.mainEncodeView.encryptionKeyField.keyboardAppearance = nightMode ? .Dark : .Default
+        
+        for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.decodeButton] {
+            
+            //Button background
+            button.backgroundColor = nightMode ? mainAppColorNight : UIColor.whiteColor()
+            
+            button.highlightColor = nightMode ? mainAppColorNight : UIColor.whiteColor()
+            
+            //Text color
+            button.setTitleColor(nightMode ? UIColor.whiteColor() : mainAppColor, forState: .Normal)
+            button.setTitleColor(nightMode ? UIColor.whiteColor().colorWithAlphaComponent(0.5) : mainAppColorHighlighted, forState: .Highlighted)
+            
+            if nightMode {
+                //Add a border
+                button.layer.borderColor = UIColor.whiteColor().CGColor
+                button.layer.borderWidth = 1
+            } else {
+                button.layer.borderWidth = 0
+            }
+        }
     }
 }
