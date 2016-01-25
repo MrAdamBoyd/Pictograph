@@ -171,6 +171,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     //Set the alpha of all UI elements on screen
     func setAlphaOfUIElementsTo(alpha: CGFloat) {
         mainEncodeView.alpha = alpha
+        self.navigationController?.navigationBar.hidden = (alpha == 0)
     }
     
     func switchToggled(sender: AnyObject) {
