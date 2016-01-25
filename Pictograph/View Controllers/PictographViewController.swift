@@ -17,38 +17,28 @@ let mainAppColorNightHighlighted = mainAppColorNight.colorWithAlphaComponent(0.5
 
 class PictographViewController: UIViewController {
     
-    var topBar: PictographTopBarView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Background color
         self.view.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+        UINavigationBar.appearance().barTintColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
         
-        //Nav bar
-        topBar = PictographTopBarView()
-        topBar.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
-        topBar.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(topBar)
-        
-        //10px from top, 0px from left & right, 44px height
-        self.view.addConstraint(NSLayoutConstraint(item: topBar, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1, constant: 20))
-        self.view.addConstraint(NSLayoutConstraint(item: topBar, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: topBar, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: topBar, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1, constant: 44))
-    
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.view.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
-        topBar.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+        self.navigationController?.navigationBar.barTintColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
     }
     
-    //White status bar text
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    //Creating a UINavigationController with a VC as its root view controller
+    class func createWithNavigationController() -> UINavigationController {
+        let this = self.init()
+        let navigationController = UINavigationController(rootViewController: this)
+        
+        return navigationController
     }
     
 }

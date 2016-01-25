@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Nikolay Shubenkov. All rights reserved.
 //
 
+//https://github.com/NikolayShubenkovProgSchool/BlurAppWindow-Swift
+
 import UIKit
 
 //some random number

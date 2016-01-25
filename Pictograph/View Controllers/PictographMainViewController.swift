@@ -18,7 +18,7 @@ enum PictographAction: Int {
     case EncodingMessage = 0, DecodingMessage
 }
 
-class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate{
+class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate, CreatesNavigationTitle {
     
     //UI elements
     let mainEncodeView = MainEncodingView()
@@ -28,30 +28,17 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Setting the title, button title, and action
-        topBar.setTitle("Pictograph", accessoryButtonTitle: "Settings", accessoryButtonHandler: {() -> Void in
-            //Open the settings view controller
-            
-            let settings = SettingsViewController()
-            
-            if  UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad {
-                //On an iPad, show the popover from the button
-                settings.modalPresentationStyle = .Popover
-                settings.popoverPresentationController!.sourceView = self.topBar.accessoryButton
-                //Presenting it from the middle of the settings button
-                settings.popoverPresentationController!.sourceRect = CGRectMake(self.topBar.accessoryButton.frame.width / 2, self.topBar.accessoryButton.frame.height, 0, 0)
-                settings.popoverPresentationController!.backgroundColor = mainAppColor
-            }
-            
-            self.presentViewController(settings, animated: true, completion: nil)
-        })
+        self.navigationItem.title = "Pictograph"
+        self.navigationItem.titleView = self.createNavigationTitle("Pictograph")
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: "openSettings")
         
         //Adding all the UI elements to the screen
         self.mainEncodeView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(mainEncodeView)
         
         //0px from bottom of topBar, 0px from left, right, bottom
-        self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Top, relatedBy: .Equal, toItem: topBar, attribute: .Bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 0))
@@ -119,6 +106,20 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         PictographDataController.sharedController.setUserEncryptionKey(mainEncodeView.encryptionKeyField.text!)
     }
     
+    func openSettings() {
+        //Setting the title, button title, and action
+        let settings = SettingsViewController.createWithNavigationController()
+        
+        if  UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad {
+            //On an iPad, show the popover from the button
+            settings.modalPresentationStyle = .Popover
+            settings.popoverPresentationController!.barButtonItem = self.navigationItem.rightBarButtonItem
+            settings.popoverPresentationController!.backgroundColor = mainAppColor
+        }
+        
+        self.presentViewController(settings, animated: true, completion: nil)
+    }
+    
     //For NSNotificationCenter
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -169,7 +170,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Set the alpha of all UI elements on screen
     func setAlphaOfUIElementsTo(alpha: CGFloat) {
-        topBar.alpha = alpha
         mainEncodeView.alpha = alpha
     }
     

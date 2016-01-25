@@ -21,11 +21,10 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
         
         super.viewDidLoad()
         
-        //Setting the title, button title, and action
-        topBar.setTitle("Settings", accessoryButtonTitle: "Close", accessoryButtonHandler: {() -> Void in
-            //Dismiss settings (this view controller)
-            self.dismissViewControllerAnimated(true, completion: nil)
-        })
+        self.navigationItem.title = "Settings"
+        
+        //Adding the done button to the navigation bar
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Done, target: self, action: "closeSettings")
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -33,7 +32,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
         self.view.addSubview(tableView)
         
         //0px from topBar, 0px from left, right, bottom
-        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Top, relatedBy: .Equal, toItem: topBar, attribute: .Bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 0))
@@ -62,7 +61,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
                 UIView.animateWithDuration(0.5) {
                     //Animate the color in
                     self.view.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
-                    self.topBar.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+                    self.navigationController?.navigationBar.barTintColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
                 }
             })
         }
@@ -88,6 +87,11 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return SettingsFooterView()
+    }
+    
+    func closeSettings() {
+        //Dismiss settings (this view controller)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

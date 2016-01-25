@@ -20,9 +20,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
+        application.statusBarStyle = UIStatusBarStyle.LightContent
+        
         let navigationController = UINavigationController(rootViewController: PictographMainViewController())
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
+        
+        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().barTintColor = mainAppColor
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+        //This sets the font attributes of the titles and back button text
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSForegroundColorAttributeName:UIColor.whiteColor()
+        ]
+        
+        //Sets the font attributes of the bar button items
+        UIBarButtonItem.appearance().setTitleTextAttributes([
+            NSForegroundColorAttributeName:UIColor.whiteColor()
+            ], forState: UIControlState.Normal)
         
         //Setting up Fabric
         Fabric.with([Crashlytics()])
