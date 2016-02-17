@@ -53,7 +53,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         if (setUpAndShowIntroViews()) {
             //If intro views are shown, hide UI elements
-            setAlphaOfUIElementsTo(0)
+            self.mainEncodeView.alpha = 0
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
         }
         
         //Setting up the notifications for the settings
@@ -119,8 +120,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         //Animating the views in
         UIView.animateWithDuration(1.0, animations: { () -> Void in
-            self.setAlphaOfUIElementsTo(1.0)
+            self.mainEncodeView.alpha = 1
         })
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     //MARK: - Custom methods
@@ -144,12 +146,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Intro view wasn't shown, return false
         
         return false
-    }
-    
-    //Set the alpha of all UI elements on screen
-    func setAlphaOfUIElementsTo(alpha: CGFloat) {
-        mainEncodeView.alpha = alpha
-        self.navigationController?.navigationBar.hidden = (alpha == 0)
     }
     
     func switchToggled(sender: AnyObject) {
