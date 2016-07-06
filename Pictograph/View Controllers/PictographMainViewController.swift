@@ -32,23 +32,23 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.navigationItem.title = "Pictograph"
         self.navigationItem.titleView = self.createNavigationTitle("Pictograph")
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: "openSettings")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: #selector(self.openSettings))
         
         //Adding all the UI elements to the screen
         self.mainEncodeView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(mainEncodeView)
         
         //0px from bottom of topBar, 0px from left, right, bottom
-        self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.mainEncodeView, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 0))
+        self.mainEncodeView.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
+        self.mainEncodeView.leftAnchor.constraintEqualToAnchor(self.view.leftAnchor).active = true
+        self.mainEncodeView.rightAnchor.constraintEqualToAnchor(self.view.rightAnchor).active = true
+        self.mainEncodeView.bottomAnchor.constraintEqualToAnchor(self.view.bottomAnchor).active = true
         
         //Setting up the actions for the elements
-        self.mainEncodeView.encodeButton.addTarget(self, action: Selector("startEncodeProcess"), forControlEvents: .TouchUpInside)
-        self.mainEncodeView.decodeButton.addTarget(self, action: Selector("startDecodeProcess"), forControlEvents: .TouchUpInside)
+        self.mainEncodeView.encodeButton.addTarget(self, action: #selector(self.startEncodeProcess), forControlEvents: .TouchUpInside)
+        self.mainEncodeView.decodeButton.addTarget(self, action: #selector(self.startDecodeProcess), forControlEvents: .TouchUpInside)
         self.mainEncodeView.encryptionKeyField.delegate = self
-        self.mainEncodeView.encryptionSwitch.addTarget(self, action: Selector("switchToggled:"), forControlEvents: .ValueChanged)
+        self.mainEncodeView.encryptionSwitch.addTarget(self, action: #selector(self.switchToggled(_:)), forControlEvents: .ValueChanged)
         
         
         if (setUpAndShowIntroViews()) {
@@ -58,8 +58,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
         
         //Setting up the notifications for the settings
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showPasswordOnScreenChanged"), name: pictographShowPasswordOnScreenSettingChangedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeNightModeAnimated", name: pictographNightModeSettingChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.showPasswordOnScreenChanged), name: pictographShowPasswordOnScreenSettingChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeNightModeAnimated), name: pictographNightModeSettingChangedNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {

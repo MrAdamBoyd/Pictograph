@@ -33,7 +33,7 @@ class PictographSettingsTableViewCell: UITableViewCell {
         
         
         //Switch on the right of the cell
-        settingsSwitch.addTarget(self, action: Selector("switchToggled:"), forControlEvents: .ValueChanged)
+        settingsSwitch.addTarget(self, action: #selector(self.switchToggled(_:)), forControlEvents: .ValueChanged)
         settingsSwitch.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(settingsSwitch)
         

@@ -24,7 +24,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
         self.navigationItem.title = "Settings"
         
         //Adding the done button to the navigation bar
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Done, target: self, action: "closeSettings")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(self.closeSettings))
         
         tableView.dataSource = self
         tableView.delegate = self

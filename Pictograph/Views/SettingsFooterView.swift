@@ -84,7 +84,7 @@ class SettingsFooterView: UIView {
         goToWebsiteButton.setTitle("Go to Website", forState: .Normal)
         goToWebsiteButton.setTitleColor(mainAppColor, forState: .Normal)
         goToWebsiteButton.setTitleColor(mainAppColorHighlighted, forState: .Highlighted)
-        goToWebsiteButton.addTarget(self, action: Selector("openWebsiteURL"), forControlEvents: .TouchUpInside)
+        goToWebsiteButton.addTarget(self, action: #selector(self.openWebsiteURL), forControlEvents: .TouchUpInside)
         goToWebsiteButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(goToWebsiteButton)
         

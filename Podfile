@@ -4,11 +4,11 @@ use_frameworks!
 target 'Pictograph' do
   pod 'SVProgressHUD'
   pod 'RNCryptor'
-  pod 'EAIntroView', '~> 2.7.0'
+  pod 'EAIntroView'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'CustomIOSAlertView', '~> 0.9.3'
-  pod 'PromiseKit', :git => 'https://github.com/MrAdamBoyd/PromiseKit.git', :branch => 'pmkalertcontroller_button_fix'
+  pod 'CustomIOSAlertView'
+  pod 'PromiseKit'
 end
 
 target 'PictographTests' do
