@@ -1,0 +1,6 @@
+framework module Pods_PictographTests {
+  umbrella header "Pods-PictographTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_Pictograph {
+  umbrella header "Pods-Pictograph-umbrella.h"
+
+  export *
+  module * { export * }
+}

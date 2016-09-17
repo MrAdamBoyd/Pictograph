@@ -1,0 +1,6 @@
+framework module CustomIOSAlertView {
+  umbrella header "CustomIOSAlertView-umbrella.h"
+
+  export *
+  module * { export * }
+}

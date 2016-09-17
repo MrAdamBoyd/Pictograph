@@ -73,8 +73,5 @@ Reveal.framework/
 #################
 news/CrashReporter.framework/Headers.*
 
-# Pods
-Pods
-
 # Jenkins
 test-reports

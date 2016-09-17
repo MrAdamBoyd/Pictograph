@@ -37,7 +37,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Pictograph lets you take a photo and immediately hide a message in that image, so don't have to exit the app to send a new message.</string>
+	<string>Pictograph lets you take a photo and immediately hide a message in that image, so don&apos;t have to exit the app to send a new message.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pictograph lets you use any of your photos and immediately hide a message in that image, so don&apos;t have to exit the app to send a new message.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
