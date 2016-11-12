@@ -1,0 +1,6 @@
+framework module RNCryptor_objc {
+  umbrella header "RNCryptor-objc-umbrella.h"
+
+  export *
+  module * { export * }
+}

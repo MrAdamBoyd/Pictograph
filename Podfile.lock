@@ -17,7 +17,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (4.0.4):
     - PromiseKit/CorePromise
-  - RNCryptor (5.0.1)
+  - RNCryptor-objc (3.0.2)
   - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
@@ -26,7 +26,7 @@ DEPENDENCIES:
   - EAIntroView
   - Fabric
   - PromiseKit
-  - RNCryptor
+  - RNCryptor-objc
   - SVProgressHUD
 
 SPEC CHECKSUMS:
@@ -36,9 +36,9 @@ SPEC CHECKSUMS:
   EARestrictedScrollView: b0c2a3f92fb2610bb44d71c5e4893777c89e45ef
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   PromiseKit: 8e8ee39d33ff199d92a1a883b5396f6285be6c91
-  RNCryptor: 2e352a488779d1a9184ab629be22a7c5bc84acb5
+  RNCryptor-objc: 6d18b2e4297c8f4a71a295492366313a3245d0ae
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: b4d7e5ea14bb55707edf78737b12128c2bb274d6
+PODFILE CHECKSUM: f45e3f4f7df8a4e56d23b4536e9f7d4c2cdd1a37
 
 COCOAPODS: 1.0.1

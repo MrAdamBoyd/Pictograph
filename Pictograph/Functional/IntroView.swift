@@ -21,7 +21,7 @@ class IntroView {
     class func buildIntroViews() -> [EAIntroPage] {
         var introViewArray:[EAIntroPage] = []
         
-        if (PictographDataController.sharedController.getUserFirstTimeOpeningApp()) {
+        if (PictographDataController.shared.getUserFirstTimeOpeningApp()) {
             //Introducing the app
             let page1 = EAIntroPage()
             page1.title = "Steganography"

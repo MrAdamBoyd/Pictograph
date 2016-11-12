@@ -8,6 +8,7 @@
 
 #import "UIImageCoder.h"
 #import "Pictograph-Swift.h"
+@import RNCryptor_objc;
 
 #define bitCountForCharacter 8
 #define bitCountForInfo 16
@@ -75,7 +76,7 @@
     }
     
     //Sending the analytics
-    [[PictographDataController sharedController] analyticsDecodeSend:messageIsEncrypted];
+    [[PictographDataController shared] analyticsDecodeSend:messageIsEncrypted];
     
     //Message is not encrypted, send with blank password
     return [self messageFromImage:image needsPassword:messageIsEncrypted password:password error:error];
@@ -131,7 +132,7 @@
     if (isEncrypted) {
         //If message is encrypted, decrypt it and save it
         NSError *decryptError = nil;
-        NSData *encodedString = [RNCryptor decryptData:encryptedData password:password error:&decryptError];
+        NSData *encodedString = [RNDecryptor decryptData:encryptedData withPassword:password error:&decryptError];
         decodedString = [[NSMutableString alloc] initWithData:encodedString encoding:NSUTF8StringEncoding];
         
         if (decryptError) {
@@ -143,7 +144,7 @@
     }
     
     //Sending the analytics
-    [[PictographDataController sharedController] analyticsDecodeSend:isEncrypted];
+    [[PictographDataController shared] analyticsDecodeSend:isEncrypted];
     
     return decodedString;
 
@@ -171,8 +172,9 @@
     
     if (encryptedBool) {
         //If the user wants to encrypt the string, encrypt it
+        NSError *error;
         NSData *stringData = [message dataUsingEncoding:NSUTF8StringEncoding];
-        NSData *cipherData = [RNCryptor encryptData:stringData password:password];
+        NSData *cipherData = [RNEncryptor encryptData:stringData withSettings:kRNCryptorAES256Settings password:password error:&error];
         const char *bytes = [cipherData bytes];
         NSMutableString *stringOfBytes = [[NSMutableString alloc] init];
         

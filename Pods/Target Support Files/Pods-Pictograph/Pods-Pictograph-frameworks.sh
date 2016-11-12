@@ -88,7 +88,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/EAIntroView/EAIntroView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/EARestrictedScrollView/EARestrictedScrollView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PromiseKit/PromiseKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/RNCryptor/RNCryptor.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RNCryptor-objc/RNCryptor_objc.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SVProgressHUD/SVProgressHUD.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -96,6 +96,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/EAIntroView/EAIntroView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/EARestrictedScrollView/EARestrictedScrollView.framework"
   install_framework "$BUILT_PRODUCTS_DIR/PromiseKit/PromiseKit.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/RNCryptor/RNCryptor.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RNCryptor-objc/RNCryptor_objc.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SVProgressHUD/SVProgressHUD.framework"
 fi

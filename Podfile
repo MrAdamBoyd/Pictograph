@@ -3,7 +3,7 @@ platform :ios, '9.0'
 use_frameworks!
 target 'Pictograph' do
   pod 'SVProgressHUD'
-  pod 'RNCryptor'
+  pod 'RNCryptor-objc'
   pod 'EAIntroView'
   pod 'Fabric'
   pod 'Crashlytics'

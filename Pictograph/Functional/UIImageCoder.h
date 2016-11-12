@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "EncodingErrors.h"
-@import RNCryptor;
 
 @interface UIImageCoder : NSObject
 
 //Messages
-- (NSString * _Nullable)decodeMessageInImage:(UIImage * _Nonnull)image encryptedWithPassword:(NSString * _Nullable)password error:(NSError * _Nonnull * _Nonnull)error;
-- (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(UIImage * _Nonnull)image encryptedWithPassword:(NSString * _Nullable)password error:(NSError * _Nonnull * _Nonnull)error;
+- (NSString * _Nullable)decodeMessageInImage:(UIImage * _Nonnull)image encryptedWithPassword:(NSString * _Nullable)password error:(NSError * _Nullable * _Nullable)error;
+- (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(UIImage * _Nonnull)image encryptedWithPassword:(NSString * _Nullable)password error:(NSError * _Nullable * _Nullable)error;
 
 @end

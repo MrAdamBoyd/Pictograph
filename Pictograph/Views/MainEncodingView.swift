@@ -35,7 +35,7 @@ class MainEncodingView: UIScrollView {
         
         self.alwaysBounceVertical = true
         
-        let encryptionEnabled = PictographDataController.sharedController.getUserEncryptionEnabled()
+        let encryptionEnabled = PictographDataController.shared.getUserEncryptionEnabled()
         
         self.addSubview(self.elementContainer)
         self.elementContainer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: max(UIScreen.main.bounds.height - 64, 300))
@@ -74,11 +74,11 @@ class MainEncodingView: UIScrollView {
         //Textfield where encryption key is stored
         encryptionKeyField.alpha = encryptionEnabled ? 1.0 : 0.5
         encryptionKeyField.isEnabled = encryptionEnabled
-        encryptionKeyField.isSecureTextEntry = !PictographDataController.sharedController.getUserShowPasswordOnScreen()
+        encryptionKeyField.isSecureTextEntry = !PictographDataController.shared.getUserShowPasswordOnScreen()
         encryptionKeyField.backgroundColor = UIColor.white
         encryptionKeyField.font = UIFont.systemFont(ofSize: mainFontSize)
         encryptionKeyField.placeholder = "Encryption Password"
-        encryptionKeyField.text = PictographDataController.sharedController.getUserEncryptionKey()
+        encryptionKeyField.text = PictographDataController.shared.getUserEncryptionKey()
         encryptionKeyField.autocapitalizationType = .none
         encryptionKeyField.autocorrectionType = .no
         encryptionKeyField.translatesAutoresizingMaskIntoConstraints = false

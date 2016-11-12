@@ -14,7 +14,7 @@ private let currentUserKey = "kCurrentUserKey"
 
 class PictographDataController: NSObject {
     
-    static let sharedController = PictographDataController()
+    static let shared = PictographDataController()
     fileprivate var user = CurrentUser()
     
     //When the singleton is first initialized
