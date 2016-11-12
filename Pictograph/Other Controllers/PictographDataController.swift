@@ -15,16 +15,16 @@ private let currentUserKey = "kCurrentUserKey"
 class PictographDataController: NSObject {
     
     static let sharedController = PictographDataController()
-    private var user = CurrentUser()
+    fileprivate var user = CurrentUser()
     
     //When the singleton is first initialized
-    private override init() {
+    fileprivate override init() {
         super.init()
 
-        if let unarchivedObject = NSUserDefaults.standardUserDefaults().objectForKey(currentUserKey) as? NSData {
+        if let unarchivedObject = UserDefaults.standard.object(forKey: currentUserKey) as? Data {
             //If the saved object exists
             
-            if let savedUser = NSKeyedUnarchiver.unarchiveObjectWithData(unarchivedObject) as? CurrentUser {
+            if let savedUser = NSKeyedUnarchiver.unarchiveObject(with: unarchivedObject) as? CurrentUser {
                 //If the app could successfully unarchive it
                 user = savedUser
             }
@@ -39,15 +39,15 @@ class PictographDataController: NSObject {
     
     //Saving the user and settings to disk
     func saveCurrentUser() {
-        let archivedObject = NSKeyedArchiver.archivedDataWithRootObject(user)
-        NSUserDefaults.standardUserDefaults().setObject(archivedObject, forKey: currentUserKey)
+        let archivedObject = NSKeyedArchiver.archivedData(withRootObject: user)
+        UserDefaults.standard.set(archivedObject, forKey: currentUserKey)
     }
     
     func getUserFirstTimeOpeningApp() -> Bool {
         return user.firstTimeOpeningApp
     }
     
-    func setUserFirstTimeOpeningApp(firstTime: Bool) {
+    func setUserFirstTimeOpeningApp(_ firstTime: Bool) {
         user.firstTimeOpeningApp = firstTime
         saveCurrentUser()
     }
@@ -56,13 +56,13 @@ class PictographDataController: NSObject {
         return user.encryptionEnabled;
     }
     
-    func setUserEncryptionEnabled(enabledOrNot: Bool) {
+    func setUserEncryptionEnabled(_ enabledOrNot: Bool) {
         user.encryptionEnabled = enabledOrNot
         saveCurrentUser()
     }
     
     func getUserEncryptionKey() -> String? {
-        let password = user.encryptionPassword as String
+        let password = user.encryptionPassword
         if password == "" {
             return nil
         }
@@ -72,7 +72,7 @@ class PictographDataController: NSObject {
     
     //Gets the user encryption key as a String
     func getUserEncryptionKeyString() -> String {
-        return user.encryptionPassword as String
+        return user.encryptionPassword
     }
     
     func getUserEncryptionKeyIfEnabled() -> String? {
@@ -83,7 +83,7 @@ class PictographDataController: NSObject {
         return nil
     }
     
-    func setUserEncryptionKey(newKey: String) {
+    func setUserEncryptionKey(_ newKey: String) {
         user.encryptionPassword = newKey
         saveCurrentUser()
     }
@@ -92,7 +92,7 @@ class PictographDataController: NSObject {
         return user.showPasswordOnScreen
     }
     
-    func setUserShowPasswordOnScreen(enabledOrNot: Bool) {
+    func setUserShowPasswordOnScreen(_ enabledOrNot: Bool) {
         user.showPasswordOnScreen = enabledOrNot
         saveCurrentUser()
     }
@@ -101,7 +101,7 @@ class PictographDataController: NSObject {
         return user.nightModeEnabled
     }
     
-    func setUserDarkModeEnabled(enabledOrNot: Bool) {
+    func setUserDarkModeEnabled(_ enabledOrNot: Bool) {
         user.nightModeEnabled = enabledOrNot
         saveCurrentUser()
     }
@@ -110,24 +110,24 @@ class PictographDataController: NSObject {
     //MARK: - analytics methods
     
     //Record a message encrypted event
-    func analyticsEncodeSend(encrypted:Bool) {
+    func analyticsEncodeSend(_ encrypted:Bool) {
         let encryptedOrNot = encrypted ? "Encrypted" : "Unencrypted"
     
-        Answers.logCustomEventWithName("Encode Message", customAttributes: ["Encryption" : encryptedOrNot])
+        Answers.logCustomEvent(withName: "Encode Message", customAttributes: ["Encryption" : encryptedOrNot])
     }
     
     //Record a message decrypted event
-    func analyticsDecodeSend(encrypted: Bool) {
+    func analyticsDecodeSend(_ encrypted: Bool) {
         let encryptedOrNot = encrypted ? "Encrypted" : "Unencrypted"
     
-        Answers.logCustomEventWithName("Decode Message", customAttributes: ["Encryption" : encryptedOrNot])
+        Answers.logCustomEvent(withName: "Decode Message", customAttributes: ["Encryption" : encryptedOrNot])
     }
     
     //MARK: - Other methods
     
     //Opens the website in Safari
     func goToWebsite() {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://adamjboyd.com")!)
+        UIApplication.shared.openURL(URL(string: "http://adamjboyd.com")!)
     }
     
 }

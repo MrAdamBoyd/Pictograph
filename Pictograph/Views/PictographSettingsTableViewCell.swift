@@ -15,7 +15,7 @@ class PictographSettingsTableViewCell: UITableViewCell {
     
     var mainLabel = UILabel()
     var settingsSwitch = UISwitch()
-    private var handler: ((Bool) -> Void)?
+    fileprivate var handler: ((Bool) -> Void)?
     
     //MARK: - UITableViewCell
     
@@ -28,18 +28,18 @@ class PictographSettingsTableViewCell: UITableViewCell {
         self.contentView.addSubview(mainLabel)
         
         //Centered on Y, 16px from left
-        self.contentView.addConstraint(NSLayoutConstraint(item: mainLabel, attribute: .CenterY, relatedBy: .Equal, toItem: self.contentView, attribute: .CenterY, multiplier: 1, constant: 0))
-        self.contentView.addConstraint(NSLayoutConstraint(item: mainLabel, attribute: .Left, relatedBy: .Equal, toItem: self.contentView, attribute: .Left, multiplier: 1, constant: leftRightMargin))
+        self.contentView.addConstraint(NSLayoutConstraint(item: mainLabel, attribute: .centerY, relatedBy: .equal, toItem: self.contentView, attribute: .centerY, multiplier: 1, constant: 0))
+        self.contentView.addConstraint(NSLayoutConstraint(item: mainLabel, attribute: .left, relatedBy: .equal, toItem: self.contentView, attribute: .left, multiplier: 1, constant: leftRightMargin))
         
         
         //Switch on the right of the cell
-        settingsSwitch.addTarget(self, action: #selector(self.switchToggled(_:)), forControlEvents: .ValueChanged)
+        settingsSwitch.addTarget(self, action: #selector(self.switchToggled(_:)), for: .valueChanged)
         settingsSwitch.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(settingsSwitch)
         
         //Centered on y, -16px from right
-        self.contentView.addConstraint(NSLayoutConstraint(item: settingsSwitch, attribute: .CenterY, relatedBy: .Equal, toItem: self.contentView, attribute: .CenterY, multiplier: 1, constant: 0))
-        self.contentView.addConstraint(NSLayoutConstraint(item: settingsSwitch, attribute: .Right, relatedBy: .Equal, toItem: self.contentView, attribute: .Right, multiplier: 1, constant: -leftRightMargin))
+        self.contentView.addConstraint(NSLayoutConstraint(item: settingsSwitch, attribute: .centerY, relatedBy: .equal, toItem: self.contentView, attribute: .centerY, multiplier: 1, constant: 0))
+        self.contentView.addConstraint(NSLayoutConstraint(item: settingsSwitch, attribute: .right, relatedBy: .equal, toItem: self.contentView, attribute: .right, multiplier: 1, constant: -leftRightMargin))
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -47,17 +47,17 @@ class PictographSettingsTableViewCell: UITableViewCell {
     }
     
     //MARK: - Custom methods
-    func setTitle(title: String, switchStartsOn isOn: Bool, withHandler handler:((enabledOrNot: Bool) -> Void)) {
+    func setTitle(_ title: String, switchStartsOn isOn: Bool, withHandler handler: @escaping ((_ enabledOrNot: Bool) -> Void)) {
         mainLabel.text = title
-        settingsSwitch.on = isOn
+        settingsSwitch.isOn = isOn
         
         self.handler = handler
     }
     
     //Function that is called when the switch is changed
-    func switchToggled(sender: AnyObject) {
+    func switchToggled(_ sender: AnyObject) {
         let mySwitch = sender as! UISwitch
-        let enabledOrDisabled = mySwitch.on
+        let enabledOrDisabled = mySwitch.isOn
         
         if let action = handler {
             //If the action exists, trigger it

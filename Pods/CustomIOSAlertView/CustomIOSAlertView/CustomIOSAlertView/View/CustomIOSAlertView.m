@@ -26,6 +26,7 @@ CGFloat buttonSpacerHeight = 0;
 @synthesize delegate;
 @synthesize buttonTitles;
 @synthesize useMotionEffects;
+@synthesize closeOnTouchUpOutside;
 
 - (id)initWithParentView: (UIView *)_parentView
 {
@@ -45,6 +46,7 @@ CGFloat buttonSpacerHeight = 0;
 
         delegate = self;
         useMotionEffects = false;
+        closeOnTouchUpOutside = false;
         buttonTitles = @[@"Close"];
         
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
@@ -262,6 +264,8 @@ CGFloat buttonSpacerHeight = 0;
         [closeButton setTitleColor:[UIColor colorWithRed:0.0f green:0.5f blue:1.0f alpha:1.0f] forState:UIControlStateNormal];
         [closeButton setTitleColor:[UIColor colorWithRed:0.2f green:0.2f blue:0.2f alpha:0.5f] forState:UIControlStateHighlighted];
         [closeButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
+        closeButton.titleLabel.numberOfLines = 0;
+        closeButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         [closeButton.layer setCornerRadius:kCustomIOSAlertViewCornerRadius];
 
         [container addSubview:closeButton];
@@ -416,7 +420,7 @@ CGFloat buttonSpacerHeight = 0;
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
     UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
-    if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
+    if (UIInterfaceOrientationIsLandscape(interfaceOrientation) && NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1) {
         CGFloat tmp = keyboardSize.height;
         keyboardSize.height = keyboardSize.width;
         keyboardSize.width = tmp;
@@ -441,6 +445,17 @@ CGFloat buttonSpacerHeight = 0;
 					 }
 					 completion:nil
 	 ];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (!closeOnTouchUpOutside) {
+        return;
+    }
+    
+    UITouch *touch = [touches anyObject];
+    if ([touch.view isKindOfClass:[CustomIOSAlertView class]]) {
+        [self close];
+    }
 }
 
 @end

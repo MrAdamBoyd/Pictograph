@@ -313,7 +313,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6658833F1BBCC72A00CA21A9 /* Build configuration list for PBXNativeTarget "Pictograph" */;
 			buildPhases = (
-				B336C5BBC33EB262EFA4DCE4 /* [CP] Check Pods Manifest.lock */,
+				2376EE238E378B218BC29C24 /* [CP] Check Pods Manifest.lock */,
 				6658830E1BBCC72A00CA21A9 /* Sources */,
 				6658830F1BBCC72A00CA21A9 /* Frameworks */,
 				665883101BBCC72A00CA21A9 /* Resources */,
@@ -334,6 +334,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 665883421BBCC72A00CA21A9 /* Build configuration list for PBXNativeTarget "PictographTests" */;
 			buildPhases = (
+				26D9FEA8EA475E141847AEEB /* [CP] Check Pods Manifest.lock */,
 				665883271BBCC72A00CA21A9 /* Sources */,
 				665883281BBCC72A00CA21A9 /* Frameworks */,
 				665883291BBCC72A00CA21A9 /* Resources */,
@@ -354,6 +355,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 665883451BBCC72A00CA21A9 /* Build configuration list for PBXNativeTarget "PictographUITests" */;
 			buildPhases = (
+				D754B396F1E3A2D10F7138D2 /* [CP] Check Pods Manifest.lock */,
 				665883321BBCC72A00CA21A9 /* Sources */,
 				665883331BBCC72A00CA21A9 /* Frameworks */,
 				665883341BBCC72A00CA21A9 /* Resources */,
@@ -376,17 +378,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Adam Boyd";
 				TargetAttributes = {
 					665883111BBCC72A00CA21A9 = {
 						CreatedOnToolsVersion = 7.0.1;
 						DevelopmentTeam = 6GHQ7P7EHA;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 					};
 					6658832A1BBCC72A00CA21A9 = {
 						CreatedOnToolsVersion = 7.0.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						TestTargetID = 665883111BBCC72A00CA21A9;
 					};
 					665883351BBCC72A00CA21A9 = {
@@ -458,6 +460,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pictograph/Pods-Pictograph-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2376EE238E378B218BC29C24 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		26D9FEA8EA475E141847AEEB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		6611EBB61BD9769100E5D12A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -514,6 +546,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pictograph/Pods-Pictograph-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D754B396F1E3A2D10F7138D2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		DDB1099E67B15251B2DD1918 /* [CP] Embed Pods Frameworks */ = {
@@ -704,7 +751,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pictograph/Pictograph-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -723,7 +770,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.adam.Pictograph;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Pictograph/Pictograph-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -740,7 +787,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PictographTests/PictographTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pictograph.app/Pictograph";
 			};
 			name = Debug;
@@ -756,7 +803,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Boyd.PictographTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PictographTests/PictographTests-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pictograph.app/Pictograph";
 			};
 			name = Release;

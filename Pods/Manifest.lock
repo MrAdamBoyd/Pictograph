@@ -1,54 +1,44 @@
 PODS:
-  - Crashlytics (3.3.4)
-  - CustomIOSAlertView (0.9.3)
-  - EAIntroView (2.7.4):
-    - EARestrictedScrollView (~> 0.2.0)
-  - EARestrictedScrollView (0.2.0)
-  - Fabric (1.5.5):
-    - Fabric/Base (= 1.5.5)
-  - Fabric/Base (1.5.5)
-  - OMGHTTPURLRQ (3.1.2):
-    - OMGHTTPURLRQ/RQ (= 3.1.2)
-  - OMGHTTPURLRQ/FormURLEncode (3.1.2)
-  - OMGHTTPURLRQ/RQ (3.1.2):
-    - OMGHTTPURLRQ/FormURLEncode
-    - OMGHTTPURLRQ/UserAgent
-  - OMGHTTPURLRQ/UserAgent (3.1.2)
-  - PromiseKit (3.2.0):
-    - PromiseKit/Foundation (= 3.2.0)
-    - PromiseKit/QuartzCore (= 3.2.0)
-    - PromiseKit/UIKit (= 3.2.0)
-  - PromiseKit/CorePromise (3.2.0)
-  - PromiseKit/Foundation (3.2.0):
-    - OMGHTTPURLRQ (~> 3.1.0)
+  - Crashlytics (3.8.3):
+    - Fabric (~> 1.6.3)
+  - CustomIOSAlertView (0.9.5)
+  - EAIntroView (2.10.0):
+    - EARestrictedScrollView (~> 1.1.0)
+  - EARestrictedScrollView (1.1.0)
+  - Fabric (1.6.11)
+  - PromiseKit (4.0.4):
+    - PromiseKit/Foundation (= 4.0.4)
+    - PromiseKit/QuartzCore (= 4.0.4)
+    - PromiseKit/UIKit (= 4.0.4)
+  - PromiseKit/CorePromise (4.0.4)
+  - PromiseKit/Foundation (4.0.4):
     - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (3.2.0):
+  - PromiseKit/QuartzCore (4.0.4):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (3.2.0):
+  - PromiseKit/UIKit (4.0.4):
     - PromiseKit/CorePromise
-  - RNCryptor (4.0.0)
-  - SVProgressHUD (1.1.3)
+  - RNCryptor (5.0.1)
+  - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
   - Crashlytics
-  - CustomIOSAlertView (~> 0.9.3)
-  - EAIntroView (~> 2.7.0)
+  - CustomIOSAlertView
+  - EAIntroView
   - Fabric
   - PromiseKit
   - RNCryptor
   - SVProgressHUD
 
 SPEC CHECKSUMS:
-  Crashlytics: 41c082440d2e14da444186fff65e79c0b4b35d4c
-  CustomIOSAlertView: 94d2401e34fcfb0ac0134679d6947f5e251b0446
-  EAIntroView: 50b85eedf414260e61330070ffe5947e72493a62
-  EARestrictedScrollView: f86d61e16c61d3e93c84f8e96e83122a2a3b7631
-  Fabric: 190bf1a6eb65f7500de1347d027d2e59a7e53db1
-  OMGHTTPURLRQ: 38316b56d88125c600bcdb16df8329147da2b0ee
-  PromiseKit: 1db024241265f428137a9f3c00ff9590740c4be6
-  RNCryptor: 59d6483908115af5c12b884db23392024e52a5fe
-  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  CustomIOSAlertView: cc4fa8e36219be3fd5ebcd40789f5b4aaae0f38e
+  EAIntroView: 3494b7bbd1212e3a4f7e8d16194a1b00e7b9abb2
+  EARestrictedScrollView: b0c2a3f92fb2610bb44d71c5e4893777c89e45ef
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  PromiseKit: 8e8ee39d33ff199d92a1a883b5396f6285be6c91
+  RNCryptor: 2e352a488779d1a9184ab629be22a7c5bc84acb5
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 3b405c584ed2f4900a6bd1b64742a08499d0df5f
+PODFILE CHECKSUM: b4d7e5ea14bb55707edf78737b12128c2bb274d6
 
 COCOAPODS: 1.0.1

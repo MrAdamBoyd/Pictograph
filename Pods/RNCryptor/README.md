@@ -1,7 +1,9 @@
 # RNCryptor
 
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=57ea731dbd45750100873fb1&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/57ea731dbd45750100873fb1/build/latest)
+
 Cross-language AES Encryptor/Decryptor [data format](https://github.com/RNCryptor/RNCryptor-Spec/blob/master/RNCryptor-Spec-v3.md).
- 
+
 The primary targets are Swift and Objective-C, but implementations are available in [C](https://github.com/RNCryptor/RNCryptor-C), [C++](https://github.com/RNCryptor/RNCryptor-cpp), [C#](https://github.com/RNCryptor/RNCryptor-cs), [Erlang](https://github.com/RNCryptor/RNCryptor-erlang), [Go](https://github.com/RNCryptor/RNCryptor-go), [Haskell](https://github.com/RNCryptor/rncryptor-hs), [Java](https://github.com/RNCryptor/JNCryptor),
 [PHP](https://github.com/RNCryptor/RNCryptor-php), [Python](https://github.com/RNCryptor/RNCryptor-python),
 [Javascript](https://github.com/chesstrian/JSCryptor), and [Ruby](https://github.com/RNCryptor/ruby_rncryptor).
@@ -28,7 +30,7 @@ The data format includes all the metadata required to securely implement AES enc
 
 ## Format Versus Implementation
 
-The RNCryptor data format is cross-platform and there are many implementations. The framework named "RNCryptor" is a specific implementation for Swift and Objective-C. Both have version numbers. The current data format is v3. The current framework implementation (which reads the v3 format) is v4. 
+The RNCryptor data format is cross-platform and there are many implementations. The framework named "RNCryptor" is a specific implementation for Swift and Objective-C. Both have version numbers. The current data format is v3. The current framework implementation (which reads the v3 format) is v4.
 
 ## Basic Password Usage
 
@@ -61,7 +63,7 @@ NSData *ciphertext = [RNCryptor encryptData:data password:password];
 NSError *error = nil;
 NSData *plaintext = [RNCryptor decryptData:ciphertext password:password error:&error];
 if (error != nil) {
-    NSLog(@"ERROR:", error);
+    NSLog(@"ERROR:%@", error);
     return
 }
 // ...
@@ -129,7 +131,7 @@ NSMutableData *plaintext = [NSMutableData new];
 // ... Each time data comes in, update the decryptor and accumulate some plaintext ...
 NSError *error = nil;
 NSData *partialPlaintext = [decryptor updateWithData:data error:&error];
-if (error != nil) { 
+if (error != nil) {
     NSLog(@"FAILED DECRYPT: %@", error);
     return;
 }
@@ -138,14 +140,17 @@ if (error != nil) {
 // ... When data is done, finish up ...
 NSError *error = nil;
 NSData *partialPlaintext = [decryptor finalDataAndReturnError:&error];
-if (error != nil) { 
+if (error != nil) {
     NSLog(@"FAILED DECRYPT: %@", error);
     return;
 }
 
 [ciphertext appendData:partialPlaintext];
-
 ```
+
+### Importing into Swift
+
+Most RNCryptor symbols are nested inside an `RNCryptor` namespace.
 
 ## Installation
 
@@ -165,17 +170,23 @@ The easiest way to use RNCryptor is by making it part of your project, without a
 
 This process works for most targets: iOS and OS X GUI apps, Swift frameworks, and OS X commandline apps. **It is not safe for ObjC frameworks or frameworks that may be imported into ObjC, since it would cause duplicate symbols if some other framework includes RNCryptor.**
 
-* Drag and link `RNCryptor/RNCryptor.swift` into your project
-* If you already have a bridging header file, add `#import "RNCryptor/RNCryptor.h"` 
-* If you don't have a bridging header, in your target's Build Settings, set "Objective-C Bridging Header" to "RNCryptor/RNCryptor.h"
+* Drag and link `RNCryptor/RNCryptor.swift` and `RNCryptor.h` into your project
+* If you already have a bridging header file, add `#import "RNCryptor.h"` (or the path to which you copied `RNCryptor.h`).
+* If you don't have a bridging header:
+  * Swift project: In your target's Build Settings, set "Objective-C Bridging Header" to your path for `RNCryptor.h`. (Or create a bridiging header and follow instructions above.)
+  * ObjC project: Xcode will ask if you want to create a bridging header. Allow it to, and add `#import "RNCryptor.h"` to the header (or the path to which you copied `RNCryptor.h`)
+* To access RNCryptor from Swift, you don't need to import anything. It's just part of your module.
+* To access RNCryptor from ObjC, import your Swift header (*modulename*-Swift.h). For example: `#import "MyApp-Swift.h"`.
 
 Built this way, you don't need to (and can't) `import RNCryptor` into your code. RNCryptor will be part of your module.
 
 ### [Carthage](https://github.com/Carthage/Carthage)
 
-    github "RNCryptor/RNCryptor" "RNCryptor-4.0.0-beta.1"
+    github "RNCryptor/RNCryptor" "RNCryptor-4.0.0"
 
-Don't forget to embed `RNCryptor.framework`. Built this way, you should add `import RNCryptor` to your code.
+This approach will not work for OS X commandline apps. Don't forget to embed `RNCryptor.framework`. 
+
+Built this way, you should add `@import RNCryptor;` to your ObjC or `import RNCryptor` to your Swift code.
 
 This approach will not work for OS X commandline apps.
 
@@ -184,6 +195,8 @@ This approach will not work for OS X commandline apps.
     pod 'RNCryptor', '~> 4.0.0-beta'
 
 This approach will not work for OS X commandline apps.
+
+Built this way, you should add `@import RNCryptor;` to your ObjC or `import RNCryptor` to your Swift code.
 
 ## Advanced Usage
 
@@ -207,7 +220,7 @@ Occasionally there are reasons to work directly with random keys. Converting a p
 
 RNCryptor supports direct key-based encryption and decryption. The size and number of keys may change between format versions, so key-based cryptors are [version-specific](#version-specific-cryptors).
 
-In order to be secure, the keys must be a random sequence of bytes. If you're starting with a string of any kind, you are almost certainly doing this wrong.
+In order to be secure, the keys must be a random sequence of bytes. See [Converting a Password to a Key](#converting-a-password-to-a-key) for how to create random sequences of bytes if you only have a password.
 
 ```swift
 let encryptor = RNCryptor.EncryptorV3(encryptionKey: encryptKey, hmacKey: hmacKey)
@@ -215,8 +228,8 @@ let decryptor = RNCryptor.DecryptorV3(encryptionKey: encryptKey, hmacKey: hmacKe
 ```
 
 ```objc
-RNEncryptor *encryptor = [[[RNEncryptorV3 alloc] initWithEncryptionKey:encryptionKey hmacKey:hmacKey];
-RNDecryptor *decryptor = [[[RNDecryptorV3 alloc] initWithEncryptionKey:encryptionKey hmacKey:hmacKey];
+RNEncryptor *encryptor = [[RNEncryptorV3 alloc] initWithEncryptionKey:encryptionKey hmacKey:hmacKey];
+RNDecryptor *decryptor = [[RNDecryptorV3 alloc] initWithEncryptionKey:encryptionKey hmacKey:hmacKey];
 ```
 
 ## FAQ
@@ -230,6 +243,14 @@ The v3 data format has no way to detect incorrect passwords directly. It just de
 This can be inconvenient for the user if they have entered the wrong password to decrypt a very large file. If you have this situation, the recommendation is to encrypt some small, known piece of data with the same password. Test the password on the small ciphertext before decrypting the larger one.
 
 The [v4 data format](https://github.com/RNCryptor/RNCryptor-Spec/blob/master/draft-RNCryptor-Spec-v4.0.md) will provide a faster and more useful mechanism for validating the password or key.
+
+### What is an "HMAC Error?" (Error code 1)
+
+See previous question. Either your data is corrupted or you have the wrong password.
+
+The most common cause of this error (if your password is correct) is that you have misunderstood how [Base64 encoding](https://en.wikipedia.org/wiki/Base64) works while transferring data to or from the server. If you have a string like "YXR0YWNrIGF0IGRhd24=", this is not "data." This is a string. It is probably Base64 encoded, which is a mechanism for converting data into strings. Some languages (JavaScript, PHP) have a habit of implicitly converting between data into Base64 strings, which is confusing and error-prone (and the source of many of these issues). Simple rule: if you can print it out without your terminal going crazy, it's not encrypted data.
+
+If you convert a Base64-encoded string to data using `dataUsingEncoding()`, you will get gibberish as far as RNCryptor is concerned. You need to use `init?(base64EncodedData:options:)`. Depending on the options on the iOS side or the server side, spaces and newlines may matter. You need to verify that precisely the bytes that came out of the encryptor are the bytes that go into the decryptor.
 
 ### Can I use RNCryptor to read and write my non-RNCryptor data format?
 
@@ -260,6 +281,8 @@ The usual use case for this is encrypting media files like video. RNCryptor uses
 It would be fairly easy to build a wrapper around RNCryptor that allowed random-access to blocks of some fixed size (say 64k), and that might work well for video with modest overhead (see [inferno](http://securitydriven.net/inferno/) for a similar idea in C#). Such a format would be fairly easy to port to other platforms that already support RNCryptor.
 
 If there is interest, I may eventually build this as a separate framework.
+
+See also [Issue #161](https://github.com/RNCryptor/RNCryptor/issues/161) for a much longer discussion of this topic.
 
 ## Design Considerations
 
@@ -295,8 +318,7 @@ decision.
 
 * Encrypt-then-MAC. If there were a good authenticated AES mode on iOS (GCM for
 instance), I would probably use that for its simplicity. Colin Percival makes
-[good arguments for hand-coding an encrypt-than-
-MAC](http://www.daemonology.net/blog/2009-06-24-encrypt-then-mac.html) rather
+[good arguments for hand-coding an encrypt-then-MAC](http://www.daemonology.net/blog/2009-06-24-encrypt-then-mac.html) rather
 than using an authenticated AES mode, but in RNCryptor mananging the HMAC
 actually adds quite a bit of complexity. I'd rather the complexity at a more
 broadly peer-reviewed layer like CommonCryptor than at the RNCryptor layer. But

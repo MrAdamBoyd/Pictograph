@@ -13,7 +13,7 @@ private let cellIdentifier = "PictographSettingsTableViewCellIdentifier"
 
 class SettingsViewController: PictographViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var tableView = UITableView(frame: CGRectZero, style: .Grouped)
+    var tableView = UITableView(frame: CGRect.zero, style: .grouped)
     
     //MARK: - UIViewController
     
@@ -24,7 +24,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
         self.navigationItem.title = "Settings"
         
         //Adding the done button to the navigation bar
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .Done, target: self, action: #selector(self.closeSettings))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.closeSettings))
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -32,14 +32,14 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
         self.view.addSubview(tableView)
         
         //0px from topBar, 0px from left, right, bottom
-        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Right, relatedBy: .Equal, toItem: self.view, attribute: .Right, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .left, relatedBy: .equal, toItem: self.view, attribute: .left, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .right, relatedBy: .equal, toItem: self.view, attribute: .right, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0))
     }
     
     //MARK: - UITableViewDataSource
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = PictographSettingsTableViewCell()
         
         if indexPath.row == 0 {
@@ -47,7 +47,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
                 
                 //Changing the setting for showing the password on screen
                 PictographDataController.sharedController.setUserShowPasswordOnScreen(enabledOrNot)
-                NSNotificationCenter.defaultCenter().postNotificationName(pictographShowPasswordOnScreenSettingChangedNotification, object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: pictographShowPasswordOnScreenSettingChangedNotification), object: nil)
                 print("Show password on screen: \(PictographDataController.sharedController.getUserShowPasswordOnScreen())")
             })
         } else {
@@ -55,43 +55,43 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
                 
                 //Changing the setting for showing the password on screen
                 PictographDataController.sharedController.setUserDarkModeEnabled(enabledOrNot)
-                NSNotificationCenter.defaultCenter().postNotificationName(pictographNightModeSettingChangedNotification, object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: pictographNightModeSettingChangedNotification), object: nil)
                 print("Night Mode Enabled: \(PictographDataController.sharedController.getUserNightModeEnabled())")
                 
-                UIView.animateWithDuration(0.5) {
+                UIView.animate(withDuration: 0.5, animations: {
                     //Animate the color in
                     self.view.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
                     self.navigationController?.navigationBar.barTintColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
-                }
+                }) 
             })
         }
         
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //Only 2 cells for now
         return 2
     }
     
     //Immediately deselect cell when selected
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return SettingsFooterView.heightForFooter()
     }
     
     //MARK: - UITableViewDelegate
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return SettingsFooterView()
     }
     
     func closeSettings() {
         //Dismiss settings (this view controller)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

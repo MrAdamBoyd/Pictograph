@@ -26,8 +26,8 @@ typedef void (^VoidBlock)();
 
 /**
 * The title view that is presented above the title label.
-* The view can be a normal UIImageView or any other kind uf
-* UIView. This allows to attach animated views as well.
+* The view can be a normal UIImageView or any other kind of
+* UIView. This allows you to attach animated views as well.
 */
 @property (nonatomic, strong) UIView * titleIconView;
 
@@ -36,12 +36,14 @@ typedef void (^VoidBlock)();
 @property (nonatomic, strong) UIFont *titleFont;
 @property (nonatomic, strong) UIColor *titleColor;
 @property (nonatomic, assign) CGFloat titlePositionY;
+@property (nonatomic, assign) NSTextAlignment titleAlignment;
 
 @property (nonatomic, strong) NSString *desc;
 @property (nonatomic, strong) UIFont *descFont;
 @property (nonatomic, strong) UIColor *descColor;
-@property (nonatomic, assign) CGFloat descWidth;
 @property (nonatomic, assign) CGFloat descPositionY;
+@property (nonatomic, assign) CGFloat descSideMargin;
+@property (nonatomic, assign) NSTextAlignment descAlignment;
 
 @property (nonatomic, strong) NSArray *subviews;
 
@@ -60,5 +62,6 @@ typedef void (^VoidBlock)();
 + (instancetype)page;
 + (instancetype)pageWithCustomView:(UIView *)customV;
 + (instancetype)pageWithCustomViewFromNibNamed:(NSString *)nibName;
++ (instancetype)pageWithCustomViewFromNibNamed:(NSString *)nibName bundle:(NSBundle*)aBundle;
 
 @end

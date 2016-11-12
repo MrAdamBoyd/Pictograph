@@ -12,12 +12,12 @@ import UIKit
 @objc
 class PictographHighlightButton: UIButton {
     
-    var highlightColor = UIColor.whiteColor()
+    var highlightColor = UIColor.white
     
-    override var highlighted: Bool {
+    override var isHighlighted: Bool {
         didSet {
-            if (highlighted) {
-                self.backgroundColor = self.backgroundColor?.colorWithAlphaComponent(0.8)
+            if (isHighlighted) {
+                self.backgroundColor = self.backgroundColor?.withAlphaComponent(0.8)
             }
             else {
                 self.backgroundColor = self.highlightColor
@@ -25,9 +25,9 @@ class PictographHighlightButton: UIButton {
         }
     }
     
-    override var enabled: Bool {
+    override var isEnabled: Bool {
         didSet {
-            if enabled {
+            if isEnabled {
                 //If enabled, set all alphas to 1.0
                 self.alpha = 1.0
             

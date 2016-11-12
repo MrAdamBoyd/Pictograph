@@ -33,23 +33,23 @@ extension AppDelegate {
     func bluredSnapshot () -> UIView? {
         //take window snapshot
         //and add blurView to it
-        let snapshot = self.window?.snapshotViewAfterScreenUpdates(true)
+        let snapshot = self.window?.snapshotView(afterScreenUpdates: true)
         snapshot?.addSubview(blurView((snapshot?.frame)!))
         snapshot?.tag = blurViewtag
         return snapshot
     }
     
-    func blurView(frame: CGRect)->UIView {
+    func blurView(_ frame: CGRect) -> UIView {
         //iOS 8 and later
-        switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
-        case .OrderedSame, .OrderedDescending:
-            let view    = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
+        switch UIDevice.current.systemVersion.compare("8.0.0", options: NSString.CompareOptions.numeric) {
+        case .orderedSame, .orderedDescending:
+            let view    = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
             view.frame  = frame
             return view
             //Other
-        case .OrderedAscending:
+        case .orderedAscending:
             let toolbar      = UIToolbar(frame: frame)
-            toolbar.barStyle = UIBarStyle.BlackTranslucent;
+            toolbar.barStyle = UIBarStyle.blackTranslucent;
             return toolbar
         }
     }

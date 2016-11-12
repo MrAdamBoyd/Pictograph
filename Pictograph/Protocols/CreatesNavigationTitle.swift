@@ -11,14 +11,14 @@ import Foundation
 private let titleFontSize:CGFloat = 24
 
 protocol CreatesNavigationTitle {
-    func createNavigationTitle(text: String) -> UIView
+    func createNavigationTitle(_ text: String) -> UIView
 }
 
 extension CreatesNavigationTitle {
-    func createNavigationTitle(text: String) -> UIView {
+    func createNavigationTitle(_ text: String) -> UIView {
         let titleLabel = UILabel()
-        titleLabel.font = UIFont.boldSystemFontOfSize(titleFontSize)
-        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.font = UIFont.boldSystemFont(ofSize: titleFontSize)
+        titleLabel.textColor = UIColor.white
         titleLabel.text = text
         titleLabel.sizeToFit()
         

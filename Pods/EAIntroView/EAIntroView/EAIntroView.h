@@ -9,6 +9,11 @@
 
 #define EA_EMPTY_PROPERTY 9999.f
 
+#define SKIP_BTN_DEFAULT_WIDTH 100.f
+#define SKIP_BTN_DEFAULT_HEIGHT 40.f
+#define PAGE_CTRL_DEFAULT_HEIGHT 36.f
+
+
 enum EAIntroViewTags {
     kTitleLabelTag = 1,
     kDescLabelTag,
@@ -25,10 +30,16 @@ typedef NS_ENUM(NSUInteger, EAViewAlignment) {
 
 @protocol EAIntroDelegate<NSObject>
 @optional
-- (void)introDidFinish:(EAIntroView *)introView;
+- (void)introWillFinish:(EAIntroView *)introView wasSkipped:(BOOL)wasSkipped;
+- (void)introDidFinish:(EAIntroView *)introView wasSkipped:(BOOL)wasSkipped;
 - (void)intro:(EAIntroView *)introView pageAppeared:(EAIntroPage *)page withIndex:(NSUInteger)pageIndex;
 - (void)intro:(EAIntroView *)introView pageStartScrolling:(EAIntroPage *)page withIndex:(NSUInteger)pageIndex;
 - (void)intro:(EAIntroView *)introView pageEndScrolling:(EAIntroPage *)page withIndex:(NSUInteger)pageIndex;
+
+// Called for every incremental scroll event.
+// Parameter offset is some fraction of the currentPageIndex, between currentPageIndex-1 and currentPageIndex+1
+// For example, scrolling left and right from page 2 will values in the range [1..3], exclusive
+- (void)intro:(EAIntroView *)introView didScrollWithOffset:(CGFloat)offset;
 @end
 
 @interface EAIntroView : UIView <UIScrollViewDelegate>
@@ -63,6 +74,8 @@ typedef NS_ENUM(NSUInteger, EAViewAlignment) {
 @property (nonatomic, assign) EAViewAlignment skipButtonAlignment;
 @property (nonatomic, assign) BOOL showSkipButtonOnlyOnLastPage;
 
+@property (nonatomic, assign) NSInteger limitPageIndex;
+
 @property (nonatomic, strong) EARestrictedScrollView *scrollView;
 @property (nonatomic, assign) BOOL scrollingEnabled;
 @property (nonatomic, strong) NSArray *pages;
@@ -81,6 +94,7 @@ typedef NS_ENUM(NSUInteger, EAViewAlignment) {
 - (void)setCurrentPageIndex:(NSUInteger)currentPageIndex;
 - (void)setCurrentPageIndex:(NSUInteger)currentPageIndex animated:(BOOL)animated;
 
-- (void)limitScrollingToPage:(NSUInteger)lastPageIndex;
+
+- (void)scrollToPageForIndex:(NSUInteger)newPageIndex animated:(BOOL)animated;
 
 @end

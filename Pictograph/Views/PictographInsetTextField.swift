@@ -26,12 +26,12 @@ class PictographInsetTextField: UITextField {
     }
     
     //Placeholder position
-    override func textRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, inset , inset)
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.insetBy(dx: inset , dy: inset)
     }
     
     //Text position
-    override func editingRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, inset , inset)
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.insetBy(dx: inset , dy: inset)
     }
 }

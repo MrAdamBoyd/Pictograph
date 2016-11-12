@@ -15,7 +15,7 @@ import CustomIOSAlertView
 
 //What we are currently doing
 enum PictographAction: Int {
-    case EncodingMessage = 0, DecodingMessage
+    case encodingMessage = 0, decodingMessage
 }
 
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate, CreatesNavigationTitle {
@@ -32,23 +32,23 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.navigationItem.title = "Pictograph"
         self.navigationItem.titleView = self.createNavigationTitle("Pictograph")
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .Plain, target: self, action: #selector(self.openSettings))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.openSettings))
         
         //Adding all the UI elements to the screen
         self.mainEncodeView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(mainEncodeView)
         
         //0px from bottom of topBar, 0px from left, right, bottom
-        self.mainEncodeView.topAnchor.constraintEqualToAnchor(self.view.topAnchor).active = true
-        self.mainEncodeView.leftAnchor.constraintEqualToAnchor(self.view.leftAnchor).active = true
-        self.mainEncodeView.rightAnchor.constraintEqualToAnchor(self.view.rightAnchor).active = true
-        self.mainEncodeView.bottomAnchor.constraintEqualToAnchor(self.view.bottomAnchor).active = true
+        self.mainEncodeView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.mainEncodeView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.mainEncodeView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.mainEncodeView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         //Setting up the actions for the elements
-        self.mainEncodeView.encodeButton.addTarget(self, action: #selector(self.startEncodeProcess), forControlEvents: .TouchUpInside)
-        self.mainEncodeView.decodeButton.addTarget(self, action: #selector(self.startDecodeProcess), forControlEvents: .TouchUpInside)
+        self.mainEncodeView.encodeButton.addTarget(self, action: #selector(self.startEncodeProcess), for: .touchUpInside)
+        self.mainEncodeView.decodeButton.addTarget(self, action: #selector(self.startDecodeProcess), for: .touchUpInside)
         self.mainEncodeView.encryptionKeyField.delegate = self
-        self.mainEncodeView.encryptionSwitch.addTarget(self, action: #selector(self.switchToggled(_:)), forControlEvents: .ValueChanged)
+        self.mainEncodeView.encryptionSwitch.addTarget(self, action: #selector(self.switchToggled(_:)), for: .valueChanged)
         
         
         if (setUpAndShowIntroViews()) {
@@ -58,26 +58,26 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
         
         //Setting up the notifications for the settings
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.showPasswordOnScreenChanged), name: pictographShowPasswordOnScreenSettingChangedNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.changeNightModeAnimated), name: pictographNightModeSettingChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.showPasswordOnScreenChanged), name: NSNotification.Name(rawValue: pictographShowPasswordOnScreenSettingChangedNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.changeNightModeAnimated), name: NSNotification.Name(rawValue: pictographNightModeSettingChangedNotification), object: nil)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.changeNightMode()
-        self.mainEncodeView.contentSize.width = UIScreen.mainScreen().bounds.width
+        self.mainEncodeView.contentSize.width = UIScreen.main.bounds.width
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
         
         //Adjusting the content size of the scroll view when the device rotates
-        self.mainEncodeView.elementContainer.frame = CGRectMake(0, 0, size.width, max(size.height-44, 320))
-        self.mainEncodeView.contentSize = CGSizeMake(size.width, max(size.height-64, 320))
+        self.mainEncodeView.elementContainer.frame = CGRect(x: 0, y: 0, width: size.width, height: max(size.height-44, 320))
+        self.mainEncodeView.contentSize = CGSize(width: size.width, height: max(size.height-64, 320))
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
         
         //Saving the text
@@ -89,23 +89,23 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         let settings = SettingsViewController.createWithNavigationController()
         self.settingsNavVC = settings
         
-        if  UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad {
+        if  UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
             //On an iPad, show the popover from the button
-            settings.modalPresentationStyle = .Popover
+            settings.modalPresentationStyle = .popover
             settings.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
             settings.popoverPresentationController?.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
         }
         
-        self.presentViewController(settings, animated: true, completion: nil)
+        self.present(settings, animated: true, completion: nil)
     }
     
     //For NSNotificationCenter
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     //MARK: - UITextFieldDelegate
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
         //Saving the text
@@ -115,11 +115,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     
     //MARK: - EAIntroDelegate
-    func introDidFinish(introView: EAIntroView!) {
+    func introDidFinish(_ introView: EAIntroView!) {
         PictographDataController.sharedController.setUserFirstTimeOpeningApp(false)
         
         //Animating the views in
-        UIView.animateWithDuration(1.0, animations: { () -> Void in
+        UIView.animate(withDuration: 1.0, animations: { () -> Void in
             self.mainEncodeView.alpha = 1
         })
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -133,11 +133,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         if introViewArray.count > 0 {
             //If there are intro views to show
-            let frameRect = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height + 10) //Status bar
+            let frameRect = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: self.view.frame.size.height + 10) //Status bar
             let introView = EAIntroView(frame: frameRect)
             introView.pages = introViewArray
             introView.delegate = self
-            introView.showInView(self.view, animateDuration: 0)
+            introView.show(in: self.view, animateDuration: 0)
             
             //Intro view was shown, return true
             return true
@@ -148,15 +148,15 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         return false
     }
     
-    func switchToggled(sender: AnyObject) {
+    func switchToggled(_ sender: AnyObject) {
         let mySwitch = sender as! UISwitch
-        let enabledOrDisabled = mySwitch.on
+        let enabledOrDisabled = mySwitch.isOn
         
         //Disabling or enabling the textfield based on whether encryption is enabled
-        mainEncodeView.encryptionKeyField.enabled = enabledOrDisabled
+        mainEncodeView.encryptionKeyField.isEnabled = enabledOrDisabled
         
         //Animiating the alpha of the textfield
-        UIView.animateWithDuration(0.25, animations: {() -> Void in
+        UIView.animate(withDuration: 0.25, animations: {() -> Void in
             self.mainEncodeView.encryptionKeyField.alpha = enabledOrDisabled ? 1.0 : 0.5
         })
         
@@ -179,10 +179,10 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 //Saving the image first
                 userImage = image
                 
-            }.then { image in
+            }.then { [unowned self] image in
                 
                 //Getting the message from the user
-                return self.promiseViewController(getMessageController)
+                return self.promise(getMessageController)
             
             }.then { alert in
                     
@@ -202,7 +202,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         if ((PictographDataController.sharedController.getUserEncryptionKeyString() != "" && PictographDataController.sharedController.getUserEncryptionEnabled()) || !PictographDataController.sharedController.getUserEncryptionEnabled()) {
             
             //If the user has encryption enabled and the password isn't blank or encryption is not enabled
-            getPhotoForEncodingOrDecoding(false).then { image in
+            _ = getPhotoForEncodingOrDecoding(false).then { image in
                 //Start encoding or decoding when the image has been picked
                 self.decodeMessageInImage(image)
             }
@@ -213,47 +213,47 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Showing the action sheet
-    func getPhotoForEncodingOrDecoding(showCamera: Bool, showMessageInHUD message: String? = nil) -> Promise<UIImage> {
+    func getPhotoForEncodingOrDecoding(_ showCamera: Bool, showMessageInHUD message: String? = nil) -> Promise<UIImage> {
         
         if message != nil && message != nil {
-            SVProgressHUD.showInfoWithStatus(message!)
+            SVProgressHUD.showInfo(withStatus: message!)
         }
         
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) && showCamera {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) && showCamera {
             //Device has camera & library, show option to choose
            
             //If the device is an iPad, popup in the middle of screen
-            let alertStyle:UIAlertControllerStyle = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad) ? .Alert : .ActionSheet
+            let alertStyle:UIAlertControllerStyle = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) ? .alert : .actionSheet
             
             //Building the picker to choose the type of input
             let imagePopup = PMKAlertController(title: "Select Picture", message: nil, preferredStyle: alertStyle)
-            imagePopup.addActionWithTitle("Select from Library")
-            let takePhotoPickerAction = imagePopup.addActionWithTitle("Take Photo") //Saving the take photo action so we can show the proper picker later
-            imagePopup.addActionWithTitle("Cancel", style: .Cancel)
+            _ = imagePopup.addActionWithTitle(title: "Select from Library")
+            let takePhotoPickerAction = imagePopup.addActionWithTitle(title: "Take Photo") //Saving the take photo action so we can show the proper picker later
+            _ = imagePopup.addActionWithTitle(title: "Cancel", style: .cancel)
 
-            return promiseViewController(imagePopup).then { action in
-                var pickerType = UIImagePickerControllerSourceType.PhotoLibrary
+            return promise(imagePopup).then { [unowned self] action in
+                var pickerType = UIImagePickerControllerSourceType.photoLibrary
 
                 if action == takePhotoPickerAction {
                     //If the user chose to use the camera
-                    pickerType = .Camera
+                    pickerType = .camera
                 }
 
                 let picker = self.buildImagePickerWithSourceType(pickerType)
 
-                return self.promiseViewController(picker)
+                return self.promise(picker)
             }
         
         } else {
             //Device has no camera, just show library
-            let picker = buildImagePickerWithSourceType(.PhotoLibrary)
+            let picker = buildImagePickerWithSourceType(.photoLibrary)
             
-            return promiseViewController(picker)
+            return promise(picker)
         }
     }
     
     //Builds a UIImagePickerController with source type
-    func buildImagePickerWithSourceType(type: UIImagePickerControllerSourceType) -> UIImagePickerController {
+    func buildImagePickerWithSourceType(_ type: UIImagePickerControllerSourceType) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.allowsEditing = false
         picker.sourceType = type
@@ -261,13 +261,13 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         return picker
     }
     
-    func encodeMessage(messageToEncode: String, inImage userImage: UIImage) {
+    func encodeMessage(_ messageToEncode: String, inImage userImage: UIImage) {
         //After the user hit confirm
         SVProgressHUD.show()
         
         //Dispatching the task after  small amount of time as per MBProgressHUD's recommendation
-        let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.01 * Double(NSEC_PER_SEC)))
-        dispatch_after(popTime, dispatch_get_main_queue(), {() -> Void in
+        let popTime = DispatchTime.now() + Double(Int64(0.01 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: popTime, execute: {() -> Void in
             
             let coder = UIImageCoder()
             
@@ -275,7 +275,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             SVProgressHUD.dismiss()
             
             do {
-                let encodedImage = try coder.encodeMessage(messageToEncode, inImage: userImage, encryptedWithPassword: PictographDataController.sharedController.getUserEncryptionKeyIfEnabled())
+                let encodedImage = try coder.encodeMessage(messageToEncode, in: userImage, encryptedWithPassword: PictographDataController.sharedController.getUserEncryptionKeyIfEnabled())
                 //Show the share sheet if the image exists
                 self.showShareSheetWithImage(encodedImage)
                 
@@ -288,17 +288,17 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Decoding a message that is hidden in an image
-    func decodeMessageInImage(userImage: UIImage) {
+    func decodeMessageInImage(_ userImage: UIImage) {
         
         //No need to show HUD because this doesn't take long
         
         let coder = UIImageCoder()
         
         //Provide no password if encryption/decryption is off
-        let providedPassword = mainEncodeView.encryptionSwitch.on ? mainEncodeView.encryptionKeyField.text : ""
+        let providedPassword = mainEncodeView.encryptionSwitch.isOn ? mainEncodeView.encryptionKeyField.text : ""
         
         do {
-            let decodedMessage = try coder.decodeMessageInImage(userImage, encryptedWithPassword: providedPassword)
+            let decodedMessage = try coder.decodeMessage(in: userImage, encryptedWithPassword: providedPassword)
             //Show the message if it was successfully decoded
             showMessageInAlertController("Hidden Message", message: decodedMessage)
             
@@ -310,92 +310,92 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Building the alert that gets the message that the user wants to encode
-    func buildGetMessageController(title: String, message: String?, isSecure: Bool, withPlaceHolder placeHolder:String) -> PMKAlertController {
+    func buildGetMessageController(_ title: String, message: String?, isSecure: Bool, withPlaceHolder placeHolder:String) -> PMKAlertController {
         
-        let getMessageController = PMKAlertController(title: title, message: message, preferredStyle: .Alert)
-        let confirmAction = getMessageController.addActionWithTitle("Confirm") //Saving the confirmAction so it can be enabled/disabled
-        getMessageController.addActionWithTitle("Cancel", style: .Cancel)
+        let getMessageController = PMKAlertController(title: title, message: message, preferredStyle: .alert)
+        let confirmAction = getMessageController.addActionWithTitle(title: "Confirm") //Saving the confirmAction so it can be enabled/disabled
+        _ = getMessageController.addActionWithTitle(title: "Cancel", style: .cancel)
         
         //Building the text field with the correct settings
-        getMessageController.addTextFieldWithConfigurationHandler({(textField: UITextField) -> Void in
+        getMessageController.addTextFieldWithConfigurationHandler() { textField -> Void in
             textField.placeholder = placeHolder
-            textField.secureTextEntry = isSecure
-            confirmAction.enabled = false
+            textField.isSecureTextEntry = isSecure
+            confirmAction.isEnabled = false
             
             //Confirm is only enabled if there is text
-            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue(), usingBlock: {(notification: NSNotification) -> Void in
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { notification -> Void in
                 //Enabled when the text isn't blank
-                confirmAction.enabled = (textField.text != "")
-            })
+                confirmAction.isEnabled = (textField.text != "")
+            }
             
-        })
+        }
         
         return getMessageController
     }
     
     //Shows the share sheet with the UIImage in PNG form
-    func showShareSheetWithImage(image: NSData) {
+    func showShareSheetWithImage(_ image: Data) {
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         
-        if  UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad {
+        if  UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
             //On an iPad, show the popover from the button
-            activityController.modalPresentationStyle = .Popover
+            activityController.modalPresentationStyle = .popover
             activityController.popoverPresentationController!.sourceView = mainEncodeView.encodeButton
             //Presenting it from the middle of the encode button
-            activityController.popoverPresentationController!.sourceRect = CGRectMake(mainEncodeView.encodeButton.frame.width / 2, mainEncodeView.encodeButton.frame.height / 2, 0, 0)
+            activityController.popoverPresentationController!.sourceRect = CGRect(x: mainEncodeView.encodeButton.frame.width / 2, y: mainEncodeView.encodeButton.frame.height / 2, width: 0, height: 0)
         }
         
         //Showing the share sheet
-        presentViewController(activityController, animated: true, completion: nil)
+        present(activityController, animated: true, completion: nil)
     }
     
     //Shows the decoded message in an alert controller
-    func showMessageInAlertController(title:String, message: String) {
-        let showMessageController = PMKAlertController(title: title, message: message, preferredStyle: .Alert)
-        showMessageController.addActionWithTitle("Dismiss", style: .Default)
+    func showMessageInAlertController(_ title:String, message: String) {
+        let showMessageController = PMKAlertController(title: title, message: message, preferredStyle: .alert)
+        _ = showMessageController.addActionWithTitle(title: "Dismiss", style: .default)
         
-        promiseViewController(showMessageController)
+        _ = promise(showMessageController)
     }
     
     //Shows an image in an alert controller, allows user to dismiss and save
-    func showImageInAlertController(title: String, image: NSData) {
+    func showImageInAlertController(_ title: String, image: Data) {
 
         //Creating the custom alert view
         let alertView = CustomIOSAlertView()
         
         //Adding the image to the container view
         let imageView = UIImageView(image: UIImage(data: image))
-        imageView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width - 20, UIScreen.mainScreen().bounds.size.width - 20)
-        imageView.contentMode = .ScaleAspectFit
-        alertView.containerView = imageView
+        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 20, height: UIScreen.main.bounds.size.width - 20)
+        imageView.contentMode = .scaleAspectFit
+        alertView?.containerView = imageView
         
-        alertView.buttonTitles = ["Dismiss", "Save"]
+        alertView?.buttonTitles = ["Dismiss", "Save"]
         
-        alertView.onButtonTouchUpInside = ({ (alertView, buttonIndex) -> Void in
+        alertView?.onButtonTouchUpInside = ({ (alertView, buttonIndex) -> Void in
             //If the button index is 1 (save button), show the share sheet
             if buttonIndex == 1 {
-                alertView.close()
+                alertView?.close()
                 self.showShareSheetWithImage(image)
             }
         })
 
         
-        alertView.show()
+        alertView?.show()
     }
     
     //MARK: - Methods for when the settings change
     
     func showPasswordOnScreenChanged() {
         //Set the opposite of what it currently is
-        mainEncodeView.encryptionKeyField.secureTextEntry = !mainEncodeView.encryptionKeyField.secureTextEntry
+        mainEncodeView.encryptionKeyField.isSecureTextEntry = !mainEncodeView.encryptionKeyField.isSecureTextEntry
     }
     
     //Animates night mode changing when on an iPad
     func changeNightModeAnimated() {
-        UIView.animateWithDuration(0.5) { () -> Void in
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.changeNightMode()
             self.settingsNavVC.popoverPresentationController?.backgroundColor = PictographDataController.sharedController.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
-        }
+        }) 
     }
     
     //Changes the look of all the UI elements that need to change when night mode is activated
@@ -406,22 +406,22 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         let nightMode = PictographDataController.sharedController.getUserNightModeEnabled()
         
         //Setting the color of the keyboard
-        self.mainEncodeView.encryptionKeyField.keyboardAppearance = nightMode ? .Dark : .Default
+        self.mainEncodeView.encryptionKeyField.keyboardAppearance = nightMode ? .dark : .default
         
         for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.decodeButton] {
             
             //Button background
-            button.backgroundColor = nightMode ? mainAppColorNight : UIColor.whiteColor()
+            button.backgroundColor = nightMode ? mainAppColorNight : UIColor.white
             
-            button.highlightColor = nightMode ? mainAppColorNight : UIColor.whiteColor()
+            button.highlightColor = nightMode ? mainAppColorNight : UIColor.white
             
             //Text color
-            button.setTitleColor(nightMode ? UIColor.whiteColor() : mainAppColor, forState: .Normal)
-            button.setTitleColor(nightMode ? UIColor.whiteColor().colorWithAlphaComponent(0.5) : mainAppColorHighlighted, forState: .Highlighted)
+            button.setTitleColor(nightMode ? UIColor.white : mainAppColor, for: .normal)
+            button.setTitleColor(nightMode ? UIColor.white.withAlphaComponent(0.5) : mainAppColorHighlighted, for: .highlighted)
             
             if nightMode {
                 //Add a border
-                button.layer.borderColor = UIColor.whiteColor().CGColor
+                button.layer.borderColor = UIColor.white.cgColor
                 button.layer.borderWidth = 1
             } else {
                 button.layer.borderWidth = 0
