@@ -19,7 +19,7 @@ private let introPage2Color = UIColor(red: 220/255.0, green: 141/255.0, blue: 56
 
 class IntroView {
     class func buildIntroViews() -> [EAIntroPage] {
-        var introViewArray:[EAIntroPage] = []
+        var introViewArray: [EAIntroPage] = []
         
         if (PictographDataController.shared.getUserFirstTimeOpeningApp()) {
             //Introducing the app

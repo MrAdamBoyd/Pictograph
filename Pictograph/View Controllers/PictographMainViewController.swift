@@ -11,6 +11,8 @@ import UIKit
 import EAIntroView
 import SVProgressHUD
 import CustomIOSAlertView
+import AVFoundation
+import Photos
 
 //What we are currently doing
 enum PictographAction {
@@ -104,6 +106,44 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         NotificationCenter.default.removeObserver(self)
     }
     
+    // MARK: - Paste from clipboard button
+    
+    /**
+     Builds the button that is the input accessory view that is above the keyboard
+     
+     - returns:  button for accessory keyboard view
+     */
+    func buildAccessoryButton() -> UIView {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
+        button.setTitle("Paste from clipboard", for: UIControlState())
+        button.backgroundColor = UIColor(colorLiteralRed: 150/256, green: 150/256, blue: 150/256, alpha: 1)
+        button.setTitleColor(UIColor(colorLiteralRed: 75/256, green: 75/256, blue: 75/256, alpha: 1), for: .highlighted)
+        button.addTarget(self, action: #selector(self.pasteFromClipboard), for: .touchUpInside)
+        
+        return button
+    }
+    
+    /**
+     Pastes the text from the clipboard in the showing alert vc, if it exists
+     */
+    func pasteFromClipboard() {
+        if let alertVC = self.presentedViewController as? UIAlertController {
+            let pasteString = UIPasteboard.general.string
+            
+            if let pasteString = pasteString, !pasteString.isEmpty {
+                alertVC.textFields![0].text = pasteString
+                
+                //Need to manually enable the confirm button because pasting doesn't trigger the notification
+                for action in alertVC.actions {
+                    if action.style == .default {
+                        action.isEnabled = true
+                        return
+                    }
+                }
+            }
+        }
+    }
+    
     //MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -115,9 +155,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     
     //MARK: - EAIntroDelegate
-    func introDidFinish(_ introView: EAIntroView!) {
+    func introWillFinish(_ introView: EAIntroView!, wasSkipped: Bool) {
         PictographDataController.shared.setUserFirstTimeOpeningApp(false)
-        
+
         //Animating the views in
         UIView.animate(withDuration: 1) {
             self.mainEncodeView.alpha = 1
@@ -129,7 +169,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Shows the intro views if the user hasn't opened the app and/or if we don't have authorization to use gps
     func setUpAndShowIntroViews() -> Bool {
-        return false
         let introViewArray = IntroView.buildIntroViews()
         
         if introViewArray.count > 0 {
@@ -172,7 +211,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         if ((PictographDataController.shared.getUserEncryptionKeyString() != "" && PictographDataController.shared.getUserEncryptionEnabled()) || !PictographDataController.shared.getUserEncryptionEnabled()) {
             
             self.currentAction = .encoding
-            self.showImagePicker(haveCameraOption: true)
+            self.determineHowToPresentImagePicker(haveCameraOption: true)
             
         } else {
             //Show message: encryption is enabled and the key is blank
@@ -185,7 +224,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         if ((PictographDataController.shared.getUserEncryptionKeyString() != "" && PictographDataController.shared.getUserEncryptionEnabled()) || !PictographDataController.shared.getUserEncryptionEnabled()) {
             
             self.currentAction = .decoding
-            self.showImagePicker(haveCameraOption: false)
+            self.determineHowToPresentImagePicker(haveCameraOption: false)
             
         } else {
             //Show message: encryption is enabled and the key is blank
@@ -194,7 +233,12 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Showing the action sheet
-    func showImagePicker(haveCameraOption showCamera: Bool) {
+    
+    
+    /// Determines how to show the image picker. If the device has the camera, shows a picker that lets the user determine if they want to use the camera or just pick from the library.
+    ///
+    /// - Parameter showCamera: whether or not to have an option to pick the camera
+    func determineHowToPresentImagePicker(haveCameraOption showCamera: Bool) {
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) && showCamera {
             //Device has camera & library, show option to choose
@@ -207,11 +251,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
             //Selecting from library
             imagePopup.addAction(UIAlertAction(title: "Select from Library", style: .default, handler: { _ in
-                self.present(self.buildImagePickerWithSourceType(.photoLibrary), animated: true, completion: nil)
+                self.handlePermissionsForImagePicker(withType: .photoLibrary)
             }))
                 
             imagePopup.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
-                self.present(self.buildImagePickerWithSourceType(.camera), animated: true, completion: nil)
+                self.handlePermissionsForImagePicker(withType: .camera)
             }))
             
             imagePopup.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -220,18 +264,63 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         } else {
             //Device has no camera, just show library
-            self.present(self.buildImagePickerWithSourceType(.photoLibrary), animated: true, completion: nil)
+            self.handlePermissionsForImagePicker(withType: .photoLibrary)
         }
     }
     
-    //Builds a UIImagePickerController with source type
-    func buildImagePickerWithSourceType(_ type: UIImagePickerControllerSourceType) -> UIImagePickerController {
+    /// Deals with the permission for both the camera and the photo library. If permission is granted, shows the picker with the provided type
+    ///
+    /// - Parameter type: type of photo picker to show
+    func handlePermissionsForImagePicker(withType type: UIImagePickerControllerSourceType) {
+        
+        switch type {
+        case .camera:
+            
+            //Getting permission from the camera
+            let mediaType = AVMediaTypeVideo //This is the type for the camera
+            
+            switch AVCaptureDevice.authorizationStatus(forMediaType: mediaType) {
+            case .authorized: self.createAndPresentPicker(withType: type)
+            case .notDetermined, .denied, .restricted:
+                // Prompting user for the permission to use the camera.
+                AVCaptureDevice.requestAccess(forMediaType: mediaType) { granted in
+                    if granted {
+                        DispatchQueue.main.async {
+                            self.createAndPresentPicker(withType: type)
+                        }
+                    } else {
+                        SVProgressHUD.showError(withStatus: "Permission not granted! Go to Settings to enable permission.")
+                    }
+                }
+            }
+        default:
+            
+            //Getting permission for the photo library
+            switch PHPhotoLibrary.authorizationStatus() {
+            case .authorized:  self.createAndPresentPicker(withType: type)
+            default:
+                PHPhotoLibrary.requestAuthorization() { status in
+                    switch status {
+                    case .authorized:
+                        DispatchQueue.main.async {
+                            self.createAndPresentPicker(withType: type)
+                        }
+                    default:
+                        SVProgressHUD.showError(withStatus: "Permission not granted! Go to Settings to enable permission.")
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    func createAndPresentPicker(withType type: UIImagePickerControllerSourceType) {
         let picker = UIImagePickerController()
         picker.allowsEditing = false
         picker.sourceType = type
         picker.delegate = self
         
-        return picker
+        self.present(picker, animated: true, completion: nil)
     }
     
     func encodeMessage(_ messageToEncode: String, inImage userImage: UIImage) {
@@ -305,6 +394,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         getMessageController.addTextField(configurationHandler: { textField in
             textField.placeholder = placeHolder
             confirmAction.isEnabled = false
+            textField.inputAccessoryView = self.buildAccessoryButton()
             
             //Confirm is only enabled if there is text
             NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { notification -> Void in
