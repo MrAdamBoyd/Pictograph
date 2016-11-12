@@ -6,17 +6,6 @@ PODS:
     - EARestrictedScrollView (~> 1.1.0)
   - EARestrictedScrollView (1.1.0)
   - Fabric (1.6.11)
-  - PromiseKit (4.0.4):
-    - PromiseKit/Foundation (= 4.0.4)
-    - PromiseKit/QuartzCore (= 4.0.4)
-    - PromiseKit/UIKit (= 4.0.4)
-  - PromiseKit/CorePromise (4.0.4)
-  - PromiseKit/Foundation (4.0.4):
-    - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.0.4):
-    - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.0.4):
-    - PromiseKit/CorePromise
   - RNCryptor-objc (3.0.2)
   - SVProgressHUD (2.0.3)
 
@@ -25,7 +14,6 @@ DEPENDENCIES:
   - CustomIOSAlertView
   - EAIntroView
   - Fabric
-  - PromiseKit
   - RNCryptor-objc
   - SVProgressHUD
 
@@ -35,10 +23,9 @@ SPEC CHECKSUMS:
   EAIntroView: 3494b7bbd1212e3a4f7e8d16194a1b00e7b9abb2
   EARestrictedScrollView: b0c2a3f92fb2610bb44d71c5e4893777c89e45ef
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  PromiseKit: 8e8ee39d33ff199d92a1a883b5396f6285be6c91
   RNCryptor-objc: 6d18b2e4297c8f4a71a295492366313a3245d0ae
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: f45e3f4f7df8a4e56d23b4536e9f7d4c2cdd1a37
+PODFILE CHECKSUM: 17aaa0935b59764a2c681929b97667690b645ba4
 
 COCOAPODS: 1.0.1

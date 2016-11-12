@@ -10,19 +10,19 @@ import Foundation
 import UIKit
 import EAIntroView
 import SVProgressHUD
-import PromiseKit
 import CustomIOSAlertView
 
 //What we are currently doing
-enum PictographAction: Int {
-    case encodingMessage = 0, decodingMessage
+enum PictographAction {
+    case encoding, decoding, none
 }
 
-class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate, CreatesNavigationTitle {
+class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate, CreatesNavigationTitle, UIImagePickerControllerDelegate {
     
     //UI elements
     let mainEncodeView = MainEncodingView()
     var settingsNavVC: UINavigationController! //Stored to animate nightMode
+    var currentAction: PictographAction = .none
     
     //MARK: - UIViewController
     
@@ -171,26 +171,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         */
         if ((PictographDataController.shared.getUserEncryptionKeyString() != "" && PictographDataController.shared.getUserEncryptionEnabled()) || !PictographDataController.shared.getUserEncryptionEnabled()) {
             
-            let getMessageController = self.buildGetMessageController("Enter your message", message: nil, isSecure: false, withPlaceHolder: "Your message here")
-            var userImage: UIImage!
-            
-            //Getting the photo the user wants to use
-            _ = getPhotoForEncodingOrDecoding(true).then { image in
-                
-                //Saving the image first
-                userImage = image
-                
-            }.then { [unowned self] image in
-                
-                //Getting the message from the user
-                return self.promise(getMessageController)
-            
-            }.then { alert in
-                    
-                //Encoding the message in the image
-                self.encodeMessage(getMessageController.textFields!.first!.text!, inImage: userImage)
-                    
-            }
+            self.currentAction = .encoding
+            self.showImagePicker(haveCameraOption: true)
             
         } else {
             //Show message: encryption is enabled and the key is blank
@@ -202,11 +184,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     func startDecodeProcess() {
         if ((PictographDataController.shared.getUserEncryptionKeyString() != "" && PictographDataController.shared.getUserEncryptionEnabled()) || !PictographDataController.shared.getUserEncryptionEnabled()) {
             
-            //If the user has encryption enabled and the password isn't blank or encryption is not enabled
-            _ = getPhotoForEncodingOrDecoding(false).then { image in
-                //Start encoding or decoding when the image has been picked
-                self.decodeMessageInImage(image)
-            }
+            self.currentAction = .decoding
+            self.showImagePicker(haveCameraOption: false)
+            
         } else {
             //Show message: encryption is enabled and the key is blank
             showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.")
@@ -214,42 +194,33 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Showing the action sheet
-    func getPhotoForEncodingOrDecoding(_ showCamera: Bool, showMessageInHUD message: String? = nil) -> Promise<UIImage> {
-        
-        if message != nil && message != nil {
-            SVProgressHUD.showInfo(withStatus: message!)
-        }
+    func showImagePicker(haveCameraOption showCamera: Bool) {
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) && showCamera {
             //Device has camera & library, show option to choose
            
             //If the device is an iPad, popup in the middle of screen
-            let alertStyle:UIAlertControllerStyle = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) ? .alert : .actionSheet
+            let alertStyle: UIAlertControllerStyle = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) ? .alert : .actionSheet
             
             //Building the picker to choose the type of input
-            let imagePopup = PMKAlertController(title: "Select Picture", message: nil, preferredStyle: alertStyle)
-            _ = imagePopup.addActionWithTitle(title: "Select from Library")
-            let takePhotoPickerAction = imagePopup.addActionWithTitle(title: "Take Photo") //Saving the take photo action so we can show the proper picker later
-            _ = imagePopup.addActionWithTitle(title: "Cancel", style: .cancel)
-
-            return promise(imagePopup).then { [unowned self] action in
-                var pickerType = UIImagePickerControllerSourceType.photoLibrary
-
-                if action == takePhotoPickerAction {
-                    //If the user chose to use the camera
-                    pickerType = .camera
-                }
-
-                let picker = self.buildImagePickerWithSourceType(pickerType)
-
-                return self.promise(picker)
-            }
+            let imagePopup = UIAlertController(title: "Select Picture", message: nil, preferredStyle: alertStyle)
+            
+            //Selecting from library
+            imagePopup.addAction(UIAlertAction(title: "Select from Library", style: .default, handler: { _ in
+                self.present(self.buildImagePickerWithSourceType(.photoLibrary), animated: true, completion: nil)
+            }))
+                
+            imagePopup.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
+                self.present(self.buildImagePickerWithSourceType(.camera), animated: true, completion: nil)
+            }))
+            
+            imagePopup.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            self.present(imagePopup, animated: true, completion: nil)
         
         } else {
             //Device has no camera, just show library
-            let picker = buildImagePickerWithSourceType(.photoLibrary)
-            
-            return promise(picker)
+            self.present(self.buildImagePickerWithSourceType(.photoLibrary), animated: true, completion: nil)
         }
     }
     
@@ -258,6 +229,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         let picker = UIImagePickerController()
         picker.allowsEditing = false
         picker.sourceType = type
+        picker.delegate = self
         
         return picker
     }
@@ -308,17 +280,30 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
     }
     
-    //Building the alert that gets the message that the user wants to encode
-    func buildGetMessageController(_ title: String, message: String?, isSecure: Bool, withPlaceHolder placeHolder:String) -> PMKAlertController {
+    /// Builds the UIAlertController that will get the message to encode from the user
+    ///
+    /// - Parameters:
+    ///   - title: title of the UIAlertController
+    ///   - placeHolder: placeholder to have in the textbox
+    ///   - image: image to hide the message in
+    func showGetMessageController(_ title: String, withPlaceHolder placeHolder: String, forImage image: UIImage) {
         
-        let getMessageController = PMKAlertController(title: title, message: message, preferredStyle: .alert)
-        let confirmAction = getMessageController.addActionWithTitle(title: "Confirm") //Saving the confirmAction so it can be enabled/disabled
-        _ = getMessageController.addActionWithTitle(title: "Cancel", style: .cancel)
+        let getMessageController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        
+        //Saving the confirmAction so it can be enabled/disabled
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
+            self.encodeMessage(getMessageController.textFields!.first!.text!, inImage: image)
+        }
+        getMessageController.addAction(confirmAction)
+        
+        //Set current action to none
+        getMessageController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            self.currentAction = .none
+        }))
         
         //Building the text field with the correct settings
-        getMessageController.addTextFieldWithConfigurationHandler() { textField -> Void in
+        getMessageController.addTextField(configurationHandler: { textField in
             textField.placeholder = placeHolder
-            textField.isSecureTextEntry = isSecure
             confirmAction.isEnabled = false
             
             //Confirm is only enabled if there is text
@@ -326,10 +311,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 //Enabled when the text isn't blank
                 confirmAction.isEnabled = (textField.text != "")
             }
-            
-        }
+        })
         
-        return getMessageController
+        self.present(getMessageController, animated: true, completion: nil)
     }
     
     //Shows the share sheet with the UIImage in PNG form
@@ -349,11 +333,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Shows the decoded message in an alert controller
-    func showMessageInAlertController(_ title:String, message: String) {
-        let showMessageController = PMKAlertController(title: title, message: message, preferredStyle: .alert)
-        _ = showMessageController.addActionWithTitle(title: "Dismiss", style: .default)
+    func showMessageInAlertController(_ title: String, message: String) {
+        let showMessageController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        _ = showMessageController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
         
-        _ = promise(showMessageController)
+        self.present(showMessageController, animated: true, completion: nil)
     }
     
     //Shows an image in an alert controller, allows user to dismiss and save
@@ -426,5 +410,30 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 button.layer.borderWidth = 0
             }
         }
+    }
+    
+    // MARK: - UIImagePickerControllerDelegate
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        self.dismiss(animated: true, completion: nil)
+        
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            self.showMessageInAlertController("Error", message: "Couldn't get image")
+            return
+        }
+        
+        switch self.currentAction {
+        case .encoding:
+            self.showGetMessageController("Enter your message", withPlaceHolder: "Your message here", forImage: image)
+        case .decoding:
+            self.decodeMessageInImage(image)
+        default:
+            break
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+        self.currentAction = .none
     }
 }
