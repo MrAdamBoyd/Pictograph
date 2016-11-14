@@ -31,6 +31,8 @@
 //Password handler has no parameters and returns an NSString *
 - (NSString *)decodeMessageInImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
     
+    DLog("Decoding image with password %@", password);
+    
     NSMutableArray *infoArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting information about the encoded message
@@ -166,6 +168,8 @@
 //Encodes UIImage image with message message. Returns the modified UIImage
 - (NSData *)encodeMessage:(NSString *)message inImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
 
+    DLog("Encoding message: %@, with password %@", message, password);
+    
     NSString *toEncode = [[NSMutableString alloc] init];
     
     BOOL encryptedBool = (password != nil);

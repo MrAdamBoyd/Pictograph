@@ -81,9 +81,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.view.endEditing(true)
-        
-        PictographDataController.shared.userEncryptionPassword = mainEncodeView.encryptionKeyField.text
+        self.endEditingAndSetPassword()
     }
     
     func openSettings() {
@@ -144,12 +142,21 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
     }
     
+    
+    /// Ends editing and sets the user's encryption password. If password is "", turns off encryption
+    func endEditingAndSetPassword() {
+        self.view.endEditing(true)
+        PictographDataController.shared.userEncryptionPassword = self.mainEncodeView.encryptionKeyField.text
+        
+        if PictographDataController.shared.userEncryptionPasswordNonNil.isEmpty {
+            self.setEncryptionEnabled(false)
+            self.mainEncodeView.encryptionSwitch.setOn(false, animated: true)
+        }
+    }
+    
     //MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        //Saving the text
-        PictographDataController.shared.userEncryptionPassword = textField.text
+        self.endEditingAndSetPassword()
         return false
     }
     
@@ -187,23 +194,28 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     func switchToggled(_ sender: AnyObject) {
         let mySwitch = sender as! UISwitch
-        let enabledOrDisabled = mySwitch.isOn
-        
+        self.setEncryptionEnabled(mySwitch.isOn)
+    }
+    
+    
+    /// Sets the bool in the data controller and animates the textfield on or off
+    ///
+    /// - Parameter flag: enabled or disabled
+    func setEncryptionEnabled(_ flag: Bool) {
         //Disabling or enabling the textfield based on whether encryption is enabled
-        mainEncodeView.encryptionKeyField.isEnabled = enabledOrDisabled
+        mainEncodeView.encryptionKeyField.isEnabled = flag
         
         //Animiating the alpha of the textfield
-        UIView.animate(withDuration: 0.25, animations: {() -> Void in
-            self.mainEncodeView.encryptionKeyField.alpha = enabledOrDisabled ? 1.0 : 0.5
-        })
+        UIView.animate(withDuration: 0.25) {
+            self.mainEncodeView.encryptionKeyField.alpha = flag ? 1.0 : 0.5
+        }
         
-        PictographDataController.shared.userEncryptionIsEnabled = enabledOrDisabled
+        PictographDataController.shared.userEncryptionIsEnabled = flag
     }
     
     //Starting the encode process
     func startEncodeProcess() {
-        self.view.endEditing(true)
-        PictographDataController.shared.userEncryptionPassword = self.mainEncodeView.encryptionKeyField.text
+        self.endEditingAndSetPassword()
         
         /* True if encrytption is enabled AND the key isn't blank
         OR encrytion is disabled
@@ -221,8 +233,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Starting the decoding process
     func startDecodeProcess() {
-        self.view.endEditing(true)
-        PictographDataController.shared.userEncryptionPassword = self.mainEncodeView.encryptionKeyField.text
+        self.endEditingAndSetPassword()
         
         /* True if encrytption is enabled AND the key isn't blank
          OR encrytion is disabled
