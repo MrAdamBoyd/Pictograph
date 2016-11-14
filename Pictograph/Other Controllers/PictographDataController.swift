@@ -43,67 +43,85 @@ class PictographDataController: NSObject {
         UserDefaults.standard.set(archivedObject, forKey: currentUserKey)
     }
     
-    func getUserFirstTimeOpeningApp() -> Bool {
-        return user.firstTimeOpeningApp
-    }
-    
-    func setUserFirstTimeOpeningApp(_ firstTime: Bool) {
-        user.firstTimeOpeningApp = firstTime
-        saveCurrentUser()
-    }
-    
-    func getUserEncryptionEnabled() -> Bool {
-        return user.encryptionEnabled;
-    }
-    
-    func setUserEncryptionEnabled(_ enabledOrNot: Bool) {
-        user.encryptionEnabled = enabledOrNot
-        saveCurrentUser()
-    }
-    
-    func getUserEncryptionKey() -> String? {
-        let password = user.encryptionPassword
-        if password == "" {
-            return nil
+    var userFirstTimeOpeningApp: Bool {
+        get {
+            return self.user.firstTimeOpeningApp
         }
-        
-        return password
-    }
-    
-    //Gets the user encryption key as a String
-    func getUserEncryptionKeyString() -> String {
-        return user.encryptionPassword
-    }
-    
-    func getUserEncryptionKeyIfEnabled() -> String? {
-        if user.encryptionEnabled {
-            return self.getUserEncryptionKey()
+        set {
+            print("Setting first time opening app: \(newValue)")
+            self.user.firstTimeOpeningApp = newValue
+            self.saveCurrentUser()
         }
-        
-        return nil
     }
     
-    func setUserEncryptionKey(_ newKey: String) {
-        user.encryptionPassword = newKey
-        saveCurrentUser()
+    var userEncryptionIsEnabled: Bool {
+        get {
+            return self.user.encryptionEnabled
+        }
+        set {
+            print("Setting encryption enabled: \(newValue)")
+            self.user.encryptionEnabled = newValue
+            self.saveCurrentUser()
+        }
     }
     
-    func getUserShowPasswordOnScreen() -> Bool {
-        return user.showPasswordOnScreen
+    /// Returns the user's encryption key. No logic
+    var userEncryptionPasswordNonNil: String {
+        return self.user.encryptionPassword
     }
     
-    func setUserShowPasswordOnScreen(_ enabledOrNot: Bool) {
-        user.showPasswordOnScreen = enabledOrNot
-        saveCurrentUser()
+    
+    /// User's encryption password
+    /// GET:
+    ///     if encryption is enabled and password isn't "", returns the password
+    /// SET:
+    ///     if newValue is nil, sets the password as "", else, sets the password normally
+    var userEncryptionPassword: String? {
+        get {
+            guard self.user.encryptionEnabled else {
+                return nil
+            }
+            
+            let password = self.user.encryptionPassword
+            guard !password.isEmpty else {
+                return nil
+            }
+            
+            return password
+        }
+        set {
+            if let newValue = newValue {
+                print("Setting encryption password: \(newValue)")
+                self.user.encryptionPassword = newValue
+            } else {
+                print("Setting encryption password: \(newValue)")
+                self.user.encryptionPassword = ""
+            }
+            
+            self.saveCurrentUser()
+        }
     }
     
-    func getUserNightModeEnabled() -> Bool {
-        return user.nightModeEnabled
+    var userShowPasswordOnScreen: Bool {
+        get {
+            return self.user.showPasswordOnScreen
+        }
+        set {
+            print("Setting password on screen: \(newValue)")
+            self.user.showPasswordOnScreen = newValue
+            self.saveCurrentUser()
+        }
     }
     
-    func setUserDarkModeEnabled(_ enabledOrNot: Bool) {
-        user.nightModeEnabled = enabledOrNot
-        saveCurrentUser()
+    var userNightModeIsEnabled: Bool {
+        get {
+            return self.user.nightModeEnabled
+        }
+        set {
+            print("Setting night mode enabled: \(newValue)")
+            self.user.nightModeEnabled = newValue
+            self.saveCurrentUser()
+        }
     }
     
     

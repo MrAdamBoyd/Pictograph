@@ -43,25 +43,25 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
         let cell = PictographSettingsTableViewCell()
         
         if indexPath.row == 0 {
-            cell.setTitle("Show Password", switchStartsOn: PictographDataController.shared.getUserShowPasswordOnScreen(), withHandler: {(enabledOrNot: Bool) -> Void in
+            cell.setTitle("Show Password", switchStartsOn: PictographDataController.shared.userShowPasswordOnScreen, withHandler: {(enabledOrNot: Bool) -> Void in
                 
                 //Changing the setting for showing the password on screen
-                PictographDataController.shared.setUserShowPasswordOnScreen(enabledOrNot)
+                PictographDataController.shared.userShowPasswordOnScreen = enabledOrNot
                 NotificationCenter.default.post(name: Notification.Name(rawValue: pictographShowPasswordOnScreenSettingChangedNotification), object: nil)
-                print("Show password on screen: \(PictographDataController.shared.getUserShowPasswordOnScreen())")
+                print("Show password on screen: \(PictographDataController.shared.userShowPasswordOnScreen)")
             })
         } else {
-            cell.setTitle("Night Mode", switchStartsOn: PictographDataController.shared.getUserNightModeEnabled(), withHandler: {(enabledOrNot: Bool) -> Void in
+            cell.setTitle("Night Mode", switchStartsOn: PictographDataController.shared.userNightModeIsEnabled, withHandler: {(enabledOrNot: Bool) -> Void in
                 
                 //Changing the setting for showing the password on screen
-                PictographDataController.shared.setUserDarkModeEnabled(enabledOrNot)
+                PictographDataController.shared.userNightModeIsEnabled = enabledOrNot
                 NotificationCenter.default.post(name: Notification.Name(rawValue: pictographNightModeSettingChangedNotification), object: nil)
-                print("Night Mode Enabled: \(PictographDataController.shared.getUserNightModeEnabled())")
+                print("Night Mode Enabled: \(PictographDataController.shared.userNightModeIsEnabled)")
                 
                 UIView.animate(withDuration: 0.5, animations: {
                     //Animate the color in
-                    self.view.backgroundColor = PictographDataController.shared.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
-                    self.navigationController?.navigationBar.barTintColor = PictographDataController.shared.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+                    self.view.backgroundColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
+                    self.navigationController?.navigationBar.barTintColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
                 }) 
             })
         }

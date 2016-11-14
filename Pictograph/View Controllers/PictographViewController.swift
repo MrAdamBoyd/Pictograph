@@ -21,16 +21,16 @@ class PictographViewController: UIViewController {
         super.viewDidLoad()
         
         //Background color
-        self.view.backgroundColor = PictographDataController.shared.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
-        UINavigationBar.appearance().barTintColor = PictographDataController.shared.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+        self.view.backgroundColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
+        UINavigationBar.appearance().barTintColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.view.backgroundColor = PictographDataController.shared.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
-        self.navigationController?.navigationBar.barTintColor = PictographDataController.shared.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+        self.view.backgroundColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
+        self.navigationController?.navigationBar.barTintColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
     }
     
     //Creating a UINavigationController with a VC as its root view controller

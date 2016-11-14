@@ -19,7 +19,7 @@ enum PictographAction {
     case encoding, decoding, none
 }
 
-class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, EAIntroDelegate, CreatesNavigationTitle, UIImagePickerControllerDelegate {
+class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle, UIImagePickerControllerDelegate {
     
     //UI elements
     let mainEncodeView = MainEncodingView()
@@ -51,7 +51,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.mainEncodeView.decodeButton.addTarget(self, action: #selector(self.startDecodeProcess), for: .touchUpInside)
         self.mainEncodeView.encryptionKeyField.delegate = self
         self.mainEncodeView.encryptionSwitch.addTarget(self, action: #selector(self.switchToggled(_:)), for: .valueChanged)
-        
+        self.mainEncodeView.delegate = self
         
         if (setUpAndShowIntroViews()) {
             //If intro views are shown, hide UI elements
@@ -79,11 +79,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.mainEncodeView.contentSize = CGSize(width: size.width, height: max(size.height-64, 320))
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    // MARK: - UIScrollViewDelegate
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
         
-        //Saving the text
-        PictographDataController.shared.setUserEncryptionKey(mainEncodeView.encryptionKeyField.text!)
+        PictographDataController.shared.userEncryptionPassword = mainEncodeView.encryptionKeyField.text
     }
     
     func openSettings() {
@@ -95,7 +95,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             //On an iPad, show the popover from the button
             settings.modalPresentationStyle = .popover
             settings.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
-            settings.popoverPresentationController?.backgroundColor = PictographDataController.shared.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+            settings.popoverPresentationController?.backgroundColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
         }
         
         self.present(settings, animated: true, completion: nil)
@@ -149,14 +149,14 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         textField.resignFirstResponder()
         
         //Saving the text
-        PictographDataController.shared.setUserEncryptionKey(textField.text!)
+        PictographDataController.shared.userEncryptionPassword = textField.text
         return false
     }
     
     
     //MARK: - EAIntroDelegate
     func introWillFinish(_ introView: EAIntroView!, wasSkipped: Bool) {
-        PictographDataController.shared.setUserFirstTimeOpeningApp(false)
+        PictographDataController.shared.userFirstTimeOpeningApp = false
 
         //Animating the views in
         UIView.animate(withDuration: 1) {
@@ -169,23 +169,20 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Shows the intro views if the user hasn't opened the app and/or if we don't have authorization to use gps
     func setUpAndShowIntroViews() -> Bool {
-        let introViewArray = IntroView.buildIntroViews()
-        
-        if introViewArray.count > 0 {
-            //If there are intro views to show
-            let frameRect = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: self.view.frame.size.height + 10) //Status bar
-            let introView = EAIntroView(frame: frameRect)
-            introView.pages = introViewArray
-            introView.delegate = self
-            introView.show(in: self.view, animateDuration: 0)
-            
-            //Intro view was shown, return true
-            return true
+        guard PictographDataController.shared.userFirstTimeOpeningApp else {
+            //Don't show intro view
+            return false
         }
         
-        //Intro view wasn't shown, return false
-        
-        return false
+        //Set up array of intro view pages
+        let introViewArray = IntroView.buildIntroViews()
+        let frameRect = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: self.view.frame.size.width, height: self.view.frame.size.height + 10) //Status bar
+        let introView = EAIntroView(frame: frameRect)
+        introView.pages = introViewArray
+        introView.delegate = self
+        introView.show(in: self.view, animateDuration: 0)
+    
+        return true
     }
     
     func switchToggled(_ sender: AnyObject) {
@@ -200,15 +197,18 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             self.mainEncodeView.encryptionKeyField.alpha = enabledOrDisabled ? 1.0 : 0.5
         })
         
-        PictographDataController.shared.setUserEncryptionEnabled(enabledOrDisabled)
+        PictographDataController.shared.userEncryptionIsEnabled = enabledOrDisabled
     }
     
     //Starting the encode process
     func startEncodeProcess() {
+        self.view.endEditing(true)
+        PictographDataController.shared.userEncryptionPassword = self.mainEncodeView.encryptionKeyField.text
+        
         /* True if encrytption is enabled AND the key isn't blank
         OR encrytion is disabled
         */
-        if ((PictographDataController.shared.getUserEncryptionKeyString() != "" && PictographDataController.shared.getUserEncryptionEnabled()) || !PictographDataController.shared.getUserEncryptionEnabled()) {
+        if ((!PictographDataController.shared.userEncryptionPasswordNonNil.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled) {
             
             self.currentAction = .encoding
             self.determineHowToPresentImagePicker(haveCameraOption: true)
@@ -221,7 +221,13 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Starting the decoding process
     func startDecodeProcess() {
-        if ((PictographDataController.shared.getUserEncryptionKeyString() != "" && PictographDataController.shared.getUserEncryptionEnabled()) || !PictographDataController.shared.getUserEncryptionEnabled()) {
+        self.view.endEditing(true)
+        PictographDataController.shared.userEncryptionPassword = self.mainEncodeView.encryptionKeyField.text
+        
+        /* True if encrytption is enabled AND the key isn't blank
+         OR encrytion is disabled
+         */
+        if ((!PictographDataController.shared.userEncryptionPasswordNonNil.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled) {
             
             self.currentAction = .decoding
             self.determineHowToPresentImagePicker(haveCameraOption: false)
@@ -335,7 +341,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             SVProgressHUD.dismiss()
             
             do {
-                let encodedImage = try coder.encodeMessage(messageToEncode, in: userImage, encryptedWithPassword: PictographDataController.shared.getUserEncryptionKeyIfEnabled())
+                let encodedImage = try coder.encodeMessage(messageToEncode, in: userImage, encryptedWithPassword: PictographDataController.shared.userEncryptionPassword)
                 //Show the share sheet if the image exists
                 self.showShareSheetWithImage(encodedImage)
 
@@ -467,16 +473,16 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     func changeNightModeAnimated() {
         UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.changeNightMode()
-            self.settingsNavVC.popoverPresentationController?.backgroundColor = PictographDataController.shared.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+            self.settingsNavVC.popoverPresentationController?.backgroundColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
         }) 
     }
     
     //Changes the look of all the UI elements that need to change when night mode is activated
     func changeNightMode() {
-        self.view.backgroundColor = PictographDataController.shared.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
-        self.navigationController?.navigationBar.barTintColor = PictographDataController.shared.getUserNightModeEnabled() ? mainAppColorNight : mainAppColor
+        self.view.backgroundColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
+        self.navigationController?.navigationBar.barTintColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
         
-        let nightMode = PictographDataController.shared.getUserNightModeEnabled()
+        let nightMode = PictographDataController.shared.userNightModeIsEnabled
         
         //Setting the color of the keyboard
         self.mainEncodeView.encryptionKeyField.keyboardAppearance = nightMode ? .dark : .default
