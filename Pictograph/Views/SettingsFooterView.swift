@@ -19,7 +19,7 @@ class SettingsFooterView: UIView {
         super.init(frame: frame)
         
         //Icon of the application
-        let appIcon = UIImage(named: "AppIcon.png")
+        let appIcon = UIImage(named: "IconForSettings")
         
         //ImageView of the app icon
         let appIconView = UIImageView(image: appIcon)
