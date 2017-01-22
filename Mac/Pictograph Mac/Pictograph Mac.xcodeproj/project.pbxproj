@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		662752691E354ADD002D5853 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662752681E354ADD002D5853 /* AppDelegate.swift */; };
+		6627526B1E354ADD002D5853 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6627526A1E354ADD002D5853 /* ViewController.swift */; };
+		6627526D1E354ADD002D5853 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6627526C1E354ADD002D5853 /* Assets.xcassets */; };
+		662752701E354ADD002D5853 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6627526E1E354ADD002D5853 /* Main.storyboard */; };
+		6627527B1E354ADD002D5853 /* Pictograph_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6627527A1E354ADD002D5853 /* Pictograph_MacTests.swift */; };
+		662752861E354ADD002D5853 /* Pictograph_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662752851E354ADD002D5853 /* Pictograph_MacUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		662752771E354ADD002D5853 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6627525D1E354ADD002D5853 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 662752641E354ADD002D5853;
+			remoteInfo = "Pictograph Mac";
+		};
+		662752821E354ADD002D5853 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6627525D1E354ADD002D5853 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 662752641E354ADD002D5853;
+			remoteInfo = "Pictograph Mac";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		662752651E354ADD002D5853 /* Pictograph Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pictograph Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		662752681E354ADD002D5853 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6627526A1E354ADD002D5853 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6627526C1E354ADD002D5853 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6627526F1E354ADD002D5853 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		662752711E354ADD002D5853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		662752761E354ADD002D5853 /* Pictograph MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pictograph MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6627527A1E354ADD002D5853 /* Pictograph_MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictograph_MacTests.swift; sourceTree = "<group>"; };
+		6627527C1E354ADD002D5853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		662752811E354ADD002D5853 /* Pictograph MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pictograph MacUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		662752851E354ADD002D5853 /* Pictograph_MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictograph_MacUITests.swift; sourceTree = "<group>"; };
+		662752871E354ADD002D5853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		662752621E354ADD002D5853 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		662752731E354ADD002D5853 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6627527E1E354ADD002D5853 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6627525C1E354ADD002D5853 = {
+			isa = PBXGroup;
+			children = (
+				662752671E354ADD002D5853 /* Pictograph Mac */,
+				662752791E354ADD002D5853 /* Pictograph MacTests */,
+				662752841E354ADD002D5853 /* Pictograph MacUITests */,
+				662752661E354ADD002D5853 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		662752661E354ADD002D5853 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				662752651E354ADD002D5853 /* Pictograph Mac.app */,
+				662752761E354ADD002D5853 /* Pictograph MacTests.xctest */,
+				662752811E354ADD002D5853 /* Pictograph MacUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		662752671E354ADD002D5853 /* Pictograph Mac */ = {
+			isa = PBXGroup;
+			children = (
+				662752681E354ADD002D5853 /* AppDelegate.swift */,
+				6627526A1E354ADD002D5853 /* ViewController.swift */,
+				6627526C1E354ADD002D5853 /* Assets.xcassets */,
+				6627526E1E354ADD002D5853 /* Main.storyboard */,
+				662752711E354ADD002D5853 /* Info.plist */,
+			);
+			path = "Pictograph Mac";
+			sourceTree = "<group>";
+		};
+		662752791E354ADD002D5853 /* Pictograph MacTests */ = {
+			isa = PBXGroup;
+			children = (
+				6627527A1E354ADD002D5853 /* Pictograph_MacTests.swift */,
+				6627527C1E354ADD002D5853 /* Info.plist */,
+			);
+			path = "Pictograph MacTests";
+			sourceTree = "<group>";
+		};
+		662752841E354ADD002D5853 /* Pictograph MacUITests */ = {
+			isa = PBXGroup;
+			children = (
+				662752851E354ADD002D5853 /* Pictograph_MacUITests.swift */,
+				662752871E354ADD002D5853 /* Info.plist */,
+			);
+			path = "Pictograph MacUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		662752641E354ADD002D5853 /* Pictograph Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6627528A1E354ADD002D5853 /* Build configuration list for PBXNativeTarget "Pictograph Mac" */;
+			buildPhases = (
+				662752611E354ADD002D5853 /* Sources */,
+				662752621E354ADD002D5853 /* Frameworks */,
+				662752631E354ADD002D5853 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pictograph Mac";
+			productName = "Pictograph Mac";
+			productReference = 662752651E354ADD002D5853 /* Pictograph Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		662752751E354ADD002D5853 /* Pictograph MacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6627528D1E354ADD002D5853 /* Build configuration list for PBXNativeTarget "Pictograph MacTests" */;
+			buildPhases = (
+				662752721E354ADD002D5853 /* Sources */,
+				662752731E354ADD002D5853 /* Frameworks */,
+				662752741E354ADD002D5853 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				662752781E354ADD002D5853 /* PBXTargetDependency */,
+			);
+			name = "Pictograph MacTests";
+			productName = "Pictograph MacTests";
+			productReference = 662752761E354ADD002D5853 /* Pictograph MacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		662752801E354ADD002D5853 /* Pictograph MacUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 662752901E354ADD002D5853 /* Build configuration list for PBXNativeTarget "Pictograph MacUITests" */;
+			buildPhases = (
+				6627527D1E354ADD002D5853 /* Sources */,
+				6627527E1E354ADD002D5853 /* Frameworks */,
+				6627527F1E354ADD002D5853 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				662752831E354ADD002D5853 /* PBXTargetDependency */,
+			);
+			name = "Pictograph MacUITests";
+			productName = "Pictograph MacUITests";
+			productReference = 662752811E354ADD002D5853 /* Pictograph MacUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6627525D1E354ADD002D5853 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = adam;
+				TargetAttributes = {
+					662752641E354ADD002D5853 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 6GHQ7P7EHA;
+						ProvisioningStyle = Automatic;
+					};
+					662752751E354ADD002D5853 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 6GHQ7P7EHA;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 662752641E354ADD002D5853;
+					};
+					662752801E354ADD002D5853 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 6GHQ7P7EHA;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 662752641E354ADD002D5853;
+					};
+				};
+			};
+			buildConfigurationList = 662752601E354ADD002D5853 /* Build configuration list for PBXProject "Pictograph Mac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6627525C1E354ADD002D5853;
+			productRefGroup = 662752661E354ADD002D5853 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				662752641E354ADD002D5853 /* Pictograph Mac */,
+				662752751E354ADD002D5853 /* Pictograph MacTests */,
+				662752801E354ADD002D5853 /* Pictograph MacUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		662752631E354ADD002D5853 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6627526D1E354ADD002D5853 /* Assets.xcassets in Resources */,
+				662752701E354ADD002D5853 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		662752741E354ADD002D5853 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6627527F1E354ADD002D5853 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		662752611E354ADD002D5853 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6627526B1E354ADD002D5853 /* ViewController.swift in Sources */,
+				662752691E354ADD002D5853 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		662752721E354ADD002D5853 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6627527B1E354ADD002D5853 /* Pictograph_MacTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6627527D1E354ADD002D5853 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				662752861E354ADD002D5853 /* Pictograph_MacUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		662752781E354ADD002D5853 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 662752641E354ADD002D5853 /* Pictograph Mac */;
+			targetProxy = 662752771E354ADD002D5853 /* PBXContainerItemProxy */;
+		};
+		662752831E354ADD002D5853 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 662752641E354ADD002D5853 /* Pictograph Mac */;
+			targetProxy = 662752821E354ADD002D5853 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6627526E1E354ADD002D5853 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6627526F1E354ADD002D5853 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		662752881E354ADD002D5853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		662752891E354ADD002D5853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		6627528B1E354ADD002D5853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
+				INFOPLIST_FILE = "Pictograph Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		6627528C1E354ADD002D5853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
+				INFOPLIST_FILE = "Pictograph Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		6627528E1E354ADD002D5853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
+				INFOPLIST_FILE = "Pictograph MacTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-MacTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pictograph Mac.app/Contents/MacOS/Pictograph Mac";
+			};
+			name = Debug;
+		};
+		6627528F1E354ADD002D5853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
+				INFOPLIST_FILE = "Pictograph MacTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-MacTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pictograph Mac.app/Contents/MacOS/Pictograph Mac";
+			};
+			name = Release;
+		};
+		662752911E354ADD002D5853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
+				INFOPLIST_FILE = "Pictograph MacUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-MacUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Pictograph Mac";
+			};
+			name = Debug;
+		};
+		662752921E354ADD002D5853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
+				INFOPLIST_FILE = "Pictograph MacUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-MacUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Pictograph Mac";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		662752601E354ADD002D5853 /* Build configuration list for PBXProject "Pictograph Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				662752881E354ADD002D5853 /* Debug */,
+				662752891E354ADD002D5853 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6627528A1E354ADD002D5853 /* Build configuration list for PBXNativeTarget "Pictograph Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6627528B1E354ADD002D5853 /* Debug */,
+				6627528C1E354ADD002D5853 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6627528D1E354ADD002D5853 /* Build configuration list for PBXNativeTarget "Pictograph MacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6627528E1E354ADD002D5853 /* Debug */,
+				6627528F1E354ADD002D5853 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		662752901E354ADD002D5853 /* Build configuration list for PBXNativeTarget "Pictograph MacUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				662752911E354ADD002D5853 /* Debug */,
+				662752921E354ADD002D5853 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6627525D1E354ADD002D5853 /* Project object */;
+}
