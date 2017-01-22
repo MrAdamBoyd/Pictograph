@@ -14,25 +14,24 @@ import CustomIOSAlertView
 import AVFoundation
 import Photos
 
-//What we are currently doing
-enum PictographAction {
-    case encoding, decoding, none
-}
-
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle, UIImagePickerControllerDelegate {
     
     //UI elements
     let mainEncodeView = MainEncodingView()
     var settingsNavVC: UINavigationController? //Stored to animate nightMode
-    var currentAction: PictographAction = .none
     var currentImage: UIImage? {
         didSet {
             self.mainEncodeView.imageView.image = self.currentImage
             
-            if let _ = self.currentImage {
-                self.mainEncodeView.largeTapSelectImageLabel.isHidden = true
-                self.mainEncodeView.smallTapSelectImageLabel.isHidden = false
-            }
+            let imageExists = self.currentImage != nil
+            self.mainEncodeView.largeTapSelectImageLabel.isHidden = imageExists
+            self.mainEncodeView.smallTapSelectImageLabel.isHidden = !imageExists
+            
+            self.mainEncodeView.encodeButton.isEnabled = imageExists
+            self.mainEncodeView.encodeButton.alpha = imageExists ? 1 : 0.5
+            
+            self.mainEncodeView.decodeButton.isEnabled = imageExists
+            self.mainEncodeView.decodeButton.alpha = imageExists ? 1 : 0.5
         }
     }
     
@@ -71,8 +70,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         //Add gesture recognizer to image view
         self.mainEncodeView.imageView.isUserInteractionEnabled = true
-//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector())
-//        self.mainEncodeView.imageView.addGestureRecognizer(<#T##gestureRecognizer: UIGestureRecognizer##UIGestureRecognizer#>)
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.presentImageSelectActionSheet))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        self.mainEncodeView.imageView.addGestureRecognizer(tapGestureRecognizer)
         
         //Setting up the notifications for the settings
         NotificationCenter.default.addObserver(self, selector: #selector(self.showPasswordOnScreenChanged), name: NSNotification.Name(rawValue: pictographShowPasswordOnScreenSettingChangedNotification), object: nil)
@@ -237,8 +237,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         */
         if ((!PictographDataController.shared.userEncryptionPasswordNonNil.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled) {
             
-            self.currentAction = .encoding
-            self.determineHowToPresentImagePicker(haveCameraOption: true)
+            self.showGetMessageController("Enter your message", withPlaceHolder: "Your message here")
             
         } else {
             //Show message: encryption is enabled and the key is blank
@@ -255,8 +254,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
          */
         if ((!PictographDataController.shared.userEncryptionPasswordNonNil.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled) {
             
-            self.currentAction = .decoding
-            self.determineHowToPresentImagePicker(haveCameraOption: false)
+            self.decodeMessage()
             
         } else {
             //Show message: encryption is enabled and the key is blank
@@ -266,6 +264,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Showing the action sheet
     
+    func presentImageSelectActionSheet() {
+        self.determineHowToPresentImagePicker(haveCameraOption: true)
+    }
     
     /// Determines how to show the image picker. If the device has the camera, shows a picker that lets the user determine if they want to use the camera or just pick from the library.
     ///
@@ -355,11 +356,15 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.present(picker, animated: true, completion: nil)
     }
     
-    func encodeMessage(_ messageToEncode: String, inImage userImage: UIImage) {
+    func encodeMessage(_ messageToEncode: String) {
+        guard let image = self.currentImage else {
+            return
+        }
+        
         //After the user hit confirm
         SVProgressHUD.show()
         
-        //Dispatching the task after  small amount of time as per MBProgressHUD's recommendation
+        //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             let coder = UIImageCoder()
             
@@ -367,7 +372,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             SVProgressHUD.dismiss()
             
             do {
-                let encodedImage = try coder.encodeMessage(messageToEncode, in: userImage, encryptedWithPassword: PictographDataController.shared.userEncryptionPassword)
+                let encodedImage = try coder.encodeMessage(messageToEncode, in: image, encryptedWithPassword: PictographDataController.shared.userEncryptionPassword)
                 //Show the share sheet if the image exists
                 self.showShareSheetWithImage(encodedImage)
 
@@ -380,7 +385,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Decoding a message that is hidden in an image
-    func decodeMessageInImage(_ userImage: UIImage) {
+    func decodeMessage() {
+        
+        guard let image = self.currentImage else {
+            return
+        }
         
         //No need to show HUD because this doesn't take long
         
@@ -390,7 +399,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         let providedPassword = mainEncodeView.encryptionSwitch.isOn ? mainEncodeView.encryptionKeyField.text : ""
         
         do {
-            let decodedMessage = try coder.decodeMessage(in: userImage, encryptedWithPassword: providedPassword)
+            let decodedMessage = try coder.decodeMessage(in: image, encryptedWithPassword: providedPassword)
             //Show the message if it was successfully decoded
             showMessageInAlertController("Hidden Message", message: decodedMessage)
             
@@ -406,21 +415,18 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     /// - Parameters:
     ///   - title: title of the UIAlertController
     ///   - placeHolder: placeholder to have in the textbox
-    ///   - image: image to hide the message in
-    func showGetMessageController(_ title: String, withPlaceHolder placeHolder: String, forImage image: UIImage) {
+    func showGetMessageController(_ title: String, withPlaceHolder placeHolder: String) {
         
         let getMessageController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         
         //Saving the confirmAction so it can be enabled/disabled
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
-            self.encodeMessage(getMessageController.textFields!.first!.text!, inImage: image)
+            self.encodeMessage(getMessageController.textFields!.first!.text!)
         }
         getMessageController.addAction(confirmAction)
         
         //Set current action to none
-        getMessageController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-            self.currentAction = .none
-        }))
+        getMessageController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         //Building the text field with the correct settings
         getMessageController.addTextField(configurationHandler: { textField in
@@ -544,18 +550,10 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             return
         }
         
-        switch self.currentAction {
-        case .encoding:
-            self.showGetMessageController("Enter your message", withPlaceHolder: "Your message here", forImage: image)
-        case .decoding:
-            self.decodeMessageInImage(image)
-        default:
-            break
-        }
+        self.currentImage = image
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
-        self.currentAction = .none
     }
 }

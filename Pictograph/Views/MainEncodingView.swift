@@ -46,6 +46,8 @@ class MainEncodingView: UIScrollView {
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.layer.borderColor = UIColor.white.cgColor
         self.imageView.layer.borderWidth = 1
+        self.imageView.contentMode = .scaleAspectFill
+        self.imageView.clipsToBounds = true
         self.elementContainer.addSubview(self.imageView)
         
         //Near top
@@ -152,7 +154,9 @@ class MainEncodingView: UIScrollView {
         
         
         //Encode button
-        encodeButton.setTitle("Hide Message", for: UIControlState())
+        encodeButton.setTitle("Hide Message", for: .normal)
+        encodeButton.isEnabled = false
+        encodeButton.alpha = 0.5
         encodeButton.translatesAutoresizingMaskIntoConstraints = false
         
         //Setting the corner radius
@@ -168,7 +172,9 @@ class MainEncodingView: UIScrollView {
         
         
         //Decode button
-        decodeButton.setTitle("Show Message", for: UIControlState())
+        decodeButton.setTitle("Show Message", for: .normal)
+        decodeButton.isEnabled = false
+        decodeButton.alpha = 0.5
         decodeButton.translatesAutoresizingMaskIntoConstraints = false
         
         //Setting the corner radius
