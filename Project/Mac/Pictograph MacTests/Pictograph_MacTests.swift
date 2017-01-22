@@ -3,7 +3,7 @@
 //  Pictograph MacTests
 //
 //  Created by Adam Boyd on 2017-01-22.
-//  Copyright © 2017 adam. All rights reserved.
+//  Copyright © 2017 Adam Boyd. All rights reserved.
 //
 
 import XCTest
