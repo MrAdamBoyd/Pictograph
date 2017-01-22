@@ -10,12 +10,12 @@ import Foundation
 
 private let mainFontSize: CGFloat = 20
 
-private let bigButtonHeight: CGFloat = 60
+private let bigButtonHeight: CGFloat = 50
 private let buttonBorderWidth: CGFloat = 0.5
 private let buttonCenterMargin: CGFloat = 5
 
 private let encryptionMargin: CGFloat = 25
-private let encryptionVerticalMargin: CGFloat = 20
+private let encryptionVerticalMargin: CGFloat = 15
 
 class MainEncodingView: UIScrollView {
     
@@ -50,17 +50,7 @@ class MainEncodingView: UIScrollView {
         self.imageView.clipsToBounds = true
         self.elementContainer.addSubview(self.imageView)
         
-        //Near top
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            
-            //All other devices
-            //-300px(above) center of view
-            self.imageView.topAnchor.constraint(equalTo: self.elementContainer.centerYAnchor, constant: -encryptionVerticalMargin * 15).isActive = true
-        } else {
-            //iPhone screen size
-            //20px from top of screen
-            self.imageView.topAnchor.constraint(equalTo: self.elementContainer.topAnchor, constant: encryptionVerticalMargin).isActive = true
-        }
+        self.imageView.topAnchor.constraint(equalTo: self.elementContainer.topAnchor, constant: encryptionVerticalMargin).isActive = true
         self.imageView.leftAnchor.constraint(equalTo: self.elementContainer.leftAnchor, constant: encryptionMargin).isActive = true
         self.imageView.rightAnchor.constraint(equalTo: self.elementContainer.rightAnchor, constant: -encryptionMargin).isActive = true
         self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 0.5, constant: 0).isActive = true

@@ -46,6 +46,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.openSettings))
         
         //Adding all the UI elements to the screen
+        self.mainEncodeView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64)
         self.mainEncodeView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(mainEncodeView)
         
@@ -96,7 +97,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     // MARK: - UIScrollViewDelegate
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.endEditingAndSetPassword()
+        if self.mainEncodeView.encryptionKeyField.isFirstResponder {
+            self.endEditingAndSetPassword()
+        }
     }
     
     func openSettings() {
@@ -373,6 +376,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
             do {
                 let encodedImage = try coder.encodeMessage(messageToEncode, in: image, encryptedWithPassword: PictographDataController.shared.userEncryptionPassword)
+                self.currentImage = UIImage(data: encodedImage)
                 //Show the share sheet if the image exists
                 self.showShareSheetWithImage(encodedImage)
 
