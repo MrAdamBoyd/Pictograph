@@ -51,15 +51,15 @@ class MainEncodingView: UIScrollView {
         self.elementContainer.addSubview(self.imageView)
         
         //Near top
-        let screenSize = max(UIScreen.main.bounds.height, UIScreen.main.bounds.width)
-        if screenSize < 1024 {
-            //iPhone screen size
-            //20px from top of screen
-            self.imageView.topAnchor.constraint(equalTo: self.elementContainer.topAnchor, constant: encryptionVerticalMargin).isActive = true
-        } else {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            
             //All other devices
             //-300px(above) center of view
             self.imageView.topAnchor.constraint(equalTo: self.elementContainer.centerYAnchor, constant: -encryptionVerticalMargin * 15).isActive = true
+        } else {
+            //iPhone screen size
+            //20px from top of screen
+            self.imageView.topAnchor.constraint(equalTo: self.elementContainer.topAnchor, constant: encryptionVerticalMargin).isActive = true
         }
         self.imageView.leftAnchor.constraint(equalTo: self.elementContainer.leftAnchor, constant: encryptionMargin).isActive = true
         self.imageView.rightAnchor.constraint(equalTo: self.elementContainer.rightAnchor, constant: -encryptionMargin).isActive = true

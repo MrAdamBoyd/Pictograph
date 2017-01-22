@@ -104,7 +104,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         let settings = SettingsViewController.createWithNavigationController()
         self.settingsNavVC = settings
         
-        if  UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
+        if UIDevice.current.userInterfaceIdiom == .pad {
             //On an iPad, show the popover from the button
             settings.modalPresentationStyle = .popover
             settings.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
@@ -277,7 +277,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             //Device has camera & library, show option to choose
            
             //If the device is an iPad, popup in the middle of screen
-            let alertStyle: UIAlertControllerStyle = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) ? .alert : .actionSheet
+            let alertStyle: UIAlertControllerStyle = (UIDevice.current.userInterfaceIdiom == .pad) ? .alert : .actionSheet
             
             //Building the picker to choose the type of input
             let imagePopup = UIAlertController(title: "Select Picture", message: nil, preferredStyle: alertStyle)
@@ -448,12 +448,12 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     func showShareSheetWithImage(_ image: Data) {
         let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         
-        if  UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
+        if UIDevice.current.userInterfaceIdiom == .pad {
             //On an iPad, show the popover from the button
             activityController.modalPresentationStyle = .popover
-            activityController.popoverPresentationController!.sourceView = mainEncodeView.encodeButton
+            activityController.popoverPresentationController!.sourceView = self.mainEncodeView.imageView
             //Presenting it from the middle of the encode button
-            activityController.popoverPresentationController!.sourceRect = CGRect(x: mainEncodeView.encodeButton.frame.width / 2, y: mainEncodeView.encodeButton.frame.height / 2, width: 0, height: 0)
+            activityController.popoverPresentationController!.sourceRect = CGRect(x: self.mainEncodeView.imageView.frame.width / 2, y: self.mainEncodeView.imageView.frame.height / 2, width: 0, height: 0)
         }
         
         //Showing the share sheet
