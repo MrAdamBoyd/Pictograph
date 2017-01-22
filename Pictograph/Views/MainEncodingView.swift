@@ -21,12 +21,16 @@ class MainEncodingView: UIScrollView {
     
     //UI elements
     let elementContainer = UIView()
-    var encodeButton = PictographHighlightButton()
-    var decodeButton = PictographHighlightButton()
-    var encryptionKeyField = PictographInsetTextField()
-    var encryptionLabel = UILabel()
-    var encryptionSwitch = UISwitch()
-    var encryptionInfoViewBorder = UIView()
+    let imageView = UIImageView()
+    let smallTapSelectImageLabel = UILabel()
+    let largeTapSelectImageLabel = UILabel()
+    let borderBelowImage = UIView()
+    let encryptionLabel = UILabel()
+    let encryptionKeyField = PictographInsetTextField()
+    let encryptionSwitch = UISwitch()
+    let encryptionInfoViewBorder = UIView()
+    let encodeButton = PictographHighlightButton()
+    let decodeButton = PictographHighlightButton()
     
     //MARK: - UIView
     
@@ -38,6 +42,62 @@ class MainEncodingView: UIScrollView {
         self.addSubview(self.elementContainer)
         self.elementContainer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: max(UIScreen.main.bounds.height - 64, 300))
         
+        //Image view, location for views based off this view
+        self.imageView.translatesAutoresizingMaskIntoConstraints = false
+        self.imageView.layer.borderColor = UIColor.white.cgColor
+        self.imageView.layer.borderWidth = 1
+        self.elementContainer.addSubview(self.imageView)
+        
+        //Near top
+        let screenSize = max(UIScreen.main.bounds.height, UIScreen.main.bounds.width)
+        if screenSize < 1024 {
+            //iPhone screen size
+            //20px from top of screen
+            self.imageView.topAnchor.constraint(equalTo: self.elementContainer.topAnchor, constant: encryptionVerticalMargin).isActive = true
+        } else {
+            //All other devices
+            //-300px(above) center of view
+            self.imageView.topAnchor.constraint(equalTo: self.elementContainer.centerYAnchor, constant: -encryptionVerticalMargin * 15).isActive = true
+        }
+        self.imageView.leftAnchor.constraint(equalTo: self.elementContainer.leftAnchor, constant: encryptionMargin).isActive = true
+        self.imageView.rightAnchor.constraint(equalTo: self.elementContainer.rightAnchor, constant: -encryptionMargin).isActive = true
+        self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 0.5, constant: 0).isActive = true
+        
+        //Border between image and buttons
+        self.borderBelowImage.backgroundColor = UIColor.white
+        self.borderBelowImage.translatesAutoresizingMaskIntoConstraints = false
+        self.elementContainer.addSubview(self.borderBelowImage)
+        
+        self.borderBelowImage.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: encryptionVerticalMargin).isActive = true
+        self.borderBelowImage.leftAnchor.constraint(equalTo: self.elementContainer.leftAnchor, constant: encryptionMargin - 10).isActive = true
+        self.borderBelowImage.rightAnchor.constraint(equalTo: self.elementContainer.rightAnchor, constant: -(encryptionMargin - 10)).isActive = true
+        self.borderBelowImage.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        
+        //Small select image label
+        self.smallTapSelectImageLabel.textAlignment = .center
+        self.smallTapSelectImageLabel.text = "Tap to Select Image"
+        self.smallTapSelectImageLabel.textColor = UIColor.white
+        self.smallTapSelectImageLabel.backgroundColor = UIColor.gray.withAlphaComponent(0.75)
+        self.smallTapSelectImageLabel.font = UIFont.systemFont(ofSize: 12)
+        self.smallTapSelectImageLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.elementContainer.insertSubview(self.smallTapSelectImageLabel, aboveSubview: self.imageView)
+        self.smallTapSelectImageLabel.isHidden = true //Starts off hidden
+        
+        self.smallTapSelectImageLabel.rightAnchor.constraint(equalTo: self.imageView.rightAnchor, constant: -1).isActive = true
+        self.smallTapSelectImageLabel.bottomAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: -1).isActive = true
+        
+        
+        //Large select image label
+        self.largeTapSelectImageLabel.textAlignment = .center
+        self.largeTapSelectImageLabel.text = "Tap to Select Image"
+        self.largeTapSelectImageLabel.textColor = UIColor.white
+        self.largeTapSelectImageLabel.font = UIFont.systemFont(ofSize: 25)
+        self.largeTapSelectImageLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.elementContainer.insertSubview(self.largeTapSelectImageLabel, belowSubview: self.imageView)
+        
+        self.largeTapSelectImageLabel.centerYAnchor.constraint(equalTo: self.imageView.centerYAnchor).isActive = true
+        self.largeTapSelectImageLabel.centerXAnchor.constraint(equalTo: self.imageView.centerXAnchor).isActive = true
+        
         //Label for enabling encryption, location for views based off this view
         encryptionLabel.text = "Use Encryption"
         encryptionLabel.font = UIFont.boldSystemFont(ofSize: mainFontSize)
@@ -45,19 +105,10 @@ class MainEncodingView: UIScrollView {
         encryptionLabel.translatesAutoresizingMaskIntoConstraints = false
         self.elementContainer.addSubview(encryptionLabel)
         
-        //0px from left
-        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .left, relatedBy: .equal, toItem:self.elementContainer, attribute: .left, multiplier:1, constant:encryptionMargin))
         
-        let screenSize = max(UIScreen.main.bounds.height, UIScreen.main.bounds.width)
-        if screenSize < 1024 {
-            //iPhone screen size
-            //20px from top of screen
-            self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .top, relatedBy: .equal, toItem: self.elementContainer,  attribute: .top, multiplier:1, constant:encryptionVerticalMargin))
-        } else {
-            //All other devices
-            //-200px(above) center of view
-            self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .top, relatedBy: .equal, toItem: self.elementContainer,  attribute: .centerY, multiplier:1, constant:-encryptionVerticalMargin * 10))
-        }
+        //25 from left and below the image border
+        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .left, relatedBy: .equal, toItem:self.elementContainer, attribute: .left, multiplier:1, constant:encryptionMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .top, relatedBy: .equal, toItem: self.borderBelowImage,  attribute: .top, multiplier:1, constant:encryptionVerticalMargin))
         
         
         //Switch for enabling encryption

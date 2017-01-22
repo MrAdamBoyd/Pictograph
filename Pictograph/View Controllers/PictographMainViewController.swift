@@ -23,8 +23,18 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //UI elements
     let mainEncodeView = MainEncodingView()
-    var settingsNavVC: UINavigationController! //Stored to animate nightMode
+    var settingsNavVC: UINavigationController? //Stored to animate nightMode
     var currentAction: PictographAction = .none
+    var currentImage: UIImage? {
+        didSet {
+            self.mainEncodeView.imageView.image = self.currentImage
+            
+            if let _ = self.currentImage {
+                self.mainEncodeView.largeTapSelectImageLabel.isHidden = true
+                self.mainEncodeView.smallTapSelectImageLabel.isHidden = false
+            }
+        }
+    }
     
     //MARK: - UIViewController
     
@@ -58,6 +68,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             self.mainEncodeView.alpha = 0
             self.navigationController?.setNavigationBarHidden(true, animated: false)
         }
+        
+        //Add gesture recognizer to image view
+        self.mainEncodeView.imageView.isUserInteractionEnabled = true
+//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector())
+//        self.mainEncodeView.imageView.addGestureRecognizer(<#T##gestureRecognizer: UIGestureRecognizer##UIGestureRecognizer#>)
         
         //Setting up the notifications for the settings
         NotificationCenter.default.addObserver(self, selector: #selector(self.showPasswordOnScreenChanged), name: NSNotification.Name(rawValue: pictographShowPasswordOnScreenSettingChangedNotification), object: nil)
@@ -484,7 +499,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     func changeNightModeAnimated() {
         UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.changeNightMode()
-            self.settingsNavVC.popoverPresentationController?.backgroundColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
+            self.settingsNavVC?.popoverPresentationController?.backgroundColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
         }) 
     }
     
