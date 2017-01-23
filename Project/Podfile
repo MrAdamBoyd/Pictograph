@@ -14,10 +14,6 @@ target 'Pictograph' do
   pod_list
 end
 
-target 'Pictograph Mac' do
-  pod_list
-end
-
 target 'PictographTests' do
 
 end
