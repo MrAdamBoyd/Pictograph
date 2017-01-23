@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0363519FF50C251DFF4843D7E07DC5DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A896ADDF6AE7B9332DB9E506868430FC /* Foundation.framework */; };
 		1F1AEEEC99C41FF98CA67ACD4165DC60 /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 679FE214E67917F4364A7C5B3A7675E8 /* CustomIOSAlertView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		206CF2A695E4F7A3833BFCD809E56CFD /* Pods-Pictograph-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EF8A92322A7DA74FE1344D924F0D53 /* Pods-Pictograph-dummy.m */; };
+		206CF2A695E4F7A3833BFCD809E56CFD /* Pods-Pictograph-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E4FA90EEB2B94E41DF8E72F76D9FB /* Pods-Pictograph-dummy.m */; };
 		3246AF7F0094AE7C541614450F866BAA /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA12966392ED524D1A00355AE22C1A9 /* SVIndefiniteAnimatedView.m */; };
 		342FD0CF5A19992200CDCD679F2D71C6 /* EAIntroView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D7B4743D60D791F478108F83F27BF55 /* EAIntroView-dummy.m */; };
 		35843D6B720611CD4E0BB4372C6E521A /* EAIntroPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1900295C9BA2864951C56399734FB06A /* EAIntroPage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -22,16 +22,18 @@
 		599EC797D93F4BEB8EC9C246DBC36125 /* EARestrictedScrollView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8284EFBA67627EF1A0E37593C5915D87 /* EARestrictedScrollView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61C9B9EBB980FFFD8F35D6F466568D08 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A4016C1F9F8418227D002CAB86222E /* Security.framework */; };
 		675C1868904A9820706F27194EC444E1 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD7EDAD35D72CDF679E9C0312696B8F /* SVProgressHUD.m */; };
-		6B8955D1779B97F6B7608A708D1F3C70 /* Pods-PictographUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CCC43AC35F2A844328F5481FCCA1690 /* Pods-PictographUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B8955D1779B97F6B7608A708D1F3C70 /* Pods-PictographUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F700C7C87B8F5F74F85B1C6262E5D02 /* Pods-PictographUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E6B92F5CD6886677C98DF4B154AC0C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A896ADDF6AE7B9332DB9E506868430FC /* Foundation.framework */; };
 		7E637C62A9ABE1C765D1F3C2D22DE4C9 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = B52296B4393C4F7F658CC458ABBA2F53 /* RNDecryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		848C2822D416756731EC71D14461B8AE /* Pods-Pictograph-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DAF9342B409D1C907506DA3B6C674EE7 /* Pods-Pictograph-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		848C2822D416756731EC71D14461B8AE /* Pods-Pictograph-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C80A4B5960119F332EC91194F3660FB /* Pods-Pictograph-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8ED6386E04C80A59F6FC93521DBBD3B5 /* RNCryptor-objc-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 87C7EFE1466A7781B5E645C8C66083BB /* RNCryptor-objc-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		90123525DD39990553B666185B9D5661 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A896ADDF6AE7B9332DB9E506868430FC /* Foundation.framework */; };
 		9067553698DA61A61295428FD4977A0B /* CustomIOSAlertView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D148315E4D8AAAAA2AC5DE2A53B670 /* CustomIOSAlertView-dummy.m */; };
+		983C43283883C8108825802C7811EBCE /* Pods-Pictograph Mac-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1F3994E8F73CAF64ABA71CF2F37BA0 /* Pods-Pictograph Mac-dummy.m */; };
 		A31283EC0E6F6C4DF00B29FCBF4D377F /* SVIndefiniteAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = DDBFEE6FA8A50356CF78F1A0EBB392C1 /* SVIndefiniteAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A515F79AC7D868F344FE09F615609F76 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA08429FA1F356187642887534DCD34F /* SVProgressHUD.bundle */; };
 		B0D275D287CB81866E87FF6754F82158 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A896ADDF6AE7B9332DB9E506868430FC /* Foundation.framework */; };
-		C08184279D7153DD82A7329D0CB8644C /* Pods-PictographUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0604FCF30B5AFF76A146D42EFD6EA2BB /* Pods-PictographUITests-dummy.m */; };
+		C08184279D7153DD82A7329D0CB8644C /* Pods-PictographUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AB342812C1509D4712012E561C53B4 /* Pods-PictographUITests-dummy.m */; };
 		C41EB9232CC9C9A7A1D5A6F221D1EDB4 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF538C101A3E4D175B6176B2D8EEED5 /* EAIntroPage.m */; };
 		CC4DA8E4C8D902029CBDC7BF3CD243D8 /* SVProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DA94391C3D8A3051967E4308C13658F9 /* SVProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CCD230BC815C775651F2054A0DAE32E7 /* EARestrictedScrollView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7247220D3EA8460CF23ECDCB573F1606 /* EARestrictedScrollView-dummy.m */; };
@@ -45,6 +47,7 @@
 		D658C754A626616BE66B8AF295F54137 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A963FCBEE0319037C4A9D30A514C208 /* RNCryptorEngine.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		D7C59C4D650709736736992596FEFCF0 /* RNDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 73DE5C2CC5BFB524052EEE9FA5CC9134 /* RNDecryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD54386479E31809FB2F31028E6C28A2 /* SVProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 078A1CF1E00BBF654A2A11EA68A7379D /* SVProgressHUD-dummy.m */; };
+		DDADBBBA3E371F7D3239BAABD36F0B70 /* Pods-Pictograph Mac-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FD29F9382DBF6E7048B8F9E08C9D5E4 /* Pods-Pictograph Mac-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E04553FDA70CD455A53024C2BB30E513 /* RNCryptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 55D78965E208BDF3852D19D98355EF18 /* RNCryptor+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		E0F87CB28E5C07D8F95A8E7BFC269E57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0B1EDCB4D935C5471CD1C36F928B3D0 /* QuartzCore.framework */; };
 		E0FE5C8A13C205B891527DFFA8352ADD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A896ADDF6AE7B9332DB9E506868430FC /* Foundation.framework */; };
@@ -55,14 +58,21 @@
 		EABBB2F663609893680E5B6F1622F5E6 /* EARestrictedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CCADCEDD23A911B7281617ECAAC4F9 /* EARestrictedScrollView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		EC5C2FB3957A69A9565CB68756B26EEC /* RNCryptorEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A569FB5A0E20AEA79D5A57A91CD42994 /* RNCryptorEngine.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EE1FE18C542EBC417D04A97EA5A242C3 /* SVRadialGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = F566D665184F160A5CD22FEED0ABEDBE /* SVRadialGradientLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EF361A191982677901EE147AECFA19E3 /* Pods-PictographTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EA9AF05E66054B8E5D2B40DC1F481F /* Pods-PictographTests-dummy.m */; };
+		EF361A191982677901EE147AECFA19E3 /* Pods-PictographTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B82D4E4B589BBD1466E7F155AC555E9A /* Pods-PictographTests-dummy.m */; };
 		F3B8870A51612FE16508BA9448362CB9 /* EARestrictedScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6087C88CEEB775EFBE024D836CCF2FE /* EARestrictedScrollView.framework */; };
 		F8CB35A8C0192C1E18A1782911E7DC74 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2936A1868ABDE60CDD8CDC4753591E /* SVRadialGradientLayer.m */; };
 		F9A88BBAB3FE02A25ABAE686B57B8FF5 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = AA55A0F1B17C2B7A753B10448B4ACC5F /* RNCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FC5F531126B12EC015F0C94E6D607ED3 /* Pods-PictographTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C36DE7B1CBAB880AA65819B2637F8332 /* Pods-PictographTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC5F531126B12EC015F0C94E6D607ED3 /* Pods-PictographTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3AE5611FF2A5ECD6A0C6CE76488D82 /* Pods-PictographTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		095034C0AF077A8C15E40DE6A9965448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DCC7F38E1EC473EF6059E02B510D3FA9;
+			remoteInfo = SVProgressHUD;
+		};
 		124965AEB5C5362A1EEB001E2CE15E51 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
@@ -71,6 +81,13 @@
 			remoteInfo = SVProgressHUD;
 		};
 		162F1FA3FE9AD2F8D943C7B6FC4C78FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA465B7D558F04B95DC6132C83BA32A9;
+			remoteInfo = "RNCryptor-objc";
+		};
+		2F7EF410BF31D352A72AA4FB7B122631 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -91,6 +108,27 @@
 			remoteGlobalIDString = 58AAD2C9E898747F2F4ABF348E6325F2;
 			remoteInfo = EARestrictedScrollView;
 		};
+		43DCCDA6B68711271D87A8C3664ADC48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 58AAD2C9E898747F2F4ABF348E6325F2;
+			remoteInfo = EARestrictedScrollView;
+		};
+		4629A297414A2793A00992170CE0AB03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D906A54537D2453590F9B925C18B4AC4;
+			remoteInfo = CustomIOSAlertView;
+		};
+		734664403D42A725DE1F8F352EDD617F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 822DA31A6A34C7EF41E1EC7A5EF8FC2F;
+			remoteInfo = EAIntroView;
+		};
 		8497715371A466A70A50A30F64D15DCE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
@@ -108,115 +146,126 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00ED96238587EADE2FFF2843E0B70B72 /* Pods_PictographTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PictographTests.framework; path = "Pods-PictographTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0604FCF30B5AFF76A146D42EFD6EA2BB /* Pods-PictographUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PictographUITests-dummy.m"; sourceTree = "<group>"; };
+		03B4676FC52FA654C2AD8D29A2DFD1F7 /* CustomIOSAlertView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CustomIOSAlertView.framework; path = CustomIOSAlertView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0693A0F2A0C6251E56E5D14214974C66 /* SVProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-prefix.pch"; sourceTree = "<group>"; };
 		078A1CF1E00BBF654A2A11EA68A7379D /* SVProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD-dummy.m"; sourceTree = "<group>"; };
-		07BCA74817BAD1538CD6EDB6A3EEA548 /* Pods-PictographUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0C366740DC56F1619FC65ED7CD098B7E /* EAIntroView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EAIntroView.m; path = EAIntroView/EAIntroView.m; sourceTree = "<group>"; };
-		136C7853BAFBCC90D4ECE03DD8F16FCA /* Pods-PictographUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PictographUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		15E04B8143EFBC271167F9EA296FE2B9 /* Pods-PictographUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PictographUITests.modulemap"; sourceTree = "<group>"; };
+		10AB342812C1509D4712012E561C53B4 /* Pods-PictographUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PictographUITests-dummy.m"; sourceTree = "<group>"; };
+		12D13A7F5574FD6147995EE76DF97400 /* Pods-PictographUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		16E4425D6866CAA3DC282AEBBACDCF2F /* Pods-PictographTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PictographTests.modulemap"; sourceTree = "<group>"; };
 		1796E8FB8BBB47B40171ECA7195DDA43 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
 		1875D3A56073CF3674CE7B014523F269 /* RNCryptor-objc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "RNCryptor-objc.xcconfig"; sourceTree = "<group>"; };
 		189D81EC1BDBBCC81B2BEA1BA9FE6B99 /* EAIntroView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EAIntroView.h; path = EAIntroView/EAIntroView.h; sourceTree = "<group>"; };
 		1900295C9BA2864951C56399734FB06A /* EAIntroPage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EAIntroPage.h; path = EAIntroView/EAIntroPage.h; sourceTree = "<group>"; };
+		1996432EC3847493A77B42D85B2A7687 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B2FAED50EB957BFA389CBB5E061B23A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E037BB44D947F5FDE0D9ED27FBB1C01 /* Pods-PictographTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographTests.release.xcconfig"; sourceTree = "<group>"; };
+		1FD29F9382DBF6E7048B8F9E08C9D5E4 /* Pods-Pictograph Mac-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Pictograph Mac-umbrella.h"; sourceTree = "<group>"; };
+		211735AEE2433C6046B3B89F8CE1D8D2 /* Pods-Pictograph-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph-frameworks.sh"; sourceTree = "<group>"; };
 		22FC4BF1FFB10E4EDFCF8541D0796767 /* CustomIOSAlertView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CustomIOSAlertView.xcconfig; sourceTree = "<group>"; };
 		24A4016C1F9F8418227D002CAB86222E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		29EF60CE7C4C7E715632F43EBBCAA185 /* Pods-PictographTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographTests-frameworks.sh"; sourceTree = "<group>"; };
-		2BFFFAC27D3A29EF5DE8D1314C59C0F2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C0442A22A0A5785FC058E5E8CC4A11F /* Pods-PictographTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographTests-resources.sh"; sourceTree = "<group>"; };
+		268158A36526131709C3F89C22F9499E /* Pods-Pictograph Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph Mac.debug.xcconfig"; sourceTree = "<group>"; };
 		3579C53F3D47E9B3814255971F91FC3A /* EAIntroView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EAIntroView.xcconfig; sourceTree = "<group>"; };
 		36B4C901F67991C7D1A2295D9D825688 /* EAIntroView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EAIntroView-umbrella.h"; sourceTree = "<group>"; };
-		3838EBE76234F0FF7CA15F40A370CB3D /* Pods-Pictograph-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pictograph-acknowledgements.plist"; sourceTree = "<group>"; };
 		38CCADCEDD23A911B7281617ECAAC4F9 /* EARestrictedScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EARestrictedScrollView.m; path = EARestrictedScrollView/EARestrictedScrollView.m; sourceTree = "<group>"; };
-		39131700EECDDA5FC81A51A022192B0A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B5B15EEF9BE43DD8537DEB3FD33A63C /* Pods-PictographTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PictographTests.modulemap"; sourceTree = "<group>"; };
+		3BA07BB13C137107FF58C1F575BA68AE /* EARestrictedScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EARestrictedScrollView.framework; path = EARestrictedScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DA12966392ED524D1A00355AE22C1A9 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
-		3F9623F03E62858DA7B1CA2E5AAFC0AF /* Pods-Pictograph-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph-frameworks.sh"; sourceTree = "<group>"; };
+		3EF857E813A0FA422EB9884F76E3E75F /* Pods-PictographUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PictographUITests.modulemap"; sourceTree = "<group>"; };
 		47B08DF7228B0D8C6FA0AFF4F91C9598 /* CustomIOSAlertView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CustomIOSAlertView.modulemap; sourceTree = "<group>"; };
 		4A963FCBEE0319037C4A9D30A514C208 /* RNCryptorEngine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNCryptorEngine.m; path = RNCryptor/RNCryptorEngine.m; sourceTree = "<group>"; };
-		4CC22A100DC3F9FD5578024CC0EF1968 /* Pods-PictographTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D7B4743D60D791F478108F83F27BF55 /* EAIntroView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EAIntroView-dummy.m"; sourceTree = "<group>"; };
 		4DF538C101A3E4D175B6176B2D8EEED5 /* EAIntroPage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EAIntroPage.m; path = EAIntroView/EAIntroPage.m; sourceTree = "<group>"; };
-		4EF35CD3B8526B7339DD97378763A4AD /* Pods-Pictograph-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Pictograph-acknowledgements.markdown"; sourceTree = "<group>"; };
 		5237740721B0A217BD1D4B8878561669 /* EAIntroView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EAIntroView.modulemap; sourceTree = "<group>"; };
 		54F4A39997EFBF5394C7A19B424C8183 /* RNEncryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNEncryptor.m; path = RNCryptor/RNEncryptor.m; sourceTree = "<group>"; };
+		55AB369E1F783FEBE67527E356E2F724 /* Pods-Pictograph Mac-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph Mac-resources.sh"; sourceTree = "<group>"; };
 		55D78965E208BDF3852D19D98355EF18 /* RNCryptor+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor+Private.h"; path = "RNCryptor/RNCryptor+Private.h"; sourceTree = "<group>"; };
 		56A662902FFF5B348A1A83890B7A66BA /* CustomIOSAlertView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomIOSAlertView-umbrella.h"; sourceTree = "<group>"; };
-		5AB8E16DF0A63E4988BEA3FABBDA4552 /* Pods-PictographTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographTests.release.xcconfig"; sourceTree = "<group>"; };
-		5C570351A60C22958990F3D1814FB0AB /* Pods-Pictograph.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Pictograph.modulemap"; sourceTree = "<group>"; };
 		5CBB5D0596B8D674249FF753A9D4CF6C /* CustomIOSAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CustomIOSAlertView.h; path = CustomIOSAlertView/CustomIOSAlertView/View/CustomIOSAlertView.h; sourceTree = "<group>"; };
 		5D9E5938AF22F8CB00BB91FF1FE6932C /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
-		5E5BB331C5F5B4C2DA205E5E70BB8570 /* EAIntroView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EAIntroView.framework; path = EAIntroView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		602EC20E83CCDAE31D14CF2E9778A0CC /* Pods-PictographUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographUITests-frameworks.sh"; sourceTree = "<group>"; };
 		679FE214E67917F4364A7C5B3A7675E8 /* CustomIOSAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CustomIOSAlertView.m; path = CustomIOSAlertView/CustomIOSAlertView/View/CustomIOSAlertView.m; sourceTree = "<group>"; };
-		67A9C7CD9C549208C4844C6AAD0FDA23 /* Pods-Pictograph-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph-resources.sh"; sourceTree = "<group>"; };
 		6A26907EC0BA8D6CE990414644C526DB /* RNEncryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNEncryptor.h; path = RNCryptor/RNEncryptor.h; sourceTree = "<group>"; };
-		6A4C23D8E630DC57223BAA972AF7706C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BA4E3CD82EC3864BE27DEFD14CC598C /* Pods-PictographUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographUITests-resources.sh"; sourceTree = "<group>"; };
 		6BD684103F70A304AB2B064FE0A6CEB4 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
-		6CCC43AC35F2A844328F5481FCCA1690 /* Pods-PictographUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PictographUITests-umbrella.h"; sourceTree = "<group>"; };
+		6D9E85EFAA517D9AC2EC28598C8E7E07 /* Pods-Pictograph-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph-resources.sh"; sourceTree = "<group>"; };
+		6F164AFD939A3611A500345BB443798E /* Pods_PictographUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PictographUITests.framework; path = "Pods-PictographUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F700C7C87B8F5F74F85B1C6262E5D02 /* Pods-PictographUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PictographUITests-umbrella.h"; sourceTree = "<group>"; };
+		713E53FE6E6A1FA91AB370C6E4BA95C2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7247220D3EA8460CF23ECDCB573F1606 /* EARestrictedScrollView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EARestrictedScrollView-dummy.m"; sourceTree = "<group>"; };
 		73DE5C2CC5BFB524052EEE9FA5CC9134 /* RNDecryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNDecryptor.h; path = RNCryptor/RNDecryptor.h; sourceTree = "<group>"; };
 		75625534D5A88E7B21D9B69D5B8AEC23 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
 		759AD326CAB689B1CDE8B28A05F14106 /* RNCryptor-objc-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-objc-prefix.pch"; sourceTree = "<group>"; };
-		7D95CCE6EB028AA8F8A56C56C194321F /* Pods_Pictograph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pictograph.framework; path = "Pods-Pictograph.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		78B08BEB9E89D9ACB873B928706A23A8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C80A4B5960119F332EC91194F3660FB /* Pods-Pictograph-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Pictograph-umbrella.h"; sourceTree = "<group>"; };
 		7DD7EDAD35D72CDF679E9C0312696B8F /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
-		7F02581B7C5CC63AF8130E277F0416B5 /* EARestrictedScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EARestrictedScrollView.framework; path = EARestrictedScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FDBFE0A33D399C284E80C6ECDBBF126 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FFFD3D2FEFBD737E481CB919608CCDA /* EAIntroView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EAIntroView-prefix.pch"; sourceTree = "<group>"; };
 		8284EFBA67627EF1A0E37593C5915D87 /* EARestrictedScrollView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EARestrictedScrollView-umbrella.h"; sourceTree = "<group>"; };
+		82BBB6C4D66CA4E4387CFEB1B16FF89B /* Pods-Pictograph Mac.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Pictograph Mac.modulemap"; sourceTree = "<group>"; };
 		8348FA9749A9F11CE70470D095E6F1A4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
+		84C006DB785A97B2224A85EE493F657B /* RNCryptor_objc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RNCryptor_objc.framework; path = "RNCryptor-objc.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B714ED4684C9A11EDAA880628079F8 /* RNCryptor-objc-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RNCryptor-objc-dummy.m"; sourceTree = "<group>"; };
 		87C7EFE1466A7781B5E645C8C66083BB /* RNCryptor-objc-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-objc-umbrella.h"; sourceTree = "<group>"; };
-		8D4C43B307318075F134F6072211E557 /* Pods-PictographTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PictographTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		8E085D74FC682E7135A82E3C26EB755B /* Pods-PictographTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PictographTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		8DA2EA5FFEA01B1D130D588B41203564 /* Pods-PictographUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8E19B47F664AC7B43EFDB0F4DAB77461 /* EARestrictedScrollView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EARestrictedScrollView.xcconfig; sourceTree = "<group>"; };
 		8E4079470C6D06E92EFF07EBD66208EA /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
+		8E9C1985396C0B74510BB68108FE69FE /* Pods-PictographTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographTests-frameworks.sh"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		93EF8A92322A7DA74FE1344D924F0D53 /* Pods-Pictograph-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Pictograph-dummy.m"; sourceTree = "<group>"; };
+		93DEC4C082B5222DAC2B015CC4E3DD56 /* Pods-Pictograph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph.debug.xcconfig"; sourceTree = "<group>"; };
 		9717463079004C454D6C09CF6CBC2BCA /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
 		9AA04B7ECE266B20608DA151557BB2C2 /* RNCryptor-objc.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "RNCryptor-objc.modulemap"; sourceTree = "<group>"; };
 		9C9958DB9E601278F03ED1FEC77AE736 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
 		9CB170E0268482FDE3CE3427881F7953 /* SVProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVProgressHUD.xcconfig; sourceTree = "<group>"; };
 		9D7FDDF1AA5D76491FD9307DC0CBE645 /* EARestrictedScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EARestrictedScrollView.h; path = EARestrictedScrollView/EARestrictedScrollView.h; sourceTree = "<group>"; };
-		9E0F0351231703B1C0F2AA1614945ED6 /* Pods-PictographUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PictographUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		9E1D3314A8103E48A63D1D2824D5A18D /* RNCryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNCryptor.m; path = RNCryptor/RNCryptor.m; sourceTree = "<group>"; };
 		9E56C7B1FDC9CAD0F175A31839E225DB /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
-		A22A1B5EBC245C405C1EEDB3D987ABF2 /* RNCryptor_objc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RNCryptor_objc.framework; path = "RNCryptor-objc.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F4621370FD3015B549F9D1A863C80FF /* Pods-PictographUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PictographUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9F9E4FA90EEB2B94E41DF8E72F76D9FB /* Pods-Pictograph-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Pictograph-dummy.m"; sourceTree = "<group>"; };
 		A569FB5A0E20AEA79D5A57A91CD42994 /* RNCryptorEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNCryptorEngine.h; path = RNCryptor/RNCryptorEngine.h; sourceTree = "<group>"; };
 		A7AE79CBE2A21C8F844375D3163D1BED /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
 		A896ADDF6AE7B9332DB9E506868430FC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		AA08429FA1F356187642887534DCD34F /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
 		AA55A0F1B17C2B7A753B10448B4ACC5F /* RNCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNCryptor.h; path = RNCryptor/RNCryptor.h; sourceTree = "<group>"; };
-		B10B3888858C00D7480737DD8F885517 /* Pods_PictographUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PictographUITests.framework; path = "Pods-PictographUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B27938EE35BC2213845F4CDCE2ED7200 /* Pods-PictographUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographUITests-resources.sh"; sourceTree = "<group>"; };
-		B2EA9AF05E66054B8E5D2B40DC1F481F /* Pods-PictographTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PictographTests-dummy.m"; sourceTree = "<group>"; };
+		AF14C61AEB8BC469AE1AC3FC268F6DA8 /* Pods_Pictograph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pictograph.framework; path = "Pods-Pictograph.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2EC03D630B1953511D82BF4CFA578E8 /* Pods-PictographUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PictographUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		B52296B4393C4F7F658CC458ABBA2F53 /* RNDecryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNDecryptor.m; path = RNCryptor/RNDecryptor.m; sourceTree = "<group>"; };
+		B600F1BD5689A1C912089A860B2B6C24 /* Pods-Pictograph Mac-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph Mac-frameworks.sh"; sourceTree = "<group>"; };
+		B82D4E4B589BBD1466E7F155AC555E9A /* Pods-PictographTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PictographTests-dummy.m"; sourceTree = "<group>"; };
+		B9E30A127BB27B1EBE8AD03C8216D6CD /* Pods-PictographTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PictographTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BB8C14B3AEBC4ABDE68E1232264C4989 /* EAIntroView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EAIntroView.framework; path = EAIntroView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2936A1868ABDE60CDD8CDC4753591E /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		BD27EBD09A24DE2C5B4F9BC3AC4BE759 /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
-		C36DE7B1CBAB880AA65819B2637F8332 /* Pods-PictographTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PictographTests-umbrella.h"; sourceTree = "<group>"; };
+		BEB06091032ED73F5D63DAD23C09C7B8 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E9600569D09F82ECF5ABF9D805A2EF /* EARestrictedScrollView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EARestrictedScrollView.modulemap; sourceTree = "<group>"; };
+		CB1F3994E8F73CAF64ABA71CF2F37BA0 /* Pods-Pictograph Mac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Pictograph Mac-dummy.m"; sourceTree = "<group>"; };
+		CD9789C675B602EC86A925AE75136DF6 /* Pods-PictographUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographUITests-frameworks.sh"; sourceTree = "<group>"; };
 		CFFE0D7CF311874C1D95EF8F5A45FD19 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
-		D43719C7B6557DE719738F09894327FC /* Pods-Pictograph.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph.release.xcconfig"; sourceTree = "<group>"; };
+		D22DB85A2102039412E7CA717AEC3845 /* Pods_Pictograph_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pictograph_Mac.framework; path = "Pods-Pictograph Mac.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7CED88999F9583E1DDF911EBFBC625C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D933E41519DDA9FC1674B281E275A667 /* Pods-Pictograph.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Pictograph.modulemap"; sourceTree = "<group>"; };
+		DA88D32CE1A5CC87FD86F515B9039C8B /* Pods-Pictograph Mac-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Pictograph Mac-acknowledgements.markdown"; sourceTree = "<group>"; };
 		DA94391C3D8A3051967E4308C13658F9 /* SVProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-umbrella.h"; sourceTree = "<group>"; };
-		DAF9342B409D1C907506DA3B6C674EE7 /* Pods-Pictograph-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Pictograph-umbrella.h"; sourceTree = "<group>"; };
 		DDBFEE6FA8A50356CF78F1A0EBB392C1 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		DEDA9617A70D425F40D122E7DE13FF68 /* Pods-PictographTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E025B59751860AAAB62089C70D04AF7D /* Pods-Pictograph-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pictograph-acknowledgements.plist"; sourceTree = "<group>"; };
 		E0B1EDCB4D935C5471CD1C36F928B3D0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		E174E1846E8F16C386CF4B90D937109B /* Pods_PictographTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PictographTests.framework; path = "Pods-PictographTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6087C88CEEB775EFBE024D836CCF2FE /* EARestrictedScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EARestrictedScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E66272607F71C30CCAE9D394D2AD0211 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E622068D70430842F41D9B518D42F414 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7033F071055153A9B062D666DE5DEEC /* Pods-Pictograph Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph Mac.release.xcconfig"; sourceTree = "<group>"; };
 		E9BFE65386F2008DEBDA9AC13451302C /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
+		EA3AE5611FF2A5ECD6A0C6CE76488D82 /* Pods-PictographTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PictographTests-umbrella.h"; sourceTree = "<group>"; };
 		EC32F2F47ED556F46821CC3B6DEEF4FC /* EARestrictedScrollView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EARestrictedScrollView-prefix.pch"; sourceTree = "<group>"; };
-		EE052C0B9F0D6FD1A1B113ABFF869F11 /* CustomIOSAlertView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CustomIOSAlertView.framework; path = CustomIOSAlertView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC41D9AE7412DC92EAAE05B2957DF56A /* Pods-Pictograph-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Pictograph-acknowledgements.markdown"; sourceTree = "<group>"; };
+		ED994C3BBD9F9F59A3B449BD497E3976 /* Pods-PictographTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PictographTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		EF7CA2AF91C561C00E1F5D32A9A7B69F /* Pods-Pictograph.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph.release.xcconfig"; sourceTree = "<group>"; };
 		F0D148315E4D8AAAAA2AC5DE2A53B670 /* CustomIOSAlertView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CustomIOSAlertView-dummy.m"; sourceTree = "<group>"; };
-		F12901ACD13DB25C01DEE5257FF835D9 /* Pods-Pictograph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph.debug.xcconfig"; sourceTree = "<group>"; };
 		F13BFB5AFCEC3C391BC6BC8EF8C34BCE /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = iOS/Crashlytics.framework/Headers/Answers.h; sourceTree = "<group>"; };
 		F1E2144B8AE7ACA593359404A04E6437 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3393DCA8156DC426A272964A4A243F7 /* CustomIOSAlertView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomIOSAlertView-prefix.pch"; sourceTree = "<group>"; };
+		F4E92E4E018FBD61074DD62878168DB5 /* Pods-PictographTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographTests-resources.sh"; sourceTree = "<group>"; };
 		F566D665184F160A5CD22FEED0ABEDBE /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		F72A34E2206946D9A8CC1BE848D7E7A0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F7F5F592B39D3A4B53D064BBCF94EC96 /* Pods-PictographUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F778ACC8613EBE98C1A00F61D1CFDCA6 /* Pods-Pictograph Mac-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pictograph Mac-acknowledgements.plist"; sourceTree = "<group>"; };
 		FEB61121C072073F74D59F7CD183BD5D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -263,6 +312,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		862F37347F3D0E093C62540B3A7EC031 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E6B92F5CD6886677C98DF4B154AC0C7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F4979E9F15C12B73E133B012F3D1B13E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -291,21 +348,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		04FE5D979EBA02581A0951E7F43C4261 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EE052C0B9F0D6FD1A1B113ABFF869F11 /* CustomIOSAlertView.framework */,
-				5E5BB331C5F5B4C2DA205E5E70BB8570 /* EAIntroView.framework */,
-				7F02581B7C5CC63AF8130E277F0416B5 /* EARestrictedScrollView.framework */,
-				7D95CCE6EB028AA8F8A56C56C194321F /* Pods_Pictograph.framework */,
-				00ED96238587EADE2FFF2843E0B70B72 /* Pods_PictographTests.framework */,
-				B10B3888858C00D7480737DD8F885517 /* Pods_PictographUITests.framework */,
-				A22A1B5EBC245C405C1EEDB3D987ABF2 /* RNCryptor_objc.framework */,
-				E66272607F71C30CCAE9D394D2AD0211 /* SVProgressHUD.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		068087817C600444CF6B4C3397FEF032 /* SVProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,24 +396,6 @@
 			path = Crashlytics;
 			sourceTree = "<group>";
 		};
-		2D02568180EA088854A2A4EA0772BA71 /* Pods-PictographTests */ = {
-			isa = PBXGroup;
-			children = (
-				2BFFFAC27D3A29EF5DE8D1314C59C0F2 /* Info.plist */,
-				3B5B15EEF9BE43DD8537DEB3FD33A63C /* Pods-PictographTests.modulemap */,
-				8E085D74FC682E7135A82E3C26EB755B /* Pods-PictographTests-acknowledgements.markdown */,
-				8D4C43B307318075F134F6072211E557 /* Pods-PictographTests-acknowledgements.plist */,
-				B2EA9AF05E66054B8E5D2B40DC1F481F /* Pods-PictographTests-dummy.m */,
-				29EF60CE7C4C7E715632F43EBBCAA185 /* Pods-PictographTests-frameworks.sh */,
-				2C0442A22A0A5785FC058E5E8CC4A11F /* Pods-PictographTests-resources.sh */,
-				C36DE7B1CBAB880AA65819B2637F8332 /* Pods-PictographTests-umbrella.h */,
-				4CC22A100DC3F9FD5578024CC0EF1968 /* Pods-PictographTests.debug.xcconfig */,
-				5AB8E16DF0A63E4988BEA3FABBDA4552 /* Pods-PictographTests.release.xcconfig */,
-			);
-			name = "Pods-PictographTests";
-			path = "Target Support Files/Pods-PictographTests";
-			sourceTree = "<group>";
-		};
 		2DC45708F6B21BC505F24BECA5195430 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,6 +410,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		31013943137C04A8DACD3F74B3D0A64B /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				411A05AEFFFDEE7218E3807D7831872C /* Pods-Pictograph */,
+				DD3B2D73F0F393892A12B8ACEB786A26 /* Pods-Pictograph Mac */,
+				7C8BCF227A47C4ACA18F232FF563576E /* Pods-PictographTests */,
+				6746B2B7510F1D777F20C8F49BE1814F /* Pods-PictographUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 		3AF6277EB14BD04B4F90EA4AF408374F /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +433,24 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SVProgressHUD";
+			sourceTree = "<group>";
+		};
+		411A05AEFFFDEE7218E3807D7831872C /* Pods-Pictograph */ = {
+			isa = PBXGroup;
+			children = (
+				1996432EC3847493A77B42D85B2A7687 /* Info.plist */,
+				D933E41519DDA9FC1674B281E275A667 /* Pods-Pictograph.modulemap */,
+				EC41D9AE7412DC92EAAE05B2957DF56A /* Pods-Pictograph-acknowledgements.markdown */,
+				E025B59751860AAAB62089C70D04AF7D /* Pods-Pictograph-acknowledgements.plist */,
+				9F9E4FA90EEB2B94E41DF8E72F76D9FB /* Pods-Pictograph-dummy.m */,
+				211735AEE2433C6046B3B89F8CE1D8D2 /* Pods-Pictograph-frameworks.sh */,
+				6D9E85EFAA517D9AC2EC28598C8E7E07 /* Pods-Pictograph-resources.sh */,
+				7C80A4B5960119F332EC91194F3660FB /* Pods-Pictograph-umbrella.h */,
+				93DEC4C082B5222DAC2B015CC4E3DD56 /* Pods-Pictograph.debug.xcconfig */,
+				EF7CA2AF91C561C00E1F5D32A9A7B69F /* Pods-Pictograph.release.xcconfig */,
+			);
+			name = "Pods-Pictograph";
+			path = "Target Support Files/Pods-Pictograph";
 			sourceTree = "<group>";
 		};
 		5228B12B30C73F54E2C1E71580F6E1E6 /* iOS */ = {
@@ -433,6 +486,24 @@
 			path = "../Target Support Files/EARestrictedScrollView";
 			sourceTree = "<group>";
 		};
+		6746B2B7510F1D777F20C8F49BE1814F /* Pods-PictographUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E622068D70430842F41D9B518D42F414 /* Info.plist */,
+				3EF857E813A0FA422EB9884F76E3E75F /* Pods-PictographUITests.modulemap */,
+				9F4621370FD3015B549F9D1A863C80FF /* Pods-PictographUITests-acknowledgements.markdown */,
+				B2EC03D630B1953511D82BF4CFA578E8 /* Pods-PictographUITests-acknowledgements.plist */,
+				10AB342812C1509D4712012E561C53B4 /* Pods-PictographUITests-dummy.m */,
+				CD9789C675B602EC86A925AE75136DF6 /* Pods-PictographUITests-frameworks.sh */,
+				6BA4E3CD82EC3864BE27DEFD14CC598C /* Pods-PictographUITests-resources.sh */,
+				6F700C7C87B8F5F74F85B1C6262E5D02 /* Pods-PictographUITests-umbrella.h */,
+				12D13A7F5574FD6147995EE76DF97400 /* Pods-PictographUITests.debug.xcconfig */,
+				8DA2EA5FFEA01B1D130D588B41203564 /* Pods-PictographUITests.release.xcconfig */,
+			);
+			name = "Pods-PictographUITests";
+			path = "Target Support Files/Pods-PictographUITests";
+			sourceTree = "<group>";
+		};
 		6F6E6DBC44141A0CECC414F31F444F7B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,16 +518,6 @@
 			path = "../Target Support Files/RNCryptor-objc";
 			sourceTree = "<group>";
 		};
-		70E8D809091B1BF58E9E17717B388FE2 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				AFBE32A1011123A045BB6DE0A99BF660 /* Pods-Pictograph */,
-				2D02568180EA088854A2A4EA0772BA71 /* Pods-PictographTests */,
-				E2CF00AEE66BA8A4C4A4DC61B50F4067 /* Pods-PictographUITests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
 		7A7EDD2FB2C8564069D0FAC01EADC100 /* CustomIOSAlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,14 +529,32 @@
 			path = CustomIOSAlertView;
 			sourceTree = "<group>";
 		};
+		7C8BCF227A47C4ACA18F232FF563576E /* Pods-PictographTests */ = {
+			isa = PBXGroup;
+			children = (
+				713E53FE6E6A1FA91AB370C6E4BA95C2 /* Info.plist */,
+				16E4425D6866CAA3DC282AEBBACDCF2F /* Pods-PictographTests.modulemap */,
+				B9E30A127BB27B1EBE8AD03C8216D6CD /* Pods-PictographTests-acknowledgements.markdown */,
+				ED994C3BBD9F9F59A3B449BD497E3976 /* Pods-PictographTests-acknowledgements.plist */,
+				B82D4E4B589BBD1466E7F155AC555E9A /* Pods-PictographTests-dummy.m */,
+				8E9C1985396C0B74510BB68108FE69FE /* Pods-PictographTests-frameworks.sh */,
+				F4E92E4E018FBD61074DD62878168DB5 /* Pods-PictographTests-resources.sh */,
+				EA3AE5611FF2A5ECD6A0C6CE76488D82 /* Pods-PictographTests-umbrella.h */,
+				DEDA9617A70D425F40D122E7DE13FF68 /* Pods-PictographTests.debug.xcconfig */,
+				1E037BB44D947F5FDE0D9ED27FBB1C01 /* Pods-PictographTests.release.xcconfig */,
+			);
+			name = "Pods-PictographTests";
+			path = "Target Support Files/Pods-PictographTests";
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				54DC8D0540B08839AAEDDD2C13F0A1C9 /* Frameworks */,
 				2DC45708F6B21BC505F24BECA5195430 /* Pods */,
-				04FE5D979EBA02581A0951E7F43C4261 /* Products */,
-				70E8D809091B1BF58E9E17717B388FE2 /* Targets Support Files */,
+				E965BDEF3A9AB89709660A8093E24CE6 /* Products */,
+				31013943137C04A8DACD3F74B3D0A64B /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -499,24 +578,6 @@
 				AA08429FA1F356187642887534DCD34F /* SVProgressHUD.bundle */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		AFBE32A1011123A045BB6DE0A99BF660 /* Pods-Pictograph */ = {
-			isa = PBXGroup;
-			children = (
-				39131700EECDDA5FC81A51A022192B0A /* Info.plist */,
-				5C570351A60C22958990F3D1814FB0AB /* Pods-Pictograph.modulemap */,
-				4EF35CD3B8526B7339DD97378763A4AD /* Pods-Pictograph-acknowledgements.markdown */,
-				3838EBE76234F0FF7CA15F40A370CB3D /* Pods-Pictograph-acknowledgements.plist */,
-				93EF8A92322A7DA74FE1344D924F0D53 /* Pods-Pictograph-dummy.m */,
-				3F9623F03E62858DA7B1CA2E5AAFC0AF /* Pods-Pictograph-frameworks.sh */,
-				67A9C7CD9C549208C4844C6AAD0FDA23 /* Pods-Pictograph-resources.sh */,
-				DAF9342B409D1C907506DA3B6C674EE7 /* Pods-Pictograph-umbrella.h */,
-				F12901ACD13DB25C01DEE5257FF835D9 /* Pods-Pictograph.debug.xcconfig */,
-				D43719C7B6557DE719738F09894327FC /* Pods-Pictograph.release.xcconfig */,
-			);
-			name = "Pods-Pictograph";
-			path = "Target Support Files/Pods-Pictograph";
 			sourceTree = "<group>";
 		};
 		BC368FC3CCF303613F9671C012D7EAAF /* RNCryptor-objc */ = {
@@ -553,22 +614,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E2CF00AEE66BA8A4C4A4DC61B50F4067 /* Pods-PictographUITests */ = {
+		DD3B2D73F0F393892A12B8ACEB786A26 /* Pods-Pictograph Mac */ = {
 			isa = PBXGroup;
 			children = (
-				6A4C23D8E630DC57223BAA972AF7706C /* Info.plist */,
-				15E04B8143EFBC271167F9EA296FE2B9 /* Pods-PictographUITests.modulemap */,
-				136C7853BAFBCC90D4ECE03DD8F16FCA /* Pods-PictographUITests-acknowledgements.markdown */,
-				9E0F0351231703B1C0F2AA1614945ED6 /* Pods-PictographUITests-acknowledgements.plist */,
-				0604FCF30B5AFF76A146D42EFD6EA2BB /* Pods-PictographUITests-dummy.m */,
-				602EC20E83CCDAE31D14CF2E9778A0CC /* Pods-PictographUITests-frameworks.sh */,
-				B27938EE35BC2213845F4CDCE2ED7200 /* Pods-PictographUITests-resources.sh */,
-				6CCC43AC35F2A844328F5481FCCA1690 /* Pods-PictographUITests-umbrella.h */,
-				07BCA74817BAD1538CD6EDB6A3EEA548 /* Pods-PictographUITests.debug.xcconfig */,
-				F7F5F592B39D3A4B53D064BBCF94EC96 /* Pods-PictographUITests.release.xcconfig */,
+				78B08BEB9E89D9ACB873B928706A23A8 /* Info.plist */,
+				82BBB6C4D66CA4E4387CFEB1B16FF89B /* Pods-Pictograph Mac.modulemap */,
+				DA88D32CE1A5CC87FD86F515B9039C8B /* Pods-Pictograph Mac-acknowledgements.markdown */,
+				F778ACC8613EBE98C1A00F61D1CFDCA6 /* Pods-Pictograph Mac-acknowledgements.plist */,
+				CB1F3994E8F73CAF64ABA71CF2F37BA0 /* Pods-Pictograph Mac-dummy.m */,
+				B600F1BD5689A1C912089A860B2B6C24 /* Pods-Pictograph Mac-frameworks.sh */,
+				55AB369E1F783FEBE67527E356E2F724 /* Pods-Pictograph Mac-resources.sh */,
+				1FD29F9382DBF6E7048B8F9E08C9D5E4 /* Pods-Pictograph Mac-umbrella.h */,
+				268158A36526131709C3F89C22F9499E /* Pods-Pictograph Mac.debug.xcconfig */,
+				E7033F071055153A9B062D666DE5DEEC /* Pods-Pictograph Mac.release.xcconfig */,
 			);
-			name = "Pods-PictographUITests";
-			path = "Target Support Files/Pods-PictographUITests";
+			name = "Pods-Pictograph Mac";
+			path = "Target Support Files/Pods-Pictograph Mac";
+			sourceTree = "<group>";
+		};
+		E965BDEF3A9AB89709660A8093E24CE6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				03B4676FC52FA654C2AD8D29A2DFD1F7 /* CustomIOSAlertView.framework */,
+				BB8C14B3AEBC4ABDE68E1232264C4989 /* EAIntroView.framework */,
+				3BA07BB13C137107FF58C1F575BA68AE /* EARestrictedScrollView.framework */,
+				AF14C61AEB8BC469AE1AC3FC268F6DA8 /* Pods_Pictograph.framework */,
+				D22DB85A2102039412E7CA717AEC3845 /* Pods_Pictograph_Mac.framework */,
+				E174E1846E8F16C386CF4B90D937109B /* Pods_PictographTests.framework */,
+				6F164AFD939A3611A500345BB443798E /* Pods_PictographUITests.framework */,
+				84C006DB785A97B2224A85EE493F657B /* RNCryptor_objc.framework */,
+				BEB06091032ED73F5D63DAD23C09C7B8 /* SVProgressHUD.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		F804A23DE43400FA2454E2FAC82AB21A /* EARestrictedScrollView */ = {
@@ -626,6 +703,14 @@
 				CC4DA8E4C8D902029CBDC7BF3CD243D8 /* SVProgressHUD-umbrella.h in Headers */,
 				389C8E9A9D59423C66B6CB47A4EA8EF4 /* SVProgressHUD.h in Headers */,
 				EE1FE18C542EBC417D04A97EA5A242C3 /* SVRadialGradientLayer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		159C587D28F9E815DDDA3E214354D530 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDADBBBA3E371F7D3239BAABD36F0B70 /* Pods-Pictograph Mac-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,7 +788,7 @@
 			);
 			name = "Pods-PictographUITests";
 			productName = "Pods-PictographUITests";
-			productReference = B10B3888858C00D7480737DD8F885517 /* Pods_PictographUITests.framework */;
+			productReference = 6F164AFD939A3611A500345BB443798E /* Pods_PictographUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		58AAD2C9E898747F2F4ABF348E6325F2 /* EARestrictedScrollView */ = {
@@ -720,7 +805,7 @@
 			);
 			name = EARestrictedScrollView;
 			productName = EARestrictedScrollView;
-			productReference = 7F02581B7C5CC63AF8130E277F0416B5 /* EARestrictedScrollView.framework */;
+			productReference = 3BA07BB13C137107FF58C1F575BA68AE /* EARestrictedScrollView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		822DA31A6A34C7EF41E1EC7A5EF8FC2F /* EAIntroView */ = {
@@ -738,7 +823,29 @@
 			);
 			name = EAIntroView;
 			productName = EAIntroView;
-			productReference = 5E5BB331C5F5B4C2DA205E5E70BB8570 /* EAIntroView.framework */;
+			productReference = BB8C14B3AEBC4ABDE68E1232264C4989 /* EAIntroView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8967E0D62E8909F7C5DC73315FA86B42 /* Pods-Pictograph Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EBFAE8861DF2460A766144DCCB619A3 /* Build configuration list for PBXNativeTarget "Pods-Pictograph Mac" */;
+			buildPhases = (
+				48BA52CD33D316BB96AD91B8D0F84C62 /* Sources */,
+				862F37347F3D0E093C62540B3A7EC031 /* Frameworks */,
+				159C587D28F9E815DDDA3E214354D530 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7094FF5AC155366E6808B354ABA07817 /* PBXTargetDependency */,
+				4D784754A19CE6AE3387CC40DA6C51A2 /* PBXTargetDependency */,
+				13C3FCCB8D61B59BC15F2A1203D47CD5 /* PBXTargetDependency */,
+				C054FD9F081457253F9A96B024B05425 /* PBXTargetDependency */,
+				13177BC59C19330F38C72C1082C5467D /* PBXTargetDependency */,
+			);
+			name = "Pods-Pictograph Mac";
+			productName = "Pods-Pictograph Mac";
+			productReference = D22DB85A2102039412E7CA717AEC3845 /* Pods_Pictograph_Mac.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AA465B7D558F04B95DC6132C83BA32A9 /* RNCryptor-objc */ = {
@@ -755,7 +862,7 @@
 			);
 			name = "RNCryptor-objc";
 			productName = "RNCryptor-objc";
-			productReference = A22A1B5EBC245C405C1EEDB3D987ABF2 /* RNCryptor_objc.framework */;
+			productReference = 84C006DB785A97B2224A85EE493F657B /* RNCryptor_objc.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		CEFBFEA273D3932E9C05277468A4EC73 /* Pods-PictographTests */ = {
@@ -772,7 +879,7 @@
 			);
 			name = "Pods-PictographTests";
 			productName = "Pods-PictographTests";
-			productReference = 00ED96238587EADE2FFF2843E0B70B72 /* Pods_PictographTests.framework */;
+			productReference = E174E1846E8F16C386CF4B90D937109B /* Pods_PictographTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D906A54537D2453590F9B925C18B4AC4 /* CustomIOSAlertView */ = {
@@ -789,7 +896,7 @@
 			);
 			name = CustomIOSAlertView;
 			productName = CustomIOSAlertView;
-			productReference = EE052C0B9F0D6FD1A1B113ABFF869F11 /* CustomIOSAlertView.framework */;
+			productReference = 03B4676FC52FA654C2AD8D29A2DFD1F7 /* CustomIOSAlertView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		DCC7F38E1EC473EF6059E02B510D3FA9 /* SVProgressHUD */ = {
@@ -807,7 +914,7 @@
 			);
 			name = SVProgressHUD;
 			productName = SVProgressHUD;
-			productReference = E66272607F71C30CCAE9D394D2AD0211 /* SVProgressHUD.framework */;
+			productReference = BEB06091032ED73F5D63DAD23C09C7B8 /* SVProgressHUD.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		E935E0B2D2B663F2B63A9F5E124C5602 /* Pods-Pictograph */ = {
@@ -829,7 +936,7 @@
 			);
 			name = "Pods-Pictograph";
 			productName = "Pods-Pictograph";
-			productReference = 7D95CCE6EB028AA8F8A56C56C194321F /* Pods_Pictograph.framework */;
+			productReference = AF14C61AEB8BC469AE1AC3FC268F6DA8 /* Pods_Pictograph.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -849,7 +956,7 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 04FE5D979EBA02581A0951E7F43C4261 /* Products */;
+			productRefGroup = E965BDEF3A9AB89709660A8093E24CE6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -857,6 +964,7 @@
 				822DA31A6A34C7EF41E1EC7A5EF8FC2F /* EAIntroView */,
 				58AAD2C9E898747F2F4ABF348E6325F2 /* EARestrictedScrollView */,
 				E935E0B2D2B663F2B63A9F5E124C5602 /* Pods-Pictograph */,
+				8967E0D62E8909F7C5DC73315FA86B42 /* Pods-Pictograph Mac */,
 				CEFBFEA273D3932E9C05277468A4EC73 /* Pods-PictographTests */,
 				21DFAD7A8A5ACFE05D8852F06915BD7F /* Pods-PictographUITests */,
 				AA465B7D558F04B95DC6132C83BA32A9 /* RNCryptor-objc */,
@@ -893,6 +1001,14 @@
 				C41EB9232CC9C9A7A1D5A6F221D1EDB4 /* EAIntroPage.m in Sources */,
 				342FD0CF5A19992200CDCD679F2D71C6 /* EAIntroView-dummy.m in Sources */,
 				EA705D6826863CE9297E92D5673EEDCE /* EAIntroView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		48BA52CD33D316BB96AD91B8D0F84C62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				983C43283883C8108825802C7811EBCE /* Pods-Pictograph Mac-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -956,6 +1072,18 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		13177BC59C19330F38C72C1082C5467D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SVProgressHUD;
+			target = DCC7F38E1EC473EF6059E02B510D3FA9 /* SVProgressHUD */;
+			targetProxy = 095034C0AF077A8C15E40DE6A9965448 /* PBXContainerItemProxy */;
+		};
+		13C3FCCB8D61B59BC15F2A1203D47CD5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EARestrictedScrollView;
+			target = 58AAD2C9E898747F2F4ABF348E6325F2 /* EARestrictedScrollView */;
+			targetProxy = 43DCCDA6B68711271D87A8C3664ADC48 /* PBXContainerItemProxy */;
+		};
 		187D38C0F041ABB8445F2E20123F833A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CustomIOSAlertView;
@@ -980,11 +1108,29 @@
 			target = 58AAD2C9E898747F2F4ABF348E6325F2 /* EARestrictedScrollView */;
 			targetProxy = 8497715371A466A70A50A30F64D15DCE /* PBXContainerItemProxy */;
 		};
+		4D784754A19CE6AE3387CC40DA6C51A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EAIntroView;
+			target = 822DA31A6A34C7EF41E1EC7A5EF8FC2F /* EAIntroView */;
+			targetProxy = 734664403D42A725DE1F8F352EDD617F /* PBXContainerItemProxy */;
+		};
+		7094FF5AC155366E6808B354ABA07817 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CustomIOSAlertView;
+			target = D906A54537D2453590F9B925C18B4AC4 /* CustomIOSAlertView */;
+			targetProxy = 4629A297414A2793A00992170CE0AB03 /* PBXContainerItemProxy */;
+		};
 		71B7D59CA04564519FB5DB08192227F4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "RNCryptor-objc";
 			target = AA465B7D558F04B95DC6132C83BA32A9 /* RNCryptor-objc */;
 			targetProxy = 162F1FA3FE9AD2F8D943C7B6FC4C78FB /* PBXContainerItemProxy */;
+		};
+		C054FD9F081457253F9A96B024B05425 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "RNCryptor-objc";
+			target = AA465B7D558F04B95DC6132C83BA32A9 /* RNCryptor-objc */;
+			targetProxy = 2F7EF410BF31D352A72AA4FB7B122631 /* PBXContainerItemProxy */;
 		};
 		D2EF0550E37222B5E47D0ED793E95D4F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -995,6 +1141,42 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0B196DEE3DCCD8A31AD2A817E1A5BFC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 268158A36526131709C3F89C22F9499E /* Pods-Pictograph Mac.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Pictograph Mac/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Pictograph Mac/Pods-Pictograph Mac.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Pictograph_Mac;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		0E261643E1B2435CB3F25DE74DAC0A18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9CB170E0268482FDE3CE3427881F7953 /* SVProgressHUD.xcconfig */;
@@ -1201,7 +1383,7 @@
 		};
 		6426BDB3704C06DE4D293AFEE16AD544 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07BCA74817BAD1538CD6EDB6A3EEA548 /* Pods-PictographUITests.debug.xcconfig */;
+			baseConfigurationReference = 12D13A7F5574FD6147995EE76DF97400 /* Pods-PictographUITests.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1299,6 +1481,42 @@
 			};
 			name = Debug;
 		};
+		8D879BE95F8E0A5D274722C72262EE7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7033F071055153A9B062D666DE5DEEC /* Pods-Pictograph Mac.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Pictograph Mac/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Pictograph Mac/Pods-Pictograph Mac.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Pictograph_Mac;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		8DD9B4DB18CA6420251FD90A96A17CD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3579C53F3D47E9B3814255971F91FC3A /* EAIntroView.xcconfig */;
@@ -1365,7 +1583,7 @@
 		};
 		B0CB55043652505716E815D144B1390F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F7F5F592B39D3A4B53D064BBCF94EC96 /* Pods-PictographUITests.release.xcconfig */;
+			baseConfigurationReference = 8DA2EA5FFEA01B1D130D588B41203564 /* Pods-PictographUITests.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1401,7 +1619,7 @@
 		};
 		B5FC973D159CE75EA9D63A024BD4BD53 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F12901ACD13DB25C01DEE5257FF835D9 /* Pods-Pictograph.debug.xcconfig */;
+			baseConfigurationReference = 93DEC4C082B5222DAC2B015CC4E3DD56 /* Pods-Pictograph.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1477,7 +1695,7 @@
 		};
 		BD0F49672A5455CEBF3110D1ECDC8003 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4CC22A100DC3F9FD5578024CC0EF1968 /* Pods-PictographTests.debug.xcconfig */;
+			baseConfigurationReference = DEDA9617A70D425F40D122E7DE13FF68 /* Pods-PictographTests.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1545,7 +1763,7 @@
 		};
 		CFF7B5D81A189843EE573E7661A0A85D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5AB8E16DF0A63E4988BEA3FABBDA4552 /* Pods-PictographTests.release.xcconfig */;
+			baseConfigurationReference = 1E037BB44D947F5FDE0D9ED27FBB1C01 /* Pods-PictographTests.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1581,7 +1799,7 @@
 		};
 		FD75460221CCA298DD6B8CB387A7535A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D43719C7B6557DE719738F09894327FC /* Pods-Pictograph.release.xcconfig */;
+			baseConfigurationReference = EF7CA2AF91C561C00E1F5D32A9A7B69F /* Pods-Pictograph.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1632,6 +1850,15 @@
 			buildConfigurations = (
 				59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */,
 				B7324857C38B065FEB1EEE3105C2367A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EBFAE8861DF2460A766144DCCB619A3 /* Build configuration list for PBXNativeTarget "Pods-Pictograph Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B196DEE3DCCD8A31AD2A817E1A5BFC0 /* Debug */,
+				8D879BE95F8E0A5D274722C72262EE7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
