@@ -25,7 +25,7 @@
 		6647B44A1BDF294900235E04 /* PictographConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B4491BDF294900235E04 /* PictographConstants.swift */; };
 		6647B44D1BDF2CE700235E04 /* MainEncodingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B44C1BDF2CE700235E04 /* MainEncodingView.swift */; };
 		664C5F7E1E357A2E004E1FA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5F7D1E357A2E004E1FA9 /* AppDelegate.swift */; };
-		664C5F801E357A2E004E1FA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5F7F1E357A2E004E1FA9 /* ViewController.swift */; };
+		664C5F801E357A2E004E1FA9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5F7F1E357A2E004E1FA9 /* MainViewController.swift */; };
 		664C5F821E357A2E004E1FA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664C5F811E357A2E004E1FA9 /* Assets.xcassets */; };
 		664C5F851E357A2E004E1FA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664C5F831E357A2E004E1FA9 /* Main.storyboard */; };
 		664C5F901E357A2E004E1FA9 /* Pictograph_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5F8F1E357A2E004E1FA9 /* Pictograph_MacTests.swift */; };
@@ -38,6 +38,7 @@
 		66EF01AE1E357ACE00D4D1A0 /* UIImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* UIImageCoder.m */; };
 		7C2A5D35939274085DA24564 /* Pods_PictographTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC099D02965E45B0D324E031 /* Pods_PictographTests.framework */; };
 		85B5DAD45526AD2A1DFC3A16 /* Pods_PictographUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0493DE2DEC4D7878ECF645 /* Pods_PictographUITests.framework */; };
+		8E0F330F9199121AFDE7C1A1 /* Pods_Pictograph_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37462E8B017BF38EBE402E6 /* Pods_Pictograph_Mac.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D97D3A8A50FA821FA4A8A5F /* Pods-Pictograph Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictograph Mac.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pictograph Mac/Pods-Pictograph Mac.release.xcconfig"; sourceTree = "<group>"; };
 		3C713F8D0C59FEC401E4FD69 /* Pods-PictographTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictographTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PictographTests/Pods-PictographTests.release.xcconfig"; sourceTree = "<group>"; };
 		660069781C552C6100BA1672 /* AppDelegateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateExtension.swift; sourceTree = "<group>"; };
 		6600697B1C5531A700BA1672 /* UIImage+CreateImageFromColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+CreateImageFromColor.swift"; sourceTree = "<group>"; };
@@ -93,7 +95,7 @@
 		6647B44C1BDF2CE700235E04 /* MainEncodingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainEncodingView.swift; sourceTree = "<group>"; };
 		664C5F7B1E357A2D004E1FA9 /* Pictograph Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pictograph Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		664C5F7D1E357A2E004E1FA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		664C5F7F1E357A2E004E1FA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		664C5F7F1E357A2E004E1FA9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		664C5F811E357A2E004E1FA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		664C5F841E357A2E004E1FA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		664C5F861E357A2E004E1FA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,7 +125,9 @@
 		B4B622BB77E2CDC0B762E8FD /* Pods-Pictograph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictograph.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pictograph/Pods-Pictograph.debug.xcconfig"; sourceTree = "<group>"; };
 		D37635E967A9E7155D358111 /* Pods-PictographUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictographUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PictographUITests/Pods-PictographUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D7932AB70CF6D0116191AD8C /* Pods-PictographTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictographTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PictographTests/Pods-PictographTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DBC731B497ED747E9D5C8605 /* Pods-Pictograph Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictograph Mac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pictograph Mac/Pods-Pictograph Mac.debug.xcconfig"; sourceTree = "<group>"; };
 		DC099D02965E45B0D324E031 /* Pods_PictographTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictographTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F37462E8B017BF38EBE402E6 /* Pods_Pictograph_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pictograph_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E0F330F9199121AFDE7C1A1 /* Pods_Pictograph_Mac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +186,7 @@
 				7B282741E3A9E474CCACFAD3 /* Pods_Pictograph.framework */,
 				DC099D02965E45B0D324E031 /* Pods_PictographTests.framework */,
 				7B0493DE2DEC4D7878ECF645 /* Pods_PictographUITests.framework */,
+				F37462E8B017BF38EBE402E6 /* Pods_Pictograph_Mac.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -194,6 +200,8 @@
 				3C713F8D0C59FEC401E4FD69 /* Pods-PictographTests.release.xcconfig */,
 				98A0A9CF4FB23A5E0E184484 /* Pods-PictographUITests.debug.xcconfig */,
 				D37635E967A9E7155D358111 /* Pods-PictographUITests.release.xcconfig */,
+				DBC731B497ED747E9D5C8605 /* Pods-Pictograph Mac.debug.xcconfig */,
+				1D97D3A8A50FA821FA4A8A5F /* Pods-Pictograph Mac.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -262,7 +270,7 @@
 				664C5F811E357A2E004E1FA9 /* Assets.xcassets */,
 				664C5F861E357A2E004E1FA9 /* Info.plist */,
 				664C5F831E357A2E004E1FA9 /* Main.storyboard */,
-				664C5F7F1E357A2E004E1FA9 /* ViewController.swift */,
+				664C5F7F1E357A2E004E1FA9 /* MainViewController.swift */,
 			);
 			path = "Pictograph Mac";
 			sourceTree = "<group>";
@@ -416,9 +424,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 664C5FA31E357A2E004E1FA9 /* Build configuration list for PBXNativeTarget "Pictograph Mac" */;
 			buildPhases = (
+				72BC2B695063CDB312C4C5EA /* [CP] Check Pods Manifest.lock */,
 				664C5F771E357A2D004E1FA9 /* Sources */,
 				664C5F781E357A2D004E1FA9 /* Frameworks */,
 				664C5F791E357A2D004E1FA9 /* Resources */,
+				9D97954BADA006F98094A579 /* [CP] Embed Pods Frameworks */,
+				3B770E4240D5D8965A2801B8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -689,6 +700,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		3B770E4240D5D8965A2801B8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pictograph Mac/Pods-Pictograph Mac-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6611EBB61BD9769100E5D12A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -701,6 +727,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" ddc2645d54ae392a8abd36a8dbbccb41fca3541d ec4418504bf66c40bfd19499c14e2f454e4ae3fa366b7699d1092e7ef7815f1b";
+		};
+		72BC2B695063CDB312C4C5EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 		994916058F7253F1256EB2BF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -715,6 +756,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PictographUITests/Pods-PictographUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D97954BADA006F98094A579 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pictograph Mac/Pods-Pictograph Mac-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AFD4E719B7CB1DEB19BA9120 /* [CP] Copy Pods Resources */ = {
@@ -799,7 +855,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				664C5F801E357A2E004E1FA9 /* ViewController.swift in Sources */,
+				664C5F801E357A2E004E1FA9 /* MainViewController.swift in Sources */,
 				66EF01AE1E357ACE00D4D1A0 /* UIImageCoder.m in Sources */,
 				664C5F7E1E357A2E004E1FA9 /* AppDelegate.swift in Sources */,
 			);
@@ -910,6 +966,7 @@
 /* Begin XCBuildConfiguration section */
 		664C5F9D1E357A2E004E1FA9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBC731B497ED747E9D5C8605 /* Pods-Pictograph Mac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -931,6 +988,7 @@
 		};
 		664C5F9E1E357A2E004E1FA9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D97D3A8A50FA821FA4A8A5F /* Pods-Pictograph Mac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;

@@ -6,8 +6,12 @@
 //  Copyright © 2015 Adam Boyd. All rights reserved.
 //
 
-#import "UIImageCoder.h"
+#if TARGET_OS_MAC
 #import "Pictograph-Swift.h"
+#elseif TARGET_OS_IPHONE
+#endif
+
+#import "UIImageCoder.h"
 @import RNCryptor_objc;
 
 #define bitCountForCharacter 8
@@ -29,7 +33,7 @@
 
 //Decodes UIImage image. Returns the encoded message in the image.
 //Password handler has no parameters and returns an NSString *
-- (NSString *)decodeMessageInImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
+- (NSString *)decodeMessageInImage:(PictographImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
     
     DLog("Decoding image with password %@", password);
     
@@ -85,7 +89,7 @@
 }
 
 //Returns the message from the image given an optional password
-- (NSString *)messageFromImage:(UIImage *)image needsPassword:(BOOL)isEncrypted password:(NSString *)password error:(NSError **)error {
+- (NSString *)messageFromImage:(PictographImage *)image needsPassword:(BOOL)isEncrypted password:(NSString *)password error:(NSError **)error {
     
     NSMutableString *decodedString = [[NSMutableString alloc] init];
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
@@ -166,7 +170,7 @@
 #pragma mark Encoding message in an image
 
 //Encodes UIImage image with message message. Returns the modified UIImage
-- (NSData *)encodeMessage:(NSString *)message inImage:(UIImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
+- (NSData *)encodeMessage:(NSString *)message inImage:(PictographImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
 
     DLog("Encoding message: %@, with password %@", message, password);
     
@@ -250,7 +254,7 @@
 }
 
 //Saves the image to the graphics context and starts encoding the bits in that image
-- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(UIImage *)image numberOfBitsNeeded:(long)numberOfBitsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
+- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image numberOfBitsNeeded:(long)numberOfBitsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
     //Right here we have all the bits that are needed to encode the data in the image
     CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
     
@@ -324,7 +328,7 @@
 }
 
 //Replaces the value of the color at the current width and height counter with the correct one from the array of bits that are needed to be encoded
-- (int)changePixelValueAtWidth:(int)widthCounter andHeight:(int)heightCounter encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(UIImage *)image withinContext:(CGContextRef)context startFromBottomLeft:(BOOL)startFromBottomLeft {
+- (int)changePixelValueAtWidth:(int)widthCounter andHeight:(int)heightCounter encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image withinContext:(CGContextRef)context startFromBottomLeft:(BOOL)startFromBottomLeft {
     int currentPixelIndex;
     
     //If we're starting from the bottom left, take the height of the image into account, if not, can just use the height counter provided
@@ -423,7 +427,7 @@
 /* Returns an array of UIColors for the pixels starting at x, y for count number of pixels
    http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
    Used the above link as inspiration, but heavily modified */
--(NSArray *)getRBGAFromImage:(UIImage*)image atX:(int)x andY:(int)y count:(int)count {
+-(NSArray *)getRBGAFromImage:(PictographImage*)image atX:(int)x andY:(int)y count:(int)count {
     
     //Getting the raw data
     unsigned char *rawData = [self getRawPixelDataForImage:image];
@@ -454,7 +458,7 @@
 }
 
 /* Returns the raw pixel data for a UIImage image */
--(unsigned char *)getRawPixelDataForImage:(UIImage *)image {
+-(unsigned char *)getRawPixelDataForImage:(PictographImage *)image {
     // First get the image into your data buffer
     CGImageRef imageRef = [image CGImage];
     NSUInteger width = CGImageGetWidth(imageRef);
