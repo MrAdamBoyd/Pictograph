@@ -6,13 +6,12 @@
 //  Copyright © 2015 Adam Boyd. All rights reserved.
 //
 
-#if TARGET_OS_MAC
-#import "Pictograph-Swift.h"
-#elseif TARGET_OS_IPHONE
-#endif
-
 #import "UIImageCoder.h"
 @import RNCryptor_objc;
+
+#if TARGET_OS_IPHONE
+#import "Pictograph-Swift.h"
+#endif
 
 #define bitCountForCharacter 8
 #define bitCountForInfo 16
@@ -41,7 +40,7 @@
     
     //Getting information about the encoded message
     NSArray *first8PixelsInfo = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForInfo / 2)];
-    for (UIColor *color in first8PixelsInfo) {
+    for (PictographColor *color in first8PixelsInfo) {
         //Going through each color that contains information about the message
         [self addBlueBitsFromColor:color toArray:infoArrayInBits];
     }
@@ -97,7 +96,7 @@
     //Getting the size of the string
     NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:8 andY:0 count:(bitCountForInfo / 2)];
     
-    for (UIColor *color in first8PixelsColors) {
+    for (PictographColor *color in first8PixelsColors) {
         //Going through each color that contains the size of the message
         [self addBlueBitsFromColor:color toArray:sizeArrayInBits];
     }
@@ -111,7 +110,7 @@
     
     NSArray *arrayOfColors = [self getRBGAFromImage:image atX:16 andY:0 count:((int)numberOfBitsNeededForImage / 2)];
     
-    for (UIColor *color in arrayOfColors) {
+    for (PictographColor *color in arrayOfColors) {
         //Going through each pixel
         [self addBlueBitsFromColor:color toArray:arrayOfBitsForMessage];
         
@@ -156,8 +155,8 @@
 
 }
 
-//Adds the last 2 bits of the blue value from UIColor color to the NSMutableArray array
-- (void)addBlueBitsFromColor:(UIColor *)color toArray:(NSMutableArray *)array {
+//Adds the last 2 bits of the blue value from PictographColor color to the NSMutableArray array
+- (void)addBlueBitsFromColor:(PictographColor *)color toArray:(NSMutableArray *)array {
     CGFloat red, green, blue, alpha;
     [color getRed:&red green:&green blue:&blue alpha:&alpha];
     
@@ -338,7 +337,7 @@
         currentPixelIndex = widthCounter * heightCounter;
     }
         
-    UIColor *colorOfCurrentPixel = [arrayOfAllNeededColors objectAtIndex:currentPixelIndex];
+    PictographColor *colorOfCurrentPixel = [arrayOfAllNeededColors objectAtIndex:currentPixelIndex];
     CGFloat red, green, blue, alpha ;
     [colorOfCurrentPixel getRed:&red green:&green blue:&blue alpha:&alpha];
     
@@ -424,7 +423,7 @@
     return longRep;
 }
 
-/* Returns an array of UIColors for the pixels starting at x, y for count number of pixels
+/* Returns an array of PictographColors for the pixels starting at x, y for count number of pixels
    http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
    Used the above link as inspiration, but heavily modified */
 -(NSArray *)getRBGAFromImage:(PictographImage*)image atX:(int)x andY:(int)y count:(int)count {
@@ -446,7 +445,7 @@
         CGFloat alpha = (rawData[byteIndex + 3] * 1.0) / maxFloatFor8Bits;
         byteIndex += bytesPerPixel;
         
-        UIColor *newColor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+        PictographColor *newColor = [PictographColor colorWithRed:red green:green blue:blue alpha:alpha];
         
         [colorArray addObject:newColor];
         

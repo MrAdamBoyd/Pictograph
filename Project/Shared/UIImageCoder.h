@@ -6,12 +6,16 @@
 //  Copyright © 2015 Adam Boyd. All rights reserved.
 //
 
-#if TARGET_OS_MAC
-#import <Cocoa/Cocoa.h>
-#define PictographImage NSImage
-#elif TARGET_OS_IPHONE
+#import "TargetConditionals.h"
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #define PictographImage UIImage
+#define PictographColor UIColor
+#else
+//#import "Pictograph-Mac-Swift.h"
+#import <Cocoa/Cocoa.h>
+#define PictographImage NSImage
+#define PictographColor NSColor
 #endif
 
 #import <Foundation/Foundation.h>

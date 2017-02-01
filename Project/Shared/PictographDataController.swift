@@ -10,6 +10,10 @@ import Foundation
 import Crashlytics
 import Fabric
 
+#if os(macOS)
+import Cocoa
+#endif
+
 private let currentUserKey = "kCurrentUserKey"
 
 class PictographDataController: NSObject {
@@ -145,7 +149,12 @@ class PictographDataController: NSObject {
     
     //Opens the website in Safari
     func goToWebsite() {
-        UIApplication.shared.openURL(URL(string: "http://adamjboyd.com")!)
+        let url = URL(string: "http://adamjboyd.com")!
+        #if os(iOS)
+            UIApplication.shared.openURL(url)
+        #else
+            NSWorkspace.shared().open(url)
+        #endif
     }
     
 }

@@ -1,5 +1,5 @@
 framework module RNCryptor_objc {
-  umbrella header "RNCryptor-objc-umbrella.h"
+  umbrella header "RNCryptor-objc-OSX-umbrella.h"
 
   export *
   module * { export * }
