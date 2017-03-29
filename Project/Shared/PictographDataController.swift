@@ -7,11 +7,12 @@
 //
 
 import Foundation
-import Crashlytics
-import Fabric
 
 #if os(macOS)
 import Cocoa
+#else
+import Crashlytics
+import Fabric
 #endif
 
 private let currentUserKey = "kCurrentUserKey"
@@ -98,7 +99,7 @@ class PictographDataController: NSObject {
                 print("Setting encryption password: \(newValue)")
                 self.user.encryptionPassword = newValue
             } else {
-                print("Setting encryption password: \(newValue)")
+                print("Setting encryption password: <no password>")
                 self.user.encryptionPassword = ""
             }
             
@@ -126,6 +127,29 @@ class PictographDataController: NSObject {
             self.user.nightModeEnabled = newValue
             self.saveCurrentUser()
         }
+    }
+    
+    //MARK: - Asking user to rate the app
+    
+    /// This is the userdefaults key for this version of the app. Using a different key for each version
+    fileprivate var thisVersionRatingKey: String {
+        var defaultsKey = "userPromptedKey"
+        
+        guard let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else {
+            return defaultsKey
+        }
+        
+        defaultsKey.append("Version\(version)")
+        return defaultsKey
+    }
+    
+    /// Returns true if should be prompted for ratings, false otherwise
+    var hasUserBeenPromptedForRatings: Bool {
+        return UserDefaults.standard.bool(forKey: thisVersionRatingKey)
+    }
+    
+    func setHasUserBeenPromptedForRatings() {
+        UserDefaults.standard.set(true, forKey: thisVersionRatingKey)
     }
     
     

@@ -10,7 +10,6 @@ target 'Pictograph' do
   pod_list
   pod 'SVProgressHUD'
   pod 'EAIntroView'
-  pod 'CustomIOSAlertView'
 end
 
 target 'Pictograph Mac' do

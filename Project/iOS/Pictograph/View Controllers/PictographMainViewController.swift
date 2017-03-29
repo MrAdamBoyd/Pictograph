@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import EAIntroView
 import SVProgressHUD
-import CustomIOSAlertView
 import AVFoundation
 import Photos
+import StoreKit
 
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle, UIImagePickerControllerDelegate {
     
@@ -405,7 +405,17 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         do {
             let decodedMessage = try coder.decodeMessage(in: image, encryptedWithPassword: providedPassword)
             //Show the message if it was successfully decoded
-            showMessageInAlertController("Hidden Message", message: decodedMessage)
+            showMessageInAlertController("Hidden Message", message: decodedMessage) { _ in
+                
+                //After alert controller is dismissed, prompt the user for ratings if they haven't been already for this version
+                if #available(iOS 10.3, *), !PictographDataController.shared.hasUserBeenPromptedForRatings {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        SKStoreReviewController.requestReview()
+                        PictographDataController.shared.setHasUserBeenPromptedForRatings()
+                    }
+                }
+                
+            }
             
         } catch let error {
             
@@ -439,7 +449,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             textField.inputAccessoryView = self.buildAccessoryButton()
             
             //Confirm is only enabled if there is text
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { notification -> Void in
+            NotificationCenter.default.addObserver(forName: Notification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { notification -> Void in
                 //Enabled when the text isn't blank
                 confirmAction.isEnabled = (textField.text != "")
             }
@@ -465,37 +475,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Shows the decoded message in an alert controller
-    func showMessageInAlertController(_ title: String, message: String) {
+    func showMessageInAlertController(_ title: String, message: String, onDismiss completion: ((UIAlertAction) -> Void)? = nil) {
         let showMessageController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        _ = showMessageController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+        _ = showMessageController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: completion))
         
         self.present(showMessageController, animated: true, completion: nil)
-    }
-    
-    //Shows an image in an alert controller, allows user to dismiss and save
-    func showImageInAlertController(_ title: String, image: Data) {
-
-        //Creating the custom alert view
-        let alertView = CustomIOSAlertView()
-        
-        //Adding the image to the container view
-        let imageView = UIImageView(image: UIImage(data: image))
-        imageView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 20, height: UIScreen.main.bounds.size.width - 20)
-        imageView.contentMode = .scaleAspectFit
-        alertView?.containerView = imageView
-        
-        alertView?.buttonTitles = ["Dismiss", "Save"]
-        
-        alertView?.onButtonTouchUpInside = ({ (alertView, buttonIndex) -> Void in
-            //If the button index is 1 (save button), show the share sheet
-            if buttonIndex == 1 {
-                alertView?.close()
-                self.showShareSheetWithImage(image)
-            }
-        })
-
-        
-        alertView?.show()
     }
     
     //MARK: - Methods for when the settings change

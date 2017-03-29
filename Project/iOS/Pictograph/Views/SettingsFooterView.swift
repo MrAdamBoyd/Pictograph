@@ -49,11 +49,10 @@ class SettingsFooterView: UIView {
         
         //Version of the application
         var appVersion = "Version"
-        if let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] {
-            let versionString = version as! String
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             
             //Adding the actual version to the string
-            appVersion += " \(versionString)"
+            appVersion += " \(version)"
         }
         let appVersionLabel = UILabel()
         appVersionLabel.text = appVersion

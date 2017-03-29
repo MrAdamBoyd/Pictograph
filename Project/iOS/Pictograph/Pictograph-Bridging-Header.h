@@ -11,6 +11,5 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "UIImageCoder.h"
-#import "CustomIOSAlertView/CustomIOSAlertView.h"
 
 #endif /* Pictograph_Bridging_Header_h */

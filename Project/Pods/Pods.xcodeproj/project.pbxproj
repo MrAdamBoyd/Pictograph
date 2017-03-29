@@ -7,84 +7,79 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0363519FF50C251DFF4843D7E07DC5DB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		08B47D058A89D7A3013E38105C074E7C /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A22791AD1EB56930AAAE279F1220CD /* RNEncryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		08D1786524B80B559CAD2315266D6948 /* RNCryptor-objc-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AEE61790A5B356580A863428C6CC7D9E /* RNCryptor-objc-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0DB474EB1591C240B6FE2E0167054347 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DD7EDAD35D72CDF679E9C0312696B8F /* SVProgressHUD.m */; };
 		0E4E00C4A625956612F3928C42D658D8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B0B95A84C3EACA2EFD7D29D7A24237 /* Cocoa.framework */; };
-		10EBE4A42B706EB9391F0D2E16F52672 /* SVRadialGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = F566D665184F160A5CD22FEED0ABEDBE /* SVRadialGradientLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		19BBCEBCC82BE12915F2DE73CEBA80EC /* RNCryptor-objc-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC325497E98EE6E333138769BAB189 /* RNCryptor-objc-iOS-dummy.m */; };
-		1E7D4E6C5A548B166A857BD60B3957D8 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A22791AD1EB56930AAAE279F1220CD /* RNEncryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		1F1AEEEC99C41FF98CA67ACD4165DC60 /* CustomIOSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 679FE214E67917F4364A7C5B3A7675E8 /* CustomIOSAlertView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		2439BD67527092BACCF27A0F2A3413D7 /* RNEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA03F43ECA0AC1D56B52BB76213C3046 /* RNEncryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2468C92750F42C04F69DA99D7EBC67D4 /* RNDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EAE87429A3D1ACF6D2598D3F32315A8 /* RNDecryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		24ABB6904DC230D3483FEF1D6ED0B7DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		2558D26563AA0B777A544DA35791B8A1 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AA08429FA1F356187642887534DCD34F /* SVProgressHUD.bundle */; };
-		2A4C0B1CF95B3D6C791F8EF6588897D9 /* RNCryptor-objc-OSX-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A221286824F4A8F0E2CAD686867856A /* RNCryptor-objc-OSX-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2AF49BD71E18B370CF7D94BBC8941983 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 757E7A542600009B96797F3DE12D39E7 /* RNCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2F2EB3607E902B1221F628B74E9AEA1E /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F196EE2390FC92C2995E0785C62F1 /* RNDecryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		309CAF628A5A7C7F88E1BBD011CE5241 /* RNCryptorEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 642DF6FE911238A4287CFB88571F0E7E /* RNCryptorEngine.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		342FD0CF5A19992200CDCD679F2D71C6 /* EAIntroView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D7B4743D60D791F478108F83F27BF55 /* EAIntroView-dummy.m */; };
-		35843D6B720611CD4E0BB4372C6E521A /* EAIntroPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1900295C9BA2864951C56399734FB06A /* EAIntroPage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17E865B155E4ED16A75D12FF7F2EDA0D /* SVRadialGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C3094DBDF832A796BA812CFB741773 /* SVRadialGradientLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1E7D4E6C5A548B166A857BD60B3957D8 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B311E9F68F077D7FA5BF5A01158F7E0 /* RNEncryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2275860EA5E6DDDDEB36D7839FA93E15 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
+		2439BD67527092BACCF27A0F2A3413D7 /* RNEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 992FCA531C05A5A551D3FEA950B0032A /* RNEncryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2468C92750F42C04F69DA99D7EBC67D4 /* RNDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA90F82981EEA8ACF26A7058AD0612C0 /* RNDecryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2A4C0B1CF95B3D6C791F8EF6588897D9 /* RNCryptor-objc-OSX-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 85FEB5E8561C1A82186F5E8E835AE380 /* RNCryptor-objc-OSX-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C9F04225FF15915EDDAAFE1C48B3122 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6C4273D8DF78711AD78DAADF61DA1B /* QuartzCore.framework */; };
+		2F2EB3607E902B1221F628B74E9AEA1E /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5646DB2ADF64F7D5490053F011173E /* RNDecryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		342FD0CF5A19992200CDCD679F2D71C6 /* EAIntroView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC871B6885401C7A2C8685C1A102205F /* EAIntroView-dummy.m */; };
+		35843D6B720611CD4E0BB4372C6E521A /* EAIntroPage.h in Headers */ = {isa = PBXBuildFile; fileRef = E0F00FAD72E396AC36B68D25B06BB3ED /* EAIntroPage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		415D6E4050990C72A5BEE0E9D4EE646C /* Pods-Pictograph Mac-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FD29F9382DBF6E7048B8F9E08C9D5E4 /* Pods-Pictograph Mac-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49A40958B574F4AA0622B86E3DAA19F5 /* EARestrictedScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D7FDDF1AA5D76491FD9307DC0CBE645 /* EARestrictedScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4A9DFEF5B20EFE1ADA7676B81F4F1FE8 /* SVProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DA94391C3D8A3051967E4308C13658F9 /* SVProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4EA4A852D1D8C36A63ED5E157029EC06 /* EAIntroView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 36B4C901F67991C7D1A2295D9D825688 /* EAIntroView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		501396162015F7B2D3D6629BFB27F7C9 /* EAIntroView.h in Headers */ = {isa = PBXBuildFile; fileRef = 189D81EC1BDBBCC81B2BEA1BA9FE6B99 /* EAIntroView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5070348E04BF2374A8C9C5BF475E422F /* RNCryptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D82FCC6BFF29A9BE9B09D2928AFDE56B /* RNCryptor+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		5413DE3EBC4445219645AB8B78403FB5 /* Pods-Pictograph-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E4FA90EEB2B94E41DF8E72F76D9FB /* Pods-Pictograph-dummy.m */; };
+		49A40958B574F4AA0622B86E3DAA19F5 /* EARestrictedScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 345835D9D16A79E57DBDAD91553C1672 /* EARestrictedScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4EA4A852D1D8C36A63ED5E157029EC06 /* EAIntroView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CF2EF12D13004C0BDB1513621E678F0 /* EAIntroView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		501396162015F7B2D3D6629BFB27F7C9 /* EAIntroView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B9028094303300F25368C3DD6F6F24 /* EAIntroView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5070348E04BF2374A8C9C5BF475E422F /* RNCryptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = CBE59440873C8306C0D77CE395AB7299 /* RNCryptor+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		52075BAF33C3AB928CFEA46D961F5696 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
 		561B1B7C5A104DE40A4FA33668E5D304 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		563DFF3130C2DD180C6AB608B38246EF /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA12966392ED524D1A00355AE22C1A9 /* SVIndefiniteAnimatedView.m */; };
-		5793FA07B4942BD6420F14D754F3E6EE /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D5F196EE2390FC92C2995E0785C62F1 /* RNDecryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		599EC797D93F4BEB8EC9C246DBC36125 /* EARestrictedScrollView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8284EFBA67627EF1A0E37593C5915D87 /* EARestrictedScrollView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		59AC2BA03D365DA567C4F765B801D377 /* RNEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA03F43ECA0AC1D56B52BB76213C3046 /* RNEncryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6079A80CBE4897FDB366E6BD0DD0265C /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A23842FB85D1AFD78C5936CD629F6601 /* RNCryptorEngine.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		6277BDC1D2229809F0E9AAA4CDB788E2 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1796E8FB8BBB47B40171ECA7195DDA43 /* SVProgressAnimatedView.m */; };
+		599EC797D93F4BEB8EC9C246DBC36125 /* EARestrictedScrollView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 784346B69C7B84CDAC3A052006206767 /* EARestrictedScrollView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6079A80CBE4897FDB366E6BD0DD0265C /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1603E851726DB2188BFCE057A7606A6C /* RNCryptorEngine.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		64B4DFD9598EDF21FC2C02E410BF197F /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8448768EFEF9B4E5AACA929CA880AD /* RNCryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6854567520A9E74DF10C210E82C624BA /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D04DA692D5A770748B26B6EC112E533 /* SVRadialGradientLayer.m */; };
+		6A7B6F66B52590485441E0E1B5689A93 /* SVProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 28A75F9D1FB691BC472A51974210FCFF /* SVProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A7E656AA962EAC967C0641B6099090A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B0B95A84C3EACA2EFD7D29D7A24237 /* Cocoa.framework */; };
+		6B65C5F3325E410271022A880A52695B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B94A3B02BD3EB4081BAF1B09599AEDB /* SVIndefiniteAnimatedView.m */; };
 		6B8955D1779B97F6B7608A708D1F3C70 /* Pods-PictographUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F700C7C87B8F5F74F85B1C6262E5D02 /* Pods-PictographUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6CC749D028C53A61D89449445AED8C52 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9975D256B6FBE4DBBCE3AD559541D2 /* Security.framework */; };
-		6E78D43BE75A8C6363E67ECCFB781411 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6C4273D8DF78711AD78DAADF61DA1B /* QuartzCore.framework */; };
-		7C2B7B722969565E7FD0D09CF85D3E16 /* RNDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EAE87429A3D1ACF6D2598D3F32315A8 /* RNDecryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7005958560B5A917571CCF150A655FB8 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = B15BAE35899F49F25F00C6B8C6ABCCF4 /* RNCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		767FED6325560283B0E521993E50620A /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E3F649CDF08A32140DC668C4A6BDAB /* SVProgressAnimatedView.m */; };
 		7E83EBA7EB6FCD5376B9C2C68816320F /* Pods-Pictograph Mac-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1F3994E8F73CAF64ABA71CF2F37BA0 /* Pods-Pictograph Mac-dummy.m */; };
-		9067553698DA61A61295428FD4977A0B /* CustomIOSAlertView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F0D148315E4D8AAAAA2AC5DE2A53B670 /* CustomIOSAlertView-dummy.m */; };
-		92E78D518B71A6D6ADF8A6E762908600 /* SVIndefiniteAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = DDBFEE6FA8A50356CF78F1A0EBB392C1 /* SVIndefiniteAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9451C3F078A93FA56444D72DF33C0E6B /* RNCryptor-objc-OSX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2635FF774267BC92C1FC39EB4D9E9C28 /* RNCryptor-objc-OSX-dummy.m */; };
-		947CE787C983CBD579A0D9B1CB7CD439 /* SVProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = BD27EBD09A24DE2C5B4F9BC3AC4BE759 /* SVProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		988051129BFA0710DA2E466F1501CCB0 /* RNCryptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = D82FCC6BFF29A9BE9B09D2928AFDE56B /* RNCryptor+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		BE1F5325EEEE8A965577E7E0A780701D /* SVProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 078A1CF1E00BBF654A2A11EA68A7379D /* SVProgressHUD-dummy.m */; };
+		8574A1AA67A8A7B1567D435628673659 /* RNEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 992FCA531C05A5A551D3FEA950B0032A /* RNEncryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8753BB57AF3193E7572F3F5C8BC5F31A /* SVProgressAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = A9B108CF7A89D64DF9A02C0E09F7A4E0 /* SVProgressAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88D35FD2FE12B1E80387CCB28A4DA16F /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 95321B52F6FAA8EB3C1690095CCCED13 /* SVProgressHUD.bundle */; };
+		8D5446756A1AFBE804F6C89490FE463B /* SVIndefiniteAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ED1B21F6238682713AB7293648E85B6 /* SVIndefiniteAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9451C3F078A93FA56444D72DF33C0E6B /* RNCryptor-objc-OSX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C3312115C604C9F8B45F8937D5006 /* RNCryptor-objc-OSX-dummy.m */; };
+		A0B526A8532C117BD076AF5BB4BCD272 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B311E9F68F077D7FA5BF5A01158F7E0 /* RNEncryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A762EFBF51A8CA730045271CA02E6BBD /* RNCryptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = CBE59440873C8306C0D77CE395AB7299 /* RNCryptor+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		B0D367F056A3796FD6EBE529832789CF /* RNCryptorEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = BC4B7DCB48BB4C920ED7C6903D050A9C /* RNCryptorEngine.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		B51A8944C001F01581601A5ACD28C81B /* SVProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CC3027F38CC9F158F0AF08753D028E0 /* SVProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C08184279D7153DD82A7329D0CB8644C /* Pods-PictographUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AB342812C1509D4712012E561C53B4 /* Pods-PictographUITests-dummy.m */; };
-		C41EB9232CC9C9A7A1D5A6F221D1EDB4 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DF538C101A3E4D175B6176B2D8EEED5 /* EAIntroPage.m */; };
-		C7E083C9DFFB25C9288C2850A0D6E8E3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3822E66F9FD749F3CAD141326AD04138 /* Security.framework */; };
-		CCD230BC815C775651F2054A0DAE32E7 /* EARestrictedScrollView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7247220D3EA8460CF23ECDCB573F1606 /* EARestrictedScrollView-dummy.m */; };
-		CD834A6C8749633179129271688DAEA5 /* CustomIOSAlertView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 56A662902FFF5B348A1A83890B7A66BA /* CustomIOSAlertView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C130F9930E18F7A06D6C357449909378 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C1CF20CBD4638A84A1604381E364CD /* SVProgressHUD.m */; };
+		C41EB9232CC9C9A7A1D5A6F221D1EDB4 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = CD697106856E5292F5D889CFC699AFB2 /* EAIntroPage.m */; };
+		CCD230BC815C775651F2054A0DAE32E7 /* EARestrictedScrollView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D5E62EEB2C3F8327BF0FE18F064506 /* EARestrictedScrollView-dummy.m */; };
+		CDE73D7EBC5074148D92477879A5E71F /* RNDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA90F82981EEA8ACF26A7058AD0612C0 /* RNDecryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D196A425B69E7C870FF2AE2EF9AC0561 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
+		D54B76C6765B89ED714840CC9D0CF5EB /* RNCryptor-objc-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C08A5D32190A512C32A5DBCB7E2B3CEB /* RNCryptor-objc-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D5626586716EA27039403D1792718A5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		D736A7365B08105133500418A70CA305 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 757E7A542600009B96797F3DE12D39E7 /* RNCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DCBAC1F9C9E86C136F873B65A1A2A65A /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A23842FB85D1AFD78C5936CD629F6601 /* RNCryptorEngine.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		DEA008448F51405A0D3717DB10AA0C78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		DF020357330D2478D84CD1CC90B9E796 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B93DAAA604585FC8C8D05CC992C9811 /* RNCryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D736A7365B08105133500418A70CA305 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = B15BAE35899F49F25F00C6B8C6ABCCF4 /* RNCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DC0284DAB6A0ADDD1F4C9D4D7121CF07 /* Pods-Pictograph-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C80A4B5960119F332EC91194F3660FB /* Pods-Pictograph-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DEE970E595297963CF14229BE7D325BE /* SVProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9171376F49D3F06A08AC6ACE29751B /* SVProgressHUD-dummy.m */; };
+		DF020357330D2478D84CD1CC90B9E796 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8448768EFEF9B4E5AACA929CA880AD /* RNCryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		E0FE5C8A13C205B891527DFFA8352ADD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		E6F1CC8FD62F3CE397833EE069CB37F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		E714EBE7C0490E1F4D0D4469B7187D9A /* Pods-Pictograph-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C80A4B5960119F332EC91194F3660FB /* Pods-Pictograph-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA6A44B801F291B932DD902AED58F0A4 /* CustomIOSAlertView.h in Headers */ = {isa = PBXBuildFile; fileRef = 5CBB5D0596B8D674249FF753A9D4CF6C /* CustomIOSAlertView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA705D6826863CE9297E92D5673EEDCE /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C366740DC56F1619FC65ED7CD098B7E /* EAIntroView.m */; };
-		EABBB2F663609893680E5B6F1622F5E6 /* EARestrictedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CCADCEDD23A911B7281617ECAAC4F9 /* EARestrictedScrollView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		EE07593906CF799F8260C6CC001A2CE3 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2936A1868ABDE60CDD8CDC4753591E /* SVRadialGradientLayer.m */; };
+		E1FA8A884F8300B7BD5044DE5A49E997 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3822E66F9FD749F3CAD141326AD04138 /* Security.framework */; };
+		E2F112D928CEBD5E7E2ABE0686A332FB /* RNCryptor-objc-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6338E966BF9493D31498E07A0CEAE0 /* RNCryptor-objc-iOS-dummy.m */; };
+		EA705D6826863CE9297E92D5673EEDCE /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DF496CD3F09085CFBC42850AA37E31 /* EAIntroView.m */; };
+		EABBB2F663609893680E5B6F1622F5E6 /* EARestrictedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC65C5FB362F66644E7E9F69AD01C5 /* EARestrictedScrollView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		EB9C2D5FC6EEEE3A4940B5A8E349E368 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1603E851726DB2188BFCE057A7606A6C /* RNCryptorEngine.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		EF361A191982677901EE147AECFA19E3 /* Pods-PictographTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B82D4E4B589BBD1466E7F155AC555E9A /* Pods-PictographTests-dummy.m */; };
+		F2D92BB3E1B3CABA242E6623B61E05E3 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5646DB2ADF64F7D5490053F011173E /* RNDecryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F3B8870A51612FE16508BA9448362CB9 /* EARestrictedScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E246462DA8F629102E8760B8684678 /* EARestrictedScrollView.framework */; };
-		F61F1DE4E596DC4BAD21D579B8D6262B /* RNCryptorEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 642DF6FE911238A4287CFB88571F0E7E /* RNCryptorEngine.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		FABAF2B6CB32D4D2F63717D5873A977F /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B93DAAA604585FC8C8D05CC992C9811 /* RNCryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		FBBF913E5B373DB729B969D1D0B2A9BC /* SVProgressAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C9958DB9E601278F03ED1FEC77AE736 /* SVProgressAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F59244DA9983C8DF071864E41C05300B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
+		F61F1DE4E596DC4BAD21D579B8D6262B /* RNCryptorEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = BC4B7DCB48BB4C920ED7C6903D050A9C /* RNCryptorEngine.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		FC5F531126B12EC015F0C94E6D607ED3 /* Pods-PictographTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3AE5611FF2A5ECD6A0C6CE76488D82 /* Pods-PictographTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FDE8C21801688F0FFABE1F8457FA76D3 /* Pods-Pictograph-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E4FA90EEB2B94E41DF8E72F76D9FB /* Pods-Pictograph-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0FF28B174BB8D2946CF765441569ECEF /* PBXContainerItemProxy */ = {
+		2FEAB920A8027C5637A45D3191A4B113 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = ADF4E85C3C4FDB7077A3EF4C66D262C7;
-			remoteInfo = SVProgressHUD;
+			remoteGlobalIDString = 58AAD2C9E898747F2F4ABF348E6325F2;
+			remoteInfo = EARestrictedScrollView;
 		};
 		3BD0AABA668B69C63611634E350F4621 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -93,33 +88,12 @@
 			remoteGlobalIDString = 58AAD2C9E898747F2F4ABF348E6325F2;
 			remoteInfo = EARestrictedScrollView;
 		};
-		57C3AC9052F652996481B64EAB129930 /* PBXContainerItemProxy */ = {
+		A17F574DA499B8BA6CDA6E138646D256 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 822DA31A6A34C7EF41E1EC7A5EF8FC2F;
 			remoteInfo = EAIntroView;
-		};
-		5890611749FA868241AED8870869371E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F7E889CF7F08848B3EA1E587C432623;
-			remoteInfo = "RNCryptor-objc-iOS";
-		};
-		63F7C6CE6533AC2E83819513F49F8A4C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D906A54537D2453590F9B925C18B4AC4;
-			remoteInfo = CustomIOSAlertView;
-		};
-		6DB86024E15510E11E6BB81E585A5FDC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 58AAD2C9E898747F2F4ABF348E6325F2;
-			remoteInfo = EARestrictedScrollView;
 		};
 		C302E399494DC5C7567BDF67CBDC65FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -128,139 +102,144 @@
 			remoteGlobalIDString = 42739F4F79ED7C02BC033DFEBD7EAC7D;
 			remoteInfo = "RNCryptor-objc-OSX";
 		};
+		CF9FBA09B8B08B8969743C3D946144DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEEC83A1538765B9A04E05A5C1A75C46;
+			remoteInfo = "RNCryptor-objc-iOS";
+		};
+		DEE11E816ABC2B6030AD086BFA12AD4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7CAA7C76DD18D78871DB7F16841DADE6;
+			remoteInfo = SVProgressHUD;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		045E90CD4F2147F73D1D2DF9F5389E44 /* EAIntroView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EAIntroView.framework; path = EAIntroView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0601F6C2F9FABB6FDDFB30993C3F5DE3 /* Pods_PictographTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PictographTests.framework; path = "Pods-PictographTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0693A0F2A0C6251E56E5D14214974C66 /* SVProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-prefix.pch"; sourceTree = "<group>"; };
-		078A1CF1E00BBF654A2A11EA68A7379D /* SVProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD-dummy.m"; sourceTree = "<group>"; };
-		0A221286824F4A8F0E2CAD686867856A /* RNCryptor-objc-OSX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-objc-OSX-umbrella.h"; sourceTree = "<group>"; };
-		0C366740DC56F1619FC65ED7CD098B7E /* EAIntroView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EAIntroView.m; path = EAIntroView/EAIntroView.m; sourceTree = "<group>"; };
+		019476B2BE437714913261D1245747BE /* RNCryptor-objc-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor-objc-iOS-prefix.pch"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-prefix.pch"; sourceTree = "<group>"; };
+		0372874F2F2752011E48C5370D846457 /* SVProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVProgressHUD.xcconfig; sourceTree = "<group>"; };
+		0487AC4DB3B7C020C337D06AC086B5F3 /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
+		05C3094DBDF832A796BA812CFB741773 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		07198BE68793BC6EFCD42B11D4C1F875 /* RNCryptor-objc-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "RNCryptor-objc-iOS.xcconfig"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS.xcconfig"; sourceTree = "<group>"; };
+		0C83B4BC294FC5207954072405DD7470 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C8C3312115C604C9F8B45F8937D5006 /* RNCryptor-objc-OSX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RNCryptor-objc-OSX-dummy.m"; sourceTree = "<group>"; };
+		0D817C369E0834870CD78B6C9B137674 /* RNCryptor_objc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RNCryptor_objc.framework; path = "RNCryptor-objc-OSX.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0DD9474393434DC75E608B3CF0F0FE51 /* EAIntroView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EAIntroView.modulemap; sourceTree = "<group>"; };
 		10AB342812C1509D4712012E561C53B4 /* Pods-PictographUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PictographUITests-dummy.m"; sourceTree = "<group>"; };
-		110CE939368B4DC2F4901555C5EE3000 /* RNCryptor-objc-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "RNCryptor-objc-iOS.xcconfig"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS.xcconfig"; sourceTree = "<group>"; };
-		125DDC3EAE3364D681DB569AB4C8D4FB /* Pods_Pictograph_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pictograph_Mac.framework; path = "Pods-Pictograph Mac.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12D13A7F5574FD6147995EE76DF97400 /* Pods-PictographUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		15A4E3989CFE3390F11F6F73BE37F9EE /* RNCryptor-objc-OSX-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-objc-OSX-prefix.pch"; sourceTree = "<group>"; };
+		1603E851726DB2188BFCE057A7606A6C /* RNCryptorEngine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNCryptorEngine.m; path = RNCryptor/RNCryptorEngine.m; sourceTree = "<group>"; };
 		16E4425D6866CAA3DC282AEBBACDCF2F /* Pods-PictographTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PictographTests.modulemap"; sourceTree = "<group>"; };
-		1796E8FB8BBB47B40171ECA7195DDA43 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
-		189D81EC1BDBBCC81B2BEA1BA9FE6B99 /* EAIntroView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EAIntroView.h; path = EAIntroView/EAIntroView.h; sourceTree = "<group>"; };
-		18A4E6D4764F2EF6E9ECF1752032BB55 /* RNCryptor-objc-OSX.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "RNCryptor-objc-OSX.xcconfig"; sourceTree = "<group>"; };
-		1900295C9BA2864951C56399734FB06A /* EAIntroPage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EAIntroPage.h; path = EAIntroView/EAIntroPage.h; sourceTree = "<group>"; };
+		17E73173ECB8FFF43DD37504AEB707DA /* EAIntroView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EAIntroView.framework; path = EAIntroView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1996432EC3847493A77B42D85B2A7687 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B93DAAA604585FC8C8D05CC992C9811 /* RNCryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNCryptor.m; path = RNCryptor/RNCryptor.m; sourceTree = "<group>"; };
+		19C7C61570F4FEE00BD55B986C2366D7 /* Pods_PictographUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PictographUITests.framework; path = "Pods-PictographUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B311E9F68F077D7FA5BF5A01158F7E0 /* RNEncryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNEncryptor.m; path = RNCryptor/RNEncryptor.m; sourceTree = "<group>"; };
+		1DBFDA521AC18B044CEF969BDFEB83B1 /* SVProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-prefix.pch"; sourceTree = "<group>"; };
 		1E037BB44D947F5FDE0D9ED27FBB1C01 /* Pods-PictographTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographTests.release.xcconfig"; sourceTree = "<group>"; };
-		1F3577CFFC043600F9A3AEC0CE0CBCA3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FD29F9382DBF6E7048B8F9E08C9D5E4 /* Pods-Pictograph Mac-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Pictograph Mac-umbrella.h"; sourceTree = "<group>"; };
+		1FECC622F9EE1C37E6C84624D2451DF0 /* EARestrictedScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EARestrictedScrollView.framework; path = EARestrictedScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		211735AEE2433C6046B3B89F8CE1D8D2 /* Pods-Pictograph-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph-frameworks.sh"; sourceTree = "<group>"; };
-		22FC4BF1FFB10E4EDFCF8541D0796767 /* CustomIOSAlertView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CustomIOSAlertView.xcconfig; sourceTree = "<group>"; };
-		2635FF774267BC92C1FC39EB4D9E9C28 /* RNCryptor-objc-OSX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RNCryptor-objc-OSX-dummy.m"; sourceTree = "<group>"; };
 		268158A36526131709C3F89C22F9499E /* Pods-Pictograph Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph Mac.debug.xcconfig"; sourceTree = "<group>"; };
-		2C93C6EC18FF2A8E56F9AC655FA4AD13 /* RNCryptor_objc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RNCryptor_objc.framework; path = "RNCryptor-objc-OSX.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3579C53F3D47E9B3814255971F91FC3A /* EAIntroView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EAIntroView.xcconfig; sourceTree = "<group>"; };
-		36B4C901F67991C7D1A2295D9D825688 /* EAIntroView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EAIntroView-umbrella.h"; sourceTree = "<group>"; };
+		28A75F9D1FB691BC472A51974210FCFF /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
+		2B4C5AA0052EE007EF28DC91C015A135 /* EARestrictedScrollView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EARestrictedScrollView.xcconfig; sourceTree = "<group>"; };
+		308477D3EC93212822CD5ADE7B5EEC1A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31045072E564724232F41247218D49FD /* Pods_Pictograph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pictograph.framework; path = "Pods-Pictograph.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		31AD03FC1D68D1B3CBF3AC1B75C9CF2D /* Pods_Pictograph_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pictograph_Mac.framework; path = "Pods-Pictograph Mac.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		345835D9D16A79E57DBDAD91553C1672 /* EARestrictedScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EARestrictedScrollView.h; path = EARestrictedScrollView/EARestrictedScrollView.h; sourceTree = "<group>"; };
 		3822E66F9FD749F3CAD141326AD04138 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		38CCADCEDD23A911B7281617ECAAC4F9 /* EARestrictedScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EARestrictedScrollView.m; path = EARestrictedScrollView/EARestrictedScrollView.m; sourceTree = "<group>"; };
-		3DA12966392ED524D1A00355AE22C1A9 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		384DF0CE7553E7F80C2EA5F67235D94E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
 		3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		3EF857E813A0FA422EB9884F76E3E75F /* Pods-PictographUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PictographUITests.modulemap"; sourceTree = "<group>"; };
-		47B08DF7228B0D8C6FA0AFF4F91C9598 /* CustomIOSAlertView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CustomIOSAlertView.modulemap; sourceTree = "<group>"; };
-		488BC480C7AFA100F8D58D0AA328174C /* RNCryptor_objc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RNCryptor_objc.framework; path = "RNCryptor-objc-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A76D169977D5C70BA8DC6CF7559C808 /* RNCryptor-objc-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "RNCryptor-objc-iOS.modulemap"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS.modulemap"; sourceTree = "<group>"; };
-		4C1C6C6EC065C5613063905D676FB7C0 /* EARestrictedScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EARestrictedScrollView.framework; path = EARestrictedScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D7B4743D60D791F478108F83F27BF55 /* EAIntroView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EAIntroView-dummy.m"; sourceTree = "<group>"; };
-		4DF538C101A3E4D175B6176B2D8EEED5 /* EAIntroPage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EAIntroPage.m; path = EAIntroView/EAIntroPage.m; sourceTree = "<group>"; };
-		4EAE87429A3D1ACF6D2598D3F32315A8 /* RNDecryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNDecryptor.h; path = RNCryptor/RNDecryptor.h; sourceTree = "<group>"; };
-		5211B454C0D318E37641A81A61E765F7 /* Pods_Pictograph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pictograph.framework; path = "Pods-Pictograph.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5237740721B0A217BD1D4B8878561669 /* EAIntroView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EAIntroView.modulemap; sourceTree = "<group>"; };
-		54707AC8EBB0F9681144E88EFA9FDA63 /* RNCryptor-objc-OSX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "RNCryptor-objc-OSX.modulemap"; sourceTree = "<group>"; };
+		5357867C876502F05CD68933D181F0AF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5496675D0596C2B4A662CD079CC063F9 /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
 		55AB369E1F783FEBE67527E356E2F724 /* Pods-Pictograph Mac-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph Mac-resources.sh"; sourceTree = "<group>"; };
-		56A662902FFF5B348A1A83890B7A66BA /* CustomIOSAlertView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomIOSAlertView-umbrella.h"; sourceTree = "<group>"; };
-		5CBB5D0596B8D674249FF753A9D4CF6C /* CustomIOSAlertView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CustomIOSAlertView.h; path = CustomIOSAlertView/CustomIOSAlertView/View/CustomIOSAlertView.h; sourceTree = "<group>"; };
-		5D5F196EE2390FC92C2995E0785C62F1 /* RNDecryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNDecryptor.m; path = RNCryptor/RNDecryptor.m; sourceTree = "<group>"; };
-		5D9E5938AF22F8CB00BB91FF1FE6932C /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
-		5EFC325497E98EE6E333138769BAB189 /* RNCryptor-objc-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "RNCryptor-objc-iOS-dummy.m"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-dummy.m"; sourceTree = "<group>"; };
-		60ECAB2C78D456991F2022C4E7EDEF72 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		642DF6FE911238A4287CFB88571F0E7E /* RNCryptorEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNCryptorEngine.h; path = RNCryptor/RNCryptorEngine.h; sourceTree = "<group>"; };
-		679FE214E67917F4364A7C5B3A7675E8 /* CustomIOSAlertView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CustomIOSAlertView.m; path = CustomIOSAlertView/CustomIOSAlertView/View/CustomIOSAlertView.m; sourceTree = "<group>"; };
+		5959E8C9CBB84EAA6A44DDA58D4AA784 /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
 		6BA4E3CD82EC3864BE27DEFD14CC598C /* Pods-PictographUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographUITests-resources.sh"; sourceTree = "<group>"; };
-		6BD684103F70A304AB2B064FE0A6CEB4 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
-		6D91C4169AEFCF68929488DF3F79A662 /* CustomIOSAlertView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CustomIOSAlertView.framework; path = CustomIOSAlertView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CF2EF12D13004C0BDB1513621E678F0 /* EAIntroView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EAIntroView-umbrella.h"; sourceTree = "<group>"; };
 		6D9E85EFAA517D9AC2EC28598C8E7E07 /* Pods-Pictograph-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph-resources.sh"; sourceTree = "<group>"; };
+		6E57ED50FC4491C28DAA74320746B7BF /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
+		6ED1B21F6238682713AB7293648E85B6 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		6EE4B6332BA32C71751502AC3E20A816 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6F700C7C87B8F5F74F85B1C6262E5D02 /* Pods-PictographUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PictographUITests-umbrella.h"; sourceTree = "<group>"; };
 		713E53FE6E6A1FA91AB370C6E4BA95C2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7247220D3EA8460CF23ECDCB573F1606 /* EARestrictedScrollView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EARestrictedScrollView-dummy.m"; sourceTree = "<group>"; };
-		75625534D5A88E7B21D9B69D5B8AEC23 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
-		757E7A542600009B96797F3DE12D39E7 /* RNCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNCryptor.h; path = RNCryptor/RNCryptor.h; sourceTree = "<group>"; };
+		784346B69C7B84CDAC3A052006206767 /* EARestrictedScrollView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EARestrictedScrollView-umbrella.h"; sourceTree = "<group>"; };
 		78B08BEB9E89D9ACB873B928706A23A8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79B9028094303300F25368C3DD6F6F24 /* EAIntroView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EAIntroView.h; path = EAIntroView/EAIntroView.h; sourceTree = "<group>"; };
 		7C80A4B5960119F332EC91194F3660FB /* Pods-Pictograph-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Pictograph-umbrella.h"; sourceTree = "<group>"; };
+		7CBC65C5FB362F66644E7E9F69AD01C5 /* EARestrictedScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EARestrictedScrollView.m; path = EARestrictedScrollView/EARestrictedScrollView.m; sourceTree = "<group>"; };
+		7CC3027F38CC9F158F0AF08753D028E0 /* SVProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-umbrella.h"; sourceTree = "<group>"; };
+		7D04DA692D5A770748B26B6EC112E533 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		7D9975D256B6FBE4DBBCE3AD559541D2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		7DD7EDAD35D72CDF679E9C0312696B8F /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
-		7FDBFE0A33D399C284E80C6ECDBBF126 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7FFFD3D2FEFBD737E481CB919608CCDA /* EAIntroView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EAIntroView-prefix.pch"; sourceTree = "<group>"; };
-		8284EFBA67627EF1A0E37593C5915D87 /* EARestrictedScrollView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EARestrictedScrollView-umbrella.h"; sourceTree = "<group>"; };
 		82BBB6C4D66CA4E4387CFEB1B16FF89B /* Pods-Pictograph Mac.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Pictograph Mac.modulemap"; sourceTree = "<group>"; };
-		8348FA9749A9F11CE70470D095E6F1A4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
-		879ADF5F731D0F226DCDE917089F546A /* Pods_PictographUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PictographUITests.framework; path = "Pods-PictographUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83CFAC4ED3FA243BFB75ECA7567AB6B3 /* EAIntroView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EAIntroView.xcconfig; sourceTree = "<group>"; };
+		85FEB5E8561C1A82186F5E8E835AE380 /* RNCryptor-objc-OSX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-objc-OSX-umbrella.h"; sourceTree = "<group>"; };
+		86D5E62EEB2C3F8327BF0FE18F064506 /* EARestrictedScrollView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EARestrictedScrollView-dummy.m"; sourceTree = "<group>"; };
+		89DF496CD3F09085CFBC42850AA37E31 /* EAIntroView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EAIntroView.m; path = EAIntroView/EAIntroView.m; sourceTree = "<group>"; };
+		8B94A3B02BD3EB4081BAF1B09599AEDB /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		8C6044F3B4392AE667F990561C0E0DB4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DA2EA5FFEA01B1D130D588B41203564 /* Pods-PictographUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographUITests.release.xcconfig"; sourceTree = "<group>"; };
-		8E19B47F664AC7B43EFDB0F4DAB77461 /* EARestrictedScrollView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EARestrictedScrollView.xcconfig; sourceTree = "<group>"; };
-		8E4079470C6D06E92EFF07EBD66208EA /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
+		8E1F825785DEDE9F9FA7DA2B4C5FC7BD /* RNCryptor-objc-OSX.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "RNCryptor-objc-OSX.xcconfig"; sourceTree = "<group>"; };
 		8E9C1985396C0B74510BB68108FE69FE /* Pods-PictographTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographTests-frameworks.sh"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93DEC4C082B5222DAC2B015CC4E3DD56 /* Pods-Pictograph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph.debug.xcconfig"; sourceTree = "<group>"; };
-		95A4D97DD0A4D4200D6C4799582AC5DA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../RNCryptor-objc-iOS/Info.plist"; sourceTree = "<group>"; };
-		9717463079004C454D6C09CF6CBC2BCA /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
-		9C9958DB9E601278F03ED1FEC77AE736 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
-		9CB170E0268482FDE3CE3427881F7953 /* SVProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVProgressHUD.xcconfig; sourceTree = "<group>"; };
-		9D7FDDF1AA5D76491FD9307DC0CBE645 /* EARestrictedScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EARestrictedScrollView.h; path = EARestrictedScrollView/EARestrictedScrollView.h; sourceTree = "<group>"; };
-		9E56C7B1FDC9CAD0F175A31839E225DB /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
+		95321B52F6FAA8EB3C1690095CCCED13 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
+		976A550E2A141BE8AD434D06F2934788 /* Pods_PictographTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PictographTests.framework; path = "Pods-PictographTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		988274F78B39C5D625FA9FCDF00DA361 /* RNCryptor_objc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RNCryptor_objc.framework; path = "RNCryptor-objc-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		992FCA531C05A5A551D3FEA950B0032A /* RNEncryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNEncryptor.h; path = RNCryptor/RNEncryptor.h; sourceTree = "<group>"; };
+		9A6338E966BF9493D31498E07A0CEAE0 /* RNCryptor-objc-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "RNCryptor-objc-iOS-dummy.m"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-dummy.m"; sourceTree = "<group>"; };
+		9C6E50276D140E573AD247565C216FBF /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
 		9F4621370FD3015B549F9D1A863C80FF /* Pods-PictographUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PictographUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9F9E4FA90EEB2B94E41DF8E72F76D9FB /* Pods-Pictograph-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Pictograph-dummy.m"; sourceTree = "<group>"; };
-		A23842FB85D1AFD78C5936CD629F6601 /* RNCryptorEngine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNCryptorEngine.m; path = RNCryptor/RNCryptorEngine.m; sourceTree = "<group>"; };
-		A7AE79CBE2A21C8F844375D3163D1BED /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
-		AA08429FA1F356187642887534DCD34F /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
-		AEE61790A5B356580A863428C6CC7D9E /* RNCryptor-objc-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor-objc-iOS-umbrella.h"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-umbrella.h"; sourceTree = "<group>"; };
+		A9B108CF7A89D64DF9A02C0E09F7A4E0 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		B15BAE35899F49F25F00C6B8C6ABCCF4 /* RNCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNCryptor.h; path = RNCryptor/RNCryptor.h; sourceTree = "<group>"; };
 		B2EC03D630B1953511D82BF4CFA578E8 /* Pods-PictographUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PictographUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		B3EAD027F2D3818B98C963B687692108 /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = iOS/Crashlytics.framework/Headers/Answers.h; sourceTree = "<group>"; };
 		B600F1BD5689A1C912089A860B2B6C24 /* Pods-Pictograph Mac-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph Mac-frameworks.sh"; sourceTree = "<group>"; };
 		B82D4E4B589BBD1466E7F155AC555E9A /* Pods-PictographTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PictographTests-dummy.m"; sourceTree = "<group>"; };
 		B9E30A127BB27B1EBE8AD03C8216D6CD /* Pods-PictographTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PictographTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		BC2936A1868ABDE60CDD8CDC4753591E /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
-		BD27EBD09A24DE2C5B4F9BC3AC4BE759 /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
+		BBBAA674BFA5B0161BEC62AB9A14E637 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
+		BC4B7DCB48BB4C920ED7C6903D050A9C /* RNCryptorEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNCryptorEngine.h; path = RNCryptor/RNCryptorEngine.h; sourceTree = "<group>"; };
+		BD9171376F49D3F06A08AC6ACE29751B /* SVProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD-dummy.m"; sourceTree = "<group>"; };
+		C08A5D32190A512C32A5DBCB7E2B3CEB /* RNCryptor-objc-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor-objc-iOS-umbrella.h"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-umbrella.h"; sourceTree = "<group>"; };
 		C0E246462DA8F629102E8760B8684678 /* EARestrictedScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EARestrictedScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4E9600569D09F82ECF5ABF9D805A2EF /* EARestrictedScrollView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EARestrictedScrollView.modulemap; sourceTree = "<group>"; };
+		C1543CC9A6392237FEB505954AAD87FA /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
+		C559D1E2B6E7DF16C26CB21FE5F7937A /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
+		C7CADCFB889306868364ACBD7B5AD430 /* RNCryptor-objc-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "RNCryptor-objc-iOS.modulemap"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS.modulemap"; sourceTree = "<group>"; };
+		C8EB92C5A63E0CFADB871BEC8926BF39 /* EARestrictedScrollView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EARestrictedScrollView-prefix.pch"; sourceTree = "<group>"; };
 		CB1F3994E8F73CAF64ABA71CF2F37BA0 /* Pods-Pictograph Mac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Pictograph Mac-dummy.m"; sourceTree = "<group>"; };
+		CBE59440873C8306C0D77CE395AB7299 /* RNCryptor+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor+Private.h"; path = "RNCryptor/RNCryptor+Private.h"; sourceTree = "<group>"; };
 		CC6C4273D8DF78711AD78DAADF61DA1B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		CD697106856E5292F5D889CFC699AFB2 /* EAIntroPage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EAIntroPage.m; path = EAIntroView/EAIntroPage.m; sourceTree = "<group>"; };
 		CD9789C675B602EC86A925AE75136DF6 /* Pods-PictographUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographUITests-frameworks.sh"; sourceTree = "<group>"; };
-		CFFE0D7CF311874C1D95EF8F5A45FD19 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
-		D14C4EC86C0F3DD49046EE8392010CBB /* RNCryptor-objc-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor-objc-iOS-prefix.pch"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-prefix.pch"; sourceTree = "<group>"; };
-		D7CED88999F9583E1DDF911EBFBC625C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D82FCC6BFF29A9BE9B09D2928AFDE56B /* RNCryptor+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor+Private.h"; path = "RNCryptor/RNCryptor+Private.h"; sourceTree = "<group>"; };
+		D3C1CF20CBD4638A84A1604381E364CD /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
+		D473A84533274B3A91A414B47AFFA80B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../RNCryptor-objc-iOS/Info.plist"; sourceTree = "<group>"; };
 		D933E41519DDA9FC1674B281E275A667 /* Pods-Pictograph.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Pictograph.modulemap"; sourceTree = "<group>"; };
 		DA88D32CE1A5CC87FD86F515B9039C8B /* Pods-Pictograph Mac-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Pictograph Mac-acknowledgements.markdown"; sourceTree = "<group>"; };
-		DA94391C3D8A3051967E4308C13658F9 /* SVProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-umbrella.h"; sourceTree = "<group>"; };
-		DDBFEE6FA8A50356CF78F1A0EBB392C1 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		DED0CBBD03F816626432C277E2A8095D /* EARestrictedScrollView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EARestrictedScrollView.modulemap; sourceTree = "<group>"; };
 		DEDA9617A70D425F40D122E7DE13FF68 /* Pods-PictographTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E025B59751860AAAB62089C70D04AF7D /* Pods-Pictograph-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pictograph-acknowledgements.plist"; sourceTree = "<group>"; };
-		E397007190BD5505594341EE95078169 /* RNCryptor-objc-OSX-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-objc-OSX-prefix.pch"; sourceTree = "<group>"; };
+		E0521EF296DA11092E61BE1677603ED0 /* EAIntroView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EAIntroView-prefix.pch"; sourceTree = "<group>"; };
+		E0F00FAD72E396AC36B68D25B06BB3ED /* EAIntroPage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EAIntroPage.h; path = EAIntroView/EAIntroPage.h; sourceTree = "<group>"; };
+		E3E5F6F731B1710F0158EBF5D438AC11 /* RNCryptor-objc-OSX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "RNCryptor-objc-OSX.modulemap"; sourceTree = "<group>"; };
 		E622068D70430842F41D9B518D42F414 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7033F071055153A9B062D666DE5DEEC /* Pods-Pictograph Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph Mac.release.xcconfig"; sourceTree = "<group>"; };
-		E7A22791AD1EB56930AAAE279F1220CD /* RNEncryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNEncryptor.m; path = RNCryptor/RNEncryptor.m; sourceTree = "<group>"; };
-		E9BFE65386F2008DEBDA9AC13451302C /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
-		EA03F43ECA0AC1D56B52BB76213C3046 /* RNEncryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNEncryptor.h; path = RNCryptor/RNEncryptor.h; sourceTree = "<group>"; };
 		EA3AE5611FF2A5ECD6A0C6CE76488D82 /* Pods-PictographTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PictographTests-umbrella.h"; sourceTree = "<group>"; };
-		EC32F2F47ED556F46821CC3B6DEEF4FC /* EARestrictedScrollView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EARestrictedScrollView-prefix.pch"; sourceTree = "<group>"; };
+		EA90F82981EEA8ACF26A7058AD0612C0 /* RNDecryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNDecryptor.h; path = RNCryptor/RNDecryptor.h; sourceTree = "<group>"; };
 		EC41D9AE7412DC92EAAE05B2957DF56A /* Pods-Pictograph-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Pictograph-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EC871B6885401C7A2C8685C1A102205F /* EAIntroView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EAIntroView-dummy.m"; sourceTree = "<group>"; };
 		ED994C3BBD9F9F59A3B449BD497E3976 /* Pods-PictographTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PictographTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		EE8448768EFEF9B4E5AACA929CA880AD /* RNCryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNCryptor.m; path = RNCryptor/RNCryptor.m; sourceTree = "<group>"; };
 		EF7CA2AF91C561C00E1F5D32A9A7B69F /* Pods-Pictograph.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph.release.xcconfig"; sourceTree = "<group>"; };
-		F0D148315E4D8AAAAA2AC5DE2A53B670 /* CustomIOSAlertView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CustomIOSAlertView-dummy.m"; sourceTree = "<group>"; };
-		F13BFB5AFCEC3C391BC6BC8EF8C34BCE /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = iOS/Crashlytics.framework/Headers/Answers.h; sourceTree = "<group>"; };
-		F1E2144B8AE7ACA593359404A04E6437 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F3393DCA8156DC426A272964A4A243F7 /* CustomIOSAlertView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CustomIOSAlertView-prefix.pch"; sourceTree = "<group>"; };
+		EFC3FA2F5D9DD61FC955B23E3467D115 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
+		F34C69B32E6B3F5DE281F79F3624E17A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
 		F4E92E4E018FBD61074DD62878168DB5 /* Pods-PictographTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographTests-resources.sh"; sourceTree = "<group>"; };
-		F566D665184F160A5CD22FEED0ABEDBE /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
-		F72A34E2206946D9A8CC1BE848D7E7A0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F778ACC8613EBE98C1A00F61D1CFDCA6 /* Pods-Pictograph Mac-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pictograph Mac-acknowledgements.plist"; sourceTree = "<group>"; };
 		F8B0B95A84C3EACA2EFD7D29D7A24237 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		FEB61121C072073F74D59F7CD183BD5D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
+		F8E3F649CDF08A32140DC668C4A6BDAB /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		FB5646DB2ADF64F7D5490053F011173E /* RNDecryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNDecryptor.m; path = RNCryptor/RNDecryptor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +248,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				561B1B7C5A104DE40A4FA33668E5D304 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		20EA2540D2CE7FA69385458F4277887A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52075BAF33C3AB928CFEA46D961F5696 /* Foundation.framework in Frameworks */,
+				2C9F04225FF15915EDDAAFE1C48B3122 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,28 +277,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6F2C024FBCC250AF0907F51D0BA78CE3 /* Frameworks */ = {
+		72886ED97147D0745392556A13F6A45F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0363519FF50C251DFF4843D7E07DC5DB /* Foundation.framework in Frameworks */,
+				F59244DA9983C8DF071864E41C05300B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9752496B9760052B938DADDA5F2F6D74 /* Frameworks */ = {
+		786C221D6609A07E29664B69E67FC2A3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEA008448F51405A0D3717DB10AA0C78 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A935CA7BBFBFABBEA228F30915032C7D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E6F1CC8FD62F3CE397833EE069CB37F2 /* Foundation.framework in Frameworks */,
-				6E78D43BE75A8C6363E67ECCFB781411 /* QuartzCore.framework in Frameworks */,
+				2275860EA5E6DDDDEB36D7839FA93E15 /* Foundation.framework in Frameworks */,
+				E1FA8A884F8300B7BD5044DE5A49E997 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,15 +299,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E4E00C4A625956612F3928C42D658D8 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E174852A3ACD5B46F9C4B3D4F80BFEE1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				24ABB6904DC230D3483FEF1D6ED0B7DC /* Foundation.framework in Frameworks */,
-				C7E083C9DFFB25C9288C2850A0D6E8E3 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,86 +322,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		068087817C600444CF6B4C3397FEF032 /* SVProgressHUD */ = {
+		14FC295E91D364F2BBBC85C9B28BEBC1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DDBFEE6FA8A50356CF78F1A0EBB392C1 /* SVIndefiniteAnimatedView.h */,
-				3DA12966392ED524D1A00355AE22C1A9 /* SVIndefiniteAnimatedView.m */,
-				9C9958DB9E601278F03ED1FEC77AE736 /* SVProgressAnimatedView.h */,
-				1796E8FB8BBB47B40171ECA7195DDA43 /* SVProgressAnimatedView.m */,
-				BD27EBD09A24DE2C5B4F9BC3AC4BE759 /* SVProgressHUD.h */,
-				7DD7EDAD35D72CDF679E9C0312696B8F /* SVProgressHUD.m */,
-				F566D665184F160A5CD22FEED0ABEDBE /* SVRadialGradientLayer.h */,
-				BC2936A1868ABDE60CDD8CDC4753591E /* SVRadialGradientLayer.m */,
-				9B04394D1EE0B058BE1A6F095ACC8078 /* Resources */,
-				3AF6277EB14BD04B4F90EA4AF408374F /* Support Files */,
+				F34C69B32E6B3F5DE281F79F3624E17A /* Crashlytics.framework */,
 			);
-			name = SVProgressHUD;
-			path = SVProgressHUD;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		0B9DDF2418FE18A5FEF1FD1DF25D59AD /* Support Files */ = {
+		163B23A6214189A418A072ADCD663526 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				47B08DF7228B0D8C6FA0AFF4F91C9598 /* CustomIOSAlertView.modulemap */,
-				22FC4BF1FFB10E4EDFCF8541D0796767 /* CustomIOSAlertView.xcconfig */,
-				F0D148315E4D8AAAAA2AC5DE2A53B670 /* CustomIOSAlertView-dummy.m */,
-				F3393DCA8156DC426A272964A4A243F7 /* CustomIOSAlertView-prefix.pch */,
-				56A662902FFF5B348A1A83890B7A66BA /* CustomIOSAlertView-umbrella.h */,
-				7FDBFE0A33D399C284E80C6ECDBBF126 /* Info.plist */,
+				17E73173ECB8FFF43DD37504AEB707DA /* EAIntroView.framework */,
+				1FECC622F9EE1C37E6C84624D2451DF0 /* EARestrictedScrollView.framework */,
+				31045072E564724232F41247218D49FD /* Pods_Pictograph.framework */,
+				31AD03FC1D68D1B3CBF3AC1B75C9CF2D /* Pods_Pictograph_Mac.framework */,
+				976A550E2A141BE8AD434D06F2934788 /* Pods_PictographTests.framework */,
+				19C7C61570F4FEE00BD55B986C2366D7 /* Pods_PictographUITests.framework */,
+				988274F78B39C5D625FA9FCDF00DA361 /* RNCryptor_objc.framework */,
+				0D817C369E0834870CD78B6C9B137674 /* RNCryptor_objc.framework */,
+				0C83B4BC294FC5207954072405DD7470 /* SVProgressHUD.framework */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/CustomIOSAlertView";
-			sourceTree = "<group>";
-		};
-		180BCB7FFC3F1F96A9D5E0D6B1217580 /* Crashlytics */ = {
-			isa = PBXGroup;
-			children = (
-				9717463079004C454D6C09CF6CBC2BCA /* ANSCompatibility.h */,
-				F13BFB5AFCEC3C391BC6BC8EF8C34BCE /* Answers.h */,
-				6BD684103F70A304AB2B064FE0A6CEB4 /* CLSAttributes.h */,
-				5D9E5938AF22F8CB00BB91FF1FE6932C /* CLSLogging.h */,
-				CFFE0D7CF311874C1D95EF8F5A45FD19 /* CLSReport.h */,
-				8E4079470C6D06E92EFF07EBD66208EA /* CLSStackFrame.h */,
-				A7AE79CBE2A21C8F844375D3163D1BED /* Crashlytics.h */,
-				C89EEB797E6884DD752834551CE048AA /* Frameworks */,
-			);
-			name = Crashlytics;
-			path = Crashlytics;
-			sourceTree = "<group>";
-		};
-		2DC45708F6B21BC505F24BECA5195430 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				180BCB7FFC3F1F96A9D5E0D6B1217580 /* Crashlytics */,
-				7A7EDD2FB2C8564069D0FAC01EADC100 /* CustomIOSAlertView */,
-				FEBCA9643EE9DC336572D95EC585AB2A /* EAIntroView */,
-				F804A23DE43400FA2454E2FAC82AB21A /* EARestrictedScrollView */,
-				FB352239AEFA0BEB1510EFDEE5534640 /* Fabric */,
-				35814590F7F5217EA961088D540FF0DD /* RNCryptor-objc */,
-				068087817C600444CF6B4C3397FEF032 /* SVProgressHUD */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		2E8D7CAF357DCF0F7D57FF689596E4F1 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				1F3577CFFC043600F9A3AEC0CE0CBCA3 /* Info.plist */,
-				95A4D97DD0A4D4200D6C4799582AC5DA /* Info.plist */,
-				4A76D169977D5C70BA8DC6CF7559C808 /* RNCryptor-objc-iOS.modulemap */,
-				110CE939368B4DC2F4901555C5EE3000 /* RNCryptor-objc-iOS.xcconfig */,
-				5EFC325497E98EE6E333138769BAB189 /* RNCryptor-objc-iOS-dummy.m */,
-				D14C4EC86C0F3DD49046EE8392010CBB /* RNCryptor-objc-iOS-prefix.pch */,
-				AEE61790A5B356580A863428C6CC7D9E /* RNCryptor-objc-iOS-umbrella.h */,
-				54707AC8EBB0F9681144E88EFA9FDA63 /* RNCryptor-objc-OSX.modulemap */,
-				18A4E6D4764F2EF6E9ECF1752032BB55 /* RNCryptor-objc-OSX.xcconfig */,
-				2635FF774267BC92C1FC39EB4D9E9C28 /* RNCryptor-objc-OSX-dummy.m */,
-				E397007190BD5505594341EE95078169 /* RNCryptor-objc-OSX-prefix.pch */,
-				0A221286824F4A8F0E2CAD686867856A /* RNCryptor-objc-OSX-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/RNCryptor-objc-OSX";
+			name = Products;
 			sourceTree = "<group>";
 		};
 		31013943137C04A8DACD3F74B3D0A64B /* Targets Support Files */ = {
@@ -442,38 +355,6 @@
 				6746B2B7510F1D777F20C8F49BE1814F /* Pods-PictographUITests */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		35814590F7F5217EA961088D540FF0DD /* RNCryptor-objc */ = {
-			isa = PBXGroup;
-			children = (
-				757E7A542600009B96797F3DE12D39E7 /* RNCryptor.h */,
-				1B93DAAA604585FC8C8D05CC992C9811 /* RNCryptor.m */,
-				D82FCC6BFF29A9BE9B09D2928AFDE56B /* RNCryptor+Private.h */,
-				642DF6FE911238A4287CFB88571F0E7E /* RNCryptorEngine.h */,
-				A23842FB85D1AFD78C5936CD629F6601 /* RNCryptorEngine.m */,
-				4EAE87429A3D1ACF6D2598D3F32315A8 /* RNDecryptor.h */,
-				5D5F196EE2390FC92C2995E0785C62F1 /* RNDecryptor.m */,
-				EA03F43ECA0AC1D56B52BB76213C3046 /* RNEncryptor.h */,
-				E7A22791AD1EB56930AAAE279F1220CD /* RNEncryptor.m */,
-				2E8D7CAF357DCF0F7D57FF689596E4F1 /* Support Files */,
-			);
-			name = "RNCryptor-objc";
-			path = "RNCryptor-objc";
-			sourceTree = "<group>";
-		};
-		3AF6277EB14BD04B4F90EA4AF408374F /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F1E2144B8AE7ACA593359404A04E6437 /* Info.plist */,
-				E9BFE65386F2008DEBDA9AC13451302C /* SVProgressHUD.modulemap */,
-				9CB170E0268482FDE3CE3427881F7953 /* SVProgressHUD.xcconfig */,
-				078A1CF1E00BBF654A2A11EA68A7379D /* SVProgressHUD-dummy.m */,
-				0693A0F2A0C6251E56E5D14214974C66 /* SVProgressHUD-prefix.pch */,
-				DA94391C3D8A3051967E4308C13658F9 /* SVProgressHUD-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/SVProgressHUD";
 			sourceTree = "<group>";
 		};
 		411A05AEFFFDEE7218E3807D7831872C /* Pods-Pictograph */ = {
@@ -504,18 +385,51 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		660BB63B9DBC27B565F1EA0BF3849767 /* Support Files */ = {
+		5116BAACED2E935A9D42A224C8E27630 /* EAIntroView */ = {
 			isa = PBXGroup;
 			children = (
-				C4E9600569D09F82ECF5ABF9D805A2EF /* EARestrictedScrollView.modulemap */,
-				8E19B47F664AC7B43EFDB0F4DAB77461 /* EARestrictedScrollView.xcconfig */,
-				7247220D3EA8460CF23ECDCB573F1606 /* EARestrictedScrollView-dummy.m */,
-				EC32F2F47ED556F46821CC3B6DEEF4FC /* EARestrictedScrollView-prefix.pch */,
-				8284EFBA67627EF1A0E37593C5915D87 /* EARestrictedScrollView-umbrella.h */,
-				D7CED88999F9583E1DDF911EBFBC625C /* Info.plist */,
+				E0F00FAD72E396AC36B68D25B06BB3ED /* EAIntroPage.h */,
+				CD697106856E5292F5D889CFC699AFB2 /* EAIntroPage.m */,
+				79B9028094303300F25368C3DD6F6F24 /* EAIntroView.h */,
+				89DF496CD3F09085CFBC42850AA37E31 /* EAIntroView.m */,
+				A1FD63A2BEACA57E2AB1D595F72A2715 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/EARestrictedScrollView";
+			name = EAIntroView;
+			path = EAIntroView;
+			sourceTree = "<group>";
+		};
+		575769B85AB3FC37EF57FD3F3A22625C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				95321B52F6FAA8EB3C1690095CCCED13 /* SVProgressHUD.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5A2399B818E99CBE87F0EEE37F9C638C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				384DF0CE7553E7F80C2EA5F67235D94E /* Fabric.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5FB5EFCD2BB32C8271F1A0D7ED0DA104 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				6ED1B21F6238682713AB7293648E85B6 /* SVIndefiniteAnimatedView.h */,
+				8B94A3B02BD3EB4081BAF1B09599AEDB /* SVIndefiniteAnimatedView.m */,
+				A9B108CF7A89D64DF9A02C0E09F7A4E0 /* SVProgressAnimatedView.h */,
+				F8E3F649CDF08A32140DC668C4A6BDAB /* SVProgressAnimatedView.m */,
+				28A75F9D1FB691BC472A51974210FCFF /* SVProgressHUD.h */,
+				D3C1CF20CBD4638A84A1604381E364CD /* SVProgressHUD.m */,
+				05C3094DBDF832A796BA812CFB741773 /* SVRadialGradientLayer.h */,
+				7D04DA692D5A770748B26B6EC112E533 /* SVRadialGradientLayer.m */,
+				575769B85AB3FC37EF57FD3F3A22625C /* Resources */,
+				DB98B77724111BEC4C5755C7AEC52164 /* Support Files */,
+			);
+			name = SVProgressHUD;
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		6746B2B7510F1D777F20C8F49BE1814F /* Pods-PictographUITests */ = {
@@ -555,17 +469,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7A7EDD2FB2C8564069D0FAC01EADC100 /* CustomIOSAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				5CBB5D0596B8D674249FF753A9D4CF6C /* CustomIOSAlertView.h */,
-				679FE214E67917F4364A7C5B3A7675E8 /* CustomIOSAlertView.m */,
-				0B9DDF2418FE18A5FEF1FD1DF25D59AD /* Support Files */,
-			);
-			name = CustomIOSAlertView;
-			path = CustomIOSAlertView;
-			sourceTree = "<group>";
-		};
 		7C8BCF227A47C4ACA18F232FF563576E /* Pods-PictographTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,70 +487,99 @@
 			path = "Target Support Files/Pods-PictographTests";
 			sourceTree = "<group>";
 		};
+		7D4C7EE4DABB0169AA21C66E400BB54D /* EARestrictedScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				345835D9D16A79E57DBDAD91553C1672 /* EARestrictedScrollView.h */,
+				7CBC65C5FB362F66644E7E9F69AD01C5 /* EARestrictedScrollView.m */,
+				FA297120DD4303DFE441442E4689236C /* Support Files */,
+			);
+			name = EARestrictedScrollView;
+			path = EARestrictedScrollView;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				78D4C7021410A72B5AC4BC4F0F4F9D18 /* Frameworks */,
-				2DC45708F6B21BC505F24BECA5195430 /* Pods */,
-				A1EDADDF488A902C568A3C1FD1FE0044 /* Products */,
+				FDB2B1E4E71DA0641207C651976E096C /* Pods */,
+				163B23A6214189A418A072ADCD663526 /* Products */,
 				31013943137C04A8DACD3F74B3D0A64B /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		8328D38B38242EDEC995549C4F269AFB /* Support Files */ = {
+		8D3F9FF07EBCC6707AA6229173CBDC37 /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
-				5237740721B0A217BD1D4B8878561669 /* EAIntroView.modulemap */,
-				3579C53F3D47E9B3814255971F91FC3A /* EAIntroView.xcconfig */,
-				4D7B4743D60D791F478108F83F27BF55 /* EAIntroView-dummy.m */,
-				7FFFD3D2FEFBD737E481CB919608CCDA /* EAIntroView-prefix.pch */,
-				36B4C901F67991C7D1A2295D9D825688 /* EAIntroView-umbrella.h */,
-				F72A34E2206946D9A8CC1BE848D7E7A0 /* Info.plist */,
+				BBBAA674BFA5B0161BEC62AB9A14E637 /* FABAttributes.h */,
+				6E57ED50FC4491C28DAA74320746B7BF /* Fabric.h */,
+				5A2399B818E99CBE87F0EEE37F9C638C /* Frameworks */,
+			);
+			name = Fabric;
+			path = Fabric;
+			sourceTree = "<group>";
+		};
+		A1FD63A2BEACA57E2AB1D595F72A2715 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0DD9474393434DC75E608B3CF0F0FE51 /* EAIntroView.modulemap */,
+				83CFAC4ED3FA243BFB75ECA7567AB6B3 /* EAIntroView.xcconfig */,
+				EC871B6885401C7A2C8685C1A102205F /* EAIntroView-dummy.m */,
+				E0521EF296DA11092E61BE1677603ED0 /* EAIntroView-prefix.pch */,
+				6CF2EF12D13004C0BDB1513621E678F0 /* EAIntroView-umbrella.h */,
+				6EE4B6332BA32C71751502AC3E20A816 /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/EAIntroView";
 			sourceTree = "<group>";
 		};
-		9B04394D1EE0B058BE1A6F095ACC8078 /* Resources */ = {
+		B0BDF670243711B1265D216806EBEC0E /* RNCryptor-objc */ = {
 			isa = PBXGroup;
 			children = (
-				AA08429FA1F356187642887534DCD34F /* SVProgressHUD.bundle */,
+				B15BAE35899F49F25F00C6B8C6ABCCF4 /* RNCryptor.h */,
+				EE8448768EFEF9B4E5AACA929CA880AD /* RNCryptor.m */,
+				CBE59440873C8306C0D77CE395AB7299 /* RNCryptor+Private.h */,
+				BC4B7DCB48BB4C920ED7C6903D050A9C /* RNCryptorEngine.h */,
+				1603E851726DB2188BFCE057A7606A6C /* RNCryptorEngine.m */,
+				EA90F82981EEA8ACF26A7058AD0612C0 /* RNDecryptor.h */,
+				FB5646DB2ADF64F7D5490053F011173E /* RNDecryptor.m */,
+				992FCA531C05A5A551D3FEA950B0032A /* RNEncryptor.h */,
+				1B311E9F68F077D7FA5BF5A01158F7E0 /* RNEncryptor.m */,
+				FF994A2B922E3E07CA91E708CDE3DEF4 /* Support Files */,
 			);
-			name = Resources;
+			name = "RNCryptor-objc";
+			path = "RNCryptor-objc";
 			sourceTree = "<group>";
 		};
-		A1EDADDF488A902C568A3C1FD1FE0044 /* Products */ = {
+		C0C9448D821F2C71F8E96048804B7A4D /* Crashlytics */ = {
 			isa = PBXGroup;
 			children = (
-				6D91C4169AEFCF68929488DF3F79A662 /* CustomIOSAlertView.framework */,
-				045E90CD4F2147F73D1D2DF9F5389E44 /* EAIntroView.framework */,
-				4C1C6C6EC065C5613063905D676FB7C0 /* EARestrictedScrollView.framework */,
-				5211B454C0D318E37641A81A61E765F7 /* Pods_Pictograph.framework */,
-				125DDC3EAE3364D681DB569AB4C8D4FB /* Pods_Pictograph_Mac.framework */,
-				0601F6C2F9FABB6FDDFB30993C3F5DE3 /* Pods_PictographTests.framework */,
-				879ADF5F731D0F226DCDE917089F546A /* Pods_PictographUITests.framework */,
-				488BC480C7AFA100F8D58D0AA328174C /* RNCryptor_objc.framework */,
-				2C93C6EC18FF2A8E56F9AC655FA4AD13 /* RNCryptor_objc.framework */,
-				60ECAB2C78D456991F2022C4E7EDEF72 /* SVProgressHUD.framework */,
+				C1543CC9A6392237FEB505954AAD87FA /* ANSCompatibility.h */,
+				B3EAD027F2D3818B98C963B687692108 /* Answers.h */,
+				EFC3FA2F5D9DD61FC955B23E3467D115 /* CLSAttributes.h */,
+				9C6E50276D140E573AD247565C216FBF /* CLSLogging.h */,
+				C559D1E2B6E7DF16C26CB21FE5F7937A /* CLSReport.h */,
+				5959E8C9CBB84EAA6A44DDA58D4AA784 /* CLSStackFrame.h */,
+				0487AC4DB3B7C020C337D06AC086B5F3 /* Crashlytics.h */,
+				14FC295E91D364F2BBBC85C9B28BEBC1 /* Frameworks */,
 			);
-			name = Products;
+			name = Crashlytics;
+			path = Crashlytics;
 			sourceTree = "<group>";
 		};
-		C71D6C5EA81CD5E928460B91A28BA1AC /* Frameworks */ = {
+		DB98B77724111BEC4C5755C7AEC52164 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				FEB61121C072073F74D59F7CD183BD5D /* Fabric.framework */,
+				8C6044F3B4392AE667F990561C0E0DB4 /* Info.plist */,
+				5496675D0596C2B4A662CD079CC063F9 /* SVProgressHUD.modulemap */,
+				0372874F2F2752011E48C5370D846457 /* SVProgressHUD.xcconfig */,
+				BD9171376F49D3F06A08AC6ACE29751B /* SVProgressHUD-dummy.m */,
+				1DBFDA521AC18B044CEF969BDFEB83B1 /* SVProgressHUD-prefix.pch */,
+				7CC3027F38CC9F158F0AF08753D028E0 /* SVProgressHUD-umbrella.h */,
 			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C89EEB797E6884DD752834551CE048AA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8348FA9749A9F11CE70470D095E6F1A4 /* Crashlytics.framework */,
-			);
-			name = Frameworks;
+			name = "Support Files";
+			path = "../Target Support Files/SVProgressHUD";
 			sourceTree = "<group>";
 		};
 		DD3B2D73F0F393892A12B8ACEB786A26 /* Pods-Pictograph Mac */ = {
@@ -668,39 +600,51 @@
 			path = "Target Support Files/Pods-Pictograph Mac";
 			sourceTree = "<group>";
 		};
-		F804A23DE43400FA2454E2FAC82AB21A /* EARestrictedScrollView */ = {
+		FA297120DD4303DFE441442E4689236C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				9D7FDDF1AA5D76491FD9307DC0CBE645 /* EARestrictedScrollView.h */,
-				38CCADCEDD23A911B7281617ECAAC4F9 /* EARestrictedScrollView.m */,
-				660BB63B9DBC27B565F1EA0BF3849767 /* Support Files */,
+				DED0CBBD03F816626432C277E2A8095D /* EARestrictedScrollView.modulemap */,
+				2B4C5AA0052EE007EF28DC91C015A135 /* EARestrictedScrollView.xcconfig */,
+				86D5E62EEB2C3F8327BF0FE18F064506 /* EARestrictedScrollView-dummy.m */,
+				C8EB92C5A63E0CFADB871BEC8926BF39 /* EARestrictedScrollView-prefix.pch */,
+				784346B69C7B84CDAC3A052006206767 /* EARestrictedScrollView-umbrella.h */,
+				5357867C876502F05CD68933D181F0AF /* Info.plist */,
 			);
-			name = EARestrictedScrollView;
-			path = EARestrictedScrollView;
+			name = "Support Files";
+			path = "../Target Support Files/EARestrictedScrollView";
 			sourceTree = "<group>";
 		};
-		FB352239AEFA0BEB1510EFDEE5534640 /* Fabric */ = {
+		FDB2B1E4E71DA0641207C651976E096C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9E56C7B1FDC9CAD0F175A31839E225DB /* FABAttributes.h */,
-				75625534D5A88E7B21D9B69D5B8AEC23 /* Fabric.h */,
-				C71D6C5EA81CD5E928460B91A28BA1AC /* Frameworks */,
+				C0C9448D821F2C71F8E96048804B7A4D /* Crashlytics */,
+				5116BAACED2E935A9D42A224C8E27630 /* EAIntroView */,
+				7D4C7EE4DABB0169AA21C66E400BB54D /* EARestrictedScrollView */,
+				8D3F9FF07EBCC6707AA6229173CBDC37 /* Fabric */,
+				B0BDF670243711B1265D216806EBEC0E /* RNCryptor-objc */,
+				5FB5EFCD2BB32C8271F1A0D7ED0DA104 /* SVProgressHUD */,
 			);
-			name = Fabric;
-			path = Fabric;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		FEBCA9643EE9DC336572D95EC585AB2A /* EAIntroView */ = {
+		FF994A2B922E3E07CA91E708CDE3DEF4 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				1900295C9BA2864951C56399734FB06A /* EAIntroPage.h */,
-				4DF538C101A3E4D175B6176B2D8EEED5 /* EAIntroPage.m */,
-				189D81EC1BDBBCC81B2BEA1BA9FE6B99 /* EAIntroView.h */,
-				0C366740DC56F1619FC65ED7CD098B7E /* EAIntroView.m */,
-				8328D38B38242EDEC995549C4F269AFB /* Support Files */,
+				308477D3EC93212822CD5ADE7B5EEC1A /* Info.plist */,
+				D473A84533274B3A91A414B47AFFA80B /* Info.plist */,
+				C7CADCFB889306868364ACBD7B5AD430 /* RNCryptor-objc-iOS.modulemap */,
+				07198BE68793BC6EFCD42B11D4C1F875 /* RNCryptor-objc-iOS.xcconfig */,
+				9A6338E966BF9493D31498E07A0CEAE0 /* RNCryptor-objc-iOS-dummy.m */,
+				019476B2BE437714913261D1245747BE /* RNCryptor-objc-iOS-prefix.pch */,
+				C08A5D32190A512C32A5DBCB7E2B3CEB /* RNCryptor-objc-iOS-umbrella.h */,
+				E3E5F6F731B1710F0158EBF5D438AC11 /* RNCryptor-objc-OSX.modulemap */,
+				8E1F825785DEDE9F9FA7DA2B4C5FC7BD /* RNCryptor-objc-OSX.xcconfig */,
+				0C8C3312115C604C9F8B45F8937D5006 /* RNCryptor-objc-OSX-dummy.m */,
+				15A4E3989CFE3390F11F6F73BE37F9EE /* RNCryptor-objc-OSX-prefix.pch */,
+				85FEB5E8561C1A82186F5E8E835AE380 /* RNCryptor-objc-OSX-umbrella.h */,
 			);
-			name = EAIntroView;
-			path = EAIntroView;
+			name = "Support Files";
+			path = "../Target Support Files/RNCryptor-objc-OSX";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -714,32 +658,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		32587651F24723288AF9514E46CCFAEA /* Headers */ = {
+		32A3DFF4DFF5F76F2B08FE5870938444 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92E78D518B71A6D6ADF8A6E762908600 /* SVIndefiniteAnimatedView.h in Headers */,
-				FBBF913E5B373DB729B969D1D0B2A9BC /* SVProgressAnimatedView.h in Headers */,
-				4A9DFEF5B20EFE1ADA7676B81F4F1FE8 /* SVProgressHUD-umbrella.h in Headers */,
-				947CE787C983CBD579A0D9B1CB7CD439 /* SVProgressHUD.h in Headers */,
-				10EBE4A42B706EB9391F0D2E16F52672 /* SVRadialGradientLayer.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6984E971F9A065D74FD7632232430381 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CD834A6C8749633179129271688DAEA5 /* CustomIOSAlertView-umbrella.h in Headers */,
-				EA6A44B801F291B932DD902AED58F0A4 /* CustomIOSAlertView.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7FC537BFECD75A6900357B92A7203241 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E714EBE7C0490E1F4D0D4469B7187D9A /* Pods-Pictograph-umbrella.h in Headers */,
+				A762EFBF51A8CA730045271CA02E6BBD /* RNCryptor+Private.h in Headers */,
+				D54B76C6765B89ED714840CC9D0CF5EB /* RNCryptor-objc-iOS-umbrella.h in Headers */,
+				7005958560B5A917571CCF150A655FB8 /* RNCryptor.h in Headers */,
+				B0D367F056A3796FD6EBE529832789CF /* RNCryptorEngine.h in Headers */,
+				CDE73D7EBC5074148D92477879A5E71F /* RNDecryptor.h in Headers */,
+				8574A1AA67A8A7B1567D435628673659 /* RNEncryptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,25 +689,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C7EC755B8A2E9E59DD70ADFCC1F40818 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5446756A1AFBE804F6C89490FE463B /* SVIndefiniteAnimatedView.h in Headers */,
+				8753BB57AF3193E7572F3F5C8BC5F31A /* SVProgressAnimatedView.h in Headers */,
+				B51A8944C001F01581601A5ACD28C81B /* SVProgressHUD-umbrella.h in Headers */,
+				6A7B6F66B52590485441E0E1B5689A93 /* SVProgressHUD.h in Headers */,
+				17E865B155E4ED16A75D12FF7F2EDA0D /* SVRadialGradientLayer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAE9E53F94A5B9290A44D40D09523886 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				599EC797D93F4BEB8EC9C246DBC36125 /* EARestrictedScrollView-umbrella.h in Headers */,
 				49A40958B574F4AA0622B86E3DAA19F5 /* EARestrictedScrollView.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D035B7F7BA53BB42AF0D6386F69097ED /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				988051129BFA0710DA2E466F1501CCB0 /* RNCryptor+Private.h in Headers */,
-				08D1786524B80B559CAD2315266D6948 /* RNCryptor-objc-iOS-umbrella.h in Headers */,
-				2AF49BD71E18B370CF7D94BBC8941983 /* RNCryptor.h in Headers */,
-				309CAF628A5A7C7F88E1BBD011CE5241 /* RNCryptorEngine.h in Headers */,
-				7C2B7B722969565E7FD0D09CF85D3E16 /* RNDecryptor.h in Headers */,
-				59AC2BA03D365DA567C4F765B801D377 /* RNEncryptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -804,6 +731,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EEE54E51CC6F7E3EAE2DB7FCEED9C202 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC0284DAB6A0ADDD1F4C9D4D7121CF07 /* Pods-Pictograph-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -822,7 +757,7 @@
 			);
 			name = "Pods-Pictograph Mac";
 			productName = "Pods-Pictograph Mac";
-			productReference = 125DDC3EAE3364D681DB569AB4C8D4FB /* Pods_Pictograph_Mac.framework */;
+			productReference = 31AD03FC1D68D1B3CBF3AC1B75C9CF2D /* Pods_Pictograph_Mac.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		21DFAD7A8A5ACFE05D8852F06915BD7F /* Pods-PictographUITests */ = {
@@ -839,46 +774,28 @@
 			);
 			name = "Pods-PictographUITests";
 			productName = "Pods-PictographUITests";
-			productReference = 879ADF5F731D0F226DCDE917089F546A /* Pods_PictographUITests.framework */;
+			productReference = 19C7C61570F4FEE00BD55B986C2366D7 /* Pods_PictographUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3F7E889CF7F08848B3EA1E587C432623 /* RNCryptor-objc-iOS */ = {
+		3FF10A0C1873BE0CCF5B01DD734BD179 /* Pods-Pictograph */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 97F507F3A6AF8D5C67A67B147A44AC0C /* Build configuration list for PBXNativeTarget "RNCryptor-objc-iOS" */;
+			buildConfigurationList = 52F9A724FFB97F5BFD98F9B7CE10EB1E /* Build configuration list for PBXNativeTarget "Pods-Pictograph" */;
 			buildPhases = (
-				6987A570B963655F6EA566C4EA736649 /* Sources */,
-				E174852A3ACD5B46F9C4B3D4F80BFEE1 /* Frameworks */,
-				D035B7F7BA53BB42AF0D6386F69097ED /* Headers */,
+				6896007E623C3A8525D8B1D1AE1FF1DA /* Sources */,
+				72886ED97147D0745392556A13F6A45F /* Frameworks */,
+				EEE54E51CC6F7E3EAE2DB7FCEED9C202 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			name = "RNCryptor-objc-iOS";
-			productName = "RNCryptor-objc-iOS";
-			productReference = 488BC480C7AFA100F8D58D0AA328174C /* RNCryptor_objc.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		402E9C33F40B0086D3AE876F834DEFD8 /* Pods-Pictograph */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 31040555182AF148ACE4AF6E7393831F /* Build configuration list for PBXNativeTarget "Pods-Pictograph" */;
-			buildPhases = (
-				BF016BB0AC8F8B0A25CE3F61CD0C97EF /* Sources */,
-				9752496B9760052B938DADDA5F2F6D74 /* Frameworks */,
-				7FC537BFECD75A6900357B92A7203241 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E873F4BA721F63EE96510054C20A14A7 /* PBXTargetDependency */,
-				9A4E06DF78BFEA06A00245EE8A353633 /* PBXTargetDependency */,
-				E3C02D7D3FC07D92DD276971A8786CB0 /* PBXTargetDependency */,
-				55A711E179EBEDE8ECDBD3845B82C6E9 /* PBXTargetDependency */,
-				A1614971D862FE8CE9999A37C966EC45 /* PBXTargetDependency */,
+				9081EAE0130E3E47F0ABC8FE60A56685 /* PBXTargetDependency */,
+				8477E59011182AE76BFF84773E3C6362 /* PBXTargetDependency */,
+				743776F456B0FC9D32EB85388706B1D3 /* PBXTargetDependency */,
+				A4483C0748C06F856EAA0C238EC4899D /* PBXTargetDependency */,
 			);
 			name = "Pods-Pictograph";
 			productName = "Pods-Pictograph";
-			productReference = 5211B454C0D318E37641A81A61E765F7 /* Pods_Pictograph.framework */;
+			productReference = 31045072E564724232F41247218D49FD /* Pods_Pictograph.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		42739F4F79ED7C02BC033DFEBD7EAC7D /* RNCryptor-objc-OSX */ = {
@@ -895,7 +812,7 @@
 			);
 			name = "RNCryptor-objc-OSX";
 			productName = "RNCryptor-objc-OSX";
-			productReference = 2C93C6EC18FF2A8E56F9AC655FA4AD13 /* RNCryptor_objc.framework */;
+			productReference = 0D817C369E0834870CD78B6C9B137674 /* RNCryptor_objc.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		58AAD2C9E898747F2F4ABF348E6325F2 /* EARestrictedScrollView */ = {
@@ -912,7 +829,25 @@
 			);
 			name = EARestrictedScrollView;
 			productName = EARestrictedScrollView;
-			productReference = 4C1C6C6EC065C5613063905D676FB7C0 /* EARestrictedScrollView.framework */;
+			productReference = 1FECC622F9EE1C37E6C84624D2451DF0 /* EARestrictedScrollView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7CAA7C76DD18D78871DB7F16841DADE6 /* SVProgressHUD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F14407A7BFB803597C7906EEEDB7DFE /* Build configuration list for PBXNativeTarget "SVProgressHUD" */;
+			buildPhases = (
+				A248E45EA83A8B83361DF2B7B277D989 /* Sources */,
+				20EA2540D2CE7FA69385458F4277887A /* Frameworks */,
+				C7EC755B8A2E9E59DD70ADFCC1F40818 /* Headers */,
+				CA5592541F065ADDDA3FB0CCE6EF1D85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SVProgressHUD;
+			productName = SVProgressHUD;
+			productReference = 0C83B4BC294FC5207954072405DD7470 /* SVProgressHUD.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		822DA31A6A34C7EF41E1EC7A5EF8FC2F /* EAIntroView */ = {
@@ -930,25 +865,24 @@
 			);
 			name = EAIntroView;
 			productName = EAIntroView;
-			productReference = 045E90CD4F2147F73D1D2DF9F5389E44 /* EAIntroView.framework */;
+			productReference = 17E73173ECB8FFF43DD37504AEB707DA /* EAIntroView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		ADF4E85C3C4FDB7077A3EF4C66D262C7 /* SVProgressHUD */ = {
+		BEEC83A1538765B9A04E05A5C1A75C46 /* RNCryptor-objc-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2359521C440D8A66EA40C4830DCB0A3A /* Build configuration list for PBXNativeTarget "SVProgressHUD" */;
+			buildConfigurationList = 5476B1F705DC8737284114A5836DBBCE /* Build configuration list for PBXNativeTarget "RNCryptor-objc-iOS" */;
 			buildPhases = (
-				ED28AD0DB2700DE7141795A1E44947D7 /* Sources */,
-				A935CA7BBFBFABBEA228F30915032C7D /* Frameworks */,
-				32587651F24723288AF9514E46CCFAEA /* Headers */,
-				8473FEA192701F6ED5AA2D8DF288055A /* Resources */,
+				E3CC52D3A9BB8950207375FFFDBB2729 /* Sources */,
+				786C221D6609A07E29664B69E67FC2A3 /* Frameworks */,
+				32A3DFF4DFF5F76F2B08FE5870938444 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = SVProgressHUD;
-			productName = SVProgressHUD;
-			productReference = 60ECAB2C78D456991F2022C4E7EDEF72 /* SVProgressHUD.framework */;
+			name = "RNCryptor-objc-iOS";
+			productName = "RNCryptor-objc-iOS";
+			productReference = 988274F78B39C5D625FA9FCDF00DA361 /* RNCryptor_objc.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		CEFBFEA273D3932E9C05277468A4EC73 /* Pods-PictographTests */ = {
@@ -965,24 +899,7 @@
 			);
 			name = "Pods-PictographTests";
 			productName = "Pods-PictographTests";
-			productReference = 0601F6C2F9FABB6FDDFB30993C3F5DE3 /* Pods_PictographTests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		D906A54537D2453590F9B925C18B4AC4 /* CustomIOSAlertView */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B2A7C5378D6D402625A36BE9C53B0FAB /* Build configuration list for PBXNativeTarget "CustomIOSAlertView" */;
-			buildPhases = (
-				C23560769A280FCF437BA0B0C14CCA16 /* Sources */,
-				6F2C024FBCC250AF0907F51D0BA78CE3 /* Frameworks */,
-				6984E971F9A065D74FD7632232430381 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CustomIOSAlertView;
-			productName = CustomIOSAlertView;
-			productReference = 6D91C4169AEFCF68929488DF3F79A662 /* CustomIOSAlertView.framework */;
+			productReference = 976A550E2A141BE8AD434D06F2934788 /* Pods_PictographTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1002,30 +919,29 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = A1EDADDF488A902C568A3C1FD1FE0044 /* Products */;
+			productRefGroup = 163B23A6214189A418A072ADCD663526 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D906A54537D2453590F9B925C18B4AC4 /* CustomIOSAlertView */,
 				822DA31A6A34C7EF41E1EC7A5EF8FC2F /* EAIntroView */,
 				58AAD2C9E898747F2F4ABF348E6325F2 /* EARestrictedScrollView */,
-				402E9C33F40B0086D3AE876F834DEFD8 /* Pods-Pictograph */,
+				3FF10A0C1873BE0CCF5B01DD734BD179 /* Pods-Pictograph */,
 				137C50FED62208E747EFA3345D6E5D50 /* Pods-Pictograph Mac */,
 				CEFBFEA273D3932E9C05277468A4EC73 /* Pods-PictographTests */,
 				21DFAD7A8A5ACFE05D8852F06915BD7F /* Pods-PictographUITests */,
-				3F7E889CF7F08848B3EA1E587C432623 /* RNCryptor-objc-iOS */,
+				BEEC83A1538765B9A04E05A5C1A75C46 /* RNCryptor-objc-iOS */,
 				42739F4F79ED7C02BC033DFEBD7EAC7D /* RNCryptor-objc-OSX */,
-				ADF4E85C3C4FDB7077A3EF4C66D262C7 /* SVProgressHUD */,
+				7CAA7C76DD18D78871DB7F16841DADE6 /* SVProgressHUD */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8473FEA192701F6ED5AA2D8DF288055A /* Resources */ = {
+		CA5592541F065ADDDA3FB0CCE6EF1D85 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2558D26563AA0B777A544DA35791B8A1 /* SVProgressHUD.bundle in Resources */,
+				88D35FD2FE12B1E80387CCB28A4DA16F /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1071,15 +987,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6987A570B963655F6EA566C4EA736649 /* Sources */ = {
+		6896007E623C3A8525D8B1D1AE1FF1DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19BBCEBCC82BE12915F2DE73CEBA80EC /* RNCryptor-objc-iOS-dummy.m in Sources */,
-				FABAF2B6CB32D4D2F63717D5873A977F /* RNCryptor.m in Sources */,
-				DCBAC1F9C9E86C136F873B65A1A2A65A /* RNCryptorEngine.m in Sources */,
-				5793FA07B4942BD6420F14D754F3E6EE /* RNDecryptor.m in Sources */,
-				08B47D058A89D7A3013E38105C074E7C /* RNEncryptor.m in Sources */,
+				FDE8C21801688F0FFABE1F8457FA76D3 /* Pods-Pictograph-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1091,32 +1003,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BF016BB0AC8F8B0A25CE3F61CD0C97EF /* Sources */ = {
+		A248E45EA83A8B83361DF2B7B277D989 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5413DE3EBC4445219645AB8B78403FB5 /* Pods-Pictograph-dummy.m in Sources */,
+				6B65C5F3325E410271022A880A52695B /* SVIndefiniteAnimatedView.m in Sources */,
+				767FED6325560283B0E521993E50620A /* SVProgressAnimatedView.m in Sources */,
+				DEE970E595297963CF14229BE7D325BE /* SVProgressHUD-dummy.m in Sources */,
+				C130F9930E18F7A06D6C357449909378 /* SVProgressHUD.m in Sources */,
+				6854567520A9E74DF10C210E82C624BA /* SVRadialGradientLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C23560769A280FCF437BA0B0C14CCA16 /* Sources */ = {
+		E3CC52D3A9BB8950207375FFFDBB2729 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9067553698DA61A61295428FD4977A0B /* CustomIOSAlertView-dummy.m in Sources */,
-				1F1AEEEC99C41FF98CA67ACD4165DC60 /* CustomIOSAlertView.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ED28AD0DB2700DE7141795A1E44947D7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				563DFF3130C2DD180C6AB608B38246EF /* SVIndefiniteAnimatedView.m in Sources */,
-				6277BDC1D2229809F0E9AAA4CDB788E2 /* SVProgressAnimatedView.m in Sources */,
-				BE1F5325EEEE8A965577E7E0A780701D /* SVProgressHUD-dummy.m in Sources */,
-				0DB474EB1591C240B6FE2E0167054347 /* SVProgressHUD.m in Sources */,
-				EE07593906CF799F8260C6CC001A2CE3 /* SVRadialGradientLayer.m in Sources */,
+				E2F112D928CEBD5E7E2ABE0686A332FB /* RNCryptor-objc-iOS-dummy.m in Sources */,
+				64B4DFD9598EDF21FC2C02E410BF197F /* RNCryptor.m in Sources */,
+				EB9C2D5FC6EEEE3A4940B5A8E349E368 /* RNCryptorEngine.m in Sources */,
+				F2D92BB3E1B3CABA242E6623B61E05E3 /* RNDecryptor.m in Sources */,
+				A0B526A8532C117BD076AF5BB4BCD272 /* RNEncryptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1131,17 +1038,23 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		55A711E179EBEDE8ECDBD3845B82C6E9 /* PBXTargetDependency */ = {
+		743776F456B0FC9D32EB85388706B1D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "RNCryptor-objc-iOS";
-			target = 3F7E889CF7F08848B3EA1E587C432623 /* RNCryptor-objc-iOS */;
-			targetProxy = 5890611749FA868241AED8870869371E /* PBXContainerItemProxy */;
+			target = BEEC83A1538765B9A04E05A5C1A75C46 /* RNCryptor-objc-iOS */;
+			targetProxy = CF9FBA09B8B08B8969743C3D946144DD /* PBXContainerItemProxy */;
 		};
-		9A4E06DF78BFEA06A00245EE8A353633 /* PBXTargetDependency */ = {
+		8477E59011182AE76BFF84773E3C6362 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = EARestrictedScrollView;
+			target = 58AAD2C9E898747F2F4ABF348E6325F2 /* EARestrictedScrollView */;
+			targetProxy = 2FEAB920A8027C5637A45D3191A4B113 /* PBXContainerItemProxy */;
+		};
+		9081EAE0130E3E47F0ABC8FE60A56685 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = EAIntroView;
 			target = 822DA31A6A34C7EF41E1EC7A5EF8FC2F /* EAIntroView */;
-			targetProxy = 57C3AC9052F652996481B64EAB129930 /* PBXContainerItemProxy */;
+			targetProxy = A17F574DA499B8BA6CDA6E138646D256 /* PBXContainerItemProxy */;
 		};
 		9A7A63E5719F1B16F82C6998B3519041 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1149,11 +1062,11 @@
 			target = 42739F4F79ED7C02BC033DFEBD7EAC7D /* RNCryptor-objc-OSX */;
 			targetProxy = C302E399494DC5C7567BDF67CBDC65FA /* PBXContainerItemProxy */;
 		};
-		A1614971D862FE8CE9999A37C966EC45 /* PBXTargetDependency */ = {
+		A4483C0748C06F856EAA0C238EC4899D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SVProgressHUD;
-			target = ADF4E85C3C4FDB7077A3EF4C66D262C7 /* SVProgressHUD */;
-			targetProxy = 0FF28B174BB8D2946CF765441569ECEF /* PBXContainerItemProxy */;
+			target = 7CAA7C76DD18D78871DB7F16841DADE6 /* SVProgressHUD */;
+			targetProxy = DEE11E816ABC2B6030AD086BFA12AD4B /* PBXContainerItemProxy */;
 		};
 		D2EF0550E37222B5E47D0ED793E95D4F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1161,24 +1074,12 @@
 			target = 58AAD2C9E898747F2F4ABF348E6325F2 /* EARestrictedScrollView */;
 			targetProxy = 3BD0AABA668B69C63611634E350F4621 /* PBXContainerItemProxy */;
 		};
-		E3C02D7D3FC07D92DD276971A8786CB0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = EARestrictedScrollView;
-			target = 58AAD2C9E898747F2F4ABF348E6325F2 /* EARestrictedScrollView */;
-			targetProxy = 6DB86024E15510E11E6BB81E585A5FDC /* PBXContainerItemProxy */;
-		};
-		E873F4BA721F63EE96510054C20A14A7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CustomIOSAlertView;
-			target = D906A54537D2453590F9B925C18B4AC4 /* CustomIOSAlertView */;
-			targetProxy = 63F7C6CE6533AC2E83819513F49F8A4C /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		130F0FF74DD4800E71C1E5A5A9D497D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18A4E6D4764F2EF6E9ECF1752032BB55 /* RNCryptor-objc-OSX.xcconfig */;
+			baseConfigurationReference = 8E1F825785DEDE9F9FA7DA2B4C5FC7BD /* RNCryptor-objc-OSX.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1212,7 +1113,7 @@
 		};
 		156264D1C2638C1DB71EECDD1B1F7FA4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3579C53F3D47E9B3814255971F91FC3A /* EAIntroView.xcconfig */;
+			baseConfigurationReference = 83CFAC4ED3FA243BFB75ECA7567AB6B3 /* EAIntroView.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1280,71 +1181,7 @@
 			};
 			name = Release;
 		};
-		241CC7BBEC349C468675B886F078984D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22FC4BF1FFB10E4EDFCF8541D0796767 /* CustomIOSAlertView.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CustomIOSAlertView/CustomIOSAlertView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CustomIOSAlertView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CustomIOSAlertView/CustomIOSAlertView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = CustomIOSAlertView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		309C3EFF671FCF8E7402171FAE6EEDF5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E19B47F664AC7B43EFDB0F4DAB77461 /* EARestrictedScrollView.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EARestrictedScrollView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = EARestrictedScrollView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		331F4A0A8E6986E9F76EEC283A6C34E7 /* Release */ = {
+		2C8CA7E971E1922300ED95EEBCD13200 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF7CA2AF91C561C00E1F5D32A9A7B69F /* Pods-Pictograph.release.xcconfig */;
 			buildSettings = {
@@ -1380,9 +1217,41 @@
 			};
 			name = Release;
 		};
-		42DBE654CF6C8623D3FDE936D29A1261 /* Debug */ = {
+		309C3EFF671FCF8E7402171FAE6EEDF5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 110CE939368B4DC2F4901555C5EE3000 /* RNCryptor-objc-iOS.xcconfig */;
+			baseConfigurationReference = 2B4C5AA0052EE007EF28DC91C015A135 /* EARestrictedScrollView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EARestrictedScrollView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = EARestrictedScrollView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		602617A29AE01950E95646BAF385F4A6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07198BE68793BC6EFCD42B11D4C1F875 /* RNCryptor-objc-iOS.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1448,41 +1317,9 @@
 			};
 			name = Debug;
 		};
-		68C75C0B8B41BFACD0473141ACE7711B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CB170E0268482FDE3CE3427881F7953 /* SVProgressHUD.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SVProgressHUD;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		6A5CCA93D9603141595FFA9DE4BADE69 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18A4E6D4764F2EF6E9ECF1752032BB55 /* RNCryptor-objc-OSX.xcconfig */;
+			baseConfigurationReference = 8E1F825785DEDE9F9FA7DA2B4C5FC7BD /* RNCryptor-objc-OSX.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1516,7 +1353,7 @@
 		};
 		712265E853A994F73B0EFBC074571E6C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E19B47F664AC7B43EFDB0F4DAB77461 /* EARestrictedScrollView.xcconfig */;
+			baseConfigurationReference = 2B4C5AA0052EE007EF28DC91C015A135 /* EARestrictedScrollView.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1545,6 +1382,38 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		7BE6B869643939FA4255A334F8568245 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0372874F2F2752011E48C5370D846457 /* SVProgressHUD.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SVProgressHUD;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		89A950A3D7361552736E3DBD5B44A644 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1587,41 +1456,9 @@
 			};
 			name = Release;
 		};
-		8AA5DEF0519CD51DAC83DFF11F1FDBEB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22FC4BF1FFB10E4EDFCF8541D0796767 /* CustomIOSAlertView.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CustomIOSAlertView/CustomIOSAlertView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/CustomIOSAlertView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/CustomIOSAlertView/CustomIOSAlertView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = CustomIOSAlertView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		8DD9B4DB18CA6420251FD90A96A17CD9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3579C53F3D47E9B3814255971F91FC3A /* EAIntroView.xcconfig */;
+			baseConfigurationReference = 83CFAC4ED3FA243BFB75ECA7567AB6B3 /* EAIntroView.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1650,70 +1487,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		8E385C5454705A78A790F10966DA8BA8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CB170E0268482FDE3CE3427881F7953 /* SVProgressHUD.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SVProgressHUD;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		8F0C0E3DDB803C0B0794E3F206079606 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 110CE939368B4DC2F4901555C5EE3000 /* RNCryptor-objc-iOS.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/RNCryptor-objc-iOS/RNCryptor-objc-iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/RNCryptor-objc-iOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/RNCryptor-objc-iOS/RNCryptor-objc-iOS.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = RNCryptor_objc;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		AA298333AAF6D28DB746DF6AA0622EB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1780,6 +1553,70 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_PictographUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B3EE2D317E5366384634EAB314335044 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0372874F2F2752011E48C5370D846457 /* SVProgressHUD.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SVProgressHUD;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B6C190FBEB56D3E16A57BF621DAEB369 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07198BE68793BC6EFCD42B11D4C1F875 /* RNCryptor-objc-iOS.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/RNCryptor-objc-iOS/RNCryptor-objc-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RNCryptor-objc-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/RNCryptor-objc-iOS/RNCryptor-objc-iOS.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = RNCryptor_objc;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -1906,7 +1743,7 @@
 			};
 			name = Debug;
 		};
-		E41A9C76C742B2BAB290749BE05EF0BB /* Debug */ = {
+		F945A01D0B0B1A958C78C280BFE6DD2F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 93DEC4C082B5222DAC2B015CC4E3DD56 /* Pods-Pictograph.debug.xcconfig */;
 			buildSettings = {
@@ -1945,29 +1782,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2359521C440D8A66EA40C4830DCB0A3A /* Build configuration list for PBXNativeTarget "SVProgressHUD" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8E385C5454705A78A790F10966DA8BA8 /* Debug */,
-				68C75C0B8B41BFACD0473141ACE7711B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DE1F24C5EFD45C271798A6E55CB63E92 /* Debug */,
 				89A950A3D7361552736E3DBD5B44A644 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		31040555182AF148ACE4AF6E7393831F /* Build configuration list for PBXNativeTarget "Pods-Pictograph" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E41A9C76C742B2BAB290749BE05EF0BB /* Debug */,
-				331F4A0A8E6986E9F76EEC283A6C34E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1981,29 +1800,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		52F9A724FFB97F5BFD98F9B7CE10EB1E /* Build configuration list for PBXNativeTarget "Pods-Pictograph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F945A01D0B0B1A958C78C280BFE6DD2F /* Debug */,
+				2C8CA7E971E1922300ED95EEBCD13200 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5476B1F705DC8737284114A5836DBBCE /* Build configuration list for PBXNativeTarget "RNCryptor-objc-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				602617A29AE01950E95646BAF385F4A6 /* Debug */,
+				B6C190FBEB56D3E16A57BF621DAEB369 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F14407A7BFB803597C7906EEEDB7DFE /* Build configuration list for PBXNativeTarget "SVProgressHUD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BE6B869643939FA4255A334F8568245 /* Debug */,
+				B3EE2D317E5366384634EAB314335044 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8E995FA66C96EC336BD2EF6BC0F96A75 /* Build configuration list for PBXNativeTarget "Pods-Pictograph Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA298333AAF6D28DB746DF6AA0622EB4 /* Debug */,
 				1F64A9C6570621194B73C78996B2D941 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		97F507F3A6AF8D5C67A67B147A44AC0C /* Build configuration list for PBXNativeTarget "RNCryptor-objc-iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				42DBE654CF6C8623D3FDE936D29A1261 /* Debug */,
-				8F0C0E3DDB803C0B0794E3F206079606 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B2A7C5378D6D402625A36BE9C53B0FAB /* Build configuration list for PBXNativeTarget "CustomIOSAlertView" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8AA5DEF0519CD51DAC83DFF11F1FDBEB /* Debug */,
-				241CC7BBEC349C468675B886F078984D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
