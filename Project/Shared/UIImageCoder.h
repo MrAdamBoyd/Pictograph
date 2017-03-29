@@ -12,7 +12,6 @@
 #define PictographImage UIImage
 #define PictographColor UIColor
 #else
-//#import "Pictograph-Mac-Swift.h"
 #import <Cocoa/Cocoa.h>
 #define PictographImage NSImage
 #define PictographColor NSColor

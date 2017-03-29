@@ -159,14 +159,18 @@ class PictographDataController: NSObject {
     func analyticsEncodeSend(_ encrypted:Bool) {
         let encryptedOrNot = encrypted ? "Encrypted" : "Unencrypted"
     
-        Answers.logCustomEvent(withName: "Encode Message", customAttributes: ["Encryption" : encryptedOrNot])
+        #if os(iOS)
+            Answers.logCustomEvent(withName: "Encode Message", customAttributes: ["Encryption" : encryptedOrNot])
+        #endif
     }
     
     //Record a message decrypted event
     func analyticsDecodeSend(_ encrypted: Bool) {
         let encryptedOrNot = encrypted ? "Encrypted" : "Unencrypted"
     
-        Answers.logCustomEvent(withName: "Decode Message", customAttributes: ["Encryption" : encryptedOrNot])
+        #if os(iOS)
+            Answers.logCustomEvent(withName: "Decode Message", customAttributes: ["Encryption" : encryptedOrNot])
+        #endif
     }
     
     //MARK: - Other methods

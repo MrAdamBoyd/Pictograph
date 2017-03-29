@@ -11,6 +11,8 @@
 
 #if TARGET_OS_IPHONE
 #import "Pictograph-Swift.h"
+#else
+#import "Pictograph_Mac-Swift.h"
 #endif
 
 #define bitCountForCharacter 8
@@ -252,6 +254,8 @@
     return [self saveImageToGraphicsContextAndEncodeBitsInImage:image numberOfBitsNeeded:numberOfBitsNeeded arrayOfBits:arrayOfBits];
 }
 
+    
+#if TARGET_OS_IPHONE
 //Saves the image to the graphics context and starts encoding the bits in that image
 - (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image numberOfBitsNeeded:(long)numberOfBitsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
     //Right here we have all the bits that are needed to encode the data in the image
@@ -325,6 +329,11 @@
     
     return nil;
 }
+#else
+- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image numberOfBitsNeeded:(long)numberOfBitsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
+    return [[NSData alloc] init];
+}
+#endif
 
 //Replaces the value of the color at the current width and height counter with the correct one from the array of bits that are needed to be encoded
 - (int)changePixelValueAtWidth:(int)widthCounter andHeight:(int)heightCounter encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image withinContext:(CGContextRef)context startFromBottomLeft:(BOOL)startFromBottomLeft {
@@ -431,7 +440,14 @@
     //Getting the raw data
     unsigned char *rawData = [self getRawPixelDataForImage:image];
 
-    NSUInteger width = CGImageGetWidth(image.CGImage);
+    #if TARGET_OS_IPHONE
+        CGImageRef imageRef = [image CGImage];
+        NSUInteger width = CGImageGetWidth(imageRef);
+    #else
+        NSData *data = [image TIFFRepresentation];
+        NSBitmapImageRep *bitmap = [NSBitmapImageRep imageRepWithData:data];
+        NSUInteger width = bitmap.pixelsWide;
+    #endif
     NSUInteger bytesPerRow = bytesPerPixel * width;
     NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
     
@@ -459,7 +475,12 @@
 /* Returns the raw pixel data for a UIImage image */
 -(unsigned char *)getRawPixelDataForImage:(PictographImage *)image {
     // First get the image into your data buffer
-    CGImageRef imageRef = [image CGImage];
+    #if TARGET_OS_IPHONE
+        CGImageRef imageRef = [image CGImage];
+    #else
+        NSRect imageRect = NSMakeRect(0, 0, image.size.width, image.size.height);
+        CGImageRef imageRef = [image CGImageForProposedRect: &imageRect context:NULL hints:nil];
+    #endif
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
