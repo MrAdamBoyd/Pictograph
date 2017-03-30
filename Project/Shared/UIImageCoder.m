@@ -275,8 +275,8 @@
         
         //Save current status of graphics context
         CGContextSaveGState(context);
-        
-        //for (int encodeCounter = 0; encodeCounter < [arrayOfBits count]; encodeCounter += 2) {
+
+        //Changing all pixel colors
         for (int heightCounter = 1; heightCounter < image.size.height; heightCounter++) {
             for (int widthCounter = 0; widthCounter < image.size.width; widthCounter++){
                 //Going through each bit 2 by 2, that means we need to encode the pixel at position
@@ -327,11 +327,44 @@
         }
     }
     
+    CGContextRestoreGState(context);
     return nil;
 }
 #else
 - (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image numberOfBitsNeeded:(long)numberOfBitsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
-    return [[NSData alloc] init];
+    CGImageRef imageRef = [image CGImageForProposedRect:NULL context:nil hints:nil];
+    NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithCGImage: imageRef];
+    
+    NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
+    
+    int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
+    
+    for (int heightCounter = 0; heightCounter < image.size.height; heightCounter++) {
+        for (int widthCounter = 0; widthCounter < image.size.width; widthCounter++) {
+            //Going through each bit 2 by 2, that means we need to encode the pixel at position
+            //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
+            
+            if (encodeCounter >= [arrayOfBits count]) {
+                //If the message has been fully encoded, break out
+                
+                return [imageRep representationUsingType:NSPNGFileType properties: [[NSDictionary alloc] init]];
+                
+            }
+            
+            DLog(@"Pixel change at %i, %i", widthCounter, heightCounter);
+            
+            //2 bits are encoded per pixel, so per pixel, bump the encode counter by 2
+            encodeCounter += 2;
+            
+            [imageRep setColor:[arrayOfAllNeededColors objectAtIndex:(widthCounter*(heightCounter + 1))] atX:widthCounter y:heightCounter];
+            
+            //LOOK AT THIS!!!
+            //http://stackoverflow.com/questions/14582121/replace-particular-color-of-image-in-ios/35315465#35315465
+            //http://www.idevgames.com/forums/thread-7910.html
+        }
+    }
+    
+    return nil;
 }
 #endif
 
