@@ -339,6 +339,7 @@
     NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
     
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
+    PictographColor *pixelColor;
     
     for (int heightCounter = 0; heightCounter < image.size.height; heightCounter++) {
         for (int widthCounter = 0; widthCounter < image.size.width; widthCounter++) {
@@ -354,12 +355,12 @@
             
             DLog(@"Pixel change at %i, %i", widthCounter, heightCounter);
             
+            pixelColor = [self newPixelColorValueAtWidth:widthCounter andHeight:(heightCounter + 1) encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image startFromBottomLeft:false];
+            [imageRep setColor:pixelColor atX:widthCounter y:heightCounter];
+            
             //2 bits are encoded per pixel, so per pixel, bump the encode counter by 2
             encodeCounter += 2;
 
-            [imageRep setColor:[NSColor purpleColor] atX:widthCounter y:heightCounter];
-//            [imageRep setColor:[arrayOfAllNeededColors objectAtIndex:(widthCounter*(heightCounter + 1))] atX:widthCounter y:heightCounter];
-            
             //LOOK AT THIS!!!
             //http://stackoverflow.com/questions/14582121/replace-particular-color-of-image-in-ios/35315465#35315465
             //http://www.idevgames.com/forums/thread-7910.html
@@ -372,6 +373,21 @@
 
 //Replaces the value of the color at the current width and height counter with the correct one from the array of bits that are needed to be encoded
 - (int)changePixelValueAtWidth:(int)widthCounter andHeight:(int)heightCounter encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image withinContext:(CGContextRef)context startFromBottomLeft:(BOOL)startFromBottomLeft {
+    PictographColor *newColorAtPixel = [self newPixelColorValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image startFromBottomLeft:startFromBottomLeft];
+    
+    CGFloat red, green, blue, alpha;
+    [newColorAtPixel getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    CGContextSetRGBFillColor(context, red, green, blue, alpha);
+    CGContextFillRect(context, CGRectMake(widthCounter, heightCounter - 1, 1, 1)); //Only filling in 1 pixel
+    
+    encodeCounter += 2; //2 bits per pixel, so increase by 2
+    
+    return encodeCounter;
+}
+
+//Gets the color that the specified pixel should be
+-(PictographColor *)newPixelColorValueAtWidth:(int)widthCounter andHeight:(int)heightCounter encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image startFromBottomLeft:(BOOL)startFromBottomLeft {
     int currentPixelIndex;
     
     //If we're starting from the bottom left, take the height of the image into account, if not, can just use the height counter provided
@@ -380,7 +396,7 @@
     } else {
         currentPixelIndex = widthCounter * heightCounter;
     }
-        
+    
     PictographColor *colorOfCurrentPixel = [arrayOfAllNeededColors objectAtIndex:currentPixelIndex];
     CGFloat red, green, blue, alpha ;
     [colorOfCurrentPixel getRed:&red green:&green blue:&blue alpha:&alpha];
@@ -394,13 +410,8 @@
     
     long newBlueLong = [self longFromBits:arrayOfBitsFromBlue];
     CGFloat newBlueValue = (newBlueLong * 1.0) / maxIntFor8Bits;
-    
-    CGContextSetRGBFillColor(context, red, green, newBlueValue, alpha);
-    CGContextFillRect(context, CGRectMake(widthCounter, heightCounter - 1, 1, 1)); //Only filling in 1 pixel
-    
-    encodeCounter += 2; //2 bits per pixel, so increase by 2
-    
-    return encodeCounter;
+
+    return [PictographColor colorWithRed:red green:green blue:newBlueValue alpha:alpha];
 }
 
 #pragma mark Methods used for both encoding and decoding

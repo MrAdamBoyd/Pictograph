@@ -34,7 +34,8 @@
 		6658833B1BBCC72A00CA21A9 /* PictographUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658833A1BBCC72A00CA21A9 /* PictographUITests.m */; };
 		666A96B71E41836900107630 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */; };
 		666AD9CA1E41828C006B37FB /* PictographDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B4381BDDB91800235E04 /* PictographDataController.swift */; };
-		66AD7A781E8C3B220036CFCE /* UIImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* UIImageCoder.m */; };
+		667AE8421E8E04C200F39885 /* UIImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* UIImageCoder.m */; };
+		667AE8431E8E054A00F39885 /* UIImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* UIImageCoder.m */; };
 		66B187441C553D660057259F /* CreatesNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B187431C553D660057259F /* CreatesNavigationTitle.swift */; };
 		66C58B6A1C1D2FF700C10A06 /* PictographTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C58B691C1D2FF700C10A06 /* PictographTests.swift */; };
 		7C2A5D35939274085DA24564 /* Pods_PictographTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC099D02965E45B0D324E031 /* Pods_PictographTests.framework */; };
@@ -844,7 +845,7 @@
 			files = (
 				666A96B71E41836900107630 /* CurrentUser.swift in Sources */,
 				666AD9CA1E41828C006B37FB /* PictographDataController.swift in Sources */,
-				66AD7A781E8C3B220036CFCE /* UIImageCoder.m in Sources */,
+				667AE8421E8E04C200F39885 /* UIImageCoder.m in Sources */,
 				664C5F801E357A2E004E1FA9 /* MainViewController.swift in Sources */,
 				664C5F7E1E357A2E004E1FA9 /* AppDelegate.swift in Sources */,
 			);
@@ -877,6 +878,7 @@
 				6647B43F1BDF022E00235E04 /* SettingsViewController.swift in Sources */,
 				6647B4391BDDB91900235E04 /* PictographDataController.swift in Sources */,
 				660BA0601BDDAB0E00605EE8 /* PictographHighlightButton.swift in Sources */,
+				667AE8431E8E054A00F39885 /* UIImageCoder.m in Sources */,
 				660BA01B1BDDA59F00605EE8 /* AppDelegate.swift in Sources */,
 				6600697C1C5531A700BA1672 /* UIImage+CreateImageFromColor.swift in Sources */,
 				6647B44A1BDF294900235E04 /* PictographConstants.swift in Sources */,
