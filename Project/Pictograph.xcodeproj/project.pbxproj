@@ -79,6 +79,7 @@
 		3C713F8D0C59FEC401E4FD69 /* Pods-PictographTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PictographTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PictographTests/Pods-PictographTests.release.xcconfig"; sourceTree = "<group>"; };
 		660069781C552C6100BA1672 /* AppDelegateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateExtension.swift; sourceTree = "<group>"; };
 		6600697B1C5531A700BA1672 /* UIImage+CreateImageFromColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+CreateImageFromColor.swift"; sourceTree = "<group>"; };
+		66056A851E8DFBC000DE0FB4 /* Pictograph_Mac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pictograph_Mac-Bridging-Header.h"; sourceTree = "<group>"; };
 		660BA0191BDDA59F00605EE8 /* Pictograph-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pictograph-Bridging-Header.h"; sourceTree = "<group>"; };
 		660BA01A1BDDA59F00605EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		660BA05F1BDDAB0D00605EE8 /* PictographHighlightButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictographHighlightButton.swift; sourceTree = "<group>"; };
@@ -275,6 +276,7 @@
 				664C5F861E357A2E004E1FA9 /* Info.plist */,
 				664C5F831E357A2E004E1FA9 /* Main.storyboard */,
 				664C5F7F1E357A2E004E1FA9 /* MainViewController.swift */,
+				66056A851E8DFBC000DE0FB4 /* Pictograph_Mac-Bridging-Header.h */,
 			);
 			path = "Pictograph Mac";
 			sourceTree = "<group>";
@@ -969,6 +971,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mac/Pictograph Mac/Pictograph_Mac-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -990,6 +993,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mac/Pictograph Mac/Pictograph_Mac-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
