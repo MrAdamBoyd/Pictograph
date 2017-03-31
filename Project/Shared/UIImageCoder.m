@@ -332,7 +332,8 @@
 }
 #else
 - (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image numberOfBitsNeeded:(long)numberOfBitsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
-    CGImageRef imageRef = [image CGImageForProposedRect:NULL context:nil hints:nil];
+    NSRect imageRect = NSMakeRect(0, 0, image.size.width, image.size.height);
+    CGImageRef imageRef = [image CGImageForProposedRect:&imageRect context:nil hints:nil];
     NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithCGImage: imageRef];
     
     NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
@@ -355,8 +356,9 @@
             
             //2 bits are encoded per pixel, so per pixel, bump the encode counter by 2
             encodeCounter += 2;
-            
-            [imageRep setColor:[arrayOfAllNeededColors objectAtIndex:(widthCounter*(heightCounter + 1))] atX:widthCounter y:heightCounter];
+
+            [imageRep setColor:[NSColor purpleColor] atX:widthCounter y:heightCounter];
+//            [imageRep setColor:[arrayOfAllNeededColors objectAtIndex:(widthCounter*(heightCounter + 1))] atX:widthCounter y:heightCounter];
             
             //LOOK AT THIS!!!
             //http://stackoverflow.com/questions/14582121/replace-particular-color-of-image-in-ios/35315465#35315465

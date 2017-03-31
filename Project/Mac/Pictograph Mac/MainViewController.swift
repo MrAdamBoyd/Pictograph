@@ -90,28 +90,28 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
     
     @IBAction func hideMessageAction(_ sender: Any) {
         print("User wants to hide message")
-    }
-
-    @IBAction func showMessageAction(_ sender: Any) {
-        print("User wants to show message")
         
         //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             let coder = UIImageCoder()
             
             do {
-//                let encodedImage = try coder.encodeMessage(messageToEncode, in: self.mainImageView.image!, encryptedWithPassword: PictographDataController.shared.userEncryptionPassword)
+                //                let encodedImage = try coder.encodeMessage(messageToEncode, in: self.mainImageView.image!, encryptedWithPassword: PictographDataController.shared.userEncryptionPassword)
                 let encodedImage = try coder.encodeMessage(self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: nil)
                 self.mainImageView.image = NSImage(data: encodedImage)
                 //Show the share sheet if the image exists
-//                self.showShareSheetWithImage(encodedImage)
+                //                self.showShareSheetWithImage(encodedImage)
                 
             } catch let error {
                 
                 //Catch the error
-//                self.showMessageInAlertController("Error", message: error.localizedDescription)
+                //                self.showMessageInAlertController("Error", message: error.localizedDescription)
             }
         }
+    }
+
+    @IBAction func showMessageAction(_ sender: Any) {
+        print("User wants to show message")
     }
     
     // MARK: - NSTextFieldDelegate
