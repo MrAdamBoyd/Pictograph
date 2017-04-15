@@ -18,6 +18,8 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
     @IBOutlet weak var showMessageButton: NSButton!
     @IBOutlet weak var messageTextField: NSTextField!
     
+    @IBOutlet weak var selectImageButton: NSButton!
+    @IBOutlet weak var saveImageButton: NSButton!
     
     var imageSelectPanelOpen: Bool = false
     
@@ -58,13 +60,14 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
         
         let hideMessageValid = !self.messageTextField.stringValue.isEmpty
         
+        self.saveImageButton.isEnabled = imageValid
         self.showMessageButton.isEnabled = encryptionValid && imageValid
         self.hideMessageButton.isEnabled = encryptionValid && imageValid && hideMessageValid
     }
     
     // MARK: - User actions
     
-    func selectNewImageFromFileSystem() {
+    @IBAction func selectNewImageFromFileSystem(_ sender: Any) {
         
         guard !self.imageSelectPanelOpen else { return }
         
@@ -84,6 +87,10 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
         }
     }
     
+    @IBAction func saveImageAction(_ sender: Any) {
+        print("User wants to save image")
+    }
+    
     @IBAction func encryptionEnabledChanged(_ sender: Any) {
         self.passwordTextfield.isEnabled = self.encryptionCheckbox.state == 1
     }
@@ -93,7 +100,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
         
         //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            let coder = UIImageCoder()
+            let coder = PictographImageCoder()
             
             do {
                 //                let encodedImage = try coder.encodeMessage(messageToEncode, in: self.mainImageView.image!, encryptedWithPassword: PictographDataController.shared.userEncryptionPassword)
@@ -112,6 +119,27 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
 
     @IBAction func showMessageAction(_ sender: Any) {
         print("User wants to show message")
+        guard let image = self.mainImageView.image else {
+            return
+        }
+        
+        //No need to show HUD because this doesn't take long
+        
+        let coder = PictographImageCoder()
+        
+        //Provide no password if encryption/decryption is off
+        let providedPassword = self.encryptionCheckbox.state == 1 ? self.encryptionCheckbox.stringValue : ""
+        
+        do {
+            let decodedMessage = try coder.decodeMessage(in: image, encryptedWithPassword: providedPassword)
+            
+            self.messageTextField.stringValue = decodedMessage
+            
+        } catch let error {
+            
+            //Catch the error
+//            showMessageInAlertController("Error Decoding", message: error.localizedDescription)
+        }
     }
     
     // MARK: - NSTextFieldDelegate

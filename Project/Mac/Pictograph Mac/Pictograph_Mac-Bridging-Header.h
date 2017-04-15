@@ -9,6 +9,7 @@
 #ifndef Pictograph_Mac_Bridging_Header_h
 #define Pictograph_Mac_Bridging_Header_h
 
-#import "UIImageCoder.h"
+#import "PictographImageCoder.h"
+#import "PictographImage+Reconciliation.h"
 
 #endif /* Pictograph_Mac_Bridging_Header_h */

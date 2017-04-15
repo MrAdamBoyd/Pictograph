@@ -686,7 +686,7 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="Pictograph_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="290"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="290"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N7B-rY-k4v">
@@ -697,19 +697,11 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="8bf-pF-Ojg"/>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="499" verticalCompressionResistancePriority="499" translatesAutoresizingMaskIntoConstraints="NO" id="1t2-zo-2lf">
-                                <rect key="frame" x="20" y="50" width="200" height="220"/>
+                                <rect key="frame" x="20" y="50" width="210" height="220"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="gk7-LV-MkH"/>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O7S-h9-ZI7">
-                                <rect key="frame" x="55" y="12" width="130" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Click to select image" id="rg6-4U-thl">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="4t1-Co-IAH">
-                                <rect key="frame" x="258" y="254" width="115" height="18"/>
+                                <rect key="frame" x="268" y="254" width="115" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="aIF-W2-FaC"/>
                                 </constraints>
@@ -722,7 +714,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuD-HM-Cre">
-                                <rect key="frame" x="260" y="219" width="200" height="22"/>
+                                <rect key="frame" x="270" y="219" width="210" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Encryption password" drawsBackground="YES" id="vBH-f0-hz8">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -730,7 +722,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zgS-Ql-1pe">
-                                <rect key="frame" x="254" y="176" width="212" height="32"/>
+                                <rect key="frame" x="264" y="176" width="222" height="32"/>
                                 <buttonCell key="cell" type="push" title="Hide Message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="T6j-h8-ati">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -740,7 +732,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-tX-xKW">
-                                <rect key="frame" x="254" y="140" width="212" height="32"/>
+                                <rect key="frame" x="264" y="140" width="222" height="32"/>
                                 <buttonCell key="cell" type="push" title="Show Message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OUq-F5-TgI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -750,14 +742,14 @@
                                 </buttonCell>
                             </button>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3oF-LH-nVB">
-                                <rect key="frame" x="452" y="2" width="25" height="25"/>
+                                <rect key="frame" x="472" y="2" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zMf-4A-1wI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uU4-Mw-8nA">
-                                <rect key="frame" x="260" y="66" width="200" height="66"/>
+                                <rect key="frame" x="270" y="66" width="210" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="b04-GU-g49"/>
                                 </constraints>
@@ -767,20 +759,43 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NME-yD-sNV">
+                                <rect key="frame" x="14" y="2" width="119" height="32"/>
+                                <buttonCell key="cell" type="push" title="Select Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Aek-ae-hKE">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="selectNewImageFromFileSystem:" target="XfG-lQ-9wD" id="gvM-Kl-gcN"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HuH-ct-1ed">
+                                <rect key="frame" x="126" y="2" width="110" height="32"/>
+                                <buttonCell key="cell" type="push" title="Save Image" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vE7-S7-l9c">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveImageAction:" target="XfG-lQ-9wD" id="xDv-ph-mBF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="fUS-tX-xKW" firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" id="1Kt-Ro-or0"/>
                             <constraint firstItem="zgS-Ql-1pe" firstAttribute="top" secondItem="OuD-HM-Cre" secondAttribute="bottom" constant="15" id="8oy-9O-AA4"/>
                             <constraint firstItem="uU4-Mw-8nA" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="99V-pM-5aH"/>
+                            <constraint firstItem="HuH-ct-1ed" firstAttribute="trailing" secondItem="1t2-zo-2lf" secondAttribute="trailing" id="9dt-fr-NaE"/>
                             <constraint firstAttribute="centerX" secondItem="1t2-zo-2lf" secondAttribute="trailing" constant="20" id="BvF-Ap-HlX"/>
+                            <constraint firstItem="HuH-ct-1ed" firstAttribute="top" secondItem="1t2-zo-2lf" secondAttribute="bottom" constant="20" id="FeM-Az-0QR"/>
                             <constraint firstItem="3oF-LH-nVB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uU4-Mw-8nA" secondAttribute="bottom" constant="15" id="G99-NY-cem"/>
                             <constraint firstItem="4t1-Co-IAH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="20" id="GBW-fp-R0z"/>
                             <constraint firstItem="OuD-HM-Cre" firstAttribute="top" secondItem="4t1-Co-IAH" secondAttribute="bottom" constant="15" id="Gp0-Nu-yBv"/>
                             <constraint firstAttribute="bottom" secondItem="3oF-LH-nVB" secondAttribute="bottom" constant="5" id="J9W-Lw-Iyy"/>
                             <constraint firstItem="4t1-Co-IAH" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Jod-Po-liP"/>
                             <constraint firstAttribute="trailing" secondItem="3oF-LH-nVB" secondAttribute="trailing" constant="5" id="Lul-nX-UIy"/>
-                            <constraint firstAttribute="bottom" secondItem="O7S-h9-ZI7" secondAttribute="bottom" constant="12" id="ScY-dj-nOQ"/>
                             <constraint firstItem="N7B-rY-k4v" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="WRv-86-ZPQ"/>
+                            <constraint firstItem="NME-yD-sNV" firstAttribute="leading" secondItem="1t2-zo-2lf" secondAttribute="leading" id="ZiW-CS-381"/>
+                            <constraint firstItem="HuH-ct-1ed" firstAttribute="leading" secondItem="NME-yD-sNV" secondAttribute="trailing" constant="5" id="ZmK-2R-x9a"/>
                             <constraint firstItem="N7B-rY-k4v" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="Zqm-nL-VRk"/>
                             <constraint firstAttribute="bottom" secondItem="1t2-zo-2lf" secondAttribute="bottom" constant="50" id="a6p-Wc-Z6Y"/>
                             <constraint firstItem="1t2-zo-2lf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="c6u-lH-GLi"/>
@@ -789,10 +804,10 @@
                             <constraint firstItem="fUS-tX-xKW" firstAttribute="top" secondItem="zgS-Ql-1pe" secondAttribute="bottom" constant="15" id="jJE-uK-t7k"/>
                             <constraint firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" constant="20" id="jM6-4v-Dxk"/>
                             <constraint firstAttribute="bottom" secondItem="N7B-rY-k4v" secondAttribute="bottom" constant="20" id="jMt-Mp-TmL"/>
-                            <constraint firstItem="O7S-h9-ZI7" firstAttribute="centerX" secondItem="1t2-zo-2lf" secondAttribute="centerX" id="lAC-Lt-Syt"/>
                             <constraint firstItem="zgS-Ql-1pe" firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" id="mU6-1J-TzU"/>
                             <constraint firstItem="1t2-zo-2lf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="maC-HM-GRi"/>
                             <constraint firstItem="OuD-HM-Cre" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="mdj-rL-1sD"/>
+                            <constraint firstItem="NME-yD-sNV" firstAttribute="top" secondItem="1t2-zo-2lf" secondAttribute="bottom" constant="20" id="sId-jq-PEb"/>
                             <constraint firstItem="uU4-Mw-8nA" firstAttribute="top" secondItem="fUS-tX-xKW" secondAttribute="bottom" constant="15" id="tWj-3m-6AH"/>
                             <constraint firstItem="zgS-Ql-1pe" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="uWv-MD-7aD"/>
                         </constraints>
@@ -803,6 +818,8 @@
                         <outlet property="mainImageView" destination="1t2-zo-2lf" id="Dj3-1A-T1x"/>
                         <outlet property="messageTextField" destination="uU4-Mw-8nA" id="ltg-mE-uGW"/>
                         <outlet property="passwordTextfield" destination="OuD-HM-Cre" id="rFn-hL-qfk"/>
+                        <outlet property="saveImageButton" destination="HuH-ct-1ed" id="pqG-e1-FJc"/>
+                        <outlet property="selectImageButton" destination="NME-yD-sNV" id="DRM-Mf-fxW"/>
                         <outlet property="showMessageButton" destination="fUS-tX-xKW" id="TL7-28-s3j"/>
                     </connections>
                 </viewController>

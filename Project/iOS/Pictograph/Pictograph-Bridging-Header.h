@@ -10,6 +10,7 @@
 #import "SVProgressHUD/SVProgressHUD.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-#import "UIImageCoder.h"
+#import "PictographImageCoder.h"
+#import "PictographImage+Reconciliation.h"
 
 #endif /* Pictograph_Bridging_Header_h */

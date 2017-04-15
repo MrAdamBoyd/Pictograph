@@ -369,7 +369,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            let coder = UIImageCoder()
+            let coder = PictographImageCoder()
             
             //Hide the HUD
             SVProgressHUD.dismiss()
@@ -397,7 +397,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         //No need to show HUD because this doesn't take long
         
-        let coder = UIImageCoder()
+        let coder = PictographImageCoder()
         
         //Provide no password if encryption/decryption is off
         let providedPassword = mainEncodeView.encryptionSwitch.isOn ? mainEncodeView.encryptionKeyField.text : ""

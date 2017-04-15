@@ -1,12 +1,12 @@
 //
-//  UIImageCoder.m
+//  PictographImageCoder.m
 //  Pictograph
 //
 //  Created by Adam on 2015-10-04.
 //  Copyright © 2015 Adam Boyd. All rights reserved.
 //
 
-#import "UIImageCoder.h"
+#import "PictographImageCoder.h"
 @import RNCryptor_objc;
 
 #if TARGET_OS_IPHONE
@@ -16,19 +16,13 @@
 #endif
 
 #define bitCountForCharacter 8
+#define bitsChangedPerPixel 2
 #define bitCountForInfo 16
-#define bitCountForImageInfo 32
 #define bytesPerPixel 4
 #define maxIntFor8Bits 255
 #define maxFloatFor8Bits 255.0
 
-#ifdef DEBUG
-#define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-#else
-#define DLog(...) do {} while (0)
-#endif
-
-@implementation UIImageCoder
+@implementation PictographImageCoder
 
 #pragma mark Decoding a message hidden in an image
 
@@ -41,7 +35,7 @@
     NSMutableArray *infoArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting information about the encoded message
-    NSArray *first8PixelsInfo = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForInfo / 2)];
+    NSArray *first8PixelsInfo = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForInfo / bitsChangedPerPixel)];
     for (PictographColor *color in first8PixelsInfo) {
         //Going through each color that contains information about the message
         [self addBlueBitsFromColor:color toArray:infoArrayInBits];
@@ -96,7 +90,7 @@
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting the size of the string
-    NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:8 andY:0 count:(bitCountForInfo / 2)];
+    NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:8 andY:0 count:(bitCountForInfo / bitsChangedPerPixel)];
     
     for (PictographColor *color in first8PixelsColors) {
         //Going through each color that contains the size of the message
@@ -110,7 +104,7 @@
     NSMutableArray *arrayOfBitsForMessage = [[NSMutableArray alloc] init];
     NSMutableData *encryptedData = [[NSMutableData alloc] init];
     
-    NSArray *arrayOfColors = [self getRBGAFromImage:image atX:16 andY:0 count:((int)numberOfBitsNeededForImage / 2)];
+    NSArray *arrayOfColors = [self getRBGAFromImage:image atX:16 andY:0 count:((int)numberOfBitsNeededForImage / bitsChangedPerPixel)];
     
     for (PictographColor *color in arrayOfColors) {
         //Going through each pixel
@@ -332,8 +326,7 @@
 }
 #else
 - (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image numberOfBitsNeeded:(long)numberOfBitsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
-    NSRect imageRect = NSMakeRect(0, 0, image.size.width, image.size.height);
-    CGImageRef imageRef = [image CGImageForProposedRect:&imageRect context:nil hints:nil];
+    CGImageRef imageRef = [image getReconciledCGImageRef];
     NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithCGImage: imageRef];
     
     NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
@@ -359,11 +352,7 @@
             [imageRep setColor:pixelColor atX:widthCounter y:heightCounter];
             
             //2 bits are encoded per pixel, so per pixel, bump the encode counter by 2
-            encodeCounter += 2;
-
-            //LOOK AT THIS!!!
-            //http://stackoverflow.com/questions/14582121/replace-particular-color-of-image-in-ios/35315465#35315465
-            //http://www.idevgames.com/forums/thread-7910.html
+            encodeCounter += bitsChangedPerPixel;
         }
     }
     
@@ -381,7 +370,7 @@
     CGContextSetRGBFillColor(context, red, green, blue, alpha);
     CGContextFillRect(context, CGRectMake(widthCounter, heightCounter - 1, 1, 1)); //Only filling in 1 pixel
     
-    encodeCounter += 2; //2 bits per pixel, so increase by 2
+    encodeCounter += bitsChangedPerPixel; //2 bits per pixel, so increase by 2
     
     return encodeCounter;
 }
@@ -485,15 +474,9 @@
     
     //Getting the raw data
     unsigned char *rawData = [self getRawPixelDataForImage:image];
-
-    #if TARGET_OS_IPHONE
-        CGImageRef imageRef = [image CGImage];
-        NSUInteger width = CGImageGetWidth(imageRef);
-    #else
-        NSData *data = [image TIFFRepresentation];
-        NSBitmapImageRep *bitmap = [NSBitmapImageRep imageRepWithData:data];
-        NSUInteger width = bitmap.pixelsWide;
-    #endif
+    
+    NSUInteger width = [image getReconciledImageWidth];
+    
     NSUInteger bytesPerRow = bytesPerPixel * width;
     NSUInteger byteIndex = (bytesPerRow * y) + x * bytesPerPixel;
     
@@ -521,12 +504,9 @@
 /* Returns the raw pixel data for a UIImage image */
 -(unsigned char *)getRawPixelDataForImage:(PictographImage *)image {
     // First get the image into your data buffer
-    #if TARGET_OS_IPHONE
-        CGImageRef imageRef = [image CGImage];
-    #else
-        NSRect imageRect = NSMakeRect(0, 0, image.size.width, image.size.height);
-        CGImageRef imageRef = [image CGImageForProposedRect: &imageRect context:NULL hints:nil];
-    #endif
+    
+    CGImageRef imageRef = [image getReconciledCGImageRef];
+    
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
