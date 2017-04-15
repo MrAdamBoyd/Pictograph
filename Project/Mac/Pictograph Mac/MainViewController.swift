@@ -105,14 +105,16 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
             do {
                 //                let encodedImage = try coder.encodeMessage(messageToEncode, in: self.mainImageView.image!, encryptedWithPassword: PictographDataController.shared.userEncryptionPassword)
                 let encodedImage = try coder.encodeMessage(self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: nil)
-                self.mainImageView.image = NSImage(data: encodedImage)
-                //Show the share sheet if the image exists
-                //                self.showShareSheetWithImage(encodedImage)
+                let image = NSImage(data: encodedImage)
+                self.mainImageView.image = image
+                
+                //Alert the user
+                self.showEncodedImage(image)
                 
             } catch let error {
                 
                 //Catch the error
-                //                self.showMessageInAlertController("Error", message: error.localizedDescription)
+                self.showError(error)
             }
         }
     }
@@ -134,12 +136,89 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
             let decodedMessage = try coder.decodeMessage(in: image, encryptedWithPassword: providedPassword)
             
             self.messageTextField.stringValue = decodedMessage
+            self.showDecodedMessage(decodedMessage)
             
         } catch let error {
             
             //Catch the error
-//            showMessageInAlertController("Error Decoding", message: error.localizedDescription)
+            self.showError(error)
         }
+    }
+    
+    // MARK: - Alerting user
+    
+    
+    /// Shows an error to the user. If application isn't active, also sends NSUserNotification
+    ///
+    /// - Parameter error: error to show
+    func showError(_ error: Error) {
+        let alert = NSAlert()
+        alert.messageText = "Error"
+        alert.informativeText = error.localizedDescription
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "OK")
+        alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
+        
+        if !NSApplication.shared().isActive {
+            self.showNotificationWith(message: "Error", informativeText: error.localizedDescription)
+        }
+    }
+    
+    /// Alert user that message has been encoded in the image
+    ///
+    /// - Parameter image: image that the message has been encoded in
+    func showEncodedImage(_ image: NSImage?) {
+        let alert = NSAlert()
+        alert.messageText = "Image Encoded With Message"
+        alert.informativeText = "Click \"Save Image\" to save the image to disk."
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "OK")
+        alert.addButton(withTitle: "Save Image")
+        alert.beginSheetModal(for: self.view.window!) { [unowned self] response in
+            if response != NSAlertFirstButtonReturn {
+                //First button is the rightmost button. The OK button in this case.
+                self.saveImageToDisk(image)
+            }
+        }
+        
+        if !NSApplication.shared().isActive {
+            self.showNotificationWith(message: "Message Encoded", informativeText: nil)
+        }
+    }
+    
+    /// Informs the user that the message has been decoded from the image succesfully. If application isn't active, also sends NSUserNotification
+    ///
+    /// - Parameter message: decoded message
+    func showDecodedMessage(_ message: String) {
+        let alert = NSAlert()
+        alert.messageText = "Message Decoded"
+        alert.informativeText = message
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "OK")
+        alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
+        
+        if !NSApplication.shared().isActive {
+            self.showNotificationWith(message: "Message Decoded", informativeText: message)
+        }
+    }
+    
+    /// Prepares save sheet to save the image to the disk
+    ///
+    /// - Parameter image: image to save
+    func saveImageToDisk(_ image: NSImage?) {
+        
+    }
+
+    /// Creates and delivers a notification to the user
+    ///
+    /// - Parameters:
+    ///   - message: title of the notification
+    ///   - informativeText: any other text that should be shown to the user
+    func showNotificationWith(message: String, informativeText: String?) {
+        let notification = NSUserNotification()
+        notification.title = message
+        notification.informativeText = informativeText
+        NSUserNotificationCenter.default.deliver(notification)
     }
     
     // MARK: - NSTextFieldDelegate
