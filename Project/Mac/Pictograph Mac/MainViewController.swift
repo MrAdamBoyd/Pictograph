@@ -23,6 +23,8 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
     
     var imageSelectPanelOpen: Bool = false
     
+    var helpWindowController: NSWindowController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -75,7 +77,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
         
         print("Getting image")
         let panel = NSOpenPanel()
-        panel.begin() { result in
+        panel.beginSheetModal(for: self.view.window!) { [unowned self] result in
             self.imageSelectPanelOpen = false
             if let fileUrl = panel.url, result == NSFileHandlingPanelOKButton {
                 guard let image = NSImage(contentsOf: fileUrl) else { return }
@@ -89,6 +91,9 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
     
     @IBAction func saveImageAction(_ sender: Any) {
         print("User wants to save image")
+        guard let data = self.mainImageView.image?.tiffRepresentation else { return }
+        
+        self.saveImageToDisk(data)
     }
     
     @IBAction func encryptionEnabledChanged(_ sender: Any) {
@@ -109,7 +114,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
                 self.mainImageView.image = image
                 
                 //Alert the user
-                self.showEncodedImage(image)
+                self.showEncodedImage(encodedImage)
                 
             } catch let error {
                 
@@ -145,6 +150,13 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
         }
     }
     
+    @IBAction func helpButtonAction(_ sender: Any) {
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        guard let windowController = storyboard.instantiateController(withIdentifier: "helpWindow") as? NSWindowController else { return }
+        self.helpWindowController = windowController
+        self.helpWindowController?.window?.makeKeyAndOrderFront(self)
+    }
+    
     // MARK: - Alerting user
     
     
@@ -167,7 +179,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
     /// Alert user that message has been encoded in the image
     ///
     /// - Parameter image: image that the message has been encoded in
-    func showEncodedImage(_ image: NSImage?) {
+    func showEncodedImage(_ image: Data?) {
         let alert = NSAlert()
         alert.messageText = "Image Encoded With Message"
         alert.informativeText = "Click \"Save Image\" to save the image to disk."
@@ -177,7 +189,11 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
         alert.beginSheetModal(for: self.view.window!) { [unowned self] response in
             if response != NSAlertFirstButtonReturn {
                 //First button is the rightmost button. The OK button in this case.
-                self.saveImageToDisk(image)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    //Wait 1 second
+                    self.saveImageToDisk(image)
+                }
             }
         }
         
@@ -205,8 +221,20 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
     /// Prepares save sheet to save the image to the disk
     ///
     /// - Parameter image: image to save
-    func saveImageToDisk(_ image: NSImage?) {
-        
+    func saveImageToDisk(_ image: Data?) {
+        print("Saving image to disk")
+        let panel = NSSavePanel()
+        panel.nameFieldStringValue = ".png"
+        panel.beginSheetModal(for: self.view.window!) { [unowned self] result in
+            if result == NSFileHandlingPanelOKButton {
+                guard let filePath = panel.url else { return }
+                do {
+                    try image?.write(to: filePath)
+                } catch let error {
+                    self.showError(error)
+                }
+            }
+        }
     }
 
     /// Creates and delivers a notification to the user

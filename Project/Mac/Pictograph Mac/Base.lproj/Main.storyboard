@@ -663,6 +663,86 @@
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
         <!--Window Controller-->
+        <scene sceneID="3II-Vo-6MX">
+            <objects>
+                <windowController storyboardIdentifier="helpWindow" id="aRx-vW-JcS" sceneMemberID="viewController">
+                    <window key="window" title="Help" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="bSe-ZX-9ty">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="269" height="285"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+                        <value key="minSize" type="size" width="269" height="285"/>
+                    </window>
+                    <connections>
+                        <segue destination="R0B-uW-mG0" kind="relationship" relationship="window.shadowedContentViewController" id="KCh-xL-MCX"/>
+                    </connections>
+                </windowController>
+                <customObject id="VEi-6N-fTj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="706" y="92"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="XDI-tW-jyr">
+            <objects>
+                <viewController id="R0B-uW-mG0" sceneMemberID="viewController">
+                    <view key="view" id="SpR-qQ-Bf9">
+                        <rect key="frame" x="0.0" y="0.0" width="269" height="285"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuA-vK-hhw">
+                                <rect key="frame" x="18" y="241" width="222" height="24"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="What is steganography?" id="IRN-j9-Nap">
+                                    <font key="font" metaFont="system" size="20"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMw-Xa-tFF">
+                                <rect key="frame" x="18" y="146" width="233" height="85"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="tFR-0W-z1B">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">Steganography is the practice of hiding messages. Using Pictograph, you can hide messages in images, and the images won't look any different.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKW-nX-an6">
+                                <rect key="frame" x="18" y="102" width="100" height="24"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Encryption" id="knw-3i-H2a">
+                                    <font key="font" metaFont="system" size="20"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0NJ-o1-uaa">
+                                <rect key="frame" x="18" y="24" width="233" height="68"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="Kf8-dG-VK9">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">Pictograph also allows you to encrypt your messages. You will have to give the password to whoever you want to read the message.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="IKW-nX-an6" firstAttribute="top" secondItem="IMw-Xa-tFF" secondAttribute="bottom" constant="20" id="1pY-ag-PJ0"/>
+                            <constraint firstItem="KuA-vK-hhw" firstAttribute="leading" secondItem="SpR-qQ-Bf9" secondAttribute="leading" constant="20" id="4a9-YM-Jo0"/>
+                            <constraint firstItem="0NJ-o1-uaa" firstAttribute="leading" secondItem="KuA-vK-hhw" secondAttribute="leading" id="75y-px-sL1"/>
+                            <constraint firstItem="KuA-vK-hhw" firstAttribute="top" secondItem="SpR-qQ-Bf9" secondAttribute="top" constant="20" id="AzO-YM-Utf"/>
+                            <constraint firstItem="IMw-Xa-tFF" firstAttribute="leading" secondItem="KuA-vK-hhw" secondAttribute="leading" id="lFe-Bj-0O6"/>
+                            <constraint firstItem="0NJ-o1-uaa" firstAttribute="top" secondItem="IKW-nX-an6" secondAttribute="bottom" constant="10" id="lM5-9u-M6J"/>
+                            <constraint firstItem="IMw-Xa-tFF" firstAttribute="top" secondItem="KuA-vK-hhw" secondAttribute="bottom" constant="10" id="mdJ-26-4CK"/>
+                            <constraint firstItem="IKW-nX-an6" firstAttribute="leading" secondItem="KuA-vK-hhw" secondAttribute="leading" id="oAI-wq-PDo"/>
+                            <constraint firstAttribute="trailing" secondItem="IMw-Xa-tFF" secondAttribute="trailing" constant="20" id="pOi-Kf-mWl"/>
+                            <constraint firstItem="0NJ-o1-uaa" firstAttribute="trailing" secondItem="IMw-Xa-tFF" secondAttribute="trailing" id="r7y-eF-0Nf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="ihY-1i-Vmp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1089.5" y="91.5"/>
+        </scene>
+        <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
@@ -686,7 +766,7 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="Pictograph_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="500" height="290"/>
+                        <rect key="frame" x="0.0" y="0.0" width="516" height="290"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N7B-rY-k4v">
@@ -697,11 +777,11 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="8bf-pF-Ojg"/>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="499" verticalCompressionResistancePriority="499" translatesAutoresizingMaskIntoConstraints="NO" id="1t2-zo-2lf">
-                                <rect key="frame" x="20" y="50" width="210" height="220"/>
+                                <rect key="frame" x="20" y="50" width="218" height="220"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="gk7-LV-MkH"/>
                             </imageView>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="4t1-Co-IAH">
-                                <rect key="frame" x="268" y="254" width="115" height="18"/>
+                                <rect key="frame" x="276" y="254" width="115" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="aIF-W2-FaC"/>
                                 </constraints>
@@ -714,7 +794,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuD-HM-Cre">
-                                <rect key="frame" x="270" y="219" width="210" height="22"/>
+                                <rect key="frame" x="278" y="219" width="218" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Encryption password" drawsBackground="YES" id="vBH-f0-hz8">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -722,7 +802,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zgS-Ql-1pe">
-                                <rect key="frame" x="264" y="176" width="222" height="32"/>
+                                <rect key="frame" x="272" y="176" width="230" height="32"/>
                                 <buttonCell key="cell" type="push" title="Hide Message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="T6j-h8-ati">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -732,7 +812,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-tX-xKW">
-                                <rect key="frame" x="264" y="140" width="222" height="32"/>
+                                <rect key="frame" x="272" y="140" width="230" height="32"/>
                                 <buttonCell key="cell" type="push" title="Show Message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OUq-F5-TgI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -742,14 +822,17 @@
                                 </buttonCell>
                             </button>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3oF-LH-nVB">
-                                <rect key="frame" x="472" y="2" width="25" height="25"/>
+                                <rect key="frame" x="488" y="2" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zMf-4A-1wI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="helpButtonAction:" target="XfG-lQ-9wD" id="or6-M4-TSg"/>
+                                </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uU4-Mw-8nA">
-                                <rect key="frame" x="270" y="66" width="210" height="66"/>
+                                <rect key="frame" x="278" y="66" width="218" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="b04-GU-g49"/>
                                 </constraints>
@@ -770,7 +853,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HuH-ct-1ed">
-                                <rect key="frame" x="126" y="2" width="110" height="32"/>
+                                <rect key="frame" x="125" y="2" width="119" height="32"/>
                                 <buttonCell key="cell" type="push" title="Save Image" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vE7-S7-l9c">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -782,6 +865,8 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="fUS-tX-xKW" firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" id="1Kt-Ro-or0"/>
+                            <constraint firstItem="NME-yD-sNV" firstAttribute="trailing" secondItem="1t2-zo-2lf" secondAttribute="centerX" constant="-2" id="4l2-LF-r7Y"/>
+                            <constraint firstItem="HuH-ct-1ed" firstAttribute="leading" secondItem="1t2-zo-2lf" secondAttribute="centerX" constant="2" id="6ep-XF-R0C"/>
                             <constraint firstItem="zgS-Ql-1pe" firstAttribute="top" secondItem="OuD-HM-Cre" secondAttribute="bottom" constant="15" id="8oy-9O-AA4"/>
                             <constraint firstItem="uU4-Mw-8nA" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="99V-pM-5aH"/>
                             <constraint firstItem="HuH-ct-1ed" firstAttribute="trailing" secondItem="1t2-zo-2lf" secondAttribute="trailing" id="9dt-fr-NaE"/>
@@ -795,7 +880,6 @@
                             <constraint firstAttribute="trailing" secondItem="3oF-LH-nVB" secondAttribute="trailing" constant="5" id="Lul-nX-UIy"/>
                             <constraint firstItem="N7B-rY-k4v" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="WRv-86-ZPQ"/>
                             <constraint firstItem="NME-yD-sNV" firstAttribute="leading" secondItem="1t2-zo-2lf" secondAttribute="leading" id="ZiW-CS-381"/>
-                            <constraint firstItem="HuH-ct-1ed" firstAttribute="leading" secondItem="NME-yD-sNV" secondAttribute="trailing" constant="5" id="ZmK-2R-x9a"/>
                             <constraint firstItem="N7B-rY-k4v" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="Zqm-nL-VRk"/>
                             <constraint firstAttribute="bottom" secondItem="1t2-zo-2lf" secondAttribute="bottom" constant="50" id="a6p-Wc-Z6Y"/>
                             <constraint firstItem="1t2-zo-2lf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="c6u-lH-GLi"/>
@@ -821,6 +905,7 @@
                         <outlet property="saveImageButton" destination="HuH-ct-1ed" id="pqG-e1-FJc"/>
                         <outlet property="selectImageButton" destination="NME-yD-sNV" id="DRM-Mf-fxW"/>
                         <outlet property="showMessageButton" destination="fUS-tX-xKW" id="TL7-28-s3j"/>
+                        <segue destination="aRx-vW-JcS" kind="show" identifier="showHelp" id="0MG-nd-lZr"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
