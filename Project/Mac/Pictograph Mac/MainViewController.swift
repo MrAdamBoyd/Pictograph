@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainViewController: NSViewController, NSTextFieldDelegate {
+class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegate {
 
     @IBOutlet weak var mainImageView: NSImageView!
     @IBOutlet weak var encryptionCheckbox: NSButton!
@@ -37,6 +37,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
         self.checkIfValid()
         
         self.dragAndDropView.register(forDraggedTypes: [NSURLPboardType])
+        self.dragAndDropView.delegate = self
     }
 
     override var representedObject: Any? {
@@ -264,6 +265,15 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
     override func controlTextDidChange(_ obj: Notification) {
         print("User entered text")
         self.checkIfValid()
+    }
+    
+    // MARK: - DraggingDelegate
+    
+    func userDraggedFile(_ file: URL?) {
+        if let url = file, let image = NSImage(contentsOf: url) {
+            self.mainImageView.image = image
+            self.checkIfValid()
+        }
     }
 
 }
