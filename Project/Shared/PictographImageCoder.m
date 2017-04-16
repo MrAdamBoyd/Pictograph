@@ -171,7 +171,7 @@
     
     NSString *toEncode = [[NSMutableString alloc] init];
     
-    BOOL encryptedBool = (password != nil);
+    BOOL encryptedBool = (password != nil) || (![password isEqualToString:@""]);
     
     if (encryptedBool) {
         //If the user wants to encrypt the string, encrypt it

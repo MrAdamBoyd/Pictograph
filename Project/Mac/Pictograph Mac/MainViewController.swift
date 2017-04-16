@@ -35,10 +35,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
         
         self.checkIfValid()
         
-        //LOOK AT THIS::::::!!!!!!!!!!!!!!!!
-        //https://www.raywenderlich.com/136272/drag-and-drop-tutorial-for-macos
-        //FOR DRAGGING
-        //ALSO ONLY INCLUDE IMAGES IN NSOPENPANEL
+//        self.view.register(forDraggedTypes: )
     }
 
     override var representedObject: Any? {
@@ -103,8 +100,10 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
             let coder = PictographImageCoder()
             
             do {
-                //                let encodedImage = try coder.encodeMessage(messageToEncode, in: self.mainImageView.image!, encryptedWithPassword: PictographDataController.shared.userEncryptionPassword)
-                let encodedImage = try coder.encodeMessage(self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: nil)
+                //Provide no password if encryption/decryption is off
+                let providedPassword = self.encryptionCheckbox.state == 1 ? self.encryptionCheckbox.stringValue : ""
+                
+                let encodedImage = try coder.encodeMessage(self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: password)
                 let image = NSImage(data: encodedImage)
                 self.mainImageView.image = image
                 
