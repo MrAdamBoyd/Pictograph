@@ -27,12 +27,6 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.mainImageView.wantsLayer = true
-        self.mainImageView.layer?.borderColor = NSColor.black.cgColor
-        self.mainImageView.layer?.borderWidth = 2
-        self.mainImageView.layer?.masksToBounds = true
         
         let clickGR = NSClickGestureRecognizer(target: self, action: #selector(self.selectNewImageFromFileSystem))
         self.mainImageView.addGestureRecognizer(clickGR)
@@ -77,6 +71,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
         
         print("Getting image")
         let panel = NSOpenPanel()
+        panel.allowedFileTypes = ["jpg", "JPG", "png", "PNG", "jpeg", "JPEG", "tiff", "TIFF"]
         panel.beginSheetModal(for: self.view.window!) { [unowned self] result in
             self.imageSelectPanelOpen = false
             if let fileUrl = panel.url, result == NSFileHandlingPanelOKButton {
