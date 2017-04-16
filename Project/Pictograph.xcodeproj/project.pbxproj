@@ -34,6 +34,7 @@
 		6658833B1BBCC72A00CA21A9 /* PictographUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658833A1BBCC72A00CA21A9 /* PictographUITests.m */; };
 		666A96B71E41836900107630 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */; };
 		666AD9CA1E41828C006B37FB /* PictographDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B4381BDDB91800235E04 /* PictographDataController.swift */; };
+		666DF8C31EA31D94009BBEC2 /* PictographImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */; };
 		66B187441C553D660057259F /* CreatesNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B187431C553D660057259F /* CreatesNavigationTitle.swift */; };
 		66C58B6A1C1D2FF700C10A06 /* PictographTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C58B691C1D2FF700C10A06 /* PictographTests.swift */; };
 		66E227C11EA2EC5E0089CD48 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E227C01EA2EC5E0089CD48 /* AboutViewController.swift */; };
@@ -883,6 +884,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				666DF8C31EA31D94009BBEC2 /* PictographImageCoder.m in Sources */,
 				6647B43B1BDDCE9800235E04 /* PictographMainViewController.swift in Sources */,
 				6647B4441BDF0B7E00235E04 /* PictographSettingsTableViewCell.swift in Sources */,
 				6647B43D1BDEF5BF00235E04 /* IntroView.swift in Sources */,
@@ -973,7 +975,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
 				INFOPLIST_FILE = "Mac/Pictograph Mac/Info.plist";
@@ -981,6 +983,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "Mac/Pictograph Mac/Pictograph_Mac-Bridging-Header.h";
@@ -996,7 +999,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
 				INFOPLIST_FILE = "Mac/Pictograph Mac/Info.plist";
@@ -1004,6 +1007,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "Mac/Pictograph Mac/Pictograph_Mac-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

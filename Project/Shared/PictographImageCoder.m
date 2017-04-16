@@ -259,7 +259,7 @@
     
     CGRect imageRect = CGRectMake(0, 0, imageWidth, imageHeight);
     
-    UIGraphicsBeginImageContext(imageRect);
+    UIGraphicsBeginImageContext(CGSizeMake(imageWidth, imageHeight));
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
@@ -288,8 +288,7 @@
                     return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
                 }
                 
-                DLog(@"
-                     at %i, %i", widthCounter, (heightCounter - 1));
+                DLog(@"at %i, %i", widthCounter, (heightCounter - 1));
                 
                 encodeCounter = [self changePixelValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image withinContext:context startFromBottomLeft:false];
             }
@@ -306,7 +305,7 @@
         CGContextSaveGState(context);
 
         //Changing all the pixel colors
-        for (int heightCounter = imageHeight; heightCounter >= 0; heightCounter--) {
+        for (int heightCounter = (int)imageHeight; heightCounter >= 0; heightCounter--) {
             for (int widthCounter = 0; widthCounter < imageWidth; widthCounter++){
                 //Going through each bit 2 by 2, that means we need to encode the pixel at position
                 //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
