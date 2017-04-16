@@ -193,7 +193,7 @@
         toEncode = message;
     }
     
-    int maxMessageLengthForImage = (image.size.width * image.size.height) / 8;
+    int maxMessageLengthForImage = ([image getReconciledImageWidth] * [image getReconciledImageHeight]) / 8;
     if ([message length] > maxMessageLengthForImage) {
         //Makes sure message length is under
         DLog(@"User's message was too large: %lu characters", (unsigned long)[message length]);
@@ -209,7 +209,7 @@
     long numberOfBitsNeeded = [toEncode length] * bitCountForCharacter; //8 bits to a char
     long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForInfo / 2) + (bitCountForInfo / 2);
     
-    if ((image.size.height * image.size.width) <= numberOfPixelsNeeded) {
+    if (([image getReconciledImageHeight] * [image getReconciledImageWidth]) <= numberOfPixelsNeeded) {
         //Makes sure the image is large enough to handle the message
         DLog(@"User's selected image was too small");
         
@@ -253,9 +253,13 @@
 //Saves the image to the graphics context and starts encoding the bits in that image
 - (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image numberOfBitsNeeded:(long)numberOfBitsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
     //Right here we have all the bits that are needed to encode the data in the image
-    CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
     
-    UIGraphicsBeginImageContext(image.size);
+    NSUInteger imageWidth = [image getReconciledImageWidth];
+    NSUInteger imageHeight = [image getReconciledImageHeight];
+    
+    CGRect imageRect = CGRectMake(0, 0, imageWidth, imageHeight);
+    
+    UIGraphicsBeginImageContext(imageRect);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
@@ -271,8 +275,8 @@
         CGContextSaveGState(context);
 
         //Changing all pixel colors
-        for (int heightCounter = 1; heightCounter < image.size.height; heightCounter++) {
-            for (int widthCounter = 0; widthCounter < image.size.width; widthCounter++){
+        for (int heightCounter = 1; heightCounter < imageHeight; heightCounter++) {
+            for (int widthCounter = 0; widthCounter < imageWidth; widthCounter++){
                 //Going through each bit 2 by 2, that means we need to encode the pixel at position
                 //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
                 
@@ -293,7 +297,7 @@
     } else {
         //A lot of OS X libraries use the lower left corner as (0,0), this is transforming the image to be rightside up
         //http://stackoverflow.com/questions/506622/cgcontextdrawimage-draws-image-upside-down-when-passed-uiimage-cgimage
-        CGContextTranslateCTM(context, 0, image.size.height);
+        CGContextTranslateCTM(context, 0, imageHeight);
         CGContextScaleCTM(context, 1.0, -1.0);
         CGContextDrawImage(context, imageRect, [image CGImage]);
     
@@ -301,8 +305,8 @@
         CGContextSaveGState(context);
 
         //Changing all the pixel colors
-        for (int heightCounter = image.size.height; heightCounter >= 0; heightCounter--) {
-            for (int widthCounter = 0; widthCounter < image.size.width; widthCounter++){
+        for (int heightCounter = imageHeight; heightCounter >= 0; heightCounter--) {
+            for (int widthCounter = 0; widthCounter < imageWidth; widthCounter++){
                 //Going through each bit 2 by 2, that means we need to encode the pixel at position
                 //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
                 
@@ -314,7 +318,7 @@
                     return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
                 }
                 
-                DLog(@"Pixel change at %i, %i", widthCounter, (int)(image.size.height - heightCounter));
+                DLog(@"Pixel change at %i, %i", widthCounter, (int)(imageHeight - heightCounter));
                 
                 encodeCounter = [self changePixelValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image withinContext:context startFromBottomLeft:true];
             }
@@ -334,8 +338,11 @@
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
     PictographColor *pixelColor;
     
-    for (int heightCounter = 0; heightCounter < image.size.height; heightCounter++) {
-        for (int widthCounter = 0; widthCounter < image.size.width; widthCounter++) {
+    NSUInteger imageWidth = [image getReconciledImageWidth];
+    NSUInteger imageHeight = [image getReconciledImageHeight];
+    
+    for (int heightCounter = 0; heightCounter < imageHeight; heightCounter++) {
+        for (int widthCounter = 0; widthCounter < imageWidth; widthCounter++) {
             //Going through each bit 2 by 2, that means we need to encode the pixel at position
             //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
             
@@ -381,7 +388,7 @@
     
     //If we're starting from the bottom left, take the height of the image into account, if not, can just use the height counter provided
     if (startFromBottomLeft) {
-        currentPixelIndex = widthCounter * (image.size.height - heightCounter + 1);
+        currentPixelIndex = widthCounter * ([image getReconciledImageHeight] - heightCounter + 1);
     } else {
         currentPixelIndex = widthCounter * heightCounter;
     }

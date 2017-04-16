@@ -34,12 +34,12 @@
 		6658833B1BBCC72A00CA21A9 /* PictographUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658833A1BBCC72A00CA21A9 /* PictographUITests.m */; };
 		666A96B71E41836900107630 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */; };
 		666AD9CA1E41828C006B37FB /* PictographDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B4381BDDB91800235E04 /* PictographDataController.swift */; };
-		667AE8421E8E04C200F39885 /* PictographImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */; };
-		66A1B28A1EA1824300AB5822 /* PictographImage+Reconciliation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */; };
 		66A1B28B1EA1824300AB5822 /* PictographImage+Reconciliation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */; };
 		66B187441C553D660057259F /* CreatesNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B187431C553D660057259F /* CreatesNavigationTitle.swift */; };
 		66C58B6A1C1D2FF700C10A06 /* PictographTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C58B691C1D2FF700C10A06 /* PictographTests.swift */; };
 		66E227C11EA2EC5E0089CD48 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E227C01EA2EC5E0089CD48 /* AboutViewController.swift */; };
+		66E227C21EA30D1A0089CD48 /* PictographImage+Reconciliation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */; };
+		66E227C31EA30DE00089CD48 /* PictographImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */; };
 		7C2A5D35939274085DA24564 /* Pods_PictographTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC099D02965E45B0D324E031 /* Pods_PictographTests.framework */; };
 		85B5DAD45526AD2A1DFC3A16 /* Pods_PictographUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0493DE2DEC4D7878ECF645 /* Pods_PictographUITests.framework */; };
 		8E0F330F9199121AFDE7C1A1 /* Pods_Pictograph_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37462E8B017BF38EBE402E6 /* Pods_Pictograph_Mac.framework */; };
@@ -855,7 +855,6 @@
 			files = (
 				666A96B71E41836900107630 /* CurrentUser.swift in Sources */,
 				666AD9CA1E41828C006B37FB /* PictographDataController.swift in Sources */,
-				667AE8421E8E04C200F39885 /* PictographImageCoder.m in Sources */,
 				66E227C11EA2EC5E0089CD48 /* AboutViewController.swift in Sources */,
 				664C5F801E357A2E004E1FA9 /* MainViewController.swift in Sources */,
 				66A1B28B1EA1824300AB5822 /* PictographImage+Reconciliation.m in Sources */,
@@ -883,6 +882,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66E227C31EA30DE00089CD48 /* PictographImageCoder.m in Sources */,
 				6647B43B1BDDCE9800235E04 /* PictographMainViewController.swift in Sources */,
 				6647B4441BDF0B7E00235E04 /* PictographSettingsTableViewCell.swift in Sources */,
 				6647B43D1BDEF5BF00235E04 /* IntroView.swift in Sources */,
@@ -893,7 +893,7 @@
 				660BA01B1BDDA59F00605EE8 /* AppDelegate.swift in Sources */,
 				6600697C1C5531A700BA1672 /* UIImage+CreateImageFromColor.swift in Sources */,
 				6647B44A1BDF294900235E04 /* PictographConstants.swift in Sources */,
-				66A1B28A1EA1824300AB5822 /* PictographImage+Reconciliation.m in Sources */,
+				66E227C21EA30D1A0089CD48 /* PictographImage+Reconciliation.m in Sources */,
 				66B187441C553D660057259F /* CreatesNavigationTitle.swift in Sources */,
 				660BA0621BDDAE9D00605EE8 /* PictographInsetTextField.swift in Sources */,
 				660BA0661BDDB1AE00605EE8 /* CurrentUser.swift in Sources */,

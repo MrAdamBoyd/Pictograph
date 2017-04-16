@@ -30,4 +30,15 @@
 #endif
 }
 
+- (NSUInteger) getReconciledImageHeight {
+#if TARGET_OS_IPHONE
+    CGImageRef imageRef = [self CGImage];
+    return CGImageGetHeight(imageRef);
+#else
+    NSData *data = [self TIFFRepresentation];
+    NSBitmapImageRep *bitmap = [NSBitmapImageRep imageRepWithData:data];
+    return bitmap.pixelsHigh;
+#endif
+}
+
 @end
