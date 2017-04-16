@@ -21,23 +21,19 @@
 
 - (NSUInteger) getReconciledImageWidth {
 #if TARGET_OS_IPHONE
-    CGImageRef imageRef = [self CGImage];
-    return CGImageGetWidth(imageRef);
+    return self.size.width * self.scale;
 #else
-    NSData *data = [self TIFFRepresentation];
-    NSBitmapImageRep *bitmap = [NSBitmapImageRep imageRepWithData:data];
-    return bitmap.pixelsWide;
+    NSImageRep *rep = [[self representations] objectAtIndex:0];
+    return [rep pixelsWide];
 #endif
 }
 
 - (NSUInteger) getReconciledImageHeight {
 #if TARGET_OS_IPHONE
-    CGImageRef imageRef = [self CGImage];
-    return CGImageGetHeight(imageRef);
+    return self.size.height * self.scale;
 #else
-    NSData *data = [self TIFFRepresentation];
-    NSBitmapImageRep *bitmap = [NSBitmapImageRep imageRepWithData:data];
-    return bitmap.pixelsHigh;
+    NSImageRep *rep = [[self representations] objectAtIndex:0];
+    return [rep pixelsHigh];
 #endif
 }
 

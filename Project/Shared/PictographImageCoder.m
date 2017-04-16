@@ -193,7 +193,7 @@
         toEncode = message;
     }
     
-    int maxMessageLengthForImage = ([image getReconciledImageWidth] * [image getReconciledImageHeight]) / 8;
+    int maxMessageLengthForImage = ((int)[image getReconciledImageWidth] * (int)[image getReconciledImageHeight]) / 8;
     if ([message length] > maxMessageLengthForImage) {
         //Makes sure message length is under
         DLog(@"User's message was too large: %lu characters", (unsigned long)[message length]);
@@ -288,7 +288,8 @@
                     return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
                 }
                 
-                DLog(@"Pixel change at %i, %i", widthCounter, (heightCounter - 1));
+                DLog(@"
+                     at %i, %i", widthCounter, (heightCounter - 1));
                 
                 encodeCounter = [self changePixelValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image withinContext:context startFromBottomLeft:false];
             }
@@ -356,7 +357,22 @@
             DLog(@"Pixel change at %i, %i", widthCounter, heightCounter);
             
             pixelColor = [self newPixelColorValueAtWidth:widthCounter andHeight:(heightCounter + 1) encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image startFromBottomLeft:false];
-            [imageRep setColor:pixelColor atX:widthCounter y:heightCounter];
+            
+            
+            /*
+             The next line is commented out and the next few (until encodeCounter +=...) are added as a workaround. I was getting a colorspace error when trying to use [imageRep setColor:]. Colorspace was -1 and component count was -1. I tried using this:
+             
+             CGFloat colorComponents[] = {red, green, newBlueValue, alpha};
+             return [PictographColor colorWithColorSpace:[NSColorSpace sRGBColorSpace] components:colorComponents count:4];
+             
+             but that didn't work either. This was the only workaround I could find that was relatively easy.
+             
+             */
+//            [imageRep setColor:pixelColor atX:widthCounter y:heightCounter];
+            CGFloat red, green, blue, alpha;
+            [pixelColor getRed:&red green:&green blue:&blue alpha:&alpha];
+            NSUInteger pix[4]; pix[0] = red * 255; pix[1] = green * 255; pix[2] = blue * 255; pix[3] = alpha * 255;
+            [imageRep setPixel:pix atX:widthCounter y:heightCounter];
             
             //2 bits are encoded per pixel, so per pixel, bump the encode counter by 2
             encodeCounter += bitsChangedPerPixel;
@@ -388,7 +404,7 @@
     
     //If we're starting from the bottom left, take the height of the image into account, if not, can just use the height counter provided
     if (startFromBottomLeft) {
-        currentPixelIndex = widthCounter * ([image getReconciledImageHeight] - heightCounter + 1);
+        currentPixelIndex = widthCounter * ((int)[image getReconciledImageHeight] - heightCounter + 1);
     } else {
         currentPixelIndex = widthCounter * heightCounter;
     }
