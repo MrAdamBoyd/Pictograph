@@ -746,7 +746,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Pictograph" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="500" height="300"/>
@@ -912,5 +912,100 @@
             </objects>
             <point key="canvasLocation" x="75" y="690.5"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="pO9-Q4-TPw">
+            <objects>
+                <windowController storyboardIdentifier="helpWindow" id="PKX-xy-tay" sceneMemberID="viewController">
+                    <window key="window" title="About" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="aS7-GL-Gjj">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="250" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+                        <value key="minSize" type="size" width="250" height="270"/>
+                        <value key="maxSize" type="size" width="250" height="270"/>
+                    </window>
+                    <connections>
+                        <segue destination="ee8-IU-RUT" kind="relationship" relationship="window.shadowedContentViewController" id="LhX-nB-YpT"/>
+                    </connections>
+                </windowController>
+                <customObject id="MTo-C6-m2T" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="955" y="537"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="ii6-ke-yS5">
+            <objects>
+                <viewController id="ee8-IU-RUT" customClass="AboutViewController" customModule="Pictograph_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Ojj-pa-1ia">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SSq-tM-hOC">
+                                <rect key="frame" x="75" y="150" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="KAh-m0-X0l"/>
+                                    <constraint firstAttribute="height" constant="100" id="edr-Qr-Fhd"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="FullsizeAppIcon" id="o49-A4-SX0"/>
+                            </imageView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gSp-Fa-C13">
+                                <rect key="frame" x="90" y="123" width="71" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Pictograph" id="kNG-XM-x1Z">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EKo-xn-UBr">
+                                <rect key="frame" x="61" y="67" width="129" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Made by Adam Boyd" id="qwQ-a2-uYX">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" red="0.1137254902" green="0.80000000000000004" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IUT-ye-MX3">
+                                <rect key="frame" x="62" y="29" width="126" height="32"/>
+                                <buttonCell key="cell" type="push" title="Go to Website" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MKc-kb-kfk">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="goToWebsiteButton:" target="ee8-IU-RUT" id="QLm-bx-CR6"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H7l-o0-Gjd">
+                                <rect key="frame" x="95" y="104" width="61" height="14"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Version ?.?" id="ytc-Up-FgL">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="IUT-ye-MX3" firstAttribute="top" secondItem="EKo-xn-UBr" secondAttribute="bottom" constant="10" id="A4Z-2O-cjg"/>
+                            <constraint firstItem="EKo-xn-UBr" firstAttribute="centerX" secondItem="Ojj-pa-1ia" secondAttribute="centerX" id="Ejj-MU-XcC"/>
+                            <constraint firstItem="gSp-Fa-C13" firstAttribute="centerX" secondItem="Ojj-pa-1ia" secondAttribute="centerX" id="HPV-VI-KUW"/>
+                            <constraint firstItem="IUT-ye-MX3" firstAttribute="centerX" secondItem="Ojj-pa-1ia" secondAttribute="centerX" id="R4X-jF-JYN"/>
+                            <constraint firstItem="gSp-Fa-C13" firstAttribute="top" secondItem="SSq-tM-hOC" secondAttribute="bottom" constant="10" id="Sgr-aL-QwR"/>
+                            <constraint firstItem="SSq-tM-hOC" firstAttribute="centerX" secondItem="Ojj-pa-1ia" secondAttribute="centerX" id="Xx6-kK-kGr"/>
+                            <constraint firstItem="H7l-o0-Gjd" firstAttribute="centerX" secondItem="Ojj-pa-1ia" secondAttribute="centerX" id="eKt-N2-HGD"/>
+                            <constraint firstItem="SSq-tM-hOC" firstAttribute="top" secondItem="Ojj-pa-1ia" secondAttribute="top" constant="20" id="ghT-Rg-nTl"/>
+                            <constraint firstItem="H7l-o0-Gjd" firstAttribute="top" secondItem="gSp-Fa-C13" secondAttribute="bottom" constant="5" id="tPI-LC-N2k"/>
+                            <constraint firstItem="EKo-xn-UBr" firstAttribute="top" secondItem="H7l-o0-Gjd" secondAttribute="bottom" constant="20" id="xhV-19-A8i"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="versionTextField" destination="H7l-o0-Gjd" id="B68-Ej-pYp"/>
+                    </connections>
+                </viewController>
+                <customObject id="God-ol-FFE" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1297" y="537"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="FullsizeAppIcon" width="128" height="128"/>
+    </resources>
 </document>
