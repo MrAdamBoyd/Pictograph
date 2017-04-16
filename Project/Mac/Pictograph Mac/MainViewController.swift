@@ -20,6 +20,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
     
     @IBOutlet weak var selectImageButton: NSButton!
     @IBOutlet weak var saveImageButton: NSButton!
+    @IBOutlet weak var dragAndDropView: DragAndDropView!
     
     var imageSelectPanelOpen: Bool = false
     
@@ -35,7 +36,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
         
         self.checkIfValid()
         
-//        self.view.register(forDraggedTypes: )
+        self.dragAndDropView.register(forDraggedTypes: [NSURLPboardType])
     }
 
     override var representedObject: Any? {
@@ -95,27 +96,41 @@ class MainViewController: NSViewController, NSTextFieldDelegate {
     @IBAction func hideMessageAction(_ sender: Any) {
         print("User wants to hide message")
         
-        //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            let coder = PictographImageCoder()
+        /// Alert that lets the user know the message is encoding
+        let alert = NSAlert()
+        alert.messageText = "Encoding..."
+        let spinner = NSProgressIndicator()
+        spinner.style = .spinningStyle
+        spinner.startAnimation(self)
+        spinner.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        alert.accessoryView = spinner
+        alert.addButton(withTitle: "Cancel")
+        
+        alert.beginSheetModal(for: self.view.window!) { [unowned self] response in
             
-            do {
-                //Provide no password if encryption/decryption is off
-                let providedPassword = self.encryptionCheckbox.state == 1 ? self.encryptionCheckbox.stringValue : ""
-                
-                let encodedImage = try coder.encodeMessage(self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: password)
-                let image = NSImage(data: encodedImage)
-                self.mainImageView.image = image
-                
-                //Alert the user
-                self.showEncodedImage(encodedImage)
-                
-            } catch let error {
-                
-                //Catch the error
-                self.showError(error)
-            }
         }
+        
+//        //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+//            let coder = PictographImageCoder()
+//            
+//            do {
+//                //Provide no password if encryption/decryption is off
+//                let providedPassword = self.encryptionCheckbox.state == 1 ? self.encryptionCheckbox.stringValue : ""
+//                
+//                let encodedImage = try coder.encodeMessage(self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: providedPassword)
+//                let image = NSImage(data: encodedImage)
+//                self.mainImageView.image = image
+//                
+//                //Alert the user
+//                self.showEncodedImage(encodedImage)
+//                
+//            } catch let error {
+//                
+//                //Catch the error
+//                self.showError(error)
+//            }
+//        }
     }
 
     @IBAction func showMessageAction(_ sender: Any) {

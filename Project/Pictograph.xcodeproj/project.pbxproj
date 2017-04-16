@@ -29,6 +29,7 @@
 		664C5F851E357A2E004E1FA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664C5F831E357A2E004E1FA9 /* Main.storyboard */; };
 		664C5F901E357A2E004E1FA9 /* Pictograph_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5F8F1E357A2E004E1FA9 /* Pictograph_MacTests.swift */; };
 		664C5F9B1E357A2E004E1FA9 /* Pictograph_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5F9A1E357A2E004E1FA9 /* Pictograph_MacUITests.swift */; };
+		664C629B1EA422D60056927A /* DragAndDropBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C629A1EA422D60056927A /* DragAndDropBox.swift */; };
 		665883221BBCC72A00CA21A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 665883211BBCC72A00CA21A9 /* Assets.xcassets */; };
 		665883251BBCC72A00CA21A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 665883231BBCC72A00CA21A9 /* LaunchScreen.storyboard */; };
 		6658833B1BBCC72A00CA21A9 /* PictographUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6658833A1BBCC72A00CA21A9 /* PictographUITests.m */; };
@@ -111,6 +112,7 @@
 		664C5F961E357A2E004E1FA9 /* Pictograph MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pictograph MacUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		664C5F9A1E357A2E004E1FA9 /* Pictograph_MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictograph_MacUITests.swift; sourceTree = "<group>"; };
 		664C5F9C1E357A2E004E1FA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		664C629A1EA422D60056927A /* DragAndDropBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropBox.swift; sourceTree = "<group>"; };
 		665883121BBCC72A00CA21A9 /* Pictograph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pictograph.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		665883211BBCC72A00CA21A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		665883241BBCC72A00CA21A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -281,12 +283,12 @@
 		664C5F7C1E357A2E004E1FA9 /* Pictograph Mac */ = {
 			isa = PBXGroup;
 			children = (
+				664C62991EA3DF1D0056927A /* View Controllers */,
+				664C629C1EA422DA0056927A /* Views */,
 				664C5F7D1E357A2E004E1FA9 /* AppDelegate.swift */,
 				664C5F811E357A2E004E1FA9 /* Assets.xcassets */,
 				664C5F861E357A2E004E1FA9 /* Info.plist */,
 				664C5F831E357A2E004E1FA9 /* Main.storyboard */,
-				664C5F7F1E357A2E004E1FA9 /* MainViewController.swift */,
-				66E227C01EA2EC5E0089CD48 /* AboutViewController.swift */,
 				66056A851E8DFBC000DE0FB4 /* Pictograph_Mac-Bridging-Header.h */,
 			);
 			path = "Pictograph Mac";
@@ -328,6 +330,23 @@
 				664C5F991E357A2E004E1FA9 /* Pictograph MacUITests */,
 			);
 			path = Mac;
+			sourceTree = "<group>";
+		};
+		664C62991EA3DF1D0056927A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				664C5F7F1E357A2E004E1FA9 /* MainViewController.swift */,
+				66E227C01EA2EC5E0089CD48 /* AboutViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		664C629C1EA422DA0056927A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				664C629A1EA422D60056927A /* DragAndDropBox.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		665883091BBCC72A00CA21A9 = {
@@ -860,6 +879,7 @@
 				66E227C11EA2EC5E0089CD48 /* AboutViewController.swift in Sources */,
 				664C5F801E357A2E004E1FA9 /* MainViewController.swift in Sources */,
 				66E227C41EA316A00089CD48 /* PictographImageCoder.m in Sources */,
+				664C629B1EA422D60056927A /* DragAndDropBox.swift in Sources */,
 				664C5F7E1E357A2E004E1FA9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
