@@ -197,7 +197,7 @@
         toEncode = message;
     }
     
-    int maxMessageLengthForImage = ((int)[image getReconciledImageWidth] * (int)[image getReconciledImageHeight]) / 8;
+    int maxMessageLengthForImage = ((int)[image getReconciledImageWidth] * (int)[image getReconciledImageHeight]) / bitCountForCharacter;
     if ([message length] > maxMessageLengthForImage) {
         //Makes sure message length is under
         DLog(@"User's message was too large: %lu characters", (unsigned long)[message length]);
