@@ -114,7 +114,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         queue.async {
             do {
                 //Provide no password if encryption/decryption is off
-                let providedPassword = self.encryptionCheckbox.state == 1 ? self.encryptionCheckbox.stringValue : ""
+                let providedPassword = self.encryptionCheckbox.state == 1 ? self.passwordTextfield.stringValue : ""
                 
                 let encodedImage = try coder.encodeMessage(self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: providedPassword)
                 let image = NSImage(data: encodedImage)
@@ -162,7 +162,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         let coder = PictographImageCoder()
         
         //Provide no password if encryption/decryption is off
-        let providedPassword = self.encryptionCheckbox.state == 1 ? self.encryptionCheckbox.stringValue : ""
+        let providedPassword = self.encryptionCheckbox.state == 1 ? self.passwordTextfield.stringValue : ""
         
         do {
             let decodedMessage = try coder.decodeMessage(in: image, encryptedWithPassword: providedPassword)
