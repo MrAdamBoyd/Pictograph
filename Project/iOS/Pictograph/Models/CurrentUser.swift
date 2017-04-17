@@ -39,7 +39,7 @@ class CurrentUser: NSObject, NSCoding, NSSecureCoding {
         }
         
         //Encryption key
-        if let storedEncryptionPassword = aDecoder.decodeObject(forKey: encryptionEnabledKey) as? String {
+        if let storedEncryptionPassword = aDecoder.decodeObject(forKey: encryptionPasswordKey) as? String {
             encryptionPassword = storedEncryptionPassword
         }
         

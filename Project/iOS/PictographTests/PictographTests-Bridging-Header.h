@@ -5,6 +5,6 @@
 #ifndef PictographTests_Bridging_Header_h
 #define PictographTests_Bridging_Header_h
 
-#import "UIImageCoder.h"
+#import "PictographImageCoder.h"
 
 #endif

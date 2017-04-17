@@ -1,16 +1,19 @@
-platform :ios, '9.0'
-
 use_frameworks!
 def pod_list
-  pod 'SVProgressHUD'
   pod 'RNCryptor-objc'
-  pod 'EAIntroView'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'CustomIOSAlertView'
 end
 
 target 'Pictograph' do
+  platform :ios, '9.0'
+  pod_list
+  pod 'SVProgressHUD'
+  pod 'EAIntroView'
+end
+
+target 'Pictograph Mac' do
+  platform :osx, '10.11'
   pod_list
 end
 

@@ -22,7 +22,7 @@ class PictographTests: XCTestCase {
     func testUnencryptedEncode() {
         let testString = "This is only a test"
         
-        let imageCoder = UIImageCoder()
+        let imageCoder = PictographImageCoder()
         
         let imageData = try! imageCoder.encodeMessage(testString, inImage: UIImage(named: "AppIcon.png")!, encryptedWithPassword: nil)
         let stringFromImage = try! imageCoder.decodeMessageInImage(UIImage(data: imageData)!, encryptedWithPassword: nil)
@@ -34,7 +34,7 @@ class PictographTests: XCTestCase {
         let testString = "This is only a test"
         let password = "password"
         
-        let imageCoder = UIImageCoder()
+        let imageCoder = PictographImageCoder()
         
         let imageData = try! imageCoder.encodeMessage(testString, inImage: UIImage(named: "AppIcon.png")!, encryptedWithPassword: password)
         let stringFromImage = try! imageCoder.decodeMessageInImage(UIImage(data: imageData)!, encryptedWithPassword: password)
