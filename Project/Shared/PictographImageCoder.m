@@ -24,6 +24,10 @@
 
 @implementation PictographImageCoder
 
+#if TARGET_OS_OSX
+@synthesize isCancelled;
+#endif
+
 #pragma mark Decoding a message hidden in an image
 
 //Decodes UIImage image. Returns the encoded message in the image.
@@ -171,7 +175,7 @@
     
     NSString *toEncode = [[NSMutableString alloc] init];
     
-    BOOL encryptedBool = (password != nil) || (![password isEqualToString:@""]);
+    BOOL encryptedBool = ![password isEqualToString:@""];
     
     if (encryptedBool) {
         //If the user wants to encrypt the string, encrypt it
@@ -346,8 +350,8 @@
             //Going through each bit 2 by 2, that means we need to encode the pixel at position
             //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
             
-            if (encodeCounter >= [arrayOfBits count]) {
-                //If the message has been fully encoded, break out
+            if (encodeCounter >= [arrayOfBits count] || self.isCancelled) {
+                //If the message has been fully encoded or if the operation is cancelled, break out
                 
                 return [imageRep representationUsingType:NSPNGFileType properties: [[NSDictionary alloc] init]];
                 

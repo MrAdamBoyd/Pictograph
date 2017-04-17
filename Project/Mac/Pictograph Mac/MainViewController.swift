@@ -30,7 +30,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         super.viewDidLoad()
         
         let clickGR = NSClickGestureRecognizer(target: self, action: #selector(self.selectNewImageFromFileSystem))
-        self.mainImageView.addGestureRecognizer(clickGR)
+        self.dragAndDropView.addGestureRecognizer(clickGR)
         
         self.messageTextField.delegate = self
         
@@ -107,31 +107,48 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         alert.accessoryView = spinner
         alert.addButton(withTitle: "Cancel")
         
-        alert.beginSheetModal(for: self.view.window!) { [unowned self] response in
+        let coder = PictographImageCoder()
+        
+        let queue = DispatchQueue(label: "encoding", qos: .background)
+        
+        queue.async {
+            do {
+                //Provide no password if encryption/decryption is off
+                let providedPassword = self.encryptionCheckbox.state == 1 ? self.encryptionCheckbox.stringValue : ""
+                
+                let encodedImage = try coder.encodeMessage(self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: providedPassword)
+                let image = NSImage(data: encodedImage)
+                
+                //Hide the sheet
+                DispatchQueue.main.async {
+                    self.view.window?.endSheet(alert.window)
+                    
+                    if !coder.isCancelled {
+                        //If the operation wasn't cancelled, set the image
+                        self.mainImageView.image = image
+                        
+                        //Then wait 1 second before showing the user that the message is done encoding
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            //Alert the user
+                            self.showEncodedImage(encodedImage)
+                        }
+                    }
+                }
             
+            } catch let error {
+                
+                //Catch the error
+                self.showError(error)
+            }
         }
         
-//        //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-//            let coder = PictographImageCoder()
-//            
-//            do {
-//                //Provide no password if encryption/decryption is off
-//                let providedPassword = self.encryptionCheckbox.state == 1 ? self.encryptionCheckbox.stringValue : ""
-//                
-//                let encodedImage = try coder.encodeMessage(self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: providedPassword)
-//                let image = NSImage(data: encodedImage)
-//                self.mainImageView.image = image
-//                
-//                //Alert the user
-//                self.showEncodedImage(encodedImage)
-//                
-//            } catch let error {
-//                
-//                //Catch the error
-//                self.showError(error)
-//            }
-//        }
+        //Show the loading modal
+        alert.beginSheetModal(for: self.view.window!) { response in
+            if response == NSAlertFirstButtonReturn {
+                //If the cancel button is clicked, cancel the operation
+                coder.isCancelled = true
+            }
+        }
     }
 
     @IBAction func showMessageAction(_ sender: Any) {

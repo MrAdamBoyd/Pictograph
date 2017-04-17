@@ -14,6 +14,11 @@
 
 @interface PictographImageCoder : NSObject
 
+#if TARGET_OS_OSX
+//If the operation should be cancelled and return with whatever progress has been made
+@property (atomic, assign) BOOL isCancelled;
+#endif
+
 //Messages
 
 /**
@@ -24,7 +29,7 @@
  @param error pointer to an error
  @return nullable string that contains the message if it was decoded correctly
  */
-- (NSString * _Nullable)decodeMessageInImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nullable)password error:(NSError * _Nullable * _Nullable)error;
+- (NSString * _Nullable)decodeMessageInImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error;
 
 
 /**
@@ -36,6 +41,6 @@
  @param error pointer to an error
  @return NSData representation of the UIImage or NSImage with the message encoded in the image's pixels
  */
-- (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nullable)password error:(NSError * _Nullable * _Nullable)error;
+- (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error;
 
 @end
