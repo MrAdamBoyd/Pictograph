@@ -91,6 +91,7 @@
 		660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentUser.swift; path = ../iOS/Pictograph/Models/CurrentUser.swift; sourceTree = "<group>"; };
 		662CFC851BC2215F00A9FF28 /* PictographImageCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PictographImageCoder.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PictographImageCoder.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		6639F5911EA467E60032F56A /* Pictograph Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "Pictograph Mac.entitlements"; path = "../../Pictograph Mac/Pictograph Mac.entitlements"; sourceTree = "<group>"; };
 		6647B4381BDDB91800235E04 /* PictographDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictographDataController.swift; sourceTree = "<group>"; };
 		6647B43A1BDDCE9800235E04 /* PictographMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PictographMainViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6647B43C1BDEF5BF00235E04 /* IntroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -289,6 +290,7 @@
 				664C5F811E357A2E004E1FA9 /* Assets.xcassets */,
 				664C5F861E357A2E004E1FA9 /* Info.plist */,
 				664C5F831E357A2E004E1FA9 /* Main.storyboard */,
+				6639F5911EA467E60032F56A /* Pictograph Mac.entitlements */,
 				66056A851E8DFBC000DE0FB4 /* Pictograph_Mac-Bridging-Header.h */,
 			);
 			path = "Pictograph Mac";
@@ -571,6 +573,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 6GHQ7P7EHA;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					664C5F8A1E357A2E004E1FA9 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -995,6 +1002,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Pictograph Mac/Pictograph Mac.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
@@ -1019,6 +1027,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_ENTITLEMENTS = "Pictograph Mac/Pictograph Mac.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
