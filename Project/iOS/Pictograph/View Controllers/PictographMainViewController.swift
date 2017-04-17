@@ -173,6 +173,10 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //MARK: - UITextFieldDelegate
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.endEditingAndSetPassword()
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.endEditingAndSetPassword()
         return false
