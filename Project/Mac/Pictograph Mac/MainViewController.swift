@@ -251,7 +251,9 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     func saveImageToDisk(_ image: Data?) {
         print("Saving image to disk")
         let panel = NSSavePanel()
-        panel.nameFieldStringValue = ".png"
+        panel.nameFieldStringValue = ""
+        panel.allowedFileTypes = ["png"]
+        panel.allowsOtherFileTypes = false
         panel.beginSheetModal(for: self.view.window!) { [unowned self] result in
             if result == NSFileHandlingPanelOKButton {
                 guard let filePath = panel.url else { return }

@@ -32,7 +32,7 @@
 
 //Decodes UIImage image. Returns the encoded message in the image.
 //Password handler has no parameters and returns an NSString *
-- (NSString *)decodeMessageInImage:(PictographImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
+- (NSString * _Nullable)decodeMessageInImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
     
     DLog("Decoding image with password %@", password);
     
@@ -169,7 +169,7 @@
 #pragma mark Encoding message in an image
 
 //Encodes UIImage image with message message. Returns the modified UIImage
-- (NSData *)encodeMessage:(NSString *)message inImage:(PictographImage *)image encryptedWithPassword:(NSString *)password error:(NSError **)error {
+- (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
 
     DLog("Encoding message: %@, with password %@", message, password);
     
