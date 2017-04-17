@@ -1,5 +1,5 @@
 # Pictograph
-Pictograph is the best steganography app available for iOS. Easily send hidden messages to anyone you want. You can even encrypt the messages with a password.
+Pictograph is the best steganography app available for iOS and macOS. Easily send hidden messages to anyone you want. You can even encrypt the messages with a password.
 
 ## Contents
 * [Steganography](#steganography)
