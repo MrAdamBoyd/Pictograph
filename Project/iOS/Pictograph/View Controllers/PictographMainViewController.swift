@@ -164,9 +164,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     /// Ends editing and sets the user's encryption password. If password is "", turns off encryption
     func endEditingAndSetPassword() {
         self.view.endEditing(true)
-        PictographDataController.shared.userEncryptionPassword = self.mainEncodeView.encryptionKeyField.text
+        PictographDataController.shared.userEncryptionPassword = self.mainEncodeView.encryptionKeyField.text ?? ""
         
-        if PictographDataController.shared.userEncryptionPasswordNonNil.isEmpty {
+        if PictographDataController.shared.userEncryptionPassword.isEmpty {
             self.setEncryptionEnabled(false)
             self.mainEncodeView.encryptionSwitch.setOn(false, animated: true)
         }
@@ -238,7 +238,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         /* True if encrytption is enabled AND the key isn't blank
         OR encrytion is disabled
         */
-        if ((!PictographDataController.shared.userEncryptionPasswordNonNil.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled) {
+        if ((!PictographDataController.shared.userEncryptionPassword.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled) {
             
             self.showGetMessageController("Enter your message", withPlaceHolder: "Your message here")
             
@@ -255,7 +255,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         /* True if encrytption is enabled AND the key isn't blank
          OR encrytion is disabled
          */
-        if ((!PictographDataController.shared.userEncryptionPasswordNonNil.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled) {
+        if ((!PictographDataController.shared.userEncryptionPassword.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled) {
             
             self.decodeMessage()
             
@@ -400,7 +400,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         let coder = PictographImageCoder()
         
         //Provide no password if encryption/decryption is off
-        let providedPassword = mainEncodeView.encryptionSwitch.isOn ? mainEncodeView.encryptionKeyField.text : ""
+        let providedPassword = mainEncodeView.encryptionSwitch.isOn ? mainEncodeView.encryptionKeyField.text ?? "" : ""
         
         do {
             let decodedMessage = try coder.decodeMessage(in: image, encryptedWithPassword: providedPassword)

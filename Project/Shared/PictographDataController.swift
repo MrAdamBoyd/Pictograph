@@ -70,38 +70,19 @@ class PictographDataController: NSObject {
         }
     }
     
-    /// Returns the user's encryption key. No logic
-    var userEncryptionPasswordNonNil: String {
-        return self.user.encryptionPassword
-    }
-    
     
     /// User's encryption password
     /// GET:
     ///     if encryption is enabled and password isn't "", returns the password
     /// SET:
     ///     if newValue is nil, sets the password as "", else, sets the password normally
-    var userEncryptionPassword: String? {
+    var userEncryptionPassword: String {
         get {
-            guard self.user.encryptionEnabled else {
-                return nil
-            }
-            
-            let password = self.user.encryptionPassword
-            guard !password.isEmpty else {
-                return nil
-            }
-            
-            return password
+            return self.user.encryptionPassword
         }
         set {
-            if let newValue = newValue {
-                print("Setting encryption password: \(newValue)")
-                self.user.encryptionPassword = newValue
-            } else {
-                print("Setting encryption password: <no password>")
-                self.user.encryptionPassword = ""
-            }
+            print("Setting encryption password: \(newValue)")
+            self.user.encryptionPassword = newValue
             
             self.saveCurrentUser()
         }
