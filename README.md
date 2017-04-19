@@ -2,11 +2,16 @@
 Pictograph is the best steganography app available for iOS and macOS. Easily send hidden messages to anyone you want. You can even encrypt the messages with a password.
 
 ## Contents
+* [Downloading](#downloading)
 * [Steganography](#steganography)
 * [Encryption](#encryption)
 * [Author](#author)
 * [Changelog](#changelog)
 * [License](#license)
+
+## Downloading
+
+You can download Pictograph Mac [here](http://adamjboyd.com/Pictograph.zip). You can get Pictograph iOS on the App Store [here](https://itunes.apple.com/us/app/pictograph-hide-messages-in-plain-sight/id1051879856?ls=1&mt=8).
 
 ## Steganography
 
