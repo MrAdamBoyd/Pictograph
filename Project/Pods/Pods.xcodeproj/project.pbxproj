@@ -8,67 +8,67 @@
 
 /* Begin PBXBuildFile section */
 		0E4E00C4A625956612F3928C42D658D8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B0B95A84C3EACA2EFD7D29D7A24237 /* Cocoa.framework */; };
-		17E865B155E4ED16A75D12FF7F2EDA0D /* SVRadialGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 05C3094DBDF832A796BA812CFB741773 /* SVRadialGradientLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1E7D4E6C5A548B166A857BD60B3957D8 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B311E9F68F077D7FA5BF5A01158F7E0 /* RNEncryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		2275860EA5E6DDDDEB36D7839FA93E15 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		2439BD67527092BACCF27A0F2A3413D7 /* RNEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 992FCA531C05A5A551D3FEA950B0032A /* RNEncryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2468C92750F42C04F69DA99D7EBC67D4 /* RNDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA90F82981EEA8ACF26A7058AD0612C0 /* RNDecryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2A4C0B1CF95B3D6C791F8EF6588897D9 /* RNCryptor-objc-OSX-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 85FEB5E8561C1A82186F5E8E835AE380 /* RNCryptor-objc-OSX-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2C9F04225FF15915EDDAAFE1C48B3122 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC6C4273D8DF78711AD78DAADF61DA1B /* QuartzCore.framework */; };
-		2F2EB3607E902B1221F628B74E9AEA1E /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5646DB2ADF64F7D5490053F011173E /* RNDecryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		342FD0CF5A19992200CDCD679F2D71C6 /* EAIntroView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC871B6885401C7A2C8685C1A102205F /* EAIntroView-dummy.m */; };
-		35843D6B720611CD4E0BB4372C6E521A /* EAIntroPage.h in Headers */ = {isa = PBXBuildFile; fileRef = E0F00FAD72E396AC36B68D25B06BB3ED /* EAIntroPage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		17E865B155E4ED16A75D12FF7F2EDA0D /* SVRadialGradientLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = BCB7C4E871C60DD8C37EF9FC41A6F0CE /* SVRadialGradientLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1E7D4E6C5A548B166A857BD60B3957D8 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3BF23D64F08EA9C1CAAEDC74A0DC /* RNEncryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		2439BD67527092BACCF27A0F2A3413D7 /* RNEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7320E2D852E2B9D17FBDD7A5E218B1 /* RNEncryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2468C92750F42C04F69DA99D7EBC67D4 /* RNDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = CD41A504ED4CA51408416AB33900A19A /* RNDecryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2A4C0B1CF95B3D6C791F8EF6588897D9 /* RNCryptor-objc-OSX-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A64C704E362A46F8492B8610B2708A4 /* RNCryptor-objc-OSX-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2F2EB3607E902B1221F628B74E9AEA1E /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD6F94B8D3F45F0DC3888529BBE6533 /* RNDecryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		342FD0CF5A19992200CDCD679F2D71C6 /* EAIntroView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B208B61D210BDECA5FC20BA75FA9079 /* EAIntroView-dummy.m */; };
+		35843D6B720611CD4E0BB4372C6E521A /* EAIntroPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 334E8A9C10465ED7CC9B09EC6B9CE2B9 /* EAIntroPage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		415D6E4050990C72A5BEE0E9D4EE646C /* Pods-Pictograph Mac-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FD29F9382DBF6E7048B8F9E08C9D5E4 /* Pods-Pictograph Mac-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		49A40958B574F4AA0622B86E3DAA19F5 /* EARestrictedScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 345835D9D16A79E57DBDAD91553C1672 /* EARestrictedScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4EA4A852D1D8C36A63ED5E157029EC06 /* EAIntroView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CF2EF12D13004C0BDB1513621E678F0 /* EAIntroView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		501396162015F7B2D3D6629BFB27F7C9 /* EAIntroView.h in Headers */ = {isa = PBXBuildFile; fileRef = 79B9028094303300F25368C3DD6F6F24 /* EAIntroView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5070348E04BF2374A8C9C5BF475E422F /* RNCryptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = CBE59440873C8306C0D77CE395AB7299 /* RNCryptor+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		52075BAF33C3AB928CFEA46D961F5696 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		561B1B7C5A104DE40A4FA33668E5D304 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		599EC797D93F4BEB8EC9C246DBC36125 /* EARestrictedScrollView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 784346B69C7B84CDAC3A052006206767 /* EARestrictedScrollView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6079A80CBE4897FDB366E6BD0DD0265C /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1603E851726DB2188BFCE057A7606A6C /* RNCryptorEngine.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		64B4DFD9598EDF21FC2C02E410BF197F /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8448768EFEF9B4E5AACA929CA880AD /* RNCryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		6854567520A9E74DF10C210E82C624BA /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D04DA692D5A770748B26B6EC112E533 /* SVRadialGradientLayer.m */; };
-		6A7B6F66B52590485441E0E1B5689A93 /* SVProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 28A75F9D1FB691BC472A51974210FCFF /* SVProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		47C829F04158F91A26E8D78534C91C22 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4117F3935193CA83C82B926B5212344E /* QuartzCore.framework */; };
+		49A40958B574F4AA0622B86E3DAA19F5 /* EARestrictedScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = CD80A440760F020BF9CF47C569309205 /* EARestrictedScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4EA4A852D1D8C36A63ED5E157029EC06 /* EAIntroView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 08BFDF21F9C6175DD73F655425F92FD8 /* EAIntroView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		501396162015F7B2D3D6629BFB27F7C9 /* EAIntroView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07E4BED15A0516DB10306EC0D7A562DA /* EAIntroView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5070348E04BF2374A8C9C5BF475E422F /* RNCryptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B94C263FBFF1748821C2E1170F9308C5 /* RNCryptor+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		599EC797D93F4BEB8EC9C246DBC36125 /* EARestrictedScrollView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0106CF5A0AD19972EA05A59279B2044B /* EARestrictedScrollView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5DB99A73EEE5C0AE02955B3906043BF6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DFDFC4116C885DA7939CC292F828A7 /* Foundation.framework */; };
+		5F2D2E6BC28985E8EE70A7D4FAEDEECD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DFDFC4116C885DA7939CC292F828A7 /* Foundation.framework */; };
+		5FDA0261709D707200305EFC0EDC4BBC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DFDFC4116C885DA7939CC292F828A7 /* Foundation.framework */; };
+		6079A80CBE4897FDB366E6BD0DD0265C /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 287D0C706679FB4AD75868A6CD44EB26 /* RNCryptorEngine.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		60F5E1593EEDDEE5185463331A2894BD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A332068F1609C85EF9E1207C636B6FFF /* Security.framework */; };
+		6194D195FCD9253BBD2C640AD48A6532 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DFDFC4116C885DA7939CC292F828A7 /* Foundation.framework */; };
+		64B4DFD9598EDF21FC2C02E410BF197F /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E35B046977FE553761EB5D44B2768 /* RNCryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		6854567520A9E74DF10C210E82C624BA /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 460A5761CE54FCFD6B666CC4A52FEC41 /* SVRadialGradientLayer.m */; };
+		6A7B6F66B52590485441E0E1B5689A93 /* SVProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = AE7ACE3FDF542C248318857E246FD733 /* SVProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A7E656AA962EAC967C0641B6099090A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8B0B95A84C3EACA2EFD7D29D7A24237 /* Cocoa.framework */; };
-		6B65C5F3325E410271022A880A52695B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B94A3B02BD3EB4081BAF1B09599AEDB /* SVIndefiniteAnimatedView.m */; };
+		6B65C5F3325E410271022A880A52695B /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA06C34AFE6B360FE4169CF07979C3 /* SVIndefiniteAnimatedView.m */; };
 		6B8955D1779B97F6B7608A708D1F3C70 /* Pods-PictographUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F700C7C87B8F5F74F85B1C6262E5D02 /* Pods-PictographUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6CC749D028C53A61D89449445AED8C52 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9975D256B6FBE4DBBCE3AD559541D2 /* Security.framework */; };
-		7005958560B5A917571CCF150A655FB8 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = B15BAE35899F49F25F00C6B8C6ABCCF4 /* RNCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		767FED6325560283B0E521993E50620A /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E3F649CDF08A32140DC668C4A6BDAB /* SVProgressAnimatedView.m */; };
+		7005958560B5A917571CCF150A655FB8 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3865B8397E7DDC4C9B30E188D700C577 /* RNCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		767FED6325560283B0E521993E50620A /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6E659828CA995880B8669811827DE7 /* SVProgressAnimatedView.m */; };
+		7B7D6156062F6E0F8F9ED8EE72520DB4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DFDFC4116C885DA7939CC292F828A7 /* Foundation.framework */; };
 		7E83EBA7EB6FCD5376B9C2C68816320F /* Pods-Pictograph Mac-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1F3994E8F73CAF64ABA71CF2F37BA0 /* Pods-Pictograph Mac-dummy.m */; };
-		8574A1AA67A8A7B1567D435628673659 /* RNEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 992FCA531C05A5A551D3FEA950B0032A /* RNEncryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8753BB57AF3193E7572F3F5C8BC5F31A /* SVProgressAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = A9B108CF7A89D64DF9A02C0E09F7A4E0 /* SVProgressAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		88D35FD2FE12B1E80387CCB28A4DA16F /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 95321B52F6FAA8EB3C1690095CCCED13 /* SVProgressHUD.bundle */; };
-		8D5446756A1AFBE804F6C89490FE463B /* SVIndefiniteAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ED1B21F6238682713AB7293648E85B6 /* SVIndefiniteAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9451C3F078A93FA56444D72DF33C0E6B /* RNCryptor-objc-OSX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C8C3312115C604C9F8B45F8937D5006 /* RNCryptor-objc-OSX-dummy.m */; };
-		A0B526A8532C117BD076AF5BB4BCD272 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B311E9F68F077D7FA5BF5A01158F7E0 /* RNEncryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		A762EFBF51A8CA730045271CA02E6BBD /* RNCryptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = CBE59440873C8306C0D77CE395AB7299 /* RNCryptor+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		B0D367F056A3796FD6EBE529832789CF /* RNCryptorEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = BC4B7DCB48BB4C920ED7C6903D050A9C /* RNCryptorEngine.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		B51A8944C001F01581601A5ACD28C81B /* SVProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7CC3027F38CC9F158F0AF08753D028E0 /* SVProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8574A1AA67A8A7B1567D435628673659 /* RNEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7320E2D852E2B9D17FBDD7A5E218B1 /* RNEncryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8753BB57AF3193E7572F3F5C8BC5F31A /* SVProgressAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FBC99FD5BCE7CF548EC39A80E6ECBFC /* SVProgressAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88D35FD2FE12B1E80387CCB28A4DA16F /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D29C5DDB15654A059581BBE3223C1A93 /* SVProgressHUD.bundle */; };
+		8D5446756A1AFBE804F6C89490FE463B /* SVIndefiniteAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 06A864AF825AFD83C399324FF1F4D931 /* SVIndefiniteAnimatedView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9451C3F078A93FA56444D72DF33C0E6B /* RNCryptor-objc-OSX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7783F2D60ADA3C1F859AF25BE594C4C4 /* RNCryptor-objc-OSX-dummy.m */; };
+		A0B526A8532C117BD076AF5BB4BCD272 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6A3BF23D64F08EA9C1CAAEDC74A0DC /* RNEncryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		A762EFBF51A8CA730045271CA02E6BBD /* RNCryptor+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = B94C263FBFF1748821C2E1170F9308C5 /* RNCryptor+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		AD85482C98F3C077E9B0D95E31E148D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DFDFC4116C885DA7939CC292F828A7 /* Foundation.framework */; };
+		B0D367F056A3796FD6EBE529832789CF /* RNCryptorEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = C39A21C9B499380183A7BA8E1AC22D50 /* RNCryptorEngine.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		B51A8944C001F01581601A5ACD28C81B /* SVProgressHUD-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A9F81A07033363C3A927772B6FCAF5AA /* SVProgressHUD-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BB30BE085BA2BBAD85EC1AF71B31D34F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56DFDFC4116C885DA7939CC292F828A7 /* Foundation.framework */; };
 		C08184279D7153DD82A7329D0CB8644C /* Pods-PictographUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AB342812C1509D4712012E561C53B4 /* Pods-PictographUITests-dummy.m */; };
-		C130F9930E18F7A06D6C357449909378 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C1CF20CBD4638A84A1604381E364CD /* SVProgressHUD.m */; };
-		C41EB9232CC9C9A7A1D5A6F221D1EDB4 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = CD697106856E5292F5D889CFC699AFB2 /* EAIntroPage.m */; };
-		CCD230BC815C775651F2054A0DAE32E7 /* EARestrictedScrollView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D5E62EEB2C3F8327BF0FE18F064506 /* EARestrictedScrollView-dummy.m */; };
-		CDE73D7EBC5074148D92477879A5E71F /* RNDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA90F82981EEA8ACF26A7058AD0612C0 /* RNDecryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D196A425B69E7C870FF2AE2EF9AC0561 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		D54B76C6765B89ED714840CC9D0CF5EB /* RNCryptor-objc-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C08A5D32190A512C32A5DBCB7E2B3CEB /* RNCryptor-objc-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D5626586716EA27039403D1792718A5C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		D736A7365B08105133500418A70CA305 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = B15BAE35899F49F25F00C6B8C6ABCCF4 /* RNCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C130F9930E18F7A06D6C357449909378 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F8339A43FA48BCB78071F78BDBE101B /* SVProgressHUD.m */; };
+		C41EB9232CC9C9A7A1D5A6F221D1EDB4 /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 17308C03537D506F2628FD289767F358 /* EAIntroPage.m */; };
+		CCD230BC815C775651F2054A0DAE32E7 /* EARestrictedScrollView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9EFA242F93C034195CACA47448E22A /* EARestrictedScrollView-dummy.m */; };
+		CDE73D7EBC5074148D92477879A5E71F /* RNDecryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = CD41A504ED4CA51408416AB33900A19A /* RNDecryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D54B76C6765B89ED714840CC9D0CF5EB /* RNCryptor-objc-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F2769840AA344E69C7BCA3A0C960112 /* RNCryptor-objc-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D736A7365B08105133500418A70CA305 /* RNCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3865B8397E7DDC4C9B30E188D700C577 /* RNCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC0284DAB6A0ADDD1F4C9D4D7121CF07 /* Pods-Pictograph-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C80A4B5960119F332EC91194F3660FB /* Pods-Pictograph-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DEE970E595297963CF14229BE7D325BE /* SVProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9171376F49D3F06A08AC6ACE29751B /* SVProgressHUD-dummy.m */; };
-		DF020357330D2478D84CD1CC90B9E796 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EE8448768EFEF9B4E5AACA929CA880AD /* RNCryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		E0FE5C8A13C205B891527DFFA8352ADD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		E1FA8A884F8300B7BD5044DE5A49E997 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3822E66F9FD749F3CAD141326AD04138 /* Security.framework */; };
-		E2F112D928CEBD5E7E2ABE0686A332FB /* RNCryptor-objc-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6338E966BF9493D31498E07A0CEAE0 /* RNCryptor-objc-iOS-dummy.m */; };
-		EA705D6826863CE9297E92D5673EEDCE /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DF496CD3F09085CFBC42850AA37E31 /* EAIntroView.m */; };
-		EABBB2F663609893680E5B6F1622F5E6 /* EARestrictedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC65C5FB362F66644E7E9F69AD01C5 /* EARestrictedScrollView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		EB9C2D5FC6EEEE3A4940B5A8E349E368 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1603E851726DB2188BFCE057A7606A6C /* RNCryptorEngine.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DEE970E595297963CF14229BE7D325BE /* SVProgressHUD-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E6207F5354BA36EB34279301ABB711 /* SVProgressHUD-dummy.m */; };
+		DF020357330D2478D84CD1CC90B9E796 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2E35B046977FE553761EB5D44B2768 /* RNCryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		E2F112D928CEBD5E7E2ABE0686A332FB /* RNCryptor-objc-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA9F7FCD95C08ED4551502718CBB0C5 /* RNCryptor-objc-iOS-dummy.m */; };
+		EA705D6826863CE9297E92D5673EEDCE /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BDABE5A85B5F5655C6937AEC1079CD /* EAIntroView.m */; };
+		EABBB2F663609893680E5B6F1622F5E6 /* EARestrictedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FBBD053AB078FBB1C0B0AB0DF2431F /* EARestrictedScrollView.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		EB9C2D5FC6EEEE3A4940B5A8E349E368 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 287D0C706679FB4AD75868A6CD44EB26 /* RNCryptorEngine.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		EF361A191982677901EE147AECFA19E3 /* Pods-PictographTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B82D4E4B589BBD1466E7F155AC555E9A /* Pods-PictographTests-dummy.m */; };
-		F2D92BB3E1B3CABA242E6623B61E05E3 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5646DB2ADF64F7D5490053F011173E /* RNDecryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		F2D92BB3E1B3CABA242E6623B61E05E3 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD6F94B8D3F45F0DC3888529BBE6533 /* RNDecryptor.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		F3B8870A51612FE16508BA9448362CB9 /* EARestrictedScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E246462DA8F629102E8760B8684678 /* EARestrictedScrollView.framework */; };
-		F59244DA9983C8DF071864E41C05300B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */; };
-		F61F1DE4E596DC4BAD21D579B8D6262B /* RNCryptorEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = BC4B7DCB48BB4C920ED7C6903D050A9C /* RNCryptorEngine.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		F61F1DE4E596DC4BAD21D579B8D6262B /* RNCryptorEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = C39A21C9B499380183A7BA8E1AC22D50 /* RNCryptorEngine.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		FC5F531126B12EC015F0C94E6D607ED3 /* Pods-PictographTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3AE5611FF2A5ECD6A0C6CE76488D82 /* Pods-PictographTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDE8C21801688F0FFABE1F8457FA76D3 /* Pods-Pictograph-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E4FA90EEB2B94E41DF8E72F76D9FB /* Pods-Pictograph-dummy.m */; };
 /* End PBXBuildFile section */
@@ -119,127 +119,138 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		019476B2BE437714913261D1245747BE /* RNCryptor-objc-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor-objc-iOS-prefix.pch"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-prefix.pch"; sourceTree = "<group>"; };
-		0372874F2F2752011E48C5370D846457 /* SVProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVProgressHUD.xcconfig; sourceTree = "<group>"; };
-		0487AC4DB3B7C020C337D06AC086B5F3 /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
-		05C3094DBDF832A796BA812CFB741773 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
-		07198BE68793BC6EFCD42B11D4C1F875 /* RNCryptor-objc-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "RNCryptor-objc-iOS.xcconfig"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS.xcconfig"; sourceTree = "<group>"; };
+		0106CF5A0AD19972EA05A59279B2044B /* EARestrictedScrollView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EARestrictedScrollView-umbrella.h"; sourceTree = "<group>"; };
+		06A864AF825AFD83C399324FF1F4D931 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		06E0B3D97F7D9E7C8376B44BF7826E17 /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = iOS/Crashlytics.framework/Headers/Crashlytics.h; sourceTree = "<group>"; };
+		07E4BED15A0516DB10306EC0D7A562DA /* EAIntroView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EAIntroView.h; path = EAIntroView/EAIntroView.h; sourceTree = "<group>"; };
+		08BFDF21F9C6175DD73F655425F92FD8 /* EAIntroView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EAIntroView-umbrella.h"; sourceTree = "<group>"; };
+		0B08681231947538C878B712DC29BD51 /* SUAppcastItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUAppcastItem.h; path = Sparkle.framework/Versions/A/Headers/SUAppcastItem.h; sourceTree = "<group>"; };
+		0B8A953F9BF7B9C753BADB30D787579F /* SUUpdaterDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUUpdaterDelegate.h; path = Sparkle.framework/Versions/A/Headers/SUUpdaterDelegate.h; sourceTree = "<group>"; };
 		0C83B4BC294FC5207954072405DD7470 /* SVProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SVProgressHUD.framework; path = SVProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C8C3312115C604C9F8B45F8937D5006 /* RNCryptor-objc-OSX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RNCryptor-objc-OSX-dummy.m"; sourceTree = "<group>"; };
 		0D817C369E0834870CD78B6C9B137674 /* RNCryptor_objc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RNCryptor_objc.framework; path = "RNCryptor-objc-OSX.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0DD9474393434DC75E608B3CF0F0FE51 /* EAIntroView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EAIntroView.modulemap; sourceTree = "<group>"; };
+		0F2E35B046977FE553761EB5D44B2768 /* RNCryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNCryptor.m; path = RNCryptor/RNCryptor.m; sourceTree = "<group>"; };
 		10AB342812C1509D4712012E561C53B4 /* Pods-PictographUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PictographUITests-dummy.m"; sourceTree = "<group>"; };
 		12D13A7F5574FD6147995EE76DF97400 /* Pods-PictographUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		15A4E3989CFE3390F11F6F73BE37F9EE /* RNCryptor-objc-OSX-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-objc-OSX-prefix.pch"; sourceTree = "<group>"; };
-		1603E851726DB2188BFCE057A7606A6C /* RNCryptorEngine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNCryptorEngine.m; path = RNCryptor/RNCryptorEngine.m; sourceTree = "<group>"; };
 		16E4425D6866CAA3DC282AEBBACDCF2F /* Pods-PictographTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PictographTests.modulemap"; sourceTree = "<group>"; };
+		17308C03537D506F2628FD289767F358 /* EAIntroPage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EAIntroPage.m; path = EAIntroView/EAIntroPage.m; sourceTree = "<group>"; };
 		17E73173ECB8FFF43DD37504AEB707DA /* EAIntroView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EAIntroView.framework; path = EAIntroView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1996432EC3847493A77B42D85B2A7687 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		19C7C61570F4FEE00BD55B986C2366D7 /* Pods_PictographUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PictographUITests.framework; path = "Pods-PictographUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B311E9F68F077D7FA5BF5A01158F7E0 /* RNEncryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNEncryptor.m; path = RNCryptor/RNEncryptor.m; sourceTree = "<group>"; };
-		1DBFDA521AC18B044CEF969BDFEB83B1 /* SVProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-prefix.pch"; sourceTree = "<group>"; };
 		1E037BB44D947F5FDE0D9ED27FBB1C01 /* Pods-PictographTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographTests.release.xcconfig"; sourceTree = "<group>"; };
+		1F2769840AA344E69C7BCA3A0C960112 /* RNCryptor-objc-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor-objc-iOS-umbrella.h"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-umbrella.h"; sourceTree = "<group>"; };
+		1F55CF7E504F9AAAEE4F186FACCBAA72 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FD29F9382DBF6E7048B8F9E08C9D5E4 /* Pods-Pictograph Mac-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Pictograph Mac-umbrella.h"; sourceTree = "<group>"; };
 		1FECC622F9EE1C37E6C84624D2451DF0 /* EARestrictedScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = EARestrictedScrollView.framework; path = EARestrictedScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		211735AEE2433C6046B3B89F8CE1D8D2 /* Pods-Pictograph-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph-frameworks.sh"; sourceTree = "<group>"; };
+		233E10A666DE204F78945E57B8F958B6 /* EARestrictedScrollView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EARestrictedScrollView-prefix.pch"; sourceTree = "<group>"; };
 		268158A36526131709C3F89C22F9499E /* Pods-Pictograph Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph Mac.debug.xcconfig"; sourceTree = "<group>"; };
-		28A75F9D1FB691BC472A51974210FCFF /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
-		2B4C5AA0052EE007EF28DC91C015A135 /* EARestrictedScrollView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EARestrictedScrollView.xcconfig; sourceTree = "<group>"; };
-		308477D3EC93212822CD5ADE7B5EEC1A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		287D0C706679FB4AD75868A6CD44EB26 /* RNCryptorEngine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNCryptorEngine.m; path = RNCryptor/RNCryptorEngine.m; sourceTree = "<group>"; };
 		31045072E564724232F41247218D49FD /* Pods_Pictograph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pictograph.framework; path = "Pods-Pictograph.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AD03FC1D68D1B3CBF3AC1B75C9CF2D /* Pods_Pictograph_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Pictograph_Mac.framework; path = "Pods-Pictograph Mac.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		345835D9D16A79E57DBDAD91553C1672 /* EARestrictedScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EARestrictedScrollView.h; path = EARestrictedScrollView/EARestrictedScrollView.h; sourceTree = "<group>"; };
-		3822E66F9FD749F3CAD141326AD04138 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		384DF0CE7553E7F80C2EA5F67235D94E /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
-		3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		331038DCFDBFB330C506561EDDF968DD /* Sparkle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Sparkle.h; path = Sparkle.framework/Versions/A/Headers/Sparkle.h; sourceTree = "<group>"; };
+		334E8A9C10465ED7CC9B09EC6B9CE2B9 /* EAIntroPage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EAIntroPage.h; path = EAIntroView/EAIntroPage.h; sourceTree = "<group>"; };
+		3865B8397E7DDC4C9B30E188D700C577 /* RNCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNCryptor.h; path = RNCryptor/RNCryptor.h; sourceTree = "<group>"; };
 		3EF857E813A0FA422EB9884F76E3E75F /* Pods-PictographUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PictographUITests.modulemap"; sourceTree = "<group>"; };
-		5357867C876502F05CD68933D181F0AF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5496675D0596C2B4A662CD079CC063F9 /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
+		4117F3935193CA83C82B926B5212344E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		44399B21C4600E3FE2A6FA882DEA1247 /* SVProgressHUD.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVProgressHUD.xcconfig; sourceTree = "<group>"; };
+		460A5761CE54FCFD6B666CC4A52FEC41 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		50FA06C34AFE6B360FE4169CF07979C3 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		55AB369E1F783FEBE67527E356E2F724 /* Pods-Pictograph Mac-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph Mac-resources.sh"; sourceTree = "<group>"; };
-		5959E8C9CBB84EAA6A44DDA58D4AA784 /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
+		56DFDFC4116C885DA7939CC292F828A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		57CF4B3B0BF2D3A4A71813333E8D8A3C /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = iOS/Crashlytics.framework/Headers/Answers.h; sourceTree = "<group>"; };
+		5B208B61D210BDECA5FC20BA75FA9079 /* EAIntroView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EAIntroView-dummy.m"; sourceTree = "<group>"; };
+		5E9EFA242F93C034195CACA47448E22A /* EARestrictedScrollView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EARestrictedScrollView-dummy.m"; sourceTree = "<group>"; };
+		5F8339A43FA48BCB78071F78BDBE101B /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
+		61A776442513C493BF5D48FBECAD53F6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61BDABE5A85B5F5655C6937AEC1079CD /* EAIntroView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EAIntroView.m; path = EAIntroView/EAIntroView.m; sourceTree = "<group>"; };
+		66E7F849E00326EB80D16988A379A3D5 /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
 		6BA4E3CD82EC3864BE27DEFD14CC598C /* Pods-PictographUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographUITests-resources.sh"; sourceTree = "<group>"; };
-		6CF2EF12D13004C0BDB1513621E678F0 /* EAIntroView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EAIntroView-umbrella.h"; sourceTree = "<group>"; };
+		6BD3559C4E0E4641F75FB9C68A83B093 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
 		6D9E85EFAA517D9AC2EC28598C8E7E07 /* Pods-Pictograph-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph-resources.sh"; sourceTree = "<group>"; };
-		6E57ED50FC4491C28DAA74320746B7BF /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
-		6ED1B21F6238682713AB7293648E85B6 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVIndefiniteAnimatedView.h; path = SVProgressHUD/SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
-		6EE4B6332BA32C71751502AC3E20A816 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DA9F7FCD95C08ED4551502718CBB0C5 /* RNCryptor-objc-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "RNCryptor-objc-iOS-dummy.m"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-dummy.m"; sourceTree = "<group>"; };
 		6F700C7C87B8F5F74F85B1C6262E5D02 /* Pods-PictographUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PictographUITests-umbrella.h"; sourceTree = "<group>"; };
 		713E53FE6E6A1FA91AB370C6E4BA95C2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		784346B69C7B84CDAC3A052006206767 /* EARestrictedScrollView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EARestrictedScrollView-umbrella.h"; sourceTree = "<group>"; };
+		7783F2D60ADA3C1F859AF25BE594C4C4 /* RNCryptor-objc-OSX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RNCryptor-objc-OSX-dummy.m"; sourceTree = "<group>"; };
+		77ED3545CC1D67C5081549B13015D44D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78B08BEB9E89D9ACB873B928706A23A8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		79B9028094303300F25368C3DD6F6F24 /* EAIntroView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EAIntroView.h; path = EAIntroView/EAIntroView.h; sourceTree = "<group>"; };
+		7A64C704E362A46F8492B8610B2708A4 /* RNCryptor-objc-OSX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-objc-OSX-umbrella.h"; sourceTree = "<group>"; };
 		7C80A4B5960119F332EC91194F3660FB /* Pods-Pictograph-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Pictograph-umbrella.h"; sourceTree = "<group>"; };
-		7CBC65C5FB362F66644E7E9F69AD01C5 /* EARestrictedScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EARestrictedScrollView.m; path = EARestrictedScrollView/EARestrictedScrollView.m; sourceTree = "<group>"; };
-		7CC3027F38CC9F158F0AF08753D028E0 /* SVProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-umbrella.h"; sourceTree = "<group>"; };
-		7D04DA692D5A770748B26B6EC112E533 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVRadialGradientLayer.m; path = SVProgressHUD/SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		7D9975D256B6FBE4DBBCE3AD559541D2 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		817E3F09D26608B49A00813654163ED2 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
 		82BBB6C4D66CA4E4387CFEB1B16FF89B /* Pods-Pictograph Mac.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Pictograph Mac.modulemap"; sourceTree = "<group>"; };
-		83CFAC4ED3FA243BFB75ECA7567AB6B3 /* EAIntroView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EAIntroView.xcconfig; sourceTree = "<group>"; };
-		85FEB5E8561C1A82186F5E8E835AE380 /* RNCryptor-objc-OSX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-objc-OSX-umbrella.h"; sourceTree = "<group>"; };
-		86D5E62EEB2C3F8327BF0FE18F064506 /* EARestrictedScrollView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EARestrictedScrollView-dummy.m"; sourceTree = "<group>"; };
-		89DF496CD3F09085CFBC42850AA37E31 /* EAIntroView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EAIntroView.m; path = EAIntroView/EAIntroView.m; sourceTree = "<group>"; };
-		8B94A3B02BD3EB4081BAF1B09599AEDB /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVIndefiniteAnimatedView.m; path = SVProgressHUD/SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
-		8C6044F3B4392AE667F990561C0E0DB4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8372A6C3264A5BC23BAC9FF34BE0DDEA /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = iOS/Crashlytics.framework/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
+		89D91EA0855B34F0597F738C17536997 /* SUExport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUExport.h; path = Sparkle.framework/Versions/A/Headers/SUExport.h; sourceTree = "<group>"; };
 		8DA2EA5FFEA01B1D130D588B41203564 /* Pods-PictographUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographUITests.release.xcconfig"; sourceTree = "<group>"; };
-		8E1F825785DEDE9F9FA7DA2B4C5FC7BD /* RNCryptor-objc-OSX.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "RNCryptor-objc-OSX.xcconfig"; sourceTree = "<group>"; };
 		8E9C1985396C0B74510BB68108FE69FE /* Pods-PictographTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographTests-frameworks.sh"; sourceTree = "<group>"; };
+		8F8E369406E22F615712AC0644C5E2D2 /* RNCryptor-objc-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor-objc-iOS-prefix.pch"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-prefix.pch"; sourceTree = "<group>"; };
+		8FBC99FD5BCE7CF548EC39A80E6ECBFC /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		91A21CBADC177A14A69CDB865ECE9F29 /* SUAppcast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUAppcast.h; path = Sparkle.framework/Versions/A/Headers/SUAppcast.h; sourceTree = "<group>"; };
+		931B0D65F23397581DF73BBE87CD9E38 /* RNCryptor-objc-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "RNCryptor-objc-iOS.modulemap"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS.modulemap"; sourceTree = "<group>"; };
+		935A31B2195D615F49BF9779DC81E0B7 /* RNCryptor-objc-OSX-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-objc-OSX-prefix.pch"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93DEC4C082B5222DAC2B015CC4E3DD56 /* Pods-Pictograph.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph.debug.xcconfig"; sourceTree = "<group>"; };
-		95321B52F6FAA8EB3C1690095CCCED13 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
+		95080517E3EEAD71F7E7923D61E808DD /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = iOS/Fabric.framework; sourceTree = "<group>"; };
 		976A550E2A141BE8AD434D06F2934788 /* Pods_PictographTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PictographTests.framework; path = "Pods-PictographTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		988274F78B39C5D625FA9FCDF00DA361 /* RNCryptor_objc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RNCryptor_objc.framework; path = "RNCryptor-objc-iOS.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		992FCA531C05A5A551D3FEA950B0032A /* RNEncryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNEncryptor.h; path = RNCryptor/RNEncryptor.h; sourceTree = "<group>"; };
-		9A6338E966BF9493D31498E07A0CEAE0 /* RNCryptor-objc-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "RNCryptor-objc-iOS-dummy.m"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-dummy.m"; sourceTree = "<group>"; };
-		9C6E50276D140E573AD247565C216FBF /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
+		9A7320E2D852E2B9D17FBDD7A5E218B1 /* RNEncryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNEncryptor.h; path = RNCryptor/RNEncryptor.h; sourceTree = "<group>"; };
 		9F4621370FD3015B549F9D1A863C80FF /* Pods-PictographUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PictographUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9F9E4FA90EEB2B94E41DF8E72F76D9FB /* Pods-Pictograph-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Pictograph-dummy.m"; sourceTree = "<group>"; };
-		A9B108CF7A89D64DF9A02C0E09F7A4E0 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressAnimatedView.h; path = SVProgressHUD/SVProgressAnimatedView.h; sourceTree = "<group>"; };
-		B15BAE35899F49F25F00C6B8C6ABCCF4 /* RNCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNCryptor.h; path = RNCryptor/RNCryptor.h; sourceTree = "<group>"; };
+		A332068F1609C85EF9E1207C636B6FFF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		A9F81A07033363C3A927772B6FCAF5AA /* SVProgressHUD-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-umbrella.h"; sourceTree = "<group>"; };
+		AB6E659828CA995880B8669811827DE7 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		AE7ACE3FDF542C248318857E246FD733 /* SVProgressHUD.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = SVProgressHUD/SVProgressHUD.h; sourceTree = "<group>"; };
+		AF3578BB34A4D2FD117EA28B0DBDE902 /* SUVersionComparisonProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUVersionComparisonProtocol.h; path = Sparkle.framework/Versions/A/Headers/SUVersionComparisonProtocol.h; sourceTree = "<group>"; };
+		AF9A21554E0620A4107EE3E1C68F8686 /* SVProgressHUD.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SVProgressHUD.modulemap; sourceTree = "<group>"; };
+		B1EE5FAE1C08270553860198E203DEE8 /* SVProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-prefix.pch"; sourceTree = "<group>"; };
 		B2EC03D630B1953511D82BF4CFA578E8 /* Pods-PictographUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PictographUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		B3EAD027F2D3818B98C963B687692108 /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = iOS/Crashlytics.framework/Headers/Answers.h; sourceTree = "<group>"; };
+		B2FBBD053AB078FBB1C0B0AB0DF2431F /* EARestrictedScrollView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EARestrictedScrollView.m; path = EARestrictedScrollView/EARestrictedScrollView.m; sourceTree = "<group>"; };
+		B4AF76E79E478C27F3BB6EDF4231EBD3 /* SUVersionDisplayProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUVersionDisplayProtocol.h; path = Sparkle.framework/Versions/A/Headers/SUVersionDisplayProtocol.h; sourceTree = "<group>"; };
+		B50DE7B05C6F4FB98F0160B2201218BF /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		B600F1BD5689A1C912089A860B2B6C24 /* Pods-Pictograph Mac-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Pictograph Mac-frameworks.sh"; sourceTree = "<group>"; };
 		B82D4E4B589BBD1466E7F155AC555E9A /* Pods-PictographTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PictographTests-dummy.m"; sourceTree = "<group>"; };
+		B94C263FBFF1748821C2E1170F9308C5 /* RNCryptor+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor+Private.h"; path = "RNCryptor/RNCryptor+Private.h"; sourceTree = "<group>"; };
 		B9E30A127BB27B1EBE8AD03C8216D6CD /* Pods-PictographTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PictographTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		BBBAA674BFA5B0161BEC62AB9A14E637 /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = iOS/Fabric.framework/Headers/FABAttributes.h; sourceTree = "<group>"; };
-		BC4B7DCB48BB4C920ED7C6903D050A9C /* RNCryptorEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNCryptorEngine.h; path = RNCryptor/RNCryptorEngine.h; sourceTree = "<group>"; };
-		BD9171376F49D3F06A08AC6ACE29751B /* SVProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD-dummy.m"; sourceTree = "<group>"; };
-		C08A5D32190A512C32A5DBCB7E2B3CEB /* RNCryptor-objc-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor-objc-iOS-umbrella.h"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS-umbrella.h"; sourceTree = "<group>"; };
+		BC8FD44A056D4735E22B11010330BCB3 /* SUStandardVersionComparator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUStandardVersionComparator.h; path = Sparkle.framework/Versions/A/Headers/SUStandardVersionComparator.h; sourceTree = "<group>"; };
+		BCB7C4E871C60DD8C37EF9FC41A6F0CE /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SVRadialGradientLayer.h; path = SVProgressHUD/SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		C0E246462DA8F629102E8760B8684678 /* EARestrictedScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EARestrictedScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1543CC9A6392237FEB505954AAD87FA /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = iOS/Crashlytics.framework/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
-		C559D1E2B6E7DF16C26CB21FE5F7937A /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
-		C7CADCFB889306868364ACBD7B5AD430 /* RNCryptor-objc-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; name = "RNCryptor-objc-iOS.modulemap"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS.modulemap"; sourceTree = "<group>"; };
-		C8EB92C5A63E0CFADB871BEC8926BF39 /* EARestrictedScrollView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EARestrictedScrollView-prefix.pch"; sourceTree = "<group>"; };
+		C129EAEAA2144C719569E1B50F46913A /* EARestrictedScrollView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EARestrictedScrollView.modulemap; sourceTree = "<group>"; };
+		C391E5F9F7906AD68D3A742FD10B7E83 /* RNCryptor-objc-OSX.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "RNCryptor-objc-OSX.xcconfig"; sourceTree = "<group>"; };
+		C39A21C9B499380183A7BA8E1AC22D50 /* RNCryptorEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNCryptorEngine.h; path = RNCryptor/RNCryptorEngine.h; sourceTree = "<group>"; };
+		C4ACA4F0DE60A994EDBA68F8C7B6A3CB /* EAIntroView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EAIntroView.xcconfig; sourceTree = "<group>"; };
+		C60E952AA7E8D39D355F086304A03A77 /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = iOS/Crashlytics.framework/Headers/CLSLogging.h; sourceTree = "<group>"; };
 		CB1F3994E8F73CAF64ABA71CF2F37BA0 /* Pods-Pictograph Mac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Pictograph Mac-dummy.m"; sourceTree = "<group>"; };
-		CBE59440873C8306C0D77CE395AB7299 /* RNCryptor+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RNCryptor+Private.h"; path = "RNCryptor/RNCryptor+Private.h"; sourceTree = "<group>"; };
-		CC6C4273D8DF78711AD78DAADF61DA1B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		CD697106856E5292F5D889CFC699AFB2 /* EAIntroPage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EAIntroPage.m; path = EAIntroView/EAIntroPage.m; sourceTree = "<group>"; };
+		CD41A504ED4CA51408416AB33900A19A /* RNDecryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNDecryptor.h; path = RNCryptor/RNDecryptor.h; sourceTree = "<group>"; };
+		CD80A440760F020BF9CF47C569309205 /* EARestrictedScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EARestrictedScrollView.h; path = EARestrictedScrollView/EARestrictedScrollView.h; sourceTree = "<group>"; };
 		CD9789C675B602EC86A925AE75136DF6 /* Pods-PictographUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographUITests-frameworks.sh"; sourceTree = "<group>"; };
-		D3C1CF20CBD4638A84A1604381E364CD /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
-		D473A84533274B3A91A414B47AFFA80B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../RNCryptor-objc-iOS/Info.plist"; sourceTree = "<group>"; };
+		CE473A2A822C01C7E09EA07F7E832FED /* RNCryptor-objc-OSX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "RNCryptor-objc-OSX.modulemap"; sourceTree = "<group>"; };
+		CFB86ADD604AE6073F12B31F952CDCDD /* EAIntroView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EAIntroView.modulemap; sourceTree = "<group>"; };
+		D00FE47FCB860C9612581E73E36DC65A /* EAIntroView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EAIntroView-prefix.pch"; sourceTree = "<group>"; };
+		D0F05CB46511CAF98958E0D168EBE14C /* SUUpdater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUUpdater.h; path = Sparkle.framework/Versions/A/Headers/SUUpdater.h; sourceTree = "<group>"; };
+		D29C5DDB15654A059581BBE3223C1A93 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = SVProgressHUD/SVProgressHUD.bundle; sourceTree = "<group>"; };
 		D933E41519DDA9FC1674B281E275A667 /* Pods-Pictograph.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Pictograph.modulemap"; sourceTree = "<group>"; };
 		DA88D32CE1A5CC87FD86F515B9039C8B /* Pods-Pictograph Mac-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Pictograph Mac-acknowledgements.markdown"; sourceTree = "<group>"; };
-		DED0CBBD03F816626432C277E2A8095D /* EARestrictedScrollView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = EARestrictedScrollView.modulemap; sourceTree = "<group>"; };
+		DC6A3BF23D64F08EA9C1CAAEDC74A0DC /* RNEncryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNEncryptor.m; path = RNCryptor/RNEncryptor.m; sourceTree = "<group>"; };
 		DEDA9617A70D425F40D122E7DE13FF68 /* Pods-PictographTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PictographTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E025B59751860AAAB62089C70D04AF7D /* Pods-Pictograph-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pictograph-acknowledgements.plist"; sourceTree = "<group>"; };
-		E0521EF296DA11092E61BE1677603ED0 /* EAIntroView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EAIntroView-prefix.pch"; sourceTree = "<group>"; };
-		E0F00FAD72E396AC36B68D25B06BB3ED /* EAIntroPage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EAIntroPage.h; path = EAIntroView/EAIntroPage.h; sourceTree = "<group>"; };
-		E3E5F6F731B1710F0158EBF5D438AC11 /* RNCryptor-objc-OSX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "RNCryptor-objc-OSX.modulemap"; sourceTree = "<group>"; };
+		E08BA8C1D779FC159D2AA68C470FBE52 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = iOS/Crashlytics.framework/Headers/CLSReport.h; sourceTree = "<group>"; };
+		E11560A337BBCCA006EC2C500A850CE4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E622068D70430842F41D9B518D42F414 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7033F071055153A9B062D666DE5DEEC /* Pods-Pictograph Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph Mac.release.xcconfig"; sourceTree = "<group>"; };
+		E735936FDBCCF19C8E9F5E05C297EBED /* EARestrictedScrollView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EARestrictedScrollView.xcconfig; sourceTree = "<group>"; };
 		EA3AE5611FF2A5ECD6A0C6CE76488D82 /* Pods-PictographTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PictographTests-umbrella.h"; sourceTree = "<group>"; };
-		EA90F82981EEA8ACF26A7058AD0612C0 /* RNDecryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNDecryptor.h; path = RNCryptor/RNDecryptor.h; sourceTree = "<group>"; };
+		EBD6F94B8D3F45F0DC3888529BBE6533 /* RNDecryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNDecryptor.m; path = RNCryptor/RNDecryptor.m; sourceTree = "<group>"; };
 		EC41D9AE7412DC92EAAE05B2957DF56A /* Pods-Pictograph-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Pictograph-acknowledgements.markdown"; sourceTree = "<group>"; };
-		EC871B6885401C7A2C8685C1A102205F /* EAIntroView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EAIntroView-dummy.m"; sourceTree = "<group>"; };
+		ECD5CFAAF95030A954C26A2A76F64F43 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
 		ED994C3BBD9F9F59A3B449BD497E3976 /* Pods-PictographTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PictographTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		EE8448768EFEF9B4E5AACA929CA880AD /* RNCryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNCryptor.m; path = RNCryptor/RNCryptor.m; sourceTree = "<group>"; };
 		EF7CA2AF91C561C00E1F5D32A9A7B69F /* Pods-Pictograph.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Pictograph.release.xcconfig"; sourceTree = "<group>"; };
-		EFC3FA2F5D9DD61FC955B23E3467D115 /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = iOS/Crashlytics.framework/Headers/CLSAttributes.h; sourceTree = "<group>"; };
-		F34C69B32E6B3F5DE281F79F3624E17A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = iOS/Crashlytics.framework; sourceTree = "<group>"; };
+		F2851B04D92AA7F3EB1811F35333304E /* SUErrors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SUErrors.h; path = Sparkle.framework/Versions/A/Headers/SUErrors.h; sourceTree = "<group>"; };
+		F2E6207F5354BA36EB34279301ABB711 /* SVProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD-dummy.m"; sourceTree = "<group>"; };
 		F4E92E4E018FBD61074DD62878168DB5 /* Pods-PictographTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PictographTests-resources.sh"; sourceTree = "<group>"; };
+		F69815155C50E0F97D635ED51657885C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../RNCryptor-objc-iOS/Info.plist"; sourceTree = "<group>"; };
+		F75BE8F545BBEE74538791C9BD2D9CC4 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = iOS/Fabric.framework/Headers/Fabric.h; sourceTree = "<group>"; };
 		F778ACC8613EBE98C1A00F61D1CFDCA6 /* Pods-Pictograph Mac-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Pictograph Mac-acknowledgements.plist"; sourceTree = "<group>"; };
 		F8B0B95A84C3EACA2EFD7D29D7A24237 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		F8E3F649CDF08A32140DC668C4A6BDAB /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressAnimatedView.m; path = SVProgressHUD/SVProgressAnimatedView.m; sourceTree = "<group>"; };
-		FB5646DB2ADF64F7D5490053F011173E /* RNDecryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RNDecryptor.m; path = RNCryptor/RNDecryptor.m; sourceTree = "<group>"; };
+		FF275BE585F438D3F986CB4ADE3E8DD8 /* RNCryptor-objc-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "RNCryptor-objc-iOS.xcconfig"; path = "../RNCryptor-objc-iOS/RNCryptor-objc-iOS.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,7 +258,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				561B1B7C5A104DE40A4FA33668E5D304 /* Foundation.framework in Frameworks */,
+				5DB99A73EEE5C0AE02955B3906043BF6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,8 +266,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52075BAF33C3AB928CFEA46D961F5696 /* Foundation.framework in Frameworks */,
-				2C9F04225FF15915EDDAAFE1C48B3122 /* QuartzCore.framework in Frameworks */,
+				5F2D2E6BC28985E8EE70A7D4FAEDEECD /* Foundation.framework in Frameworks */,
+				47C829F04158F91A26E8D78534C91C22 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,7 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0FE5C8A13C205B891527DFFA8352ADD /* Foundation.framework in Frameworks */,
+				BB30BE085BA2BBAD85EC1AF71B31D34F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3B8870A51612FE16508BA9448362CB9 /* EARestrictedScrollView.framework in Frameworks */,
-				D196A425B69E7C870FF2AE2EF9AC0561 /* Foundation.framework in Frameworks */,
+				6194D195FCD9253BBD2C640AD48A6532 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +292,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F59244DA9983C8DF071864E41C05300B /* Foundation.framework in Frameworks */,
+				5FDA0261709D707200305EFC0EDC4BBC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,8 +300,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2275860EA5E6DDDDEB36D7839FA93E15 /* Foundation.framework in Frameworks */,
-				E1FA8A884F8300B7BD5044DE5A49E997 /* Security.framework in Frameworks */,
+				7B7D6156062F6E0F8F9ED8EE72520DB4 /* Foundation.framework in Frameworks */,
+				60F5E1593EEDDEE5185463331A2894BD /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,19 +326,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5626586716EA27039403D1792718A5C /* Foundation.framework in Frameworks */,
+				AD85482C98F3C077E9B0D95E31E148D0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		14FC295E91D364F2BBBC85C9B28BEBC1 /* Frameworks */ = {
+		12FA1390620A01A8889F8B0CCE3BC9C2 /* Sparkle */ = {
 			isa = PBXGroup;
 			children = (
-				F34C69B32E6B3F5DE281F79F3624E17A /* Crashlytics.framework */,
+				331038DCFDBFB330C506561EDDF968DD /* Sparkle.h */,
+				91A21CBADC177A14A69CDB865ECE9F29 /* SUAppcast.h */,
+				0B08681231947538C878B712DC29BD51 /* SUAppcastItem.h */,
+				F2851B04D92AA7F3EB1811F35333304E /* SUErrors.h */,
+				89D91EA0855B34F0597F738C17536997 /* SUExport.h */,
+				BC8FD44A056D4735E22B11010330BCB3 /* SUStandardVersionComparator.h */,
+				D0F05CB46511CAF98958E0D168EBE14C /* SUUpdater.h */,
+				0B8A953F9BF7B9C753BADB30D787579F /* SUUpdaterDelegate.h */,
+				AF3578BB34A4D2FD117EA28B0DBDE902 /* SUVersionComparisonProtocol.h */,
+				B4AF76E79E478C27F3BB6EDF4231EBD3 /* SUVersionDisplayProtocol.h */,
+				8B50977A482047574DEF6B4FB79AB5FE /* Frameworks */,
 			);
-			name = Frameworks;
+			name = Sparkle;
+			path = Sparkle;
 			sourceTree = "<group>";
 		};
 		163B23A6214189A418A072ADCD663526 /* Products */ = {
@@ -346,6 +368,45 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2826A67B6D0421588BF7E4077A56D92F /* EARestrictedScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				CD80A440760F020BF9CF47C569309205 /* EARestrictedScrollView.h */,
+				B2FBBD053AB078FBB1C0B0AB0DF2431F /* EARestrictedScrollView.m */,
+				7148710A7BC821F1360840403366DDD7 /* Support Files */,
+			);
+			name = EARestrictedScrollView;
+			path = EARestrictedScrollView;
+			sourceTree = "<group>";
+		};
+		28C9DF6EDE8769FB3603FE3F6EA44F38 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				06A864AF825AFD83C399324FF1F4D931 /* SVIndefiniteAnimatedView.h */,
+				50FA06C34AFE6B360FE4169CF07979C3 /* SVIndefiniteAnimatedView.m */,
+				8FBC99FD5BCE7CF548EC39A80E6ECBFC /* SVProgressAnimatedView.h */,
+				AB6E659828CA995880B8669811827DE7 /* SVProgressAnimatedView.m */,
+				AE7ACE3FDF542C248318857E246FD733 /* SVProgressHUD.h */,
+				5F8339A43FA48BCB78071F78BDBE101B /* SVProgressHUD.m */,
+				BCB7C4E871C60DD8C37EF9FC41A6F0CE /* SVRadialGradientLayer.h */,
+				460A5761CE54FCFD6B666CC4A52FEC41 /* SVRadialGradientLayer.m */,
+				BBD91E4E3D2CD2A3E6319FE87156705B /* Resources */,
+				73D84F755C2AFB5125F829D49CBB7354 /* Support Files */,
+			);
+			name = SVProgressHUD;
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		2BF0C3492A97387DEDA1C698D8D8A230 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				56DFDFC4116C885DA7939CC292F828A7 /* Foundation.framework */,
+				4117F3935193CA83C82B926B5212344E /* QuartzCore.framework */,
+				A332068F1609C85EF9E1207C636B6FFF /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		31013943137C04A8DACD3F74B3D0A64B /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +416,20 @@
 				6746B2B7510F1D777F20C8F49BE1814F /* Pods-PictographUITests */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		35A1F76A9FB3FC5C5B0912AAF64E3159 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2D6D9891DD59EFBE1852BEF96E27EAA /* Crashlytics */,
+				5F1D4D1C82FE2808AD9C4E5A085498D9 /* EAIntroView */,
+				2826A67B6D0421588BF7E4077A56D92F /* EARestrictedScrollView */,
+				9E073FB887E5B1D62F46B75617603614 /* Fabric */,
+				5EF701E25041A6E320433798368B1C26 /* RNCryptor-objc */,
+				12FA1390620A01A8889F8B0CCE3BC9C2 /* Sparkle */,
+				28C9DF6EDE8769FB3603FE3F6EA44F38 /* SVProgressHUD */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		411A05AEFFFDEE7218E3807D7831872C /* Pods-Pictograph */ = {
@@ -375,61 +450,35 @@
 			path = "Target Support Files/Pods-Pictograph";
 			sourceTree = "<group>";
 		};
-		484843D47773E4EA01BCDD182211B1BC /* iOS */ = {
+		5EF701E25041A6E320433798368B1C26 /* RNCryptor-objc */ = {
 			isa = PBXGroup;
 			children = (
-				3DE67660002DC613A6E86DFEECC58242 /* Foundation.framework */,
-				CC6C4273D8DF78711AD78DAADF61DA1B /* QuartzCore.framework */,
-				3822E66F9FD749F3CAD141326AD04138 /* Security.framework */,
+				3865B8397E7DDC4C9B30E188D700C577 /* RNCryptor.h */,
+				0F2E35B046977FE553761EB5D44B2768 /* RNCryptor.m */,
+				B94C263FBFF1748821C2E1170F9308C5 /* RNCryptor+Private.h */,
+				C39A21C9B499380183A7BA8E1AC22D50 /* RNCryptorEngine.h */,
+				287D0C706679FB4AD75868A6CD44EB26 /* RNCryptorEngine.m */,
+				CD41A504ED4CA51408416AB33900A19A /* RNDecryptor.h */,
+				EBD6F94B8D3F45F0DC3888529BBE6533 /* RNDecryptor.m */,
+				9A7320E2D852E2B9D17FBDD7A5E218B1 /* RNEncryptor.h */,
+				DC6A3BF23D64F08EA9C1CAAEDC74A0DC /* RNEncryptor.m */,
+				E75A9359675594145C470095CAFB40BA /* Support Files */,
 			);
-			name = iOS;
+			name = "RNCryptor-objc";
+			path = "RNCryptor-objc";
 			sourceTree = "<group>";
 		};
-		5116BAACED2E935A9D42A224C8E27630 /* EAIntroView */ = {
+		5F1D4D1C82FE2808AD9C4E5A085498D9 /* EAIntroView */ = {
 			isa = PBXGroup;
 			children = (
-				E0F00FAD72E396AC36B68D25B06BB3ED /* EAIntroPage.h */,
-				CD697106856E5292F5D889CFC699AFB2 /* EAIntroPage.m */,
-				79B9028094303300F25368C3DD6F6F24 /* EAIntroView.h */,
-				89DF496CD3F09085CFBC42850AA37E31 /* EAIntroView.m */,
-				A1FD63A2BEACA57E2AB1D595F72A2715 /* Support Files */,
+				334E8A9C10465ED7CC9B09EC6B9CE2B9 /* EAIntroPage.h */,
+				17308C03537D506F2628FD289767F358 /* EAIntroPage.m */,
+				07E4BED15A0516DB10306EC0D7A562DA /* EAIntroView.h */,
+				61BDABE5A85B5F5655C6937AEC1079CD /* EAIntroView.m */,
+				89AE1FDEA78E3F46A45E58E71CBBDD69 /* Support Files */,
 			);
 			name = EAIntroView;
 			path = EAIntroView;
-			sourceTree = "<group>";
-		};
-		575769B85AB3FC37EF57FD3F3A22625C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				95321B52F6FAA8EB3C1690095CCCED13 /* SVProgressHUD.bundle */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		5A2399B818E99CBE87F0EEE37F9C638C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				384DF0CE7553E7F80C2EA5F67235D94E /* Fabric.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5FB5EFCD2BB32C8271F1A0D7ED0DA104 /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				6ED1B21F6238682713AB7293648E85B6 /* SVIndefiniteAnimatedView.h */,
-				8B94A3B02BD3EB4081BAF1B09599AEDB /* SVIndefiniteAnimatedView.m */,
-				A9B108CF7A89D64DF9A02C0E09F7A4E0 /* SVProgressAnimatedView.h */,
-				F8E3F649CDF08A32140DC668C4A6BDAB /* SVProgressAnimatedView.m */,
-				28A75F9D1FB691BC472A51974210FCFF /* SVProgressHUD.h */,
-				D3C1CF20CBD4638A84A1604381E364CD /* SVProgressHUD.m */,
-				05C3094DBDF832A796BA812CFB741773 /* SVRadialGradientLayer.h */,
-				7D04DA692D5A770748B26B6EC112E533 /* SVRadialGradientLayer.m */,
-				575769B85AB3FC37EF57FD3F3A22625C /* Resources */,
-				DB98B77724111BEC4C5755C7AEC52164 /* Support Files */,
-			);
-			name = SVProgressHUD;
-			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		6746B2B7510F1D777F20C8F49BE1814F /* Pods-PictographUITests */ = {
@@ -459,11 +508,39 @@
 			name = "OS X";
 			sourceTree = "<group>";
 		};
+		7148710A7BC821F1360840403366DDD7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C129EAEAA2144C719569E1B50F46913A /* EARestrictedScrollView.modulemap */,
+				E735936FDBCCF19C8E9F5E05C297EBED /* EARestrictedScrollView.xcconfig */,
+				5E9EFA242F93C034195CACA47448E22A /* EARestrictedScrollView-dummy.m */,
+				233E10A666DE204F78945E57B8F958B6 /* EARestrictedScrollView-prefix.pch */,
+				0106CF5A0AD19972EA05A59279B2044B /* EARestrictedScrollView-umbrella.h */,
+				61A776442513C493BF5D48FBECAD53F6 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/EARestrictedScrollView";
+			sourceTree = "<group>";
+		};
+		73D84F755C2AFB5125F829D49CBB7354 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				77ED3545CC1D67C5081549B13015D44D /* Info.plist */,
+				AF9A21554E0620A4107EE3E1C68F8686 /* SVProgressHUD.modulemap */,
+				44399B21C4600E3FE2A6FA882DEA1247 /* SVProgressHUD.xcconfig */,
+				F2E6207F5354BA36EB34279301ABB711 /* SVProgressHUD-dummy.m */,
+				B1EE5FAE1C08270553860198E203DEE8 /* SVProgressHUD-prefix.pch */,
+				A9F81A07033363C3A927772B6FCAF5AA /* SVProgressHUD-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SVProgressHUD";
+			sourceTree = "<group>";
+		};
 		78D4C7021410A72B5AC4BC4F0F4F9D18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				C0E246462DA8F629102E8760B8684678 /* EARestrictedScrollView.framework */,
-				484843D47773E4EA01BCDD182211B1BC /* iOS */,
+				2BF0C3492A97387DEDA1C698D8D8A230 /* iOS */,
 				70F7AAFB202D924B5606F318616728F0 /* OS X */,
 			);
 			name = Frameworks;
@@ -487,99 +564,80 @@
 			path = "Target Support Files/Pods-PictographTests";
 			sourceTree = "<group>";
 		};
-		7D4C7EE4DABB0169AA21C66E400BB54D /* EARestrictedScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				345835D9D16A79E57DBDAD91553C1672 /* EARestrictedScrollView.h */,
-				7CBC65C5FB362F66644E7E9F69AD01C5 /* EARestrictedScrollView.m */,
-				FA297120DD4303DFE441442E4689236C /* Support Files */,
-			);
-			name = EARestrictedScrollView;
-			path = EARestrictedScrollView;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				78D4C7021410A72B5AC4BC4F0F4F9D18 /* Frameworks */,
-				FDB2B1E4E71DA0641207C651976E096C /* Pods */,
+				35A1F76A9FB3FC5C5B0912AAF64E3159 /* Pods */,
 				163B23A6214189A418A072ADCD663526 /* Products */,
 				31013943137C04A8DACD3F74B3D0A64B /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		8D3F9FF07EBCC6707AA6229173CBDC37 /* Fabric */ = {
+		7DD7A7D3C7F8FD207834A48A8D679B6C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BBBAA674BFA5B0161BEC62AB9A14E637 /* FABAttributes.h */,
-				6E57ED50FC4491C28DAA74320746B7BF /* Fabric.h */,
-				5A2399B818E99CBE87F0EEE37F9C638C /* Frameworks */,
+				ECD5CFAAF95030A954C26A2A76F64F43 /* Crashlytics.framework */,
 			);
-			name = Fabric;
-			path = Fabric;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A1FD63A2BEACA57E2AB1D595F72A2715 /* Support Files */ = {
+		89AE1FDEA78E3F46A45E58E71CBBDD69 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				0DD9474393434DC75E608B3CF0F0FE51 /* EAIntroView.modulemap */,
-				83CFAC4ED3FA243BFB75ECA7567AB6B3 /* EAIntroView.xcconfig */,
-				EC871B6885401C7A2C8685C1A102205F /* EAIntroView-dummy.m */,
-				E0521EF296DA11092E61BE1677603ED0 /* EAIntroView-prefix.pch */,
-				6CF2EF12D13004C0BDB1513621E678F0 /* EAIntroView-umbrella.h */,
-				6EE4B6332BA32C71751502AC3E20A816 /* Info.plist */,
+				CFB86ADD604AE6073F12B31F952CDCDD /* EAIntroView.modulemap */,
+				C4ACA4F0DE60A994EDBA68F8C7B6A3CB /* EAIntroView.xcconfig */,
+				5B208B61D210BDECA5FC20BA75FA9079 /* EAIntroView-dummy.m */,
+				D00FE47FCB860C9612581E73E36DC65A /* EAIntroView-prefix.pch */,
+				08BFDF21F9C6175DD73F655425F92FD8 /* EAIntroView-umbrella.h */,
+				1F55CF7E504F9AAAEE4F186FACCBAA72 /* Info.plist */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/EAIntroView";
 			sourceTree = "<group>";
 		};
-		B0BDF670243711B1265D216806EBEC0E /* RNCryptor-objc */ = {
+		8B50977A482047574DEF6B4FB79AB5FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B15BAE35899F49F25F00C6B8C6ABCCF4 /* RNCryptor.h */,
-				EE8448768EFEF9B4E5AACA929CA880AD /* RNCryptor.m */,
-				CBE59440873C8306C0D77CE395AB7299 /* RNCryptor+Private.h */,
-				BC4B7DCB48BB4C920ED7C6903D050A9C /* RNCryptorEngine.h */,
-				1603E851726DB2188BFCE057A7606A6C /* RNCryptorEngine.m */,
-				EA90F82981EEA8ACF26A7058AD0612C0 /* RNDecryptor.h */,
-				FB5646DB2ADF64F7D5490053F011173E /* RNDecryptor.m */,
-				992FCA531C05A5A551D3FEA950B0032A /* RNEncryptor.h */,
-				1B311E9F68F077D7FA5BF5A01158F7E0 /* RNEncryptor.m */,
-				FF994A2B922E3E07CA91E708CDE3DEF4 /* Support Files */,
+				B50DE7B05C6F4FB98F0160B2201218BF /* Sparkle.framework */,
 			);
-			name = "RNCryptor-objc";
-			path = "RNCryptor-objc";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C0C9448D821F2C71F8E96048804B7A4D /* Crashlytics */ = {
+		9E073FB887E5B1D62F46B75617603614 /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
-				C1543CC9A6392237FEB505954AAD87FA /* ANSCompatibility.h */,
-				B3EAD027F2D3818B98C963B687692108 /* Answers.h */,
-				EFC3FA2F5D9DD61FC955B23E3467D115 /* CLSAttributes.h */,
-				9C6E50276D140E573AD247565C216FBF /* CLSLogging.h */,
-				C559D1E2B6E7DF16C26CB21FE5F7937A /* CLSReport.h */,
-				5959E8C9CBB84EAA6A44DDA58D4AA784 /* CLSStackFrame.h */,
-				0487AC4DB3B7C020C337D06AC086B5F3 /* Crashlytics.h */,
-				14FC295E91D364F2BBBC85C9B28BEBC1 /* Frameworks */,
+				817E3F09D26608B49A00813654163ED2 /* FABAttributes.h */,
+				F75BE8F545BBEE74538791C9BD2D9CC4 /* Fabric.h */,
+				FBA19CF909D9A42F40367FCC8AC64D5D /* Frameworks */,
+			);
+			name = Fabric;
+			path = Fabric;
+			sourceTree = "<group>";
+		};
+		A2D6D9891DD59EFBE1852BEF96E27EAA /* Crashlytics */ = {
+			isa = PBXGroup;
+			children = (
+				66E7F849E00326EB80D16988A379A3D5 /* ANSCompatibility.h */,
+				57CF4B3B0BF2D3A4A71813333E8D8A3C /* Answers.h */,
+				6BD3559C4E0E4641F75FB9C68A83B093 /* CLSAttributes.h */,
+				C60E952AA7E8D39D355F086304A03A77 /* CLSLogging.h */,
+				E08BA8C1D779FC159D2AA68C470FBE52 /* CLSReport.h */,
+				8372A6C3264A5BC23BAC9FF34BE0DDEA /* CLSStackFrame.h */,
+				06E0B3D97F7D9E7C8376B44BF7826E17 /* Crashlytics.h */,
+				7DD7A7D3C7F8FD207834A48A8D679B6C /* Frameworks */,
 			);
 			name = Crashlytics;
 			path = Crashlytics;
 			sourceTree = "<group>";
 		};
-		DB98B77724111BEC4C5755C7AEC52164 /* Support Files */ = {
+		BBD91E4E3D2CD2A3E6319FE87156705B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8C6044F3B4392AE667F990561C0E0DB4 /* Info.plist */,
-				5496675D0596C2B4A662CD079CC063F9 /* SVProgressHUD.modulemap */,
-				0372874F2F2752011E48C5370D846457 /* SVProgressHUD.xcconfig */,
-				BD9171376F49D3F06A08AC6ACE29751B /* SVProgressHUD-dummy.m */,
-				1DBFDA521AC18B044CEF969BDFEB83B1 /* SVProgressHUD-prefix.pch */,
-				7CC3027F38CC9F158F0AF08753D028E0 /* SVProgressHUD-umbrella.h */,
+				D29C5DDB15654A059581BBE3223C1A93 /* SVProgressHUD.bundle */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/SVProgressHUD";
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		DD3B2D73F0F393892A12B8ACEB786A26 /* Pods-Pictograph Mac */ = {
@@ -600,51 +658,32 @@
 			path = "Target Support Files/Pods-Pictograph Mac";
 			sourceTree = "<group>";
 		};
-		FA297120DD4303DFE441442E4689236C /* Support Files */ = {
+		E75A9359675594145C470095CAFB40BA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				DED0CBBD03F816626432C277E2A8095D /* EARestrictedScrollView.modulemap */,
-				2B4C5AA0052EE007EF28DC91C015A135 /* EARestrictedScrollView.xcconfig */,
-				86D5E62EEB2C3F8327BF0FE18F064506 /* EARestrictedScrollView-dummy.m */,
-				C8EB92C5A63E0CFADB871BEC8926BF39 /* EARestrictedScrollView-prefix.pch */,
-				784346B69C7B84CDAC3A052006206767 /* EARestrictedScrollView-umbrella.h */,
-				5357867C876502F05CD68933D181F0AF /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/EARestrictedScrollView";
-			sourceTree = "<group>";
-		};
-		FDB2B1E4E71DA0641207C651976E096C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C0C9448D821F2C71F8E96048804B7A4D /* Crashlytics */,
-				5116BAACED2E935A9D42A224C8E27630 /* EAIntroView */,
-				7D4C7EE4DABB0169AA21C66E400BB54D /* EARestrictedScrollView */,
-				8D3F9FF07EBCC6707AA6229173CBDC37 /* Fabric */,
-				B0BDF670243711B1265D216806EBEC0E /* RNCryptor-objc */,
-				5FB5EFCD2BB32C8271F1A0D7ED0DA104 /* SVProgressHUD */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		FF994A2B922E3E07CA91E708CDE3DEF4 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				308477D3EC93212822CD5ADE7B5EEC1A /* Info.plist */,
-				D473A84533274B3A91A414B47AFFA80B /* Info.plist */,
-				C7CADCFB889306868364ACBD7B5AD430 /* RNCryptor-objc-iOS.modulemap */,
-				07198BE68793BC6EFCD42B11D4C1F875 /* RNCryptor-objc-iOS.xcconfig */,
-				9A6338E966BF9493D31498E07A0CEAE0 /* RNCryptor-objc-iOS-dummy.m */,
-				019476B2BE437714913261D1245747BE /* RNCryptor-objc-iOS-prefix.pch */,
-				C08A5D32190A512C32A5DBCB7E2B3CEB /* RNCryptor-objc-iOS-umbrella.h */,
-				E3E5F6F731B1710F0158EBF5D438AC11 /* RNCryptor-objc-OSX.modulemap */,
-				8E1F825785DEDE9F9FA7DA2B4C5FC7BD /* RNCryptor-objc-OSX.xcconfig */,
-				0C8C3312115C604C9F8B45F8937D5006 /* RNCryptor-objc-OSX-dummy.m */,
-				15A4E3989CFE3390F11F6F73BE37F9EE /* RNCryptor-objc-OSX-prefix.pch */,
-				85FEB5E8561C1A82186F5E8E835AE380 /* RNCryptor-objc-OSX-umbrella.h */,
+				E11560A337BBCCA006EC2C500A850CE4 /* Info.plist */,
+				F69815155C50E0F97D635ED51657885C /* Info.plist */,
+				931B0D65F23397581DF73BBE87CD9E38 /* RNCryptor-objc-iOS.modulemap */,
+				FF275BE585F438D3F986CB4ADE3E8DD8 /* RNCryptor-objc-iOS.xcconfig */,
+				6DA9F7FCD95C08ED4551502718CBB0C5 /* RNCryptor-objc-iOS-dummy.m */,
+				8F8E369406E22F615712AC0644C5E2D2 /* RNCryptor-objc-iOS-prefix.pch */,
+				1F2769840AA344E69C7BCA3A0C960112 /* RNCryptor-objc-iOS-umbrella.h */,
+				CE473A2A822C01C7E09EA07F7E832FED /* RNCryptor-objc-OSX.modulemap */,
+				C391E5F9F7906AD68D3A742FD10B7E83 /* RNCryptor-objc-OSX.xcconfig */,
+				7783F2D60ADA3C1F859AF25BE594C4C4 /* RNCryptor-objc-OSX-dummy.m */,
+				935A31B2195D615F49BF9779DC81E0B7 /* RNCryptor-objc-OSX-prefix.pch */,
+				7A64C704E362A46F8492B8610B2708A4 /* RNCryptor-objc-OSX-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/RNCryptor-objc-OSX";
+			sourceTree = "<group>";
+		};
+		FBA19CF909D9A42F40367FCC8AC64D5D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95080517E3EEAD71F7E7923D61E808DD /* Fabric.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -908,7 +947,7 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -1079,7 +1118,7 @@
 /* Begin XCBuildConfiguration section */
 		130F0FF74DD4800E71C1E5A5A9D497D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E1F825785DEDE9F9FA7DA2B4C5FC7BD /* RNCryptor-objc-OSX.xcconfig */;
+			baseConfigurationReference = C391E5F9F7906AD68D3A742FD10B7E83 /* RNCryptor-objc-OSX.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1111,10 +1150,11 @@
 			};
 			name = Debug;
 		};
-		156264D1C2638C1DB71EECDD1B1F7FA4 /* Release */ = {
+		16AFC3597ABA64B0BD6895DFB11E5CAA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83CFAC4ED3FA243BFB75ECA7567AB6B3 /* EAIntroView.xcconfig */;
+			baseConfigurationReference = 44399B21C4600E3FE2A6FA882DEA1247 /* SVProgressHUD.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1126,14 +1166,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EAIntroView/EAIntroView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EAIntroView/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EAIntroView/EAIntroView.modulemap";
+				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = EAIntroView;
+				PRODUCT_NAME = SVProgressHUD;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -1181,10 +1221,11 @@
 			};
 			name = Release;
 		};
-		2C8CA7E971E1922300ED95EEBCD13200 /* Release */ = {
+		23988D8B373E4172A808853675A90B0B /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF7CA2AF91C561C00E1F5D32A9A7B69F /* Pods-Pictograph.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1217,10 +1258,11 @@
 			};
 			name = Release;
 		};
-		309C3EFF671FCF8E7402171FAE6EEDF5 /* Debug */ = {
+		3D392D2621767071021F97B6D6C87AC4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B4C5AA0052EE007EF28DC91C015A135 /* EARestrictedScrollView.xcconfig */;
+			baseConfigurationReference = DEDA9617A70D425F40D122E7DE13FF68 /* Pods-PictographTests.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1232,82 +1274,18 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EARestrictedScrollView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = EARestrictedScrollView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		602617A29AE01950E95646BAF385F4A6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07198BE68793BC6EFCD42B11D4C1F875 /* RNCryptor-objc-iOS.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/RNCryptor-objc-iOS/RNCryptor-objc-iOS-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/RNCryptor-objc-iOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/RNCryptor-objc-iOS/RNCryptor-objc-iOS.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = RNCryptor_objc;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		6426BDB3704C06DE4D293AFEE16AD544 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12D13A7F5574FD6147995EE76DF97400 /* Pods-PictographUITests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-PictographUITests/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-PictographTests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-PictographUITests/Pods-PictographUITests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-PictographTests/Pods-PictographTests.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_PictographUITests;
+				PRODUCT_NAME = Pods_PictographTests;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -1317,9 +1295,136 @@
 			};
 			name = Debug;
 		};
+		48701B2B70EB6362157A8747B54D686B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		51F7ACA817675542BA689187DA317445 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		552A7224CF67E6A8FEB88DEA70857699 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4ACA4F0DE60A994EDBA68F8C7B6A3CB /* EAIntroView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/EAIntroView/EAIntroView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EAIntroView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EAIntroView/EAIntroView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = EAIntroView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		6A5CCA93D9603141595FFA9DE4BADE69 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E1F825785DEDE9F9FA7DA2B4C5FC7BD /* RNCryptor-objc-OSX.xcconfig */;
+			baseConfigurationReference = C391E5F9F7906AD68D3A742FD10B7E83 /* RNCryptor-objc-OSX.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1351,42 +1456,11 @@
 			};
 			name = Release;
 		};
-		712265E853A994F73B0EFBC074571E6C /* Release */ = {
+		6C5D55005C6B12F3BDAA30B578F7CCD5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B4C5AA0052EE007EF28DC91C015A135 /* EARestrictedScrollView.xcconfig */;
+			baseConfigurationReference = 44399B21C4600E3FE2A6FA882DEA1247 /* SVProgressHUD.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EARestrictedScrollView/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = EARestrictedScrollView;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		7BE6B869643939FA4255A334F8568245 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0372874F2F2752011E48C5370D846457 /* SVProgressHUD.xcconfig */;
-			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1415,51 +1489,11 @@
 			};
 			name = Debug;
 		};
-		89A950A3D7361552736E3DBD5B44A644 /* Release */ = {
+		8DC78019566A45494AB34D142CEA49A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4ACA4F0DE60A994EDBA68F8C7B6A3CB /* EAIntroView.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		8DD9B4DB18CA6420251FD90A96A17CD9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83CFAC4ED3FA243BFB75ECA7567AB6B3 /* EAIntroView.xcconfig */;
-			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1487,6 +1521,80 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		9B67E3C4D10AFC8C1FE64831BF244740 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93DEC4C082B5222DAC2B015CC4E3DD56 /* Pods-Pictograph.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Pictograph/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Pictograph/Pods-Pictograph.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Pictograph;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A05EE0F5E9B10DB9928AA2432F7B4DFE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DA2EA5FFEA01B1D130D588B41203564 /* Pods-PictographUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-PictographUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-PictographUITests/Pods-PictographUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_PictographUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		AA298333AAF6D28DB746DF6AA0622EB4 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1526,15 +1634,49 @@
 			};
 			name = Debug;
 		};
-		B0CB55043652505716E815D144B1390F /* Release */ = {
+		BA4F3C9299795DAB0D38CBF90B5661E0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8DA2EA5FFEA01B1D130D588B41203564 /* Pods-PictographUITests.release.xcconfig */;
+			baseConfigurationReference = E735936FDBCCF19C8E9F5E05C297EBED /* EARestrictedScrollView.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EARestrictedScrollView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = EARestrictedScrollView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D63BA2EBC3A51FBEA1738C741E7FC2F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12D13A7F5574FD6147995EE76DF97400 /* Pods-PictographUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1547,7 +1689,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-PictographUITests/Pods-PictographUITests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -1560,44 +1702,13 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		B3EE2D317E5366384634EAB314335044 /* Release */ = {
+		DC20F8DA727145AB0A13114EC8778DDE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0372874F2F2752011E48C5370D846457 /* SVProgressHUD.xcconfig */;
+			baseConfigurationReference = FF275BE585F438D3F986CB4ADE3E8DD8 /* RNCryptor-objc-iOS.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SVProgressHUD/SVProgressHUD-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SVProgressHUD/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SVProgressHUD/SVProgressHUD.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SVProgressHUD;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		B6C190FBEB56D3E16A57BF621DAEB369 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07198BE68793BC6EFCD42B11D4C1F875 /* RNCryptor-objc-iOS.xcconfig */;
-			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1626,46 +1737,11 @@
 			};
 			name = Release;
 		};
-		BD0F49672A5455CEBF3110D1ECDC8003 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEDA9617A70D425F40D122E7DE13FF68 /* Pods-PictographTests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-PictographTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-PictographTests/Pods-PictographTests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_PictographTests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		CFF7B5D81A189843EE573E7661A0A85D /* Release */ = {
+		E2337BDFE353E587DFB9376C832B94A9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E037BB44D947F5FDE0D9ED27FBB1C01 /* Pods-PictographTests.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1698,55 +1774,11 @@
 			};
 			name = Release;
 		};
-		DE1F24C5EFD45C271798A6E55CB63E92 /* Debug */ = {
+		E6F2F7B79B38EF8C476EF32BAAFBAB39 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF275BE585F438D3F986CB4ADE3E8DD8 /* RNCryptor-objc-iOS.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGNING_REQUIRED = NO;
-				COPY_PHASE_STRIP = NO;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_DEBUG=1",
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-			};
-			name = Debug;
-		};
-		F945A01D0B0B1A958C78C280BFE6DD2F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93DEC4C082B5222DAC2B015CC4E3DD56 /* Pods-Pictograph.debug.xcconfig */;
-			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1758,18 +1790,47 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Pictograph/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/RNCryptor-objc-iOS/RNCryptor-objc-iOS-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RNCryptor-objc-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Pictograph/Pods-Pictograph.modulemap";
+				MODULEMAP_FILE = "Target Support Files/RNCryptor-objc-iOS/RNCryptor-objc-iOS.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Pictograph;
+				PRODUCT_NAME = RNCryptor_objc;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F50ED2444190752A73724759017DCF04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E735936FDBCCF19C8E9F5E05C297EBED /* EARestrictedScrollView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EARestrictedScrollView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EARestrictedScrollView/EARestrictedScrollView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = EARestrictedScrollView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -1785,8 +1846,8 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DE1F24C5EFD45C271798A6E55CB63E92 /* Debug */,
-				89A950A3D7361552736E3DBD5B44A644 /* Release */,
+				51F7ACA817675542BA689187DA317445 /* Debug */,
+				48701B2B70EB6362157A8747B54D686B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1794,8 +1855,8 @@
 		4EB2947FD5965B414550B809C3E3DB1E /* Build configuration list for PBXNativeTarget "Pods-PictographTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BD0F49672A5455CEBF3110D1ECDC8003 /* Debug */,
-				CFF7B5D81A189843EE573E7661A0A85D /* Release */,
+				3D392D2621767071021F97B6D6C87AC4 /* Debug */,
+				E2337BDFE353E587DFB9376C832B94A9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1803,8 +1864,8 @@
 		52F9A724FFB97F5BFD98F9B7CE10EB1E /* Build configuration list for PBXNativeTarget "Pods-Pictograph" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F945A01D0B0B1A958C78C280BFE6DD2F /* Debug */,
-				2C8CA7E971E1922300ED95EEBCD13200 /* Release */,
+				9B67E3C4D10AFC8C1FE64831BF244740 /* Debug */,
+				23988D8B373E4172A808853675A90B0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1812,8 +1873,8 @@
 		5476B1F705DC8737284114A5836DBBCE /* Build configuration list for PBXNativeTarget "RNCryptor-objc-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				602617A29AE01950E95646BAF385F4A6 /* Debug */,
-				B6C190FBEB56D3E16A57BF621DAEB369 /* Release */,
+				E6F2F7B79B38EF8C476EF32BAAFBAB39 /* Debug */,
+				DC20F8DA727145AB0A13114EC8778DDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1821,8 +1882,8 @@
 		5F14407A7BFB803597C7906EEEDB7DFE /* Build configuration list for PBXNativeTarget "SVProgressHUD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7BE6B869643939FA4255A334F8568245 /* Debug */,
-				B3EE2D317E5366384634EAB314335044 /* Release */,
+				6C5D55005C6B12F3BDAA30B578F7CCD5 /* Debug */,
+				16AFC3597ABA64B0BD6895DFB11E5CAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1839,8 +1900,8 @@
 		BB50B4EFD37D6BA1FDD0F3528F814976 /* Build configuration list for PBXNativeTarget "Pods-PictographUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6426BDB3704C06DE4D293AFEE16AD544 /* Debug */,
-				B0CB55043652505716E815D144B1390F /* Release */,
+				D63BA2EBC3A51FBEA1738C741E7FC2F0 /* Debug */,
+				A05EE0F5E9B10DB9928AA2432F7B4DFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1857,8 +1918,8 @@
 		E8472F561CB64FB8CE3D0D392D30827E /* Build configuration list for PBXNativeTarget "EARestrictedScrollView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				309C3EFF671FCF8E7402171FAE6EEDF5 /* Debug */,
-				712265E853A994F73B0EFBC074571E6C /* Release */,
+				F50ED2444190752A73724759017DCF04 /* Debug */,
+				BA4F3C9299795DAB0D38CBF90B5661E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1866,8 +1927,8 @@
 		FE33DA26C9464A33AF8F0E572B1F739E /* Build configuration list for PBXNativeTarget "EAIntroView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8DD9B4DB18CA6420251FD90A96A17CD9 /* Debug */,
-				156264D1C2638C1DB71EECDD1B1F7FA4 /* Release */,
+				8DC78019566A45494AB34D142CEA49A7 /* Debug */,
+				552A7224CF67E6A8FEB88DEA70857699 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

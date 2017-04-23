@@ -6,6 +6,7 @@ PODS:
   - EARestrictedScrollView (1.1.0)
   - Fabric (1.6.11)
   - RNCryptor-objc (3.0.2)
+  - Sparkle (1.17.0)
   - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - EAIntroView
   - Fabric
   - RNCryptor-objc
+  - Sparkle
   - SVProgressHUD
 
 SPEC CHECKSUMS:
@@ -21,8 +23,9 @@ SPEC CHECKSUMS:
   EARestrictedScrollView: b0c2a3f92fb2610bb44d71c5e4893777c89e45ef
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   RNCryptor-objc: 6d18b2e4297c8f4a71a295492366313a3245d0ae
+  Sparkle: ccfb47699feea7b40b51cf3176f69404e5b1da6c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 7b095d991b1c3f0474fcd2abca7bd4f1729011f4
+PODFILE CHECKSUM: b7652e147d0bda5b9ee200d00a63f6bcab0eb9ed
 
 COCOAPODS: 1.2.0

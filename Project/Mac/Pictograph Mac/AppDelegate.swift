@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -15,10 +16,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
+        //Setting up the Sparkle updater
+        SUUpdater.shared().automaticallyChecksForUpdates = true
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    /**
+     Checks Sparkle to see if there are any updates
+     */
+    @IBAction func checkForUpdates(_ sender: Any) {
+        SUUpdater.shared().checkForUpdates(self)
     }
 
 
