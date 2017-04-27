@@ -151,7 +151,9 @@
     //Sending the analytics
     [[PictographDataController shared] analyticsDecodeSend:isEncrypted];
     
-    return decodedString;
+    //Converting any unicode scalars back to the readable format
+    NSData *unicodeDecodedMessageData = [decodedString dataUsingEncoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithData:unicodeDecodedMessageData encoding:NSNonLossyASCIIStringEncoding];
 
 }
 
@@ -173,6 +175,10 @@
 
     DLog("Encoding message: %@, with password %@", message, password);
     
+    //Converting emoji to the unicode scalars
+    NSData *unicodeMessageData = [message dataUsingEncoding:NSNonLossyASCIIStringEncoding];
+    NSString *unicodeMessage = [[NSString alloc] initWithData:unicodeMessageData encoding:NSUTF8StringEncoding];
+    
     NSString *toEncode = [[NSMutableString alloc] init];
     
     BOOL encryptedBool = ![password isEqualToString:@""];
@@ -180,7 +186,7 @@
     if (encryptedBool) {
         //If the user wants to encrypt the string, encrypt it
         NSError *error;
-        NSData *stringData = [message dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *stringData = [unicodeMessage dataUsingEncoding:NSUTF8StringEncoding];
         NSData *cipherData = [RNEncryptor encryptData:stringData withSettings:kRNCryptorAES256Settings password:password error:&error];
         const char *bytes = [cipherData bytes];
         NSMutableString *stringOfBytes = [[NSMutableString alloc] init];
@@ -194,7 +200,7 @@
         
     } else {
         //No need to encode
-        toEncode = message;
+        toEncode = unicodeMessage;
     }
     
     int maxMessageLengthForImage = ((int)[image getReconciledImageWidth] * (int)[image getReconciledImageHeight]) / bitCountForCharacter;
