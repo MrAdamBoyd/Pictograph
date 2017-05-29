@@ -170,54 +170,48 @@
 
 #pragma mark Encoding message in an image
 
-//Encodes UIImage image with message message. Returns the modified UIImage
+//Encodes UIImage image with message message. Returns the modified UIImage or NSImage
 - (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
-
+    
     DLog("Encoding message: %@, with password %@", message, password);
     
     //Converting emoji to the unicode scalars
     NSData *unicodeMessageData = [message dataUsingEncoding:NSNonLossyASCIIStringEncoding];
-    NSString *unicodeMessage = [[NSString alloc] initWithData:unicodeMessageData encoding:NSUTF8StringEncoding];
     
-    NSString *toEncode = [[NSMutableString alloc] init];
+    return [self encodeData:unicodeMessageData inImage:image encryptedWithPassword:password error:error];
+    
+}
+
+//Encodes UIImage image with the data. Returns modified UIImage or NSImage
+- (NSData * _Nullable)encodeData:(NSData * _Nonnull)data inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
+    
+    NSData *dataToEncode;
     
     BOOL encryptedBool = ![password isEqualToString:@""];
     
     if (encryptedBool) {
         //If the user wants to encrypt the string, encrypt it
         NSError *error;
-        NSData *stringData = [unicodeMessage dataUsingEncoding:NSUTF8StringEncoding];
-        NSData *cipherData = [RNEncryptor encryptData:stringData withSettings:kRNCryptorAES256Settings password:password error:&error];
-        const char *bytes = [cipherData bytes];
-        NSMutableString *stringOfBytes = [[NSMutableString alloc] init];
-        
-        for (int i = 0; i < [cipherData length]; i++) {
-            //Converting the data into bytes to it can easily be converted into bits
-            [stringOfBytes appendFormat:@"%c", bytes[i]];
-        }
-        
-        toEncode = [NSString stringWithString:stringOfBytes];
+        dataToEncode = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:password error:&error];
         
     } else {
         //No need to encode
-        toEncode = unicodeMessage;
+        dataToEncode = data;
     }
     
-    int maxMessageLengthForImage = ((int)[image getReconciledImageWidth] * (int)[image getReconciledImageHeight]) / bitCountForCharacter;
-    if ([message length] > maxMessageLengthForImage) {
-        //Makes sure message length is under
-        DLog(@"User's message was too large: %lu characters", (unsigned long)[message length]);
-        
-        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Your message was too large. Please shorten your message or split it into multple images."};
-        *error = [NSError errorWithDomain:PictographErrorDomain code:ImageTooSmallError userInfo:userInfo];
-        
-        return nil;
+    //Converting the data from bytes to a string so it can easily be converted to binary
+    NSMutableString *toEncode = [[NSMutableString alloc] init];
+    const char *bytes = [dataToEncode bytes];
+    
+    for (int i = 0; i < [dataToEncode length]; i++) {
+        //Converting the data into bytes to it can easily be converted into bits
+        [toEncode appendFormat:@"%c", bytes[i]];
     }
     
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
     long numberOfBitsNeeded = [toEncode length] * bitCountForCharacter; //8 bits to a char
-    long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForInfo / 2) + (bitCountForInfo / 2);
+    long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForInfo / 2) + (bitCountForInfo / 2); //2 bits changed per pixel
     
     if (([image getReconciledImageHeight] * [image getReconciledImageWidth]) <= numberOfPixelsNeeded) {
         //Makes sure the image is large enough to handle the message
@@ -225,7 +219,7 @@
         
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"Image was too small, please select a larger image."};
         
-        *error = [NSError errorWithDomain:PictographErrorDomain code:MessageTooLongError userInfo:userInfo];
+        *error = [NSError errorWithDomain:PictographErrorDomain code:ImageTooSmallError userInfo:userInfo];
         
         return nil;
     }
