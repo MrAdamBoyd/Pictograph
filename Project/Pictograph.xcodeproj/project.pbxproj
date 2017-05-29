@@ -43,6 +43,11 @@
 		66E227C41EA316A00089CD48 /* PictographImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */; };
 		66E227C71EA3173C0089CD48 /* PictographImage+Reconciliation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */; };
 		66E227C81EA3189B0089CD48 /* PictographImage+Reconciliation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */; };
+		66F2AA6D1EC2A0FC0020438E /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F2AA6C1EC2A0FC0020438E /* Messages.framework */; };
+		66F2AA701EC2A0FC0020438E /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F2AA6F1EC2A0FC0020438E /* MessagesViewController.swift */; };
+		66F2AA731EC2A0FC0020438E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66F2AA711EC2A0FC0020438E /* MainInterface.storyboard */; };
+		66F2AA751EC2A0FC0020438E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66F2AA741EC2A0FC0020438E /* Assets.xcassets */; };
+		66F2AA791EC2A0FC0020438E /* Pictograph-Messages.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 66F2AA6B1EC2A0FC0020438E /* Pictograph-Messages.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7C2A5D35939274085DA24564 /* Pods_PictographTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC099D02965E45B0D324E031 /* Pods_PictographTests.framework */; };
 		85B5DAD45526AD2A1DFC3A16 /* Pods_PictographUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0493DE2DEC4D7878ECF645 /* Pods_PictographUITests.framework */; };
 		8E0F330F9199121AFDE7C1A1 /* Pods_Pictograph_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37462E8B017BF38EBE402E6 /* Pods_Pictograph_Mac.framework */; };
@@ -77,7 +82,28 @@
 			remoteGlobalIDString = 665883111BBCC72A00CA21A9;
 			remoteInfo = Pictograph;
 		};
+		66F2AA771EC2A0FC0020438E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6658830A1BBCC72A00CA21A9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66F2AA6A1EC2A0FC0020438E;
+			remoteInfo = "Pictograph-Messages";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		66F2AA7D1EC2A0FC0020438E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				66F2AA791EC2A0FC0020438E /* Pictograph-Messages.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1D97D3A8A50FA821FA4A8A5F /* Pods-Pictograph Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictograph Mac.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pictograph Mac/Pods-Pictograph Mac.release.xcconfig"; sourceTree = "<group>"; };
@@ -89,7 +115,7 @@
 		660BA01A1BDDA59F00605EE8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		660BA05F1BDDAB0D00605EE8 /* PictographHighlightButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictographHighlightButton.swift; sourceTree = "<group>"; };
 		660BA0611BDDAE9D00605EE8 /* PictographInsetTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictographInsetTextField.swift; sourceTree = "<group>"; };
-		660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentUser.swift; path = ../iOS/Pictograph/Models/CurrentUser.swift; sourceTree = "<group>"; };
+		660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		662CFC851BC2215F00A9FF28 /* PictographImageCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PictographImageCoder.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PictographImageCoder.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		6639F5911EA467E60032F56A /* Pictograph Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pictograph Mac.entitlements"; sourceTree = "<group>"; };
@@ -129,10 +155,17 @@
 		66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PictographImage+Reconciliation.m"; sourceTree = "<group>"; };
 		66A1B28C1EA182F700AB5822 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		66B187431C553D660057259F /* CreatesNavigationTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatesNavigationTitle.swift; sourceTree = "<group>"; };
-		66BEA7851EAD4E940083A6DA /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resources/dsa_pub.pem; sourceTree = "<group>"; };
+		66BEA7851EAD4E940083A6DA /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		66C58B681C1D2FF700C10A06 /* PictographTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "PictographTests-Bridging-Header.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66C58B691C1D2FF700C10A06 /* PictographTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PictographTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		66E227C01EA2EC5E0089CD48 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		66F2AA6B1EC2A0FC0020438E /* Pictograph-Messages.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Pictograph-Messages.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66F2AA6C1EC2A0FC0020438E /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
+		66F2AA6F1EC2A0FC0020438E /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		66F2AA721EC2A0FC0020438E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		66F2AA741EC2A0FC0020438E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		66F2AA761EC2A0FC0020438E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66F2AA7E1EC2A4CF0020438E /* Pictograph-Messages-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pictograph-Messages-Bridging-Header.h"; sourceTree = "<group>"; };
 		7B0493DE2DEC4D7878ECF645 /* Pods_PictographUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PictographUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B282741E3A9E474CCACFAD3 /* Pods_Pictograph.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pictograph.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9060C7E7281D0FCEEC49EEEF /* Pods-Pictograph.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pictograph.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pictograph/Pods-Pictograph.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +225,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66F2AA681EC2A0FC0020438E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66F2AA6D1EC2A0FC0020438E /* Messages.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -202,6 +243,7 @@
 				DC099D02965E45B0D324E031 /* Pods_PictographTests.framework */,
 				7B0493DE2DEC4D7878ECF645 /* Pods_PictographUITests.framework */,
 				F37462E8B017BF38EBE402E6 /* Pods_Pictograph_Mac.framework */,
+				66F2AA6C1EC2A0FC0020438E /* Messages.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -244,12 +286,12 @@
 			isa = PBXGroup;
 			children = (
 				660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */,
-				6647B4381BDDB91800235E04 /* PictographDataController.swift */,
 				66A1B28C1EA182F700AB5822 /* Global.h */,
-				662CFC851BC2215F00A9FF28 /* PictographImageCoder.h */,
-				662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */,
+				6647B4381BDDB91800235E04 /* PictographDataController.swift */,
 				66A1B2881EA1824300AB5822 /* PictographImage+Reconciliation.h */,
 				66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */,
+				662CFC851BC2215F00A9FF28 /* PictographImageCoder.h */,
+				662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -323,6 +365,7 @@
 				665883141BBCC72A00CA21A9 /* Pictograph */,
 				6658832E1BBCC72A00CA21A9 /* PictographTests */,
 				665883391BBCC72A00CA21A9 /* PictographUITests */,
+				66F2AA6E1EC2A0FC0020438E /* Message Extension */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -340,10 +383,10 @@
 		664C62991EA3DF1D0056927A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				664C5F7F1E357A2E004E1FA9 /* MainViewController.swift */,
 				66E227C01EA2EC5E0089CD48 /* AboutViewController.swift */,
+				664C5F7F1E357A2E004E1FA9 /* MainViewController.swift */,
 			);
-			name = "View Controllers";
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		664C629C1EA422DA0056927A /* Views */ = {
@@ -351,18 +394,18 @@
 			children = (
 				664C629A1EA422D60056927A /* DragAndDropBox.swift */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		665883091BBCC72A00CA21A9 = {
 			isa = PBXGroup;
 			children = (
-				661571F41BD34761001D6B8F /* Shared */,
-				664C5FA61E357A39004E1FA9 /* iOS */,
-				664C5FA71E357A4F004E1FA9 /* Mac */,
 				0BEF962BAD82A20EF5B1E3B5 /* Frameworks */,
+				664C5FA71E357A4F004E1FA9 /* Mac */,
 				5B497145D3CECCE6D0C6598D /* Pods */,
 				665883131BBCC72A00CA21A9 /* Products */,
+				661571F41BD34761001D6B8F /* Shared */,
+				664C5FA61E357A39004E1FA9 /* iOS */,
 			);
 			sourceTree = "<group>";
 		};
@@ -375,6 +418,7 @@
 				664C5F7B1E357A2D004E1FA9 /* Pictograph Mac.app */,
 				664C5F8B1E357A2E004E1FA9 /* Pictograph MacTests.xctest */,
 				664C5F961E357A2E004E1FA9 /* Pictograph MacUITests.xctest */,
+				66F2AA6B1EC2A0FC0020438E /* Pictograph-Messages.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -438,6 +482,18 @@
 				66B187431C553D660057259F /* CreatesNavigationTitle.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		66F2AA6E1EC2A0FC0020438E /* Message Extension */ = {
+			isa = PBXGroup;
+			children = (
+				66F2AA741EC2A0FC0020438E /* Assets.xcassets */,
+				66F2AA761EC2A0FC0020438E /* Info.plist */,
+				66F2AA711EC2A0FC0020438E /* MainInterface.storyboard */,
+				66F2AA6F1EC2A0FC0020438E /* MessagesViewController.swift */,
+				66F2AA7E1EC2A4CF0020438E /* Pictograph-Messages-Bridging-Header.h */,
+			);
+			path = "Message Extension";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -510,10 +566,12 @@
 				6611EBB61BD9769100E5D12A /* ShellScript */,
 				CD2B6B33B7FEF2846B28D0BF /* [CP] Embed Pods Frameworks */,
 				16712CA5C6336BAACC265240 /* [CP] Copy Pods Resources */,
+				66F2AA7D1EC2A0FC0020438E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				66F2AA781EC2A0FC0020438E /* PBXTargetDependency */,
 			);
 			name = Pictograph;
 			productName = Pictograph;
@@ -562,13 +620,30 @@
 			productReference = 665883361BBCC72A00CA21A9 /* PictographUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		66F2AA6A1EC2A0FC0020438E /* Pictograph-Messages */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66F2AA7C1EC2A0FC0020438E /* Build configuration list for PBXNativeTarget "Pictograph-Messages" */;
+			buildPhases = (
+				66F2AA671EC2A0FC0020438E /* Sources */,
+				66F2AA681EC2A0FC0020438E /* Frameworks */,
+				66F2AA691EC2A0FC0020438E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pictograph-Messages";
+			productName = "Pictograph-Messages";
+			productReference = 66F2AA6B1EC2A0FC0020438E /* Pictograph-Messages.appex */;
+			productType = "com.apple.product-type.app-extension.messages";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		6658830A1BBCC72A00CA21A9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Adam Boyd";
 				TargetAttributes = {
@@ -608,6 +683,11 @@
 						CreatedOnToolsVersion = 7.0.1;
 						TestTargetID = 665883111BBCC72A00CA21A9;
 					};
+					66F2AA6A1EC2A0FC0020438E = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 6GHQ7P7EHA;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 6658830D1BBCC72A00CA21A9 /* Build configuration list for PBXProject "Pictograph" */;
@@ -626,6 +706,7 @@
 				665883111BBCC72A00CA21A9 /* Pictograph */,
 				6658832A1BBCC72A00CA21A9 /* PictographTests */,
 				665883351BBCC72A00CA21A9 /* PictographUITests */,
+				66F2AA6A1EC2A0FC0020438E /* Pictograph-Messages */,
 				664C5F7A1E357A2D004E1FA9 /* Pictograph Mac */,
 				664C5F8A1E357A2E004E1FA9 /* Pictograph MacTests */,
 				664C5F951E357A2E004E1FA9 /* Pictograph MacUITests */,
@@ -678,6 +759,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		66F2AA691EC2A0FC0020438E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66F2AA751EC2A0FC0020438E /* Assets.xcassets in Resources */,
+				66F2AA731EC2A0FC0020438E /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -952,6 +1042,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		66F2AA671EC2A0FC0020438E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				66F2AA701EC2A0FC0020438E /* MessagesViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -975,6 +1073,11 @@
 			target = 665883111BBCC72A00CA21A9 /* Pictograph */;
 			targetProxy = 665883371BBCC72A00CA21A9 /* PBXContainerItemProxy */;
 		};
+		66F2AA781EC2A0FC0020438E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66F2AA6A1EC2A0FC0020438E /* Pictograph-Messages */;
+			targetProxy = 66F2AA771EC2A0FC0020438E /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -993,6 +1096,15 @@
 				665883241BBCC72A00CA21A9 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
+			sourceTree = "<group>";
+		};
+		66F2AA711EC2A0FC0020438E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				66F2AA721EC2A0FC0020438E /* Base */,
+			);
+			name = MainInterface.storyboard;
 			path = .;
 			sourceTree = "<group>";
 		};
@@ -1319,6 +1431,48 @@
 			};
 			name = Release;
 		};
+		66F2AA7A1EC2A0FC0020438E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
+				INFOPLIST_FILE = "iOS/Message Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph.Pictograph-Messages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS/Message Extension/Pictograph-Messages-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		66F2AA7B1EC2A0FC0020438E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
+				INFOPLIST_FILE = "iOS/Message Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph.Pictograph-Messages";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS/Message Extension/Pictograph-Messages-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1381,6 +1535,15 @@
 			buildConfigurations = (
 				665883461BBCC72A00CA21A9 /* Debug */,
 				665883471BBCC72A00CA21A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		66F2AA7C1EC2A0FC0020438E /* Build configuration list for PBXNativeTarget "Pictograph-Messages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66F2AA7A1EC2A0FC0020438E /* Debug */,
+				66F2AA7B1EC2A0FC0020438E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
