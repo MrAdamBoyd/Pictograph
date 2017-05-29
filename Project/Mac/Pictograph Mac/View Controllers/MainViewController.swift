@@ -116,7 +116,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
                 //Provide no password if encryption/decryption is off
                 let providedPassword = self.encryptionCheckbox.state == 1 ? self.passwordTextfield.stringValue : ""
                 
-                let encodedImage = try coder.encodeMessage(self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: providedPassword)
+                let encodedImage = try coder.encode(message: self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: providedPassword)
                 let image = NSImage(data: encodedImage)
                 
                 //Hide the sheet

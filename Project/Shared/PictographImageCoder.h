@@ -41,6 +41,6 @@
  @param error pointer to an error
  @return NSData representation of the UIImage or NSImage with the message encoded in the image's pixels
  */
-- (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error;
+- (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error NS_SWIFT_NAME(encode(message:in:encryptedWithPassword:));
 
 @end

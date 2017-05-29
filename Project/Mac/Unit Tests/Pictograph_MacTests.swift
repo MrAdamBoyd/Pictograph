@@ -26,7 +26,7 @@ class Pictograph_MacTests: XCTestCase {
         
         let imageCoder = PictographImageCoder()
         
-        let imageData = try! imageCoder.encodeMessage(testString, in: #imageLiteral(resourceName: "ImageForTesting.png"), encryptedWithPassword: "")
+        let imageData = try! imageCoder.encode(message: testString, in: #imageLiteral(resourceName: "ImageForTesting.png"), encryptedWithPassword: "")
         let stringFromImage = try! imageCoder.decodeMessage(in: NSImage(data: imageData)!, encryptedWithPassword: "")
         
         assert(stringFromImage == testString)
@@ -38,7 +38,7 @@ class Pictograph_MacTests: XCTestCase {
         let imageToEncode = #imageLiteral(resourceName: "ImageForTesting.png")
         
         self.measure {
-            let imageData = try! imageCoder.encodeMessage(testString, in: imageToEncode, encryptedWithPassword: "")
+            let imageData = try! imageCoder.encode(message: testString, in: imageToEncode, encryptedWithPassword: "")
             _ = try! imageCoder.decodeMessage(in: NSImage(data: imageData)!, encryptedWithPassword: "")
         }
     }
