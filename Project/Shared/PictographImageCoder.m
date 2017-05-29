@@ -30,9 +30,17 @@
 
 #pragma mark Decoding a message hidden in an image
 
-//Decodes UIImage image. Returns the encoded message in the image.
-//Password handler has no parameters and returns an NSString *
+//Decodes a string from an image. Returns nil if there is no message in the image or if there was an error
 - (NSString * _Nullable)decodeMessageInImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
+    NSData *dataFromImage = [self decodeDataInImage:image encryptedWithPassword:password error:error];
+    
+    //In addition to converting the string back to a readable version, this converts any unicode scalars back to readable format (like emoji)
+    return [[NSString alloc] initWithData:dataFromImage encoding:NSNonLossyASCIIStringEncoding];
+}
+
+//Decodes UIImage image. Returns the encoded data in the image
+//Password handler has no parameters and returns an NSString *
+- (NSData * _Nullable)decodeDataInImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
     
     DLog("Decoding image with password %@", password);
     
@@ -84,13 +92,12 @@
     [[PictographDataController shared] analyticsDecodeSend:messageIsEncrypted];
     
     //Message is not encrypted, send with blank password
-    return [self messageFromImage:image needsPassword:messageIsEncrypted password:password error:error];
+    return [self dataFromImage:image needsPassword:messageIsEncrypted password:password error:error];
 }
 
 //Returns the message from the image given an optional password
-- (NSString *)messageFromImage:(PictographImage *)image needsPassword:(BOOL)isEncrypted password:(NSString *)password error:(NSError **)error {
+- (NSData *)dataFromImage:(PictographImage *)image needsPassword:(BOOL)isEncrypted password:(NSString *)password error:(NSError **)error {
     
-    NSMutableString *decodedString = [[NSMutableString alloc] init];
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting the size of the string
@@ -106,7 +113,8 @@
     //Going through all the pixels to get the char value
     
     NSMutableArray *arrayOfBitsForMessage = [[NSMutableArray alloc] init];
-    NSMutableData *encryptedData = [[NSMutableData alloc] init];
+    NSMutableData *dataFromImage = [[NSMutableData alloc] init];
+    NSData *toReturn;
     
     NSArray *arrayOfColors = [self getRBGAFromImage:image atX:16 andY:0 count:((int)numberOfBitsNeededForImage / bitsChangedPerPixel)];
     
@@ -119,16 +127,9 @@
             
             long longChar = [self longFromBits:arrayOfBitsForMessage];
             
-            if (isEncrypted) {
-                //If the string is encrypted, add it to the encrypted data
-                char curChar = (char)longChar;
-                
-                [encryptedData appendBytes:&curChar length:1];
-                
-            } else {
-                //Not encrypted, just add it to string
-                [decodedString appendFormat:@"%c", (char)longChar];
-            }
+            char curChar = (char)longChar;
+            
+            [dataFromImage appendBytes:&curChar length:1];
             
             [arrayOfBitsForMessage removeAllObjects]; //Reset the array for the next char
         }
@@ -137,8 +138,7 @@
     if (isEncrypted) {
         //If message is encrypted, decrypt it and save it
         NSError *decryptError = nil;
-        NSData *encodedString = [RNDecryptor decryptData:encryptedData withPassword:password error:&decryptError];
-        decodedString = [[NSMutableString alloc] initWithData:encodedString encoding:NSUTF8StringEncoding];
+        toReturn = [RNDecryptor decryptData:dataFromImage withPassword:password error:&decryptError];
         
         if (decryptError) {
             //If there was an error, alert the user
@@ -146,14 +146,14 @@
             *error = [NSError errorWithDomain:PictographErrorDomain code:PasswordIncorrectError userInfo:userInfo];
             return nil;
         }
+    } else {
+        toReturn = dataFromImage;
     }
     
     //Sending the analytics
     [[PictographDataController shared] analyticsDecodeSend:isEncrypted];
     
-    //Converting any unicode scalars back to the readable format
-    NSData *unicodeDecodedMessageData = [decodedString dataUsingEncoding:NSUTF8StringEncoding];
-    return [[NSString alloc] initWithData:unicodeDecodedMessageData encoding:NSNonLossyASCIIStringEncoding];
+    return toReturn;
 
 }
 
@@ -199,18 +199,9 @@
         dataToEncode = data;
     }
     
-    //Converting the data from bytes to a string so it can easily be converted to binary
-    NSMutableString *toEncode = [[NSMutableString alloc] init];
-    const char *bytes = [dataToEncode bytes];
-    
-    for (int i = 0; i < [dataToEncode length]; i++) {
-        //Converting the data into bytes to it can easily be converted into bits
-        [toEncode appendFormat:@"%c", bytes[i]];
-    }
-    
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
-    long numberOfBitsNeeded = [toEncode length] * bitCountForCharacter; //8 bits to a char
+    long numberOfBitsNeeded = [dataToEncode length] * bitCountForCharacter; //8 bits to a char
     long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForInfo / 2) + (bitCountForInfo / 2); //2 bits changed per pixel
     
     if (([image getReconciledImageHeight] * [image getReconciledImageWidth]) <= numberOfPixelsNeeded) {
@@ -241,10 +232,11 @@
     
     [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)numberOfBitsNeeded withSpaceFor:bitCountForInfo]]; //16 bits for spacing
     
-    for (int charIndex = 0; charIndex < [toEncode length]; charIndex++) {
+    const char *bytes = [dataToEncode bytes];
+    for (int charIndex = 0; charIndex < [dataToEncode length]; charIndex++) {
         //Going through each character
         
-        char curChar = [toEncode characterAtIndex:charIndex];
+        char curChar = bytes[charIndex];
         [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:curChar withSpaceFor:bitCountForCharacter]]; //Only 8 bits needed for chars
         
     }
