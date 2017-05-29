@@ -14,6 +14,8 @@
 		660BA0601BDDAB0E00605EE8 /* PictographHighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA05F1BDDAB0D00605EE8 /* PictographHighlightButton.swift */; };
 		660BA0621BDDAE9D00605EE8 /* PictographInsetTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA0611BDDAE9D00605EE8 /* PictographInsetTextField.swift */; };
 		660BA0661BDDB1AE00605EE8 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */; };
+		6615984E1EDCCF2B009A2E79 /* ImageForTesting.png in Resources */ = {isa = PBXBuildFile; fileRef = 6615984D1EDCCF2B009A2E79 /* ImageForTesting.png */; };
+		6615984F1EDCCF2B009A2E79 /* ImageForTesting.png in Resources */ = {isa = PBXBuildFile; fileRef = 6615984D1EDCCF2B009A2E79 /* ImageForTesting.png */; };
 		6647B4391BDDB91900235E04 /* PictographDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B4381BDDB91800235E04 /* PictographDataController.swift */; };
 		6647B43B1BDDCE9800235E04 /* PictographMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B43A1BDDCE9800235E04 /* PictographMainViewController.swift */; };
 		6647B43D1BDEF5BF00235E04 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B43C1BDEF5BF00235E04 /* IntroView.swift */; };
@@ -116,6 +118,7 @@
 		660BA05F1BDDAB0D00605EE8 /* PictographHighlightButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictographHighlightButton.swift; sourceTree = "<group>"; };
 		660BA0611BDDAE9D00605EE8 /* PictographInsetTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictographInsetTextField.swift; sourceTree = "<group>"; };
 		660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		6615984D1EDCCF2B009A2E79 /* ImageForTesting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageForTesting.png; sourceTree = "<group>"; };
 		662CFC851BC2215F00A9FF28 /* PictographImageCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PictographImageCoder.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PictographImageCoder.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		6639F5911EA467E60032F56A /* Pictograph Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pictograph Mac.entitlements"; sourceTree = "<group>"; };
@@ -150,6 +153,7 @@
 		665883361BBCC72A00CA21A9 /* PictographUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PictographUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6658833A1BBCC72A00CA21A9 /* PictographUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictographUITests.m; sourceTree = "<group>"; };
 		6658833C1BBCC72A00CA21A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		667EB69F1EDCCC240035ED4B /* Pictograph_Mac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pictograph_Mac-Bridging-Header.h"; sourceTree = "<group>"; };
 		669DFD0E1BD561FA00A0BAC2 /* EncodingErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodingErrors.h; sourceTree = "<group>"; };
 		66A1B2881EA1824300AB5822 /* PictographImage+Reconciliation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PictographImage+Reconciliation.h"; sourceTree = "<group>"; };
 		66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PictographImage+Reconciliation.m"; sourceTree = "<group>"; };
@@ -341,31 +345,32 @@
 			path = "Pictograph Mac";
 			sourceTree = "<group>";
 		};
-		664C5F8E1E357A2E004E1FA9 /* Pictograph MacTests */ = {
+		664C5F8E1E357A2E004E1FA9 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
 				664C5F911E357A2E004E1FA9 /* Info.plist */,
+				667EB69F1EDCCC240035ED4B /* Pictograph_Mac-Bridging-Header.h */,
 				664C5F8F1E357A2E004E1FA9 /* Pictograph_MacTests.swift */,
 			);
-			path = "Pictograph MacTests";
+			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
-		664C5F991E357A2E004E1FA9 /* Pictograph MacUITests */ = {
+		664C5F991E357A2E004E1FA9 /* UI Tests */ = {
 			isa = PBXGroup;
 			children = (
 				664C5F9C1E357A2E004E1FA9 /* Info.plist */,
 				664C5F9A1E357A2E004E1FA9 /* Pictograph_MacUITests.swift */,
 			);
-			path = "Pictograph MacUITests";
+			path = "UI Tests";
 			sourceTree = "<group>";
 		};
 		664C5FA61E357A39004E1FA9 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				665883141BBCC72A00CA21A9 /* Pictograph */,
-				6658832E1BBCC72A00CA21A9 /* PictographTests */,
-				665883391BBCC72A00CA21A9 /* PictographUITests */,
 				66F2AA6E1EC2A0FC0020438E /* Message Extension */,
+				665883141BBCC72A00CA21A9 /* Pictograph */,
+				665883391BBCC72A00CA21A9 /* UI Tests */,
+				6658832E1BBCC72A00CA21A9 /* Unit Tests */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -374,8 +379,8 @@
 			isa = PBXGroup;
 			children = (
 				664C5F7C1E357A2E004E1FA9 /* Pictograph Mac */,
-				664C5F8E1E357A2E004E1FA9 /* Pictograph MacTests */,
-				664C5F991E357A2E004E1FA9 /* Pictograph MacUITests */,
+				664C5F991E357A2E004E1FA9 /* UI Tests */,
+				664C5F8E1E357A2E004E1FA9 /* Unit Tests */,
 			);
 			path = Mac;
 			sourceTree = "<group>";
@@ -449,23 +454,24 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6658832E1BBCC72A00CA21A9 /* PictographTests */ = {
+		6658832E1BBCC72A00CA21A9 /* Unit Tests */ = {
 			isa = PBXGroup;
 			children = (
 				665883311BBCC72A00CA21A9 /* Info.plist */,
 				66C58B681C1D2FF700C10A06 /* PictographTests-Bridging-Header.h */,
 				66C58B691C1D2FF700C10A06 /* PictographTests.swift */,
+				6615984D1EDCCF2B009A2E79 /* ImageForTesting.png */,
 			);
-			path = PictographTests;
+			path = "Unit Tests";
 			sourceTree = "<group>";
 		};
-		665883391BBCC72A00CA21A9 /* PictographUITests */ = {
+		665883391BBCC72A00CA21A9 /* UI Tests */ = {
 			isa = PBXGroup;
 			children = (
 				6658833C1BBCC72A00CA21A9 /* Info.plist */,
 				6658833A1BBCC72A00CA21A9 /* PictographUITests.m */,
 			);
-			path = PictographUITests;
+			path = "UI Tests";
 			sourceTree = "<group>";
 		};
 		669DFD0D1BD561CF00A0BAC2 /* Errors */ = {
@@ -729,6 +735,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6615984F1EDCCF2B009A2E79 /* ImageForTesting.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,6 +759,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6615984E1EDCCF2B009A2E79 /* ImageForTesting.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1166,16 +1174,18 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
-				INFOPLIST_FILE = "Mac/Pictograph MacTests/Info.plist";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Mac/Unit Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-MacTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mac/Unit Tests/Pictograph_Mac-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pictograph Mac.app/Contents/MacOS/Pictograph Mac";
@@ -1189,15 +1199,17 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
-				INFOPLIST_FILE = "Mac/Pictograph MacTests/Info.plist";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Mac/Unit Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-MacTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mac/Unit Tests/Pictograph_Mac-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pictograph Mac.app/Contents/MacOS/Pictograph Mac";
 			};
@@ -1209,14 +1221,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
-				INFOPLIST_FILE = "Mac/Pictograph MacUITests/Info.plist";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Mac/UI Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-MacUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1231,14 +1244,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 6GHQ7P7EHA;
-				INFOPLIST_FILE = "Mac/Pictograph MacUITests/Info.plist";
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Mac/UI Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adam.Pictograph-MacUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = "Pictograph Mac";
@@ -1378,11 +1392,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = iOS/PictographTests/Info.plist;
+				INFOPLIST_FILE = "iOS/Unit Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Boyd.PictographTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PictographTests/PictographTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS/Unit Tests/PictographTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pictograph.app/Pictograph";
@@ -1395,11 +1409,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = iOS/PictographTests/Info.plist;
+				INFOPLIST_FILE = "iOS/Unit Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Boyd.PictographTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PictographTests/PictographTests-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "iOS/Unit Tests/PictographTests-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pictograph.app/Pictograph";
 			};
@@ -1409,7 +1423,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 98A0A9CF4FB23A5E0E184484 /* Pods-PictographUITests.debug.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = iOS/PictographUITests/Info.plist;
+				INFOPLIST_FILE = "iOS/UI Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Boyd.PictographUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1422,7 +1436,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D37635E967A9E7155D358111 /* Pods-PictographUITests.release.xcconfig */;
 			buildSettings = {
-				INFOPLIST_FILE = iOS/PictographUITests/Info.plist;
+				INFOPLIST_FILE = "iOS/UI Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Boyd.PictographUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
