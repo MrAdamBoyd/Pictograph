@@ -101,7 +101,7 @@ class SettingsFooterView: UIView {
     }
     
     //Opens my website in Safari
-    func openWebsiteURL() {
+    @objc func openWebsiteURL() {
         PictographDataController.shared.goToWebsite()
     }
 }

@@ -89,7 +89,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
         return SettingsFooterView()
     }
     
-    func closeSettings() {
+    @objc func closeSettings() {
         //Dismiss settings (this view controller)
         self.dismiss(animated: true, completion: nil)
     }

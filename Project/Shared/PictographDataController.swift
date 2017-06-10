@@ -19,7 +19,7 @@ private let currentUserKey = "kCurrentUserKey"
 
 class PictographDataController: NSObject {
     
-    static let shared = PictographDataController()
+    @objc static let shared = PictographDataController()
     fileprivate var user = CurrentUser()
     
     //When the singleton is first initialized
@@ -137,7 +137,7 @@ class PictographDataController: NSObject {
     //MARK: - analytics methods
     
     //Record a message encrypted event
-    func analyticsEncodeSend(_ encrypted:Bool) {
+    @objc func analyticsEncodeSend(_ encrypted:Bool) {
         let encryptedOrNot = encrypted ? "Encrypted" : "Unencrypted"
     
         #if os(iOS)
@@ -146,7 +146,7 @@ class PictographDataController: NSObject {
     }
     
     //Record a message decrypted event
-    func analyticsDecodeSend(_ encrypted: Bool) {
+    @objc func analyticsDecodeSend(_ encrypted: Bool) {
         let encryptedOrNot = encrypted ? "Encrypted" : "Unencrypted"
     
         #if os(iOS)

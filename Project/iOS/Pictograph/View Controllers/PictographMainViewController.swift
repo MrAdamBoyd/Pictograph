@@ -102,7 +102,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
     }
     
-    func openSettings() {
+    @objc func openSettings() {
         //Setting the title, button title, and action
         let settings = SettingsViewController.createWithNavigationController()
         self.settingsNavVC = settings
@@ -142,7 +142,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     /**
      Pastes the text from the clipboard in the showing alert vc, if it exists
      */
-    func pasteFromClipboard() {
+    @objc func pasteFromClipboard() {
         if let alertVC = self.presentedViewController as? UIAlertController {
             let pasteString = UIPasteboard.general.string
             
@@ -214,7 +214,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         return true
     }
     
-    func switchToggled(_ sender: AnyObject) {
+    @objc func switchToggled(_ sender: AnyObject) {
         let mySwitch = sender as! UISwitch
         self.setEncryptionEnabled(mySwitch.isOn)
     }
@@ -236,7 +236,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Starting the encode process
-    func startEncodeProcess() {
+    @objc func startEncodeProcess() {
         self.endEditingAndSetPassword()
         
         /* True if encrytption is enabled AND the key isn't blank
@@ -253,7 +253,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Starting the decoding process
-    func startDecodeProcess() {
+    @objc func startDecodeProcess() {
         self.endEditingAndSetPassword()
         
         /* True if encrytption is enabled AND the key isn't blank
@@ -271,7 +271,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Showing the action sheet
     
-    func presentImageSelectActionSheet() {
+    @objc func presentImageSelectActionSheet() {
         self.determineHowToPresentImagePicker(haveCameraOption: true)
     }
     
@@ -317,13 +317,13 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         case .camera:
             
             //Getting permission from the camera
-            let mediaType = AVMediaTypeVideo //This is the type for the camera
+            let mediaType: AVMediaType = .video //This is the type for the camera
             
-            switch AVCaptureDevice.authorizationStatus(forMediaType: mediaType) {
+            switch AVCaptureDevice.authorizationStatus(for: mediaType) {
             case .authorized: self.createAndPresentPicker(withType: type)
             case .notDetermined, .denied, .restricted:
                 // Prompting user for the permission to use the camera.
-                AVCaptureDevice.requestAccess(forMediaType: mediaType) { granted in
+                AVCaptureDevice.requestAccess(for: mediaType) { granted in
                     if granted {
                         DispatchQueue.main.async {
                             self.createAndPresentPicker(withType: type)
@@ -488,13 +488,13 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //MARK: - Methods for when the settings change
     
-    func showPasswordOnScreenChanged() {
+    @objc func showPasswordOnScreenChanged() {
         //Set the opposite of what it currently is
         mainEncodeView.encryptionKeyField.isSecureTextEntry = !mainEncodeView.encryptionKeyField.isSecureTextEntry
     }
     
     //Animates night mode changing when on an iPad
-    func changeNightModeAnimated() {
+    @objc func changeNightModeAnimated() {
         UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.changeNightMode()
             self.settingsNavVC?.popoverPresentationController?.backgroundColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
