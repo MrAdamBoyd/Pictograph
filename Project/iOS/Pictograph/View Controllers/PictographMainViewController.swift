@@ -34,6 +34,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             self.mainEncodeView.decodeButton.alpha = imageExists ? 1 : 0.5
         }
     }
+    var dragDropManager: DragDropManager?
     
     //MARK: - UIViewController
     
@@ -74,6 +75,16 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.presentImageSelectActionSheet))
         tapGestureRecognizer.numberOfTapsRequired = 1
         self.mainEncodeView.imageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        //Drag and drop
+        if #available(iOS 11, *) {
+            self.dragDropManager = DragDropManager(imageView: self.mainEncodeView.imageView, in: self.view)
+            let dragInteraction = UIDragInteraction(delegate: self.dragDropManager!)
+            self.mainEncodeView.imageView.addInteraction(dragInteraction)
+            
+            let dropInteraction = UIDropInteraction(delegate: self.dragDropManager!)
+            self.mainEncodeView.imageView.addInteraction(dropInteraction)
+        }
         
         //Setting up the notifications for the settings
         NotificationCenter.default.addObserver(self, selector: #selector(self.showPasswordOnScreenChanged), name: NSNotification.Name(rawValue: pictographShowPasswordOnScreenSettingChangedNotification), object: nil)
