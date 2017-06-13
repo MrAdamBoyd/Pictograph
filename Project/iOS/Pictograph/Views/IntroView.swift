@@ -34,7 +34,7 @@ class IntroView {
         
         //Asking for permission for GPS while using the app
         let page2 = EAIntroPage()
-        page2.title = "Encryption";
+        page2.title = "Encryption"
         page2.titleFont = introViewTitleFont
         page2.titlePositionY = introViewTitleY
         page2.desc = "Pictograph also allows you to encrypt your messages. You will have to give the password to whoever you want to read the message."

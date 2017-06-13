@@ -29,8 +29,8 @@
 		664C5F801E357A2E004E1FA9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5F7F1E357A2E004E1FA9 /* MainViewController.swift */; };
 		664C5F821E357A2E004E1FA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664C5F811E357A2E004E1FA9 /* Assets.xcassets */; };
 		664C5F851E357A2E004E1FA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664C5F831E357A2E004E1FA9 /* Main.storyboard */; };
-		664C5F901E357A2E004E1FA9 /* Pictograph_MacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5F8F1E357A2E004E1FA9 /* Pictograph_MacTests.swift */; };
-		664C5F9B1E357A2E004E1FA9 /* Pictograph_MacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5F9A1E357A2E004E1FA9 /* Pictograph_MacUITests.swift */; };
+		664C5F901E357A2E004E1FA9 /* PictographMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5F8F1E357A2E004E1FA9 /* PictographMacTests.swift */; };
+		664C5F9B1E357A2E004E1FA9 /* PictographMacUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C5F9A1E357A2E004E1FA9 /* PictographMacUITests.swift */; };
 		664C629B1EA422D60056927A /* DragAndDropBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664C629A1EA422D60056927A /* DragAndDropBox.swift */; };
 		665883221BBCC72A00CA21A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 665883211BBCC72A00CA21A9 /* Assets.xcassets */; };
 		665883251BBCC72A00CA21A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 665883231BBCC72A00CA21A9 /* LaunchScreen.storyboard */; };
@@ -38,6 +38,8 @@
 		666A96B71E41836900107630 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */; };
 		666AD9CA1E41828C006B37FB /* PictographDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B4381BDDB91800235E04 /* PictographDataController.swift */; };
 		666DF8C31EA31D94009BBEC2 /* PictographImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */; };
+		6699CAD51EEF890500F57B65 /* UILabel+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */; };
+		6699CAD61EEF890700F57B65 /* UILabel+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */; };
 		66B187441C553D660057259F /* CreatesNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B187431C553D660057259F /* CreatesNavigationTitle.swift */; };
 		66BEA7861EAD4E940083A6DA /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 66BEA7851EAD4E940083A6DA /* dsa_pub.pem */; };
 		66C58B6A1C1D2FF700C10A06 /* PictographTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C58B691C1D2FF700C10A06 /* PictographTests.swift */; };
@@ -139,10 +141,10 @@
 		664C5F841E357A2E004E1FA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		664C5F861E357A2E004E1FA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		664C5F8B1E357A2E004E1FA9 /* Pictograph MacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pictograph MacTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		664C5F8F1E357A2E004E1FA9 /* Pictograph_MacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictograph_MacTests.swift; sourceTree = "<group>"; };
+		664C5F8F1E357A2E004E1FA9 /* PictographMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictographMacTests.swift; sourceTree = "<group>"; };
 		664C5F911E357A2E004E1FA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		664C5F961E357A2E004E1FA9 /* Pictograph MacUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pictograph MacUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		664C5F9A1E357A2E004E1FA9 /* Pictograph_MacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictograph_MacUITests.swift; sourceTree = "<group>"; };
+		664C5F9A1E357A2E004E1FA9 /* PictographMacUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictographMacUITests.swift; sourceTree = "<group>"; };
 		664C5F9C1E357A2E004E1FA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		664C629A1EA422D60056927A /* DragAndDropBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragAndDropBox.swift; sourceTree = "<group>"; };
 		665883121BBCC72A00CA21A9 /* Pictograph.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pictograph.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +157,7 @@
 		6658833A1BBCC72A00CA21A9 /* PictographUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictographUITests.m; sourceTree = "<group>"; };
 		6658833C1BBCC72A00CA21A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		667EB69F1EDCCC240035ED4B /* Pictograph_Mac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pictograph_Mac-Bridging-Header.h"; sourceTree = "<group>"; };
+		6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+ConvenienceInit.swift"; sourceTree = "<group>"; };
 		669DFD0E1BD561FA00A0BAC2 /* EncodingErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodingErrors.h; sourceTree = "<group>"; };
 		66A1B2881EA1824300AB5822 /* PictographImage+Reconciliation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PictographImage+Reconciliation.h"; sourceTree = "<group>"; };
 		66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PictographImage+Reconciliation.m"; sourceTree = "<group>"; };
@@ -274,6 +277,7 @@
 			children = (
 				660069781C552C6100BA1672 /* AppDelegateExtension.swift */,
 				6600697B1C5531A700BA1672 /* UIImage+CreateImageFromColor.swift */,
+				6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -352,7 +356,7 @@
 			children = (
 				664C5F911E357A2E004E1FA9 /* Info.plist */,
 				667EB69F1EDCCC240035ED4B /* Pictograph_Mac-Bridging-Header.h */,
-				664C5F8F1E357A2E004E1FA9 /* Pictograph_MacTests.swift */,
+				664C5F8F1E357A2E004E1FA9 /* PictographMacTests.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -361,7 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				664C5F9C1E357A2E004E1FA9 /* Info.plist */,
-				664C5F9A1E357A2E004E1FA9 /* Pictograph_MacUITests.swift */,
+				664C5F9A1E357A2E004E1FA9 /* PictographMacUITests.swift */,
 			);
 			path = "UI Tests";
 			sourceTree = "<group>";
@@ -518,6 +522,7 @@
 				664C5F791E357A2D004E1FA9 /* Resources */,
 				9D97954BADA006F98094A579 /* [CP] Embed Pods Frameworks */,
 				3B770E4240D5D8965A2801B8 /* [CP] Copy Pods Resources */,
+				6699CAD21EEF864200F57B65 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -572,10 +577,11 @@
 				6658830E1BBCC72A00CA21A9 /* Sources */,
 				6658830F1BBCC72A00CA21A9 /* Frameworks */,
 				665883101BBCC72A00CA21A9 /* Resources */,
-				6611EBB61BD9769100E5D12A /* ShellScript */,
+				6611EBB61BD9769100E5D12A /* Run Script */,
 				CD2B6B33B7FEF2846B28D0BF /* [CP] Embed Pods Frameworks */,
 				16712CA5C6336BAACC265240 /* [CP] Copy Pods Resources */,
 				66F2AA7D1EC2A0FC0020438E /* Embed App Extensions */,
+				6699CAD11EEF860E00F57B65 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -636,6 +642,7 @@
 				66F2AA671EC2A0FC0020438E /* Sources */,
 				66F2AA681EC2A0FC0020438E /* Frameworks */,
 				66F2AA691EC2A0FC0020438E /* Resources */,
+				6699CAD31EEF864800F57B65 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -846,7 +853,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pictograph Mac/Pods-Pictograph Mac-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6611EBB61BD9769100E5D12A /* ShellScript */ = {
+		6611EBB61BD9769100E5D12A /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" ddc2645d54ae392a8abd36a8dbbccb41fca3541d ec4418504bf66c40bfd19499c14e2f454e4ae3fa366b7699d1092e7ef7815f1b";
+		};
+		6699CAD11EEF860E00F57B65 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -857,7 +878,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" ddc2645d54ae392a8abd36a8dbbccb41fca3541d ec4418504bf66c40bfd19499c14e2f454e4ae3fa366b7699d1092e7ef7815f1b";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		6699CAD21EEF864200F57B65 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		6699CAD31EEF864800F57B65 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		72BC2B695063CDB312C4C5EA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1001,7 +1048,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				664C5F901E357A2E004E1FA9 /* Pictograph_MacTests.swift in Sources */,
+				664C5F901E357A2E004E1FA9 /* PictographMacTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1009,7 +1056,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				664C5F9B1E357A2E004E1FA9 /* Pictograph_MacUITests.swift in Sources */,
+				664C5F9B1E357A2E004E1FA9 /* PictographMacUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,6 +1078,7 @@
 				66E227C81EA3189B0089CD48 /* PictographImage+Reconciliation.m in Sources */,
 				6647B44A1BDF294900235E04 /* PictographConstants.swift in Sources */,
 				66B187441C553D660057259F /* CreatesNavigationTitle.swift in Sources */,
+				6699CAD51EEF890500F57B65 /* UILabel+ConvenienceInit.swift in Sources */,
 				660BA0621BDDAE9D00605EE8 /* PictographInsetTextField.swift in Sources */,
 				660BA0661BDDB1AE00605EE8 /* CurrentUser.swift in Sources */,
 				6647B4411BDF052E00235E04 /* PictographViewController.swift in Sources */,
@@ -1059,6 +1107,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6699CAD61EEF890700F57B65 /* UILabel+ConvenienceInit.swift in Sources */,
 				66F2AA701EC2A0FC0020438E /* MessagesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

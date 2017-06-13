@@ -8,7 +8,7 @@
 
 import Foundation
 
-private let titleFontSize:CGFloat = 24
+private let titleFontSize: CGFloat = 24
 
 protocol CreatesNavigationTitle {
     func createNavigationTitle(_ text: String) -> UIView

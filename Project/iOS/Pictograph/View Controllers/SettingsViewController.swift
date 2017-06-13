@@ -92,7 +92,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return SettingsFooterView.heightForFooter()
+        return SettingsFooterView.heightForFooter
     }
     
     //MARK: - UITableViewDelegate

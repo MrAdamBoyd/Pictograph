@@ -35,6 +35,10 @@ class MainEncodingView: UIScrollView {
     
     //MARK: - UIView
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -43,6 +47,20 @@ class MainEncodingView: UIScrollView {
         self.addSubview(self.elementContainer)
         self.elementContainer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: max(UIScreen.main.bounds.height - 64, 300))
         
+        self.setUpImageView()
+        
+        self.setUpShareButton()
+        
+        self.setUpEncryptionArea()
+        
+        self.setUpEncodeButton()
+        
+        self.setUpDecodeButton()
+    }
+    
+    // MARK: Adding elements
+    
+    private func setUpImageView() {
         //Image view, location for views based off this view
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.layer.borderColor = UIColor.white.cgColor
@@ -90,8 +108,9 @@ class MainEncodingView: UIScrollView {
         
         self.largeTapSelectImageLabel.centerYAnchor.constraint(equalTo: self.imageView.centerYAnchor).isActive = true
         self.largeTapSelectImageLabel.centerXAnchor.constraint(equalTo: self.imageView.centerXAnchor).isActive = true
-        
-        //Share button
+    }
+    
+    private func setUpShareButton() {
         self.shareButton.setImage(#imageLiteral(resourceName: "ShareIcon"), for: .normal)
         self.shareButton.layer.cornerRadius = 20
         self.shareButton.backgroundColor = .white
@@ -105,7 +124,9 @@ class MainEncodingView: UIScrollView {
         self.shareButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         self.shareButton.rightAnchor.constraint(equalTo: self.imageView.rightAnchor, constant: 10).isActive = true
         self.shareButton.bottomAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 10).isActive = true
-        
+    }
+    
+    private func setUpEncryptionArea() {
         //Label for enabling encryption, location for views based off this view
         encryptionLabel.text = "Use Encryption"
         encryptionLabel.font = UIFont.boldSystemFont(ofSize: mainFontSize)
@@ -116,7 +137,7 @@ class MainEncodingView: UIScrollView {
         
         //25 from left and below the image border
         self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .left, relatedBy: .equal, toItem:self.elementContainer, attribute: .left, multiplier:1, constant:encryptionMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .top, relatedBy: .equal, toItem: self.borderBelowImage,  attribute: .top, multiplier:1, constant:encryptionVerticalMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .top, relatedBy: .equal, toItem: self.borderBelowImage, attribute: .top, multiplier:1, constant:encryptionVerticalMargin))
         
         
         //Switch for enabling encryption
@@ -144,7 +165,7 @@ class MainEncodingView: UIScrollView {
         //50px from left, right, -80px (above) center y
         self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .top, relatedBy: .equal, toItem:encryptionLabel, attribute:.bottom, multiplier:1, constant:encryptionVerticalMargin))
         self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .left, relatedBy:.equal, toItem:self.elementContainer, attribute: .left, multiplier:1, constant:encryptionMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .right, relatedBy: .equal, toItem:self.elementContainer,  attribute: .right, multiplier:1, constant:-encryptionMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .right, relatedBy: .equal, toItem:self.elementContainer, attribute: .right, multiplier:1, constant:-encryptionMargin))
         
         
         //Border between text label and switch for enabling and disabling encryption
@@ -154,12 +175,12 @@ class MainEncodingView: UIScrollView {
         
         //Halfway between the textfield and the buttons, 30px from left, right, 1px tall
         self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .top, relatedBy: .equal, toItem: encryptionKeyField, attribute: .bottom, multiplier: 1, constant: encryptionVerticalMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .left, relatedBy: .equal, toItem: self.elementContainer,  attribute: .left, multiplier: 1, constant: encryptionMargin - 10))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .right, relatedBy: .equal, toItem: self.elementContainer,  attribute: .right, multiplier: 1, constant: -encryptionMargin + 10))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .left, relatedBy: .equal, toItem: self.elementContainer, attribute: .left, multiplier: 1, constant: encryptionMargin - 10))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .right, relatedBy: .equal, toItem: self.elementContainer, attribute: .right, multiplier: 1, constant: -encryptionMargin + 10))
         self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1))
-        
-        
-        //Encode button
+    }
+    
+    private func setUpEncodeButton() {
         encodeButton.setTitle("Hide Message", for: .normal)
         encodeButton.isEnabled = false
         encodeButton.alpha = 0.5
@@ -172,12 +193,12 @@ class MainEncodingView: UIScrollView {
         
         //20px from border, 40px from left, right, 60px tall
         self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .top, relatedBy: .equal, toItem: encryptionInfoViewBorder, attribute: .bottom, multiplier: 1, constant: encryptionVerticalMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .left, relatedBy: .equal, toItem: self.elementContainer,  attribute: .left, multiplier: 1, constant: encryptionMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .right, relatedBy: .equal, toItem: self.elementContainer,  attribute: .centerX, multiplier: 1, constant: -buttonCenterMargin))
-       self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: bigButtonHeight))
-        
-        
-        //Decode button
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .left, relatedBy: .equal, toItem: self.elementContainer, attribute: .left, multiplier: 1, constant: encryptionMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .right, relatedBy: .equal, toItem: self.elementContainer, attribute: .centerX, multiplier: 1, constant: -buttonCenterMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: bigButtonHeight))
+    }
+    
+    private func setUpDecodeButton() {
         decodeButton.setTitle("Show Message", for: .normal)
         decodeButton.isEnabled = false
         decodeButton.alpha = 0.5
@@ -190,12 +211,8 @@ class MainEncodingView: UIScrollView {
         
         //20px from encodeButton, 40px from left, right, 60px tall
         self.elementContainer.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .top, relatedBy: .equal, toItem: encryptionInfoViewBorder, attribute: .bottom, multiplier: 1, constant: encryptionVerticalMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .left, relatedBy: .equal, toItem: self.elementContainer,  attribute: .centerX, multiplier: 1, constant: buttonCenterMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .right, relatedBy: .equal, toItem: self.elementContainer,  attribute: .right, multiplier: 1, constant: -encryptionMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .left, relatedBy: .equal, toItem: self.elementContainer, attribute: .centerX, multiplier: 1, constant: buttonCenterMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .right, relatedBy: .equal, toItem: self.elementContainer, attribute: .right, multiplier: 1, constant: -encryptionMargin))
         self.elementContainer.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: bigButtonHeight))
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
 }

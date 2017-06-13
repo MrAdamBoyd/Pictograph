@@ -9,7 +9,8 @@
 import XCTest
 @testable import Pictograph_Mac
 
-class Pictograph_MacTests: XCTestCase {
+// swiftlint:disable force_try
+class PictographMacTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -44,3 +45,4 @@ class Pictograph_MacTests: XCTestCase {
     }
     
 }
+// swiftlint:enable force_try

@@ -1,0 +1,17 @@
+disabled_rules: # rule identifiers to exclude from running
+  - force_cast
+  - line_length
+  - trailing_whitespace
+  - type_body_length
+  - variable_name
+  - vertical_whitespace
+opt_in_rules:
+  #- empty_count
+  #- private_outlet
+  - redundant_nil_coalesing
+  - explicit_init
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+file_length:
+  warning: 750
+  error: 1000

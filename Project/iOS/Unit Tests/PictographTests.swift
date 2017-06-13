@@ -9,6 +9,7 @@
 import Foundation
 import XCTest
 
+//swiftlint:disable force_try
 class PictographTests: XCTestCase {
     
     override func setUp() {
@@ -66,3 +67,4 @@ class PictographTests: XCTestCase {
     }
     
 }
+// swiftlint:enable force_try

@@ -15,14 +15,17 @@ private let mainFont = UIFont.systemFont(ofSize: 18)
 private let smallFont = UIFont.systemFont(ofSize: 14)
 
 class SettingsFooterView: UIView {
+    
+    // The height that the footer should be
+    class var heightForFooter: CGFloat {
+        return 240
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        //Icon of the application
-        let appIcon = UIImage(named: "IconForSettings")
-        
         //ImageView of the app icon
-        let appIconView = UIImageView(image: appIcon)
+        let appIconView = UIImageView(image: #imageLiteral(resourceName: "IconForSettings"))
         appIconView.layer.masksToBounds = true
         appIconView.layer.cornerRadius = appIconCornerRadius
         appIconView.translatesAutoresizingMaskIntoConstraints = false
@@ -34,11 +37,8 @@ class SettingsFooterView: UIView {
         addConstraint(NSLayoutConstraint(item: appIconView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: appIconSize))
         addConstraint(NSLayoutConstraint(item: appIconView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: appIconSize))
         
-        
         //Title of the application
-        let appTitle = UILabel()
-        appTitle.text = "Pictograph"
-        appTitle.font = mainFont
+        let appTitle = UILabel(text: "Pictograph", font: mainFont)
         appTitle.translatesAutoresizingMaskIntoConstraints = false
         addSubview(appTitle)
         
@@ -48,15 +48,7 @@ class SettingsFooterView: UIView {
         
         
         //Version of the application
-        var appVersion = "Version"
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            
-            //Adding the actual version to the string
-            appVersion += " \(version)"
-        }
-        let appVersionLabel = UILabel()
-        appVersionLabel.text = appVersion
-        appVersionLabel.font = smallFont
+        let appVersionLabel = UILabel(text: self.buildVersionString(), font: mainFont)
         appVersionLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(appVersionLabel)
         
@@ -66,9 +58,7 @@ class SettingsFooterView: UIView {
         
         
         //Made by label
-        let madeByLabel = UILabel()
-        madeByLabel.text = "Made by Adam in SF"
-        madeByLabel.font = mainFont
+        let madeByLabel = UILabel(text: "Made by Adam in SF", font: mainFont)
         madeByLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(madeByLabel)
         
@@ -91,13 +81,23 @@ class SettingsFooterView: UIView {
         addConstraint(NSLayoutConstraint(item: goToWebsiteButton, attribute: .top, relatedBy: .equal, toItem: madeByLabel, attribute: .bottom, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: goToWebsiteButton, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    class func heightForFooter() -> CGFloat {
-        return 240
+    /// Builds the string that is displayed in the app with the app version
+    ///
+    /// - Returns: Version <current-version> "Version 1.4.1"
+    private func buildVersionString() -> String {
+        //Version of the application
+        var appVersion = "Version"
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            
+            //Adding the actual version to the string
+            appVersion += " \(version)"
+        }
+        return appVersion
     }
     
     //Opens my website in Safari

@@ -39,6 +39,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     var dragDropManager: DragDropManager?
     
+    /// Checks to make sure the password settings are correct. Makes sure either encryption is disabled or encryption is enabled and the password isn't empty
+    private var passwordSettingsValid: Bool {
+        return (!PictographDataController.shared.userEncryptionPassword.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled
+    }
+    
     //MARK: - UIViewController
     
     override func viewDidLoad() {
@@ -67,7 +72,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.mainEncodeView.encryptionSwitch.addTarget(self, action: #selector(self.switchToggled(_:)), for: .valueChanged)
         self.mainEncodeView.delegate = self
         
-        if (setUpAndShowIntroViews()) {
+        if self.setUpAndShowIntroViews() {
             //If intro views are shown, hide UI elements
             self.mainEncodeView.alpha = 0
             self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -258,10 +263,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     @objc func startEncodeProcess() {
         self.endEditingAndSetPassword()
         
-        /* True if encrytption is enabled AND the key isn't blank
-        OR encrytion is disabled
-        */
-        if ((!PictographDataController.shared.userEncryptionPassword.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled) {
+        if self.passwordSettingsValid {
             
             self.showGetMessageController("Enter your message", withPlaceHolder: "Your message here")
             
@@ -275,10 +277,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     @objc func startDecodeProcess() {
         self.endEditingAndSetPassword()
         
-        /* True if encrytption is enabled AND the key isn't blank
-         OR encrytion is disabled
-         */
-        if ((!PictographDataController.shared.userEncryptionPassword.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled) {
+        if self.passwordSettingsValid {
             
             self.decodeMessage()
             

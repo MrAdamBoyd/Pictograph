@@ -148,7 +148,7 @@ class PictographDataController: NSObject {
     //MARK: - analytics methods
     
     //Record a message encrypted event
-    @objc func analyticsEncodeSend(_ encrypted:Bool) {
+    @objc func analyticsEncodeSend(_ encrypted: Bool) {
         let encryptedOrNot = encrypted ? "Encrypted" : "Unencrypted"
     
         #if os(iOS)

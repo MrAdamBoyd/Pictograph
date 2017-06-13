@@ -17,11 +17,11 @@ extension AppDelegate {
     
     func blurPresentedView() {
         //return if bluered view with hardcoded tag is added to main window
-        if (self.window?.viewWithTag(blurViewtag) != nil){
+        if self.window?.viewWithTag(blurViewtag) != nil {
             return
         }
         
-        let snapshot  = bluredSnapshot();
+        let snapshot  = bluredSnapshot()
         self.window?.addSubview(snapshot!)
     }
     
@@ -49,7 +49,7 @@ extension AppDelegate {
             //Other
         case .orderedAscending:
             let toolbar      = UIToolbar(frame: frame)
-            toolbar.barStyle = UIBarStyle.blackTranslucent;
+            toolbar.barStyle = UIBarStyle.blackTranslucent
             return toolbar
         }
     }

@@ -8,7 +8,7 @@
 
 import XCTest
 
-class Pictograph_MacUITests: XCTestCase {
+class PictographMacUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
