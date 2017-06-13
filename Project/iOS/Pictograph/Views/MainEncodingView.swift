@@ -24,6 +24,7 @@ class MainEncodingView: UIScrollView {
     let imageView = UIImageView()
     let smallTapSelectImageLabel = UILabel()
     let largeTapSelectImageLabel = UILabel()
+    let shareButton = UIButton()
     let borderBelowImage = UIView()
     let encryptionLabel = UILabel()
     let encryptionKeyField = PictographInsetTextField()
@@ -75,7 +76,7 @@ class MainEncodingView: UIScrollView {
         self.elementContainer.insertSubview(self.smallTapSelectImageLabel, aboveSubview: self.imageView)
         self.smallTapSelectImageLabel.isHidden = true //Starts off hidden
         
-        self.smallTapSelectImageLabel.rightAnchor.constraint(equalTo: self.imageView.rightAnchor, constant: -1).isActive = true
+        self.smallTapSelectImageLabel.leftAnchor.constraint(equalTo: self.imageView.leftAnchor, constant: 1).isActive = true
         self.smallTapSelectImageLabel.bottomAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: -1).isActive = true
         
         
@@ -89,6 +90,21 @@ class MainEncodingView: UIScrollView {
         
         self.largeTapSelectImageLabel.centerYAnchor.constraint(equalTo: self.imageView.centerYAnchor).isActive = true
         self.largeTapSelectImageLabel.centerXAnchor.constraint(equalTo: self.imageView.centerXAnchor).isActive = true
+        
+        //Share button
+        self.shareButton.setImage(#imageLiteral(resourceName: "ShareIcon"), for: .normal)
+        self.shareButton.layer.cornerRadius = 20
+        self.shareButton.backgroundColor = .white
+        self.shareButton.translatesAutoresizingMaskIntoConstraints = false
+        self.shareButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        self.shareButton.isEnabled = false
+        self.shareButton.imageView?.alpha = 0.5
+        self.elementContainer.insertSubview(self.shareButton, aboveSubview: self.imageView)
+        
+        self.shareButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        self.shareButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        self.shareButton.rightAnchor.constraint(equalTo: self.imageView.rightAnchor, constant: 10).isActive = true
+        self.shareButton.bottomAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 10).isActive = true
         
         //Label for enabling encryption, location for views based off this view
         encryptionLabel.text = "Use Encryption"

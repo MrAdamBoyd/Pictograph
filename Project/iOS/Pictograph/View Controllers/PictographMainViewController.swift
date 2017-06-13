@@ -32,6 +32,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
             self.mainEncodeView.decodeButton.isEnabled = imageExists
             self.mainEncodeView.decodeButton.alpha = imageExists ? 1 : 0.5
+            
+            self.mainEncodeView.shareButton.isEnabled = imageExists
+            self.mainEncodeView.shareButton.imageView?.alpha = imageExists ? 1 : 0.5
         }
     }
     var dragDropManager: DragDropManager?
@@ -75,6 +78,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.presentImageSelectActionSheet))
         tapGestureRecognizer.numberOfTapsRequired = 1
         self.mainEncodeView.imageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        //Share button
+        self.mainEncodeView.shareButton.addTarget(self, action: #selector(self.showShareSheetWithCurrentImage), for: .touchUpInside)
         
         //Drag and drop
         if #available(iOS 11, *) {
@@ -207,7 +213,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //MARK: - Custom methods
     
-    //Shows the intro views if the user hasn't opened the app and/or if we don't have authorization to use gps
+    /// Shows the intro views for the app that explain what the app does
+    ///
+    /// - Returns: true if intro views shown, false otherwise
     func setUpAndShowIntroViews() -> Bool {
         guard PictographDataController.shared.userFirstTimeOpeningApp else {
             //Don't show intro view
@@ -393,7 +401,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 let encodedImage = try coder.encode(message: messageToEncode, in: image, encryptedWithPassword: PictographDataController.shared.userEncryptionPassword)
                 self.currentImage = UIImage(data: encodedImage)
                 //Show the share sheet if the image exists
-                self.showShareSheetWithImage(encodedImage)
+                self.showShareSheet(with: encodedImage)
 
             } catch let error {
 
@@ -473,9 +481,17 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.present(getMessageController, animated: true, completion: nil)
     }
     
-    //Shows the share sheet with the UIImage in PNG form
-    func showShareSheetWithImage(_ image: Data) {
-        let activityController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+    /// Shows the share sheet with the image that's currently being stored
+    @objc private func showShareSheetWithCurrentImage() {
+        guard let image = self.currentImage, let data = UIImagePNGRepresentation(image) else { return }
+        self.showShareSheet(with: data)
+    }
+    
+    /// Shows the share sheet with the image data
+    ///
+    /// - Parameter imageData: png representation of the image
+    func showShareSheet(with imageData: Data) {
+        let activityController = UIActivityViewController(activityItems: [imageData], applicationActivities: nil)
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             //On an iPad, show the popover from the button
