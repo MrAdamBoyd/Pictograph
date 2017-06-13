@@ -110,6 +110,17 @@ class PictographDataController: NSObject {
         }
     }
     
+    var userShouldStoreImages: Bool {
+        get {
+            return self.user.shouldStoreImages
+        }
+        set {
+            print("Setting should store images: \(newValue)")
+            self.user.shouldStoreImages = newValue
+            self.saveCurrentUser()
+        }
+    }
+    
     //MARK: - Asking user to rate the app
     
     /// This is the userdefaults key for this version of the app. Using a different key for each version

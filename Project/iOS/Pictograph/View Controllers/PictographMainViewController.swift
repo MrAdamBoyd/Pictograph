@@ -382,10 +382,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.present(picker, animated: true, completion: nil)
     }
     
+    /// Encodes an image with the currently selected image
+    ///
+    /// - Parameter messageToEncode: message that should be encoded
     func encodeMessage(_ messageToEncode: String) {
-        guard let image = self.currentImage else {
-            return
-        }
+        guard let image = self.currentImage else { return }
         
         //After the user hit confirm
         SVProgressHUD.show()
@@ -411,15 +412,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
     }
     
-    //Decoding a message that is hidden in an image
+    /// Decoding a message that is hidden in an image
     func decodeMessage() {
-        
-        guard let image = self.currentImage else {
-            return
-        }
+        guard let image = self.currentImage else { return }
         
         //No need to show HUD because this doesn't take long
-        
         let coder = PictographImageCoder()
         
         //Provide no password if encryption/decryption is off
@@ -443,7 +440,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         } catch let error {
             
             //Catch the error
-            showMessageInAlertController("Error Decoding", message: error.localizedDescription)
+            self.showMessageInAlertController("Error Decoding", message: error.localizedDescription)
         }
     }
     

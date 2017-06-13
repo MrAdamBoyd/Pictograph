@@ -42,7 +42,9 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = PictographSettingsTableViewCell()
         
-        if indexPath.row == 0 {
+        switch indexPath.row {
+        case 0:
+            //Show password switch
             cell.setTitle("Show Password", switchStartsOn: PictographDataController.shared.userShowPasswordOnScreen, withHandler: {(enabledOrNot: Bool) -> Void in
                 
                 //Changing the setting for showing the password on screen
@@ -50,7 +52,8 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
                 NotificationCenter.default.post(name: Notification.Name(rawValue: pictographShowPasswordOnScreenSettingChangedNotification), object: nil)
                 print("Show password on screen: \(PictographDataController.shared.userShowPasswordOnScreen)")
             })
-        } else {
+        case 1:
+            //Night mode switch
             cell.setTitle("Night Mode", switchStartsOn: PictographDataController.shared.userNightModeIsEnabled, withHandler: {(enabledOrNot: Bool) -> Void in
                 
                 //Changing the setting for showing the password on screen
@@ -62,7 +65,16 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
                     //Animate the color in
                     self.view.backgroundColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
                     self.navigationController?.navigationBar.barTintColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
-                }) 
+                })
+            })
+        default:
+            //Row 2
+            //Should store images switch
+            cell.setTitle("Should Store Images", switchStartsOn: PictographDataController.shared.userShouldStoreImages, withHandler: {(enabledOrNot: Bool) -> Void in
+                
+                //Changing the setting for showing the password on screen
+                PictographDataController.shared.userShouldStoreImages = enabledOrNot
+                print("Should store images: \(PictographDataController.shared.userShouldStoreImages)")
             })
         }
         
@@ -70,8 +82,8 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //Only 2 cells for now
-        return 2
+        //Only 3 cells for now
+        return 3
     }
     
     //Immediately deselect cell when selected
