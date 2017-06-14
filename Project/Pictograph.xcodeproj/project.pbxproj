@@ -38,6 +38,7 @@
 		666A96B71E41836900107630 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */; };
 		666AD9CA1E41828C006B37FB /* PictographDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B4381BDDB91800235E04 /* PictographDataController.swift */; };
 		666DF8C31EA31D94009BBEC2 /* PictographImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */; };
+		667EDBAB1EF17C4400F01058 /* ImageForTesting.png in Resources */ = {isa = PBXBuildFile; fileRef = 6615984D1EDCCF2B009A2E79 /* ImageForTesting.png */; };
 		6699CAD51EEF890500F57B65 /* UILabel+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */; };
 		6699CAD61EEF890700F57B65 /* UILabel+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */; };
 		66B187441C553D660057259F /* CreatesNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B187431C553D660057259F /* CreatesNavigationTitle.swift */; };
@@ -763,6 +764,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				665883251BBCC72A00CA21A9 /* LaunchScreen.storyboard in Resources */,
+				667EDBAB1EF17C4400F01058 /* ImageForTesting.png in Resources */,
 				665883221BBCC72A00CA21A9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

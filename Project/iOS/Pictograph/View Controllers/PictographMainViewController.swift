@@ -289,7 +289,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Starting the process for the user to encode an image within another image
     @objc func startEncodeImageProcess() {
+        self.endEditingAndSetPassword()
         
+        //TODO: Remove ImageForTesting.png from Pictograph's target membership
+        let imageToEncode = #imageLiteral(resourceName: "ImageForTesting.png")
+        self.encodeImage(imageToEncode)
     }
     
     //Starting the decoding process
@@ -426,6 +430,34 @@ class PictographMainViewController: PictographViewController, UINavigationContro
 
             } catch let error {
 
+                //Catch the error
+                self.showMessageInAlertController("Error", message: error.localizedDescription)
+            }
+        }
+    }
+    
+    func encodeImage(_ imageToHide: UIImage) {
+        guard let image = self.currentImage else { return }
+        
+        //After the user hit confirm
+        SVProgressHUD.show()
+        
+        //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            let coder = PictographImageCoder()
+            
+            //Hide the HUD
+            SVProgressHUD.dismiss()
+            
+            do {
+                
+                let encodedImage = try coder.encode(image: imageToHide, in: image)
+                self.currentImage = UIImage(data: encodedImage)
+                //Show the share sheet if the image exists
+                self.showShareSheet(with: encodedImage)
+                
+            } catch let error {
+                
                 //Catch the error
                 self.showMessageInAlertController("Error", message: error.localizedDescription)
             }

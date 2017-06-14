@@ -425,7 +425,52 @@
 
 //Encodes an image within another image
 - (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image error:(NSError * _Nullable * _Nullable)error {
+    CGFloat scale = [self determineScaleForHidingImage:hiddenImage withinImage:image];
+    NSLog(@"This is the scale needed: %f", scale);
     return [[NSData alloc] init];
+}
+
+
+/**
+ Determines the scale factor needed to hide the hidden image in the original image. Instead of figuring out the exact size that will make the image fit, it cuts the scale factor in half each time. Starting with 1, then 1/2, then 1/4 etc
+ 
+ @param hiddenImage image to hide
+ @param image image that the hiddenImage will be hidden in
+ @return factor that hiddenImage needs to be scaled by
+ */
+- (CGFloat)determineScaleForHidingImage:(UIImage *)hiddenImage withinImage:(UIImage *)image {
+    const NSUInteger numberOfPixelsInMainImage = [image getReconciledImageWidth] * [image getReconciledImageHeight];
+    CGFloat scaleFactor = 1;
+    
+    CGSize hiddenImageSize = CGSizeMake([hiddenImage getReconciledImageWidth] * scaleFactor, [hiddenImage getReconciledImageHeight] * scaleFactor);
+    NSUInteger pixelsNeededForHiddenImage = [self numberOfPixelsNeededToHideImageOfSize:hiddenImageSize];
+    
+    while (pixelsNeededForHiddenImage >= numberOfPixelsInMainImage) {
+        //Cut the width and height of the image in half each time
+        scaleFactor = scaleFactor / 2;
+        
+        hiddenImageSize = CGSizeMake([hiddenImage getReconciledImageWidth] * scaleFactor, [hiddenImage getReconciledImageHeight] * scaleFactor);
+        pixelsNeededForHiddenImage = [self numberOfPixelsNeededToHideImageOfSize:hiddenImageSize];
+    }
+    
+    return scaleFactor;
+}
+
+/**
+ This is the number of pixels that it would take to hide the specified image, including the information bits about the image
+ 
+ @param imageSize size of the image not counting retina displays
+ @return number of pixels it would take to encode all information
+ */
+- (NSUInteger)numberOfPixelsNeededToHideImageOfSize:(CGSize)imageSize {
+    
+    //Number of bits needed to encode a single pixel worth of information
+    NSUInteger bitsNeededPerPixel = bitCountForCharacter * bytesPerPixel;
+    NSUInteger bitsNeededToEncodeEntireImage = bitsNeededPerPixel * imageSize.width * imageSize.height;
+    
+    NSUInteger totalBitsToEncode = bitCountForInfo + bitsNeededToEncodeEntireImage;
+    
+    return totalBitsToEncode / bitsChangedPerPixel;
 }
 
 #pragma mark Methods used for both encoding and decoding
