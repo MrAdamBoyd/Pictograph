@@ -52,7 +52,6 @@
 		66F2AA701EC2A0FC0020438E /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F2AA6F1EC2A0FC0020438E /* MessagesViewController.swift */; };
 		66F2AA731EC2A0FC0020438E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66F2AA711EC2A0FC0020438E /* MainInterface.storyboard */; };
 		66F2AA751EC2A0FC0020438E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66F2AA741EC2A0FC0020438E /* Assets.xcassets */; };
-		66F2AA791EC2A0FC0020438E /* Pictograph-Messages.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 66F2AA6B1EC2A0FC0020438E /* Pictograph-Messages.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7C2A5D35939274085DA24564 /* Pods_PictographTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC099D02965E45B0D324E031 /* Pods_PictographTests.framework */; };
 		85B5DAD45526AD2A1DFC3A16 /* Pods_PictographUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0493DE2DEC4D7878ECF645 /* Pods_PictographUITests.framework */; };
 		8E0F330F9199121AFDE7C1A1 /* Pods_Pictograph_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37462E8B017BF38EBE402E6 /* Pods_Pictograph_Mac.framework */; };
@@ -103,7 +102,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				66F2AA791EC2A0FC0020438E /* Pictograph-Messages.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
