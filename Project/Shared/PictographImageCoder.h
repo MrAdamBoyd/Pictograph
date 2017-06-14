@@ -22,14 +22,15 @@
 //Messages
 
 /**
- Decodes a message that was previously encoded with the PictographImageCoder
+ Decodes a message or image that was previously encoded with the PictographImageCoder
 
  @param image image where the message is located
- @param password nullable password, if null, no password assumed
+ @param password nullable password, if null, no password assumed. If it is determined that an image is hidden, password will be ignored
+ @param hiddenString pointer to the string hidden in the image, if there is one
+ @ param hiddenImage pointer to the image hidden in the image, if there is one
  @param error pointer to an error
- @return nullable string that contains the message if it was decoded correctly
  */
-- (NSString * _Nullable)decodeMessageInImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error;
+- (void)decodeImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password hiddenStringPointer:(NSString * _Nullable * _Nullable)hiddenString hiddenImagePointer:(PictographImage * _Nullable * _Nullable)hiddenImage error:(NSError * _Nullable * _Nullable)error;
 
 
 /**
@@ -42,5 +43,15 @@
  @return NSData representation of the UIImage or NSImage with the message encoded in the image's pixels
  */
 - (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error NS_SWIFT_NAME(encode(message:in:encryptedWithPassword:));
+
+/**
+ Encodes an image inside of an image
+ 
+ @param hiddenImage image to encode in the image
+ @param image image to hide the image in
+ @param error pointer to an error
+ @return NSData representation of the UIImage or NSImage with the message encoded in the image's pixels
+ */
+- (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image error:(NSError * _Nullable * _Nullable)error NS_SWIFT_NAME(encode(image:in:));
 
 @end

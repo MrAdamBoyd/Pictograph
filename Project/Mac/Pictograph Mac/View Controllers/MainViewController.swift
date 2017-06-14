@@ -164,16 +164,25 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         //Provide no password if encryption/decryption is off
         let providedPassword = self.encryptionCheckbox.state == 1 ? self.passwordTextfield.stringValue : ""
         
-        do {
-            let decodedMessage = try coder.decodeMessage(in: image, encryptedWithPassword: providedPassword)
+        var hiddenString: NSString?
+        var hiddenImage: NSImage?
+        var error: NSError?
+        coder.decode(image, encryptedWithPassword: providedPassword, hiddenStringPointer: &hiddenString, hiddenImagePointer: &hiddenImage, error: &error)
+        
+        guard error == nil else {
+            self.showError(error!)
+            return
+        }
+        
+        if let decodedMessage = hiddenString {
             
-            self.messageTextField.stringValue = decodedMessage
-            self.showDecodedMessage(decodedMessage)
+            self.messageTextField.stringValue = decodedMessage as String
+            self.showDecodedMessage(decodedMessage as String)
             
-        } catch let error {
+        } else if let decodedImage = hiddenImage {
             
-            //Catch the error
-            self.showError(error)
+            //TODO: this
+            
         }
     }
     

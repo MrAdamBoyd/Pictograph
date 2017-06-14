@@ -14,6 +14,10 @@ import AVFoundation
 import Photos
 import StoreKit
 
+//For image encoding
+//TODO: Need to check if the first 16 bits are valid when decoding to tell if it's an image or not
+//TODO: Conditionally set either image or string address when decoding, not just always a string
+
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle, UIImagePickerControllerDelegate {
     
     //UI elements
@@ -143,8 +147,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.mainEncodeView.encodeMessageButton.alpha = imageExists ? 1 : 0.5
         
         let encryptionEnabled = PictographDataController.shared.userEncryptionIsEnabled
-        self.mainEncodeView.encodeImageButton.isEnabled = imageExists && encryptionEnabled
-        self.mainEncodeView.encodeImageButton.alpha = encryptionEnabled && imageExists ? 1 : 0.5
+        self.mainEncodeView.encodeImageButton.isEnabled = imageExists && !encryptionEnabled
+        self.mainEncodeView.encodeImageButton.alpha = !encryptionEnabled && imageExists ? 1 : 0.5
         
         self.mainEncodeView.decodeButton.isEnabled = imageExists
         self.mainEncodeView.decodeButton.alpha = imageExists ? 1 : 0.5
@@ -413,7 +417,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             SVProgressHUD.dismiss()
             
             do {
-                let encodedImage = try coder.encode(message: messageToEncode, in: image, encryptedWithPassword: PictographDataController.shared.userEncryptionPassword)
+                let providedPassword = self.mainEncodeView.encryptionSwitch.isOn ? self.mainEncodeView.encryptionKeyField.text ?? "" : ""
+                
+                let encodedImage = try coder.encode(message: messageToEncode, in: image, encryptedWithPassword: providedPassword)
                 self.currentImage = UIImage(data: encodedImage)
                 //Show the share sheet if the image exists
                 self.showShareSheet(with: encodedImage)
@@ -436,10 +442,19 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Provide no password if encryption/decryption is off
         let providedPassword = mainEncodeView.encryptionSwitch.isOn ? mainEncodeView.encryptionKeyField.text ?? "" : ""
         
-        do {
-            let decodedMessage = try coder.decodeMessage(in: image, encryptedWithPassword: providedPassword)
+        var hiddenString: NSString?
+        var hiddenImage: UIImage?
+        var error: NSError?
+        coder.decode(image, encryptedWithPassword: providedPassword, hiddenStringPointer: &hiddenString, hiddenImagePointer: &hiddenImage, error: &error)
+        
+        guard error == nil else {
+            self.showMessageInAlertController("Error Decoding", message: error!.localizedDescription)
+            return
+        }
+        
+        if let decodedMessage = hiddenString {
             //Show the message if it was successfully decoded
-            showMessageInAlertController("Hidden Message", message: decodedMessage) { _ in
+            self.showMessageInAlertController("Hidden Message", message: decodedMessage as String) { _ in
                 
                 //After alert controller is dismissed, prompt the user for ratings if they haven't been already for this version
                 if #available(iOS 10.3, *), !PictographDataController.shared.hasUserBeenPromptedForRatings {
@@ -450,11 +465,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 }
                 
             }
-            
-        } catch let error {
-            
-            //Catch the error
-            self.showMessageInAlertController("Error Decoding", message: error.localizedDescription)
+        } else if let decodedImage = hiddenImage {
+            print("Show image here")
         }
     }
     

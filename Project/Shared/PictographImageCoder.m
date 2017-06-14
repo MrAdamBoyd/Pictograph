@@ -31,11 +31,11 @@
 #pragma mark Decoding a message hidden in an image
 
 //Decodes a string from an image. Returns nil if there is no message in the image or if there was an error
-- (NSString * _Nullable)decodeMessageInImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
+- (void)decodeImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password hiddenStringPointer:(NSString * _Nullable * _Nullable)hiddenString hiddenImagePointer:(PictographImage * _Nullable * _Nullable)hiddenImage error:(NSError * _Nullable * _Nullable)error {
     NSData *dataFromImage = [self decodeDataInImage:image encryptedWithPassword:password error:error];
     
     //In addition to converting the string back to a readable version, this converts any unicode scalars back to readable format (like emoji)
-    return [[NSString alloc] initWithData:dataFromImage encoding:NSNonLossyASCIIStringEncoding];
+    *hiddenString = [[NSString alloc] initWithData:dataFromImage encoding:NSNonLossyASCIIStringEncoding];
 }
 
 //Decodes UIImage image. Returns the encoded data in the image
@@ -419,6 +419,13 @@
     CGFloat newBlueValue = (newBlueLong * 1.0) / maxIntFor8Bits;
 
     return [PictographColor colorWithRed:red green:green blue:newBlueValue alpha:alpha];
+}
+
+# pragma mark Methods used for hiding an image within another image
+
+//Encodes an image within another image
+- (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image error:(NSError * _Nullable * _Nullable)error {
+    return [[NSData alloc] init];
 }
 
 #pragma mark Methods used for both encoding and decoding
