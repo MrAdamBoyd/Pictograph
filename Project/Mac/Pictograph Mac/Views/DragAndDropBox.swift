@@ -17,7 +17,7 @@ class DragAndDropView: NSView {
     
     weak var delegate: DraggingDelegate?
     
-    let filteringOptions = [NSPasteboardURLReadingContentsConformToTypesKey:NSImage.imageTypes()]
+    let filteringOptions = [NSPasteboard.ReadingOptionKey.urlReadingContentsConformToTypes: NSImage.imageTypes]
     
     var isReceivingDrag = false {
         didSet {

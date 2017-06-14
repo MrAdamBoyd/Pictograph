@@ -173,7 +173,7 @@ class PictographDataController: NSObject {
         #if os(iOS)
             UIApplication.shared.openURL(url)
         #else
-            NSWorkspace.shared().open(url)
+            NSWorkspace.shared.open(url)
         #endif
     }
     

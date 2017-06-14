@@ -36,7 +36,9 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         
         self.checkIfValid()
         
-        self.dragAndDropView.register(forDraggedTypes: [NSURLPboardType])
+//        self.dragAndDropView.registerForDraggedTypes([NSURLPboardType])
+        //TODO: Fix this, drag and drop doesn't work with this option
+        self.dragAndDropView.registerForDraggedTypes([NSPasteboard.PasteboardType.fileContents])
         self.dragAndDropView.delegate = self
     }
 
@@ -49,7 +51,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     /// Enables or disables the hide and show message buttons based on the state
     func checkIfValid() {
         //Valid if encryption disabled OR encryption enabled and textfield isn't empty
-        let encryptionValid = self.encryptionCheckbox.state == 0 || (self.encryptionCheckbox.state == 1 && !self.passwordTextfield.stringValue.isEmpty)
+        let encryptionValid = self.encryptionCheckbox.state == .off || (self.encryptionCheckbox.state == .on && !self.passwordTextfield.stringValue.isEmpty)
     
         let imageValid = self.mainImageView.image != nil
         
@@ -73,7 +75,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         panel.allowedFileTypes = ["jpg", "JPG", "png", "PNG", "jpeg", "JPEG", "tiff", "TIFF"]
         panel.beginSheetModal(for: self.view.window!) { [unowned self] result in
             self.imageSelectPanelOpen = false
-            if let fileUrl = panel.url, result == NSFileHandlingPanelOKButton {
+            if let fileUrl = panel.url, result == .OK {
                 guard let image = NSImage(contentsOf: fileUrl) else { return }
                 
                 self.mainImageView.image = image
@@ -91,7 +93,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     }
     
     @IBAction func encryptionEnabledChanged(_ sender: Any) {
-        self.passwordTextfield.isEnabled = self.encryptionCheckbox.state == 1
+        self.passwordTextfield.isEnabled = self.encryptionCheckbox.state == .on
     }
     
     @IBAction func hideMessageAction(_ sender: Any) {
@@ -101,7 +103,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         let alert = NSAlert()
         alert.messageText = "Encoding..."
         let spinner = NSProgressIndicator()
-        spinner.style = .spinningStyle
+        spinner.style = .spinning
         spinner.startAnimation(self)
         spinner.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         alert.accessoryView = spinner
@@ -114,7 +116,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         queue.async {
             do {
                 //Provide no password if encryption/decryption is off
-                let providedPassword = self.encryptionCheckbox.state == 1 ? self.passwordTextfield.stringValue : ""
+                let providedPassword = self.encryptionCheckbox.state == .on ? self.passwordTextfield.stringValue : ""
                 
                 let encodedImage = try coder.encode(message: self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: providedPassword)
                 let image = NSImage(data: encodedImage)
@@ -144,7 +146,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         
         //Show the loading modal
         alert.beginSheetModal(for: self.view.window!) { response in
-            if response == NSAlertFirstButtonReturn {
+            if response == NSApplication.ModalResponse.alertFirstButtonReturn {
                 //If the cancel button is clicked, cancel the operation
                 coder.isCancelled = true
             }
@@ -162,7 +164,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         let coder = PictographImageCoder()
         
         //Provide no password if encryption/decryption is off
-        let providedPassword = self.encryptionCheckbox.state == 1 ? self.passwordTextfield.stringValue : ""
+        let providedPassword = self.encryptionCheckbox.state == .on ? self.passwordTextfield.stringValue : ""
         
         var hiddenString: NSString?
         var hiddenImage: NSImage?
@@ -187,8 +189,8 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     }
     
     @IBAction func helpButtonAction(_ sender: Any) {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        guard let windowController = storyboard.instantiateController(withIdentifier: "helpWindow") as? NSWindowController else { return }
+        let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+        guard let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "helpWindow")) as? NSWindowController else { return }
         self.helpWindowController = windowController
         self.helpWindowController?.window?.makeKeyAndOrderFront(self)
     }
@@ -207,7 +209,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         alert.addButton(withTitle: "OK")
         alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
         
-        if !NSApplication.shared().isActive {
+        if !NSApplication.shared.isActive {
             self.showNotificationWith(message: "Error", informativeText: error.localizedDescription)
         }
     }
@@ -223,7 +225,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         alert.addButton(withTitle: "OK")
         alert.addButton(withTitle: "Save Image")
         alert.beginSheetModal(for: self.view.window!) { [unowned self] response in
-            if response != NSAlertFirstButtonReturn {
+            if response != NSApplication.ModalResponse.alertFirstButtonReturn {
                 //First button is the rightmost button. The OK button in this case.
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -233,7 +235,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
             }
         }
         
-        if !NSApplication.shared().isActive {
+        if !NSApplication.shared.isActive {
             self.showNotificationWith(message: "Message Encoded", informativeText: nil)
         }
     }
@@ -249,7 +251,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         alert.addButton(withTitle: "OK")
         alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
         
-        if !NSApplication.shared().isActive {
+        if !NSApplication.shared.isActive {
             self.showNotificationWith(message: "Message Decoded", informativeText: message)
         }
     }
@@ -264,7 +266,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         panel.allowedFileTypes = ["png"]
         panel.allowsOtherFileTypes = false
         panel.beginSheetModal(for: self.view.window!) { [unowned self] result in
-            if result == NSFileHandlingPanelOKButton {
+            if result == .OK {
                 guard let filePath = panel.url else { return }
                 do {
                     try image?.write(to: filePath)
