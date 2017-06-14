@@ -30,7 +30,8 @@ class MainEncodingView: UIScrollView {
     let encryptionKeyField = PictographInsetTextField()
     let encryptionSwitch = UISwitch()
     let encryptionInfoViewBorder = UIView()
-    let encodeButton = PictographHighlightButton()
+    let encodeMessageButton = PictographHighlightButton()
+    let encodeImageButton = PictographHighlightButton()
     let decodeButton = PictographHighlightButton()
     
     //MARK: - UIView
@@ -53,7 +54,9 @@ class MainEncodingView: UIScrollView {
         
         self.setUpEncryptionArea()
         
-        self.setUpEncodeButton()
+        self.setUpEncodeMessageButton()
+        
+        self.setUpEncodeImageButton()
         
         self.setUpDecodeButton()
     }
@@ -180,26 +183,46 @@ class MainEncodingView: UIScrollView {
         self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1))
     }
     
-    private func setUpEncodeButton() {
-        encodeButton.setTitle("Hide Message", for: .normal)
-        encodeButton.isEnabled = false
-        encodeButton.alpha = 0.5
-        encodeButton.translatesAutoresizingMaskIntoConstraints = false
+    private func setUpEncodeMessageButton() {
+        encodeMessageButton.setTitle("Hide Message", for: .normal)
+        encodeMessageButton.isEnabled = false
+        encodeMessageButton.alpha = 0.5
+        encodeMessageButton.translatesAutoresizingMaskIntoConstraints = false
         
         //Setting the corner radius
-        encodeButton.layer.cornerRadius = 2.0
+        encodeMessageButton.layer.cornerRadius = 2.0
         
-        self.elementContainer.addSubview(encodeButton)
+        self.elementContainer.addSubview(encodeMessageButton)
         
         //20px from border, 40px from left, right, 60px tall
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .top, relatedBy: .equal, toItem: encryptionInfoViewBorder, attribute: .bottom, multiplier: 1, constant: encryptionVerticalMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .left, relatedBy: .equal, toItem: self.elementContainer, attribute: .left, multiplier: 1, constant: encryptionMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .right, relatedBy: .equal, toItem: self.elementContainer, attribute: .centerX, multiplier: 1, constant: -buttonCenterMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: bigButtonHeight))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeMessageButton, attribute: .top, relatedBy: .equal, toItem: encryptionInfoViewBorder, attribute: .bottom, multiplier: 1, constant: encryptionVerticalMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeMessageButton, attribute: .left, relatedBy: .equal, toItem: self.elementContainer, attribute: .left, multiplier: 1, constant: encryptionMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeMessageButton, attribute: .right, relatedBy: .equal, toItem: self.elementContainer, attribute: .centerX, multiplier: 1, constant: -buttonCenterMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeMessageButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: bigButtonHeight))
+    }
+    
+    private func setUpEncodeImageButton() {
+        self.encodeImageButton.setTitle("Hide Image", for: .normal)
+        self.encodeImageButton.isEnabled = false
+        self.encodeImageButton.alpha = 0.5
+        self.encodeImageButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        //Corner radius
+        self.encodeImageButton.layer.cornerRadius = 2
+        
+        self.elementContainer.addSubview(self.encodeImageButton)
+        
+        //20px from encodeButton, 40px from left, right, 60px tall
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeImageButton, attribute: .top, relatedBy: .equal, toItem: encryptionInfoViewBorder, attribute: .bottom, multiplier: 1, constant: encryptionVerticalMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeImageButton, attribute: .left, relatedBy: .equal, toItem: self.elementContainer, attribute: .centerX, multiplier: 1, constant: buttonCenterMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeImageButton, attribute: .right, relatedBy: .equal, toItem: self.elementContainer, attribute: .right, multiplier: 1, constant: -encryptionMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeImageButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: bigButtonHeight))
+        
+        
     }
     
     private func setUpDecodeButton() {
-        decodeButton.setTitle("Show Message", for: .normal)
+        decodeButton.setTitle("Show Message or Image", for: .normal)
         decodeButton.isEnabled = false
         decodeButton.alpha = 0.5
         decodeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -210,9 +233,9 @@ class MainEncodingView: UIScrollView {
         self.elementContainer.addSubview(decodeButton)
         
         //20px from encodeButton, 40px from left, right, 60px tall
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .top, relatedBy: .equal, toItem: encryptionInfoViewBorder, attribute: .bottom, multiplier: 1, constant: encryptionVerticalMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .left, relatedBy: .equal, toItem: self.elementContainer, attribute: .centerX, multiplier: 1, constant: buttonCenterMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .right, relatedBy: .equal, toItem: self.elementContainer, attribute: .right, multiplier: 1, constant: -encryptionMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: decodeButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: bigButtonHeight))
+        self.decodeButton.leftAnchor.constraint(equalTo: self.encodeMessageButton.leftAnchor).isActive = true
+        self.decodeButton.rightAnchor.constraint(equalTo: self.encodeImageButton.rightAnchor).isActive = true
+        self.decodeButton.topAnchor.constraint(equalTo: self.encodeMessageButton.bottomAnchor, constant: encryptionVerticalMargin).isActive = true
+        self.decodeButton.heightAnchor.constraint(equalToConstant: bigButtonHeight).isActive = true
     }
 }

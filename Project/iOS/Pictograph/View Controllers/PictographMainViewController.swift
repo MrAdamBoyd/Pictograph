@@ -22,19 +22,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     var currentImage: UIImage? {
         didSet {
             self.mainEncodeView.imageView.image = self.currentImage
-            
-            let imageExists = self.currentImage != nil
-            self.mainEncodeView.largeTapSelectImageLabel.isHidden = imageExists
-            self.mainEncodeView.smallTapSelectImageLabel.isHidden = !imageExists
-            
-            self.mainEncodeView.encodeButton.isEnabled = imageExists
-            self.mainEncodeView.encodeButton.alpha = imageExists ? 1 : 0.5
-            
-            self.mainEncodeView.decodeButton.isEnabled = imageExists
-            self.mainEncodeView.decodeButton.alpha = imageExists ? 1 : 0.5
-            
-            self.mainEncodeView.shareButton.isEnabled = imageExists
-            self.mainEncodeView.shareButton.imageView?.alpha = imageExists ? 1 : 0.5
+            self.enableOrDisableButtons()
         }
     }
     var dragDropManager: DragDropManager?
@@ -66,7 +54,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.mainEncodeView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         //Setting up the actions for the elements
-        self.mainEncodeView.encodeButton.addTarget(self, action: #selector(self.startEncodeProcess), for: .touchUpInside)
+        self.mainEncodeView.encodeMessageButton.addTarget(self, action: #selector(self.startEncodeMessageProcess), for: .touchUpInside)
+        self.mainEncodeView.encodeImageButton.addTarget(self, action: #selector(self.startEncodeImageProcess), for: .touchUpInside)
         self.mainEncodeView.decodeButton.addTarget(self, action: #selector(self.startDecodeProcess), for: .touchUpInside)
         self.mainEncodeView.encryptionKeyField.delegate = self
         self.mainEncodeView.encryptionSwitch.addTarget(self, action: #selector(self.switchToggled(_:)), for: .valueChanged)
@@ -142,6 +131,26 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     //For NSNotificationCenter
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    //Enable or disables all buttons within the app depending on app settings
+    private func enableOrDisableButtons() {
+        let imageExists = self.currentImage != nil
+        self.mainEncodeView.largeTapSelectImageLabel.isHidden = imageExists
+        self.mainEncodeView.smallTapSelectImageLabel.isHidden = !imageExists
+        
+        self.mainEncodeView.encodeMessageButton.isEnabled = imageExists
+        self.mainEncodeView.encodeMessageButton.alpha = imageExists ? 1 : 0.5
+        
+        let encryptionEnabled = PictographDataController.shared.userEncryptionIsEnabled
+        self.mainEncodeView.encodeImageButton.isEnabled = imageExists && encryptionEnabled
+        self.mainEncodeView.encodeImageButton.alpha = encryptionEnabled && imageExists ? 1 : 0.5
+        
+        self.mainEncodeView.decodeButton.isEnabled = imageExists
+        self.mainEncodeView.decodeButton.alpha = imageExists ? 1 : 0.5
+        
+        self.mainEncodeView.shareButton.isEnabled = imageExists
+        self.mainEncodeView.shareButton.imageView?.alpha = imageExists ? 1 : 0.5
     }
     
     // MARK: - Paste from clipboard button
@@ -257,10 +266,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
         
         PictographDataController.shared.userEncryptionIsEnabled = flag
+        self.enableOrDisableButtons()
     }
     
     //Starting the encode process
-    @objc func startEncodeProcess() {
+    @objc func startEncodeMessageProcess() {
         self.endEditingAndSetPassword()
         
         if self.passwordSettingsValid {
@@ -271,6 +281,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             //Show message: encryption is enabled and the key is blank
             showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.")
         }
+    }
+    
+    //Starting the process for the user to encode an image within another image
+    @objc func startEncodeImageProcess() {
+        
     }
     
     //Starting the decoding process
@@ -534,7 +549,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Setting the color of the keyboard
         self.mainEncodeView.encryptionKeyField.keyboardAppearance = nightMode ? .dark : .default
         
-        for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.decodeButton] {
+        for button in [self.mainEncodeView.encodeMessageButton, self.mainEncodeView.encodeImageButton, self.mainEncodeView.decodeButton] {
             
             //Button background
             button.backgroundColor = nightMode ? mainAppColorNight : UIColor.white
