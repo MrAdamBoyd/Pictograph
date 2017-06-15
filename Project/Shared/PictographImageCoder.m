@@ -18,6 +18,7 @@
 #define bitCountForCharacter 8
 #define bitsChangedPerPixel 2
 #define bitCountForInfo 16
+#define bitCountForHiddenBitSize 64 //Number of bits needed, NOT pixels
 #define bytesPerPixel 4
 #define maxIntFor8Bits 255
 #define maxFloatFor8Bits 255.0
@@ -47,7 +48,7 @@
     NSMutableArray *infoArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting information about the encoded message
-    NSArray *first8PixelsInfo = [self getRBGAFromImage:image atX:0 andY:0 count:(bitCountForInfo / bitsChangedPerPixel)];
+    NSArray *first8PixelsInfo = [self getRGBAFromImage:image atX:0 andY:0 count:(bitCountForInfo / bitsChangedPerPixel)];
     for (PictographColor *color in first8PixelsInfo) {
         //Going through each color that contains information about the message
         [self addBlueBitsFromColor:color toArray:infoArrayInBits];
@@ -101,9 +102,9 @@
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting the size of the string
-    NSArray *first8PixelsColors = [self getRBGAFromImage:image atX:8 andY:0 count:(bitCountForInfo / bitsChangedPerPixel)];
+    NSArray *colorsContainingSizeOfImage = [self getRGBAFromImage:image atX:8 andY:0 count:(bitCountForInfo / bitsChangedPerPixel)];
     
-    for (PictographColor *color in first8PixelsColors) {
+    for (PictographColor *color in colorsContainingSizeOfImage) {
         //Going through each color that contains the size of the message
         [self addBlueBitsFromColor:color toArray:sizeArrayInBits];
     }
@@ -116,7 +117,8 @@
     NSMutableData *dataFromImage = [[NSMutableData alloc] init];
     NSData *toReturn;
     
-    NSArray *arrayOfColors = [self getRBGAFromImage:image atX:16 andY:0 count:((int)numberOfBitsNeededForImage / bitsChangedPerPixel)];
+    int firstPixelWithData = (bitCountForInfo + bitCountForHiddenBitSize) / 2;
+    NSArray *arrayOfColors = [self getRGBAFromImage:image atX:firstPixelWithData andY:0 count:((int)numberOfBitsNeededForImage / bitsChangedPerPixel)];
     
     for (PictographColor *color in arrayOfColors) {
         //Going through each pixel
@@ -258,7 +260,7 @@
     UIGraphicsBeginImageContext(CGSizeMake(imageWidth, imageHeight));
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
+    NSArray *arrayOfAllNeededColors = [self getRGBAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
     
     /**
@@ -329,7 +331,7 @@
     CGImageRef imageRef = [image getReconciledCGImageRef];
     NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithCGImage: imageRef];
     
-    NSArray *arrayOfAllNeededColors = [self getRBGAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
+    NSArray *arrayOfAllNeededColors = [self getRGBAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
     
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
     PictographColor *pixelColor;
@@ -438,7 +440,7 @@
  @param image image that the hiddenImage will be hidden in
  @return factor that hiddenImage needs to be scaled by
  */
-- (CGFloat)determineScaleForHidingImage:(UIImage *)hiddenImage withinImage:(UIImage *)image {
+- (CGFloat)determineScaleForHidingImage:(PictographImage *)hiddenImage withinImage:(PictographImage *)image {
     const NSUInteger numberOfPixelsInMainImage = [image getReconciledImageWidth] * [image getReconciledImageHeight];
     CGFloat scaleFactor = 1;
     
@@ -468,7 +470,8 @@
     NSUInteger bitsNeededPerPixel = bitCountForCharacter * bytesPerPixel;
     NSUInteger bitsNeededToEncodeEntireImage = bitsNeededPerPixel * imageSize.width * imageSize.height;
     
-    NSUInteger totalBitsToEncode = bitCountForInfo + bitsNeededToEncodeEntireImage;
+    //16 bits for info about image, 64 bits for number of bits needed
+    NSUInteger totalBitsToEncode = bitCountForInfo + bitCountForHiddenBitSize + bitsNeededToEncodeEntireImage;
     
     return totalBitsToEncode / bitsChangedPerPixel;
 }
@@ -540,7 +543,7 @@
 /* Returns an array of PictographColors for the pixels starting at x, y for count number of pixels
    http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
    Used the above link as inspiration, but heavily modified */
--(NSArray *)getRBGAFromImage:(PictographImage*)image atX:(int)x andY:(int)y count:(int)count {
+-(NSArray *)getRGBAFromImage:(PictographImage*)image atX:(int)x andY:(int)y count:(int)count {
     
     //Getting the raw data
     unsigned char *rawData = [self getRawPixelDataForImage:image];
