@@ -18,6 +18,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     @IBOutlet weak var showMessageButton: NSButton!
     @IBOutlet weak var messageTextField: NSTextField!
     
+    @IBOutlet weak var imageSelectLabel: NSTextField!
     @IBOutlet weak var selectImageButton: NSButton!
     @IBOutlet weak var saveImageButton: NSButton!
     @IBOutlet weak var dragAndDropView: DragAndDropView!
@@ -36,9 +37,8 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         
         self.checkIfValid()
         
-//        self.dragAndDropView.registerForDraggedTypes([NSURLPboardType])
-        //TODO: Fix this, drag and drop doesn't work with this option
-        self.dragAndDropView.registerForDraggedTypes([NSPasteboard.PasteboardType.fileContents])
+        //This is impossible to figure out... why?
+        self.dragAndDropView.registerForDraggedTypes([NSPasteboard.PasteboardType(rawValue: kUTTypeFileURL as String)])
         self.dragAndDropView.delegate = self
     }
 
@@ -57,6 +57,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         
         let hideMessageValid = !self.messageTextField.stringValue.isEmpty
         
+        self.imageSelectLabel.isHidden = imageValid
         self.saveImageButton.isEnabled = imageValid
         self.showMessageButton.isEnabled = encryptionValid && imageValid
         self.hideMessageButton.isEnabled = encryptionValid && imageValid && hideMessageValid

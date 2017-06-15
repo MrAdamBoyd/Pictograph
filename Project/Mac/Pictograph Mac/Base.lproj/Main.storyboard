@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13122.17"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -454,15 +454,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="269" height="285"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuA-vK-hhw">
-                                <rect key="frame" x="18" y="241" width="222" height="24"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KuA-vK-hhw">
+                                <rect key="frame" x="18" y="241" width="214" height="24"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="What is steganography?" id="IRN-j9-Nap">
                                     <font key="font" metaFont="system" size="20"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMw-Xa-tFF">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="IMw-Xa-tFF">
                                 <rect key="frame" x="18" y="146" width="233" height="85"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="tFR-0W-z1B">
                                     <font key="font" metaFont="system"/>
@@ -471,15 +471,15 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKW-nX-an6">
-                                <rect key="frame" x="18" y="102" width="100" height="24"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IKW-nX-an6">
+                                <rect key="frame" x="18" y="102" width="97" height="24"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Encryption" id="knw-3i-H2a">
                                     <font key="font" metaFont="system" size="20"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0NJ-o1-uaa">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="0NJ-o1-uaa">
                                 <rect key="frame" x="18" y="24" width="233" height="68"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="Kf8-dG-VK9">
                                     <font key="font" metaFont="system"/>
@@ -547,7 +547,7 @@
                                     <action selector="encryptionEnabledChanged:" target="XfG-lQ-9wD" id="mfd-z7-JSD"/>
                                 </connections>
                             </button>
-                            <textField hidden="YES" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OuD-HM-Cre">
+                            <textField hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OuD-HM-Cre">
                                 <rect key="frame" x="280" y="212" width="220" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Encryption password" drawsBackground="YES" id="vBH-f0-hz8">
                                     <font key="font" metaFont="system"/>
@@ -585,7 +585,7 @@
                                     <action selector="helpButtonAction:" target="XfG-lQ-9wD" id="or6-M4-TSg"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uU4-Mw-8nA">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uU4-Mw-8nA">
                                 <rect key="frame" x="280" y="50" width="220" height="141"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="141" id="b04-GU-g49"/>
@@ -622,7 +622,7 @@
                                     <rect key="frame" x="1" y="1" width="218" height="211"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKl-S6-Bh5">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XKl-S6-Bh5">
                                             <rect key="frame" x="20" y="97" width="178" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Click or drag to select image" id="Fdw-Ng-qAT">
                                                 <font key="font" metaFont="system"/>
@@ -690,6 +690,7 @@
                         <outlet property="dragAndDropView" destination="RnT-py-0oh" id="yeW-8H-a2r"/>
                         <outlet property="encryptionCheckbox" destination="4t1-Co-IAH" id="o76-f6-ek4"/>
                         <outlet property="hideMessageButton" destination="zgS-Ql-1pe" id="5lH-vy-0PV"/>
+                        <outlet property="imageSelectLabel" destination="XKl-S6-Bh5" id="p02-6T-pyO"/>
                         <outlet property="mainImageView" destination="1t2-zo-2lf" id="Dj3-1A-T1x"/>
                         <outlet property="messageTextField" destination="uU4-Mw-8nA" id="ltg-mE-uGW"/>
                         <outlet property="passwordTextfield" destination="OuD-HM-Cre" id="rFn-hL-qfk"/>
@@ -797,6 +798,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FullsizeAppIcon" width="128" height="128"/>
+        <image name="FullsizeAppIcon" width="1024" height="1024"/>
     </resources>
 </document>
