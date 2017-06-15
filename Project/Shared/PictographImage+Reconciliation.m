@@ -10,16 +10,26 @@
 
 @implementation PictographImage (Reconciliation)
 
-- (CGImageRef) getReconciledCGImageRef {
+- (NSData *)dataRepresentation {
+#if TARGET_OS_IPHONE
+    return UIImagePNGRepresentation(self);
+#else
+    CGImageRef imageRef = [self getReconciledCGImageRef];
+    NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithCGImage: imageRef];
+    return [imageRep representationUsingType:NSPNGFileType properties: [[NSDictionary alloc] init]];
+#endif
+}
+
+- (CGImageRef)getReconciledCGImageRef {
 #if TARGET_OS_IPHONE
     return [self CGImage];
 #else
-    NSRect imageRect = NSMakeRect(0, 0, self.size.width, self.size.height);
+    NSRect imageRect = NSMakeRect(0, 0, [self getReconciledImageWidth], [self getReconciledImageHeight]);
     return [self CGImageForProposedRect: &imageRect context:NULL hints:nil];
 #endif
 }
 
-- (NSUInteger) getReconciledImageWidth {
+- (NSUInteger)getReconciledImageWidth {
 #if TARGET_OS_IPHONE
     return self.size.width * self.scale;
 #else
@@ -28,7 +38,7 @@
 #endif
 }
 
-- (NSUInteger) getReconciledImageHeight {
+- (NSUInteger)getReconciledImageHeight {
 #if TARGET_OS_IPHONE
     return self.size.height * self.scale;
 #else

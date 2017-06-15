@@ -427,20 +427,32 @@
 
 //Encodes an image within another image
 - (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image error:(NSError * _Nullable * _Nullable)error {
-    CGFloat scale = [self determineScaleForHidingImage:hiddenImage withinImage:image];
-    NSLog(@"This is the scale needed: %f", scale);
-    return [[NSData alloc] init];
+    const CGSize originalSize = CGSizeMake([hiddenImage getReconciledImageWidth], [hiddenImage getReconciledImageHeight]);
+    CGSize newSize = [self determineSizeForHidingImage:hiddenImage withinImage:image];
+    
+    PictographImage *imageToHide = hiddenImage;
+    
+    if (originalSize.width != newSize.width && originalSize.height != newSize.height) {
+        //If the hidden image needs to be resized
+        DLog(@"Hidden image needs to be this size, resizing: width: %f, height: %f", newSize.width, newSize.height);
+        
+        imageToHide = [imageToHide scaledImageWithNewSize:newSize];
+    }
+    
+    NSData *dataFromImageToHide = [imageToHide dataRepresentation];
+    
+    return [self encodeData:dataFromImageToHide inImage:image encryptedWithPassword:@"" error:error];
 }
 
 
 /**
- Determines the scale factor needed to hide the hidden image in the original image. Instead of figuring out the exact size that will make the image fit, it cuts the scale factor in half each time. Starting with 1, then 1/2, then 1/4 etc
+ Determines the size that the hidden image will need to be in order to fit in the original image. Instead of figuring out the exact size that will make the image fit, it cuts the scale factor in half each time. Starting with 1, then 1/2, then 1/4 etc
  
  @param hiddenImage image to hide
  @param image image that the hiddenImage will be hidden in
  @return factor that hiddenImage needs to be scaled by
  */
-- (CGFloat)determineScaleForHidingImage:(PictographImage *)hiddenImage withinImage:(PictographImage *)image {
+- (CGSize)determineSizeForHidingImage:(PictographImage *)hiddenImage withinImage:(PictographImage *)image {
     const NSUInteger numberOfPixelsInMainImage = [image getReconciledImageWidth] * [image getReconciledImageHeight];
     CGFloat scaleFactor = 1;
     
@@ -455,7 +467,7 @@
         pixelsNeededForHiddenImage = [self numberOfPixelsNeededToHideImageOfSize:hiddenImageSize];
     }
     
-    return scaleFactor;
+    return hiddenImageSize;
 }
 
 /**

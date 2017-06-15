@@ -42,6 +42,9 @@
 		6699CAD51EEF890500F57B65 /* UILabel+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */; };
 		6699CAD61EEF890700F57B65 /* UILabel+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */; };
 		66B187441C553D660057259F /* CreatesNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B187431C553D660057259F /* CreatesNavigationTitle.swift */; };
+		66BAF6271EF21E8500B3C4B7 /* PictographImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BAF6261EF21E8500B3C4B7 /* PictographImage+Resize.m */; };
+		66BAF6281EF21E8500B3C4B7 /* PictographImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BAF6261EF21E8500B3C4B7 /* PictographImage+Resize.m */; };
+		66BAF6291EF21E8500B3C4B7 /* PictographImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 66BAF6261EF21E8500B3C4B7 /* PictographImage+Resize.m */; };
 		66BEA7861EAD4E940083A6DA /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 66BEA7851EAD4E940083A6DA /* dsa_pub.pem */; };
 		66C58B6A1C1D2FF700C10A06 /* PictographTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C58B691C1D2FF700C10A06 /* PictographTests.swift */; };
 		66DF573A1EEBA01C0062D876 /* DragDropManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66DF57391EEBA01C0062D876 /* DragDropManager.swift */; };
@@ -162,6 +165,8 @@
 		66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PictographImage+Reconciliation.m"; sourceTree = "<group>"; };
 		66A1B28C1EA182F700AB5822 /* Global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		66B187431C553D660057259F /* CreatesNavigationTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatesNavigationTitle.swift; sourceTree = "<group>"; };
+		66BAF6251EF21E8500B3C4B7 /* PictographImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PictographImage+Resize.h"; sourceTree = "<group>"; };
+		66BAF6261EF21E8500B3C4B7 /* PictographImage+Resize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PictographImage+Resize.m"; sourceTree = "<group>"; };
 		66BEA7851EAD4E940083A6DA /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		66C58B681C1D2FF700C10A06 /* PictographTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "PictographTests-Bridging-Header.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		66C58B691C1D2FF700C10A06 /* PictographTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PictographTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -297,10 +302,7 @@
 				660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */,
 				66A1B28C1EA182F700AB5822 /* Global.h */,
 				6647B4381BDDB91800235E04 /* PictographDataController.swift */,
-				66A1B2881EA1824300AB5822 /* PictographImage+Reconciliation.h */,
-				66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */,
-				662CFC851BC2215F00A9FF28 /* PictographImageCoder.h */,
-				662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */,
+				66BAF6201EF21E4800B3C4B7 /* Objective C */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -494,6 +496,19 @@
 				66B187431C553D660057259F /* CreatesNavigationTitle.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		66BAF6201EF21E4800B3C4B7 /* Objective C */ = {
+			isa = PBXGroup;
+			children = (
+				66A1B2881EA1824300AB5822 /* PictographImage+Reconciliation.h */,
+				66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */,
+				662CFC851BC2215F00A9FF28 /* PictographImageCoder.h */,
+				662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */,
+				66BAF6251EF21E8500B3C4B7 /* PictographImage+Resize.h */,
+				66BAF6261EF21E8500B3C4B7 /* PictographImage+Resize.m */,
+			);
+			name = "Objective C";
 			sourceTree = "<group>";
 		};
 		66F2AA6E1EC2A0FC0020438E /* Message Extension */ = {
@@ -1040,6 +1055,7 @@
 				666A96B71E41836900107630 /* CurrentUser.swift in Sources */,
 				666AD9CA1E41828C006B37FB /* PictographDataController.swift in Sources */,
 				66E227C11EA2EC5E0089CD48 /* AboutViewController.swift in Sources */,
+				66BAF6291EF21E8500B3C4B7 /* PictographImage+Resize.m in Sources */,
 				664C5F801E357A2E004E1FA9 /* MainViewController.swift in Sources */,
 				66E227C41EA316A00089CD48 /* PictographImageCoder.m in Sources */,
 				664C629B1EA422D60056927A /* DragAndDropBox.swift in Sources */,
@@ -1071,6 +1087,7 @@
 				6647B43B1BDDCE9800235E04 /* PictographMainViewController.swift in Sources */,
 				6647B4441BDF0B7E00235E04 /* PictographSettingsTableViewCell.swift in Sources */,
 				66DF573A1EEBA01C0062D876 /* DragDropManager.swift in Sources */,
+				66BAF6271EF21E8500B3C4B7 /* PictographImage+Resize.m in Sources */,
 				6647B43D1BDEF5BF00235E04 /* IntroView.swift in Sources */,
 				6647B4481BDF230A00235E04 /* SettingsFooterView.swift in Sources */,
 				6647B43F1BDF022E00235E04 /* SettingsViewController.swift in Sources */,
@@ -1111,6 +1128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6699CAD61EEF890700F57B65 /* UILabel+ConvenienceInit.swift in Sources */,
+				66BAF6281EF21E8500B3C4B7 /* PictographImage+Resize.m in Sources */,
 				66F2AA701EC2A0FC0020438E /* MessagesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

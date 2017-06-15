@@ -11,6 +11,7 @@
 #import "EncodingErrors.h"
 #import "PictographImage+Reconciliation.h"
 #import "Global.h"
+#import "PictographImage+Resize.h"
 
 @interface PictographImageCoder : NSObject
 
