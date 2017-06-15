@@ -18,7 +18,7 @@
 #define bitCountForCharacter 8
 #define bitsChangedPerPixel 2
 #define bitCountForInfo 16
-#define bitCountForHiddenBitSize 64 //Number of bits needed, NOT pixels
+#define bitCountForHiddenDataSize 64 //Number of bits needed, NOT pixels
 #define bytesPerPixel 4
 #define maxIntFor8Bits 255
 #define maxFloatFor8Bits 255.0
@@ -29,48 +29,57 @@
 @synthesize isCancelled;
 #endif
 
-#pragma mark Decoding a message hidden in an image
+#pragma mark Decoding a messages and images hidden in an image
 
 //Decodes a string from an image. Returns nil if there is no message in the image or if there was an error
 - (void)decodeImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password hiddenStringPointer:(NSString * _Nullable * _Nullable)hiddenString hiddenImagePointer:(PictographImage * _Nullable * _Nullable)hiddenImage error:(NSError * _Nullable * _Nullable)error {
-    NSData *dataFromImage = [self decodeDataInImage:image encryptedWithPassword:password error:error];
     
-    //In addition to converting the string back to a readable version, this converts any unicode scalars back to readable format (like emoji)
-    *hiddenString = [[NSString alloc] initWithData:dataFromImage encoding:NSNonLossyASCIIStringEncoding];
+    BOOL dataIsImage;
+    NSData *dataFromImage = [self decodeDataInImage:image encryptedWithPassword:password dataIsImage:&dataIsImage error:error];
+    
+    if (dataIsImage) {
+        *hiddenImage = [[PictographImage alloc] initWithData:dataFromImage];
+    } else {
+        //In addition to converting the string back to a readable version, this converts any unicode scalars back to readable format (like emoji)
+        *hiddenString = [[NSString alloc] initWithData:dataFromImage encoding:NSNonLossyASCIIStringEncoding];
+    }
 }
 
 //Decodes UIImage image. Returns the encoded data in the image
 //Password handler has no parameters and returns an NSString *
-- (NSData * _Nullable)decodeDataInImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
+- (NSData * _Nullable)decodeDataInImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password dataIsImage:(BOOL *)dataIsImage error:(NSError * _Nullable * _Nullable)error {
     
     DLog("Decoding image with password %@", password);
     
     NSMutableArray *infoArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting information about the encoded message
-    NSArray *first8PixelsInfo = [self getRGBAFromImage:image atX:0 andY:0 count:(bitCountForInfo / bitsChangedPerPixel)];
+    const NSArray *first8PixelsInfo = [self getRGBAFromImage:image atX:0 andY:0 count:(bitCountForInfo / bitsChangedPerPixel)];
     for (PictographColor *color in first8PixelsInfo) {
         //Going through each color that contains information about the message
         [self addBlueBitsFromColor:color toArray:infoArrayInBits];
     }
     
-    long informationAboutString = [self longFromBits:infoArrayInBits];
+    const long informationAboutString = [self longFromBits:infoArrayInBits];
     
-    BOOL messageIsEncrypted = NO;
+    BOOL dataIsEncrypted = NO;
+    *dataIsImage = NO;
     
     //Using 16 bits for future proofing
-    //Only using 1 bit right now
+    //Only using 2 bits right now
     /*
      (0) 00000000 00000000 - Normal message, proceed as normal
      (1) 00000000 00000001 - Encrypted message
+     (2) 00000000 00000010 - Normal image, proceed as normal
+     (3) 00000000 00000011 - NOT SUPPORTED: Images can't be encrypted
      */
     switch (informationAboutString) {
         case 0:
-            messageIsEncrypted = NO;
+            dataIsEncrypted = NO;
             break;
             
         case 1:
-            messageIsEncrypted = YES;
+            dataIsEncrypted = YES;
             
             if ([password isEqualToString:@""]) {
                 //The message is encrypted and the user has no password entered, alert user
@@ -79,6 +88,10 @@
                 return nil;
             }
             
+            break;
+            
+        case 2:
+            *dataIsImage = YES;
             break;
             
         default: {
@@ -90,10 +103,10 @@
     }
     
     //Sending the analytics
-    [[PictographDataController shared] analyticsDecodeSend:messageIsEncrypted];
+    [[PictographDataController shared] analyticsDecodeSend:dataIsEncrypted];
     
     //Message is not encrypted, send with blank password
-    return [self dataFromImage:image needsPassword:messageIsEncrypted password:password error:error];
+    return [self dataFromImage:image needsPassword:dataIsEncrypted password:password error:error];
 }
 
 //Returns the message from the image given an optional password
@@ -102,7 +115,7 @@
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting the size of the string
-    NSArray *colorsContainingSizeOfImage = [self getRGBAFromImage:image atX:8 andY:0 count:(bitCountForInfo / bitsChangedPerPixel)];
+    NSArray *colorsContainingSizeOfImage = [self getRGBAFromImage:image atX:8 andY:0 count:(bitCountForHiddenDataSize / bitsChangedPerPixel)];
     
     for (PictographColor *color in colorsContainingSizeOfImage) {
         //Going through each color that contains the size of the message
@@ -117,7 +130,7 @@
     NSMutableData *dataFromImage = [[NSMutableData alloc] init];
     NSData *toReturn;
     
-    int firstPixelWithData = (bitCountForInfo + bitCountForHiddenBitSize) / 2;
+    int firstPixelWithData = (bitCountForInfo + bitCountForHiddenDataSize) / 2;
     NSArray *arrayOfColors = [self getRGBAFromImage:image atX:firstPixelWithData andY:0 count:((int)numberOfBitsNeededForImage / bitsChangedPerPixel)];
     
     for (PictographColor *color in arrayOfColors) {
@@ -170,7 +183,7 @@
     [array addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
 }
 
-#pragma mark Encoding message in an image
+#pragma mark Encoding messages and images
 
 //Encodes UIImage image with message message. Returns the modified UIImage or NSImage
 - (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
@@ -180,12 +193,33 @@
     //Converting emoji to the unicode scalars
     NSData *unicodeMessageData = [message dataUsingEncoding:NSNonLossyASCIIStringEncoding];
     
-    return [self encodeData:unicodeMessageData inImage:image encryptedWithPassword:password error:error];
+    return [self encodeData:unicodeMessageData dataIsImage:NO inImage:image encryptedWithPassword:password error:error];
     
 }
 
+//Encodes an image within another image
+- (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image error:(NSError * _Nullable * _Nullable)error {
+    const CGSize originalSize = CGSizeMake([hiddenImage getReconciledImageWidth], [hiddenImage getReconciledImageHeight]);
+    CGSize newSize = [self determineSizeForHidingImage:hiddenImage withinImage:image];
+    
+    PictographImage *imageToHide = hiddenImage;
+    
+    if (originalSize.width != newSize.width && originalSize.height != newSize.height) {
+        //If the hidden image needs to be resized
+        DLog(@"Hidden image needs to be this size, resizing: width: %f, height: %f", newSize.width, newSize.height);
+        
+        imageToHide = [imageToHide scaledImageWithNewSize:newSize];
+    }
+    
+    NSData *dataFromImageToHide = [imageToHide dataRepresentation];
+    
+    return [self encodeData:dataFromImageToHide dataIsImage:YES inImage:image encryptedWithPassword:@"" error:error];
+}
+
+#pragma mark Helper methods for encoding a message in an image
+
 //Encodes UIImage image with the data. Returns modified UIImage or NSImage
-- (NSData * _Nullable)encodeData:(NSData * _Nonnull)data inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
+- (NSData * _Nullable)encodeData:(NSData * _Nonnull)data dataIsImage:(BOOL)dataIsImage inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
     
     NSData *dataToEncode;
     
@@ -226,9 +260,12 @@
     /*
      (0) 00000000 00000000 - Normal message, proceed as normal
      (1) 00000000 00000001 - Encrypted message
+     (2) 00000000 00000010 - Normal image, proceed as normal
+     (3) 00000000 00000011 - NOT SUPPORTED: Images can't be encrypted
      */
     
     int encryptedOrNotBit = encryptedBool ? 1 : 0;
+    encryptedOrNotBit += dataIsImage ? 2 : 0;
     
     [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:encryptedOrNotBit withSpaceFor:bitCountForInfo]]; //16 bits for future proofing
     
@@ -423,27 +460,7 @@
     return [PictographColor colorWithRed:red green:green blue:newBlueValue alpha:alpha];
 }
 
-# pragma mark Methods used for hiding an image within another image
-
-//Encodes an image within another image
-- (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image error:(NSError * _Nullable * _Nullable)error {
-    const CGSize originalSize = CGSizeMake([hiddenImage getReconciledImageWidth], [hiddenImage getReconciledImageHeight]);
-    CGSize newSize = [self determineSizeForHidingImage:hiddenImage withinImage:image];
-    
-    PictographImage *imageToHide = hiddenImage;
-    
-    if (originalSize.width != newSize.width && originalSize.height != newSize.height) {
-        //If the hidden image needs to be resized
-        DLog(@"Hidden image needs to be this size, resizing: width: %f, height: %f", newSize.width, newSize.height);
-        
-        imageToHide = [imageToHide scaledImageWithNewSize:newSize];
-    }
-    
-    NSData *dataFromImageToHide = [imageToHide dataRepresentation];
-    
-    return [self encodeData:dataFromImageToHide inImage:image encryptedWithPassword:@"" error:error];
-}
-
+# pragma mark Helper methods used for hiding an image within another image
 
 /**
  Determines the size that the hidden image will need to be in order to fit in the original image. Instead of figuring out the exact size that will make the image fit, it cuts the scale factor in half each time. Starting with 1, then 1/2, then 1/4 etc
@@ -483,7 +500,7 @@
     NSUInteger bitsNeededToEncodeEntireImage = bitsNeededPerPixel * imageSize.width * imageSize.height;
     
     //16 bits for info about image, 64 bits for number of bits needed
-    NSUInteger totalBitsToEncode = bitCountForInfo + bitCountForHiddenBitSize + bitsNeededToEncodeEntireImage;
+    NSUInteger totalBitsToEncode = bitCountForInfo + bitCountForHiddenDataSize + bitsNeededToEncodeEntireImage;
     
     return totalBitsToEncode / bitsChangedPerPixel;
 }

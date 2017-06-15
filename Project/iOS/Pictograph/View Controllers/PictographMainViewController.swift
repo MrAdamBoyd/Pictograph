@@ -15,7 +15,6 @@ import Photos
 import StoreKit
 
 //For image encoding
-//TODO: Need to check if the first 16 bits are valid when decoding to tell if it's an image or not
 //TODO: Conditionally set either image or string address when decoding, not just always a string
 
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle, UIImagePickerControllerDelegate {
@@ -440,7 +439,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         guard let image = self.currentImage else { return }
         
         //After the user hit confirm
-        SVProgressHUD.show()
+        SVProgressHUD.show(withStatus: "This might take a while...")
         
         //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
