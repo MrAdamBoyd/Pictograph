@@ -54,7 +54,7 @@
     NSMutableArray *infoArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting information about the encoded message
-    const NSArray *first8PixelsInfo = [self getRGBAFromImage:image atX:0 andY:0 count:(bitCountForInfo / bitsChangedPerPixel)];
+    const NSArray *first8PixelsInfo = [self getRGBAFromImage:image atX:0 andY:0 count:[self pixelCountForBit:bitCountForInfo]];
     for (PictographColor *color in first8PixelsInfo) {
         //Going through each color that contains information about the message
         [self addBlueBitsFromColor:color toArray:infoArrayInBits];
@@ -115,7 +115,7 @@
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting the size of the string
-    NSArray *colorsContainingSizeOfImage = [self getRGBAFromImage:image atX:8 andY:0 count:(bitCountForHiddenDataSize / bitsChangedPerPixel)];
+    NSArray *colorsContainingSizeOfImage = [self getRGBAFromImage:image atX:[self pixelCountForBit:bitCountForInfo] andY:0 count:[self pixelCountForBit:bitCountForHiddenDataSize]];
     
     for (PictographColor *color in colorsContainingSizeOfImage) {
         //Going through each color that contains the size of the message
@@ -130,8 +130,8 @@
     NSMutableData *dataFromImage = [[NSMutableData alloc] init];
     NSData *toReturn;
     
-    int firstPixelWithData = (bitCountForInfo + bitCountForHiddenDataSize) / 2;
-    NSArray *arrayOfColors = [self getRGBAFromImage:image atX:firstPixelWithData andY:0 count:((int)numberOfBitsNeededForImage / bitsChangedPerPixel)];
+    int firstPixelWithData = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize)];
+    NSArray *arrayOfColors = [self getRGBAFromImage:image atX:firstPixelWithData andY:0 count:[self pixelCountForBit:(int)numberOfBitsNeededForImage]];
     
     for (PictographColor *color in arrayOfColors) {
         //Going through each pixel
@@ -237,8 +237,8 @@
     
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
      stored, but this isn't included in the calculations */
-    long numberOfBitsNeeded = [dataToEncode length] * bitCountForCharacter; //8 bits to a char
-    long numberOfPixelsNeeded = (numberOfBitsNeeded / 2) + (bitCountForInfo / 2) + (bitCountForInfo / 2); //2 bits changed per pixel
+    long bitsNeededForData = [dataToEncode length] * bitCountForCharacter; //8 bits to a char
+    long numberOfPixelsNeeded = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize + (int)bitsNeededForData)];
     
     if (([image getReconciledImageHeight] * [image getReconciledImageWidth]) <= numberOfPixelsNeeded) {
         //Makes sure the image is large enough to handle the message
@@ -269,7 +269,7 @@
     
     [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:encryptedOrNotBit withSpaceFor:bitCountForInfo]]; //16 bits for future proofing
     
-    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)numberOfBitsNeeded withSpaceFor:bitCountForInfo]]; //16 bits for spacing
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)bitsNeededForData withSpaceFor:bitCountForHiddenDataSize]]; //64 bits for size
     
     const char *bytes = [dataToEncode bytes];
     for (int charIndex = 0; charIndex < [dataToEncode length]; charIndex++) {
@@ -280,13 +280,13 @@
         
     }
     
-    return [self saveImageToGraphicsContextAndEncodeBitsInImage:image numberOfBitsNeeded:numberOfBitsNeeded arrayOfBits:arrayOfBits];
+    return [self saveImageToGraphicsContextAndEncodeBitsInImage:image arrayOfBits:arrayOfBits];
 }
 
     
 #if TARGET_OS_IPHONE
 //Saves the image to the graphics context and starts encoding the bits in that image
-- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image numberOfBitsNeeded:(long)numberOfBitsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
+- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image arrayOfBits:(NSMutableArray *)arrayOfBits {
     //Right here we have all the bits that are needed to encode the data in the image
     
     NSUInteger imageWidth = [image getReconciledImageWidth];
@@ -297,7 +297,7 @@
     UIGraphicsBeginImageContext(CGSizeMake(imageWidth, imageHeight));
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSArray *arrayOfAllNeededColors = [self getRGBAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
+    NSArray *arrayOfAllNeededColors = [self getRGBAFromImage:image atX:0 andY:0 count:[self pixelCountForBit:(int)[arrayOfBits count]]];
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
     
     /**
@@ -364,11 +364,11 @@
     return nil;
 }
 #else
-- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image numberOfBitsNeeded:(long)numberOfBitsNeeded arrayOfBits:(NSMutableArray *)arrayOfBits {
+- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image arrayOfBits:(NSMutableArray *)arrayOfBits {
     CGImageRef imageRef = [image getReconciledCGImageRef];
     NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithCGImage: imageRef];
     
-    NSArray *arrayOfAllNeededColors = [self getRGBAFromImage:image atX:0 andY:0 count:(int)numberOfBitsNeeded];
+    NSArray *arrayOfAllNeededColors = [self getRGBAFromImage:image atX:0 andY:0 count:[self pixelCountForBit:(int)[arrayOfBits count]]];
     
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
     PictographColor *pixelColor;
@@ -622,6 +622,18 @@
     CGContextRelease(context);
     
     return rawData;
+}
+
+#pragma mark Dealing with bits
+
+/**
+ Returns the corresponding pixel for the specified bit
+ 
+ @param bit bit number that we're looking at
+ @return pixel that count be changed
+ */
+- (int)pixelCountForBit:(int)bit {
+    return bit / bitsChangedPerPixel;
 }
 
 @end
