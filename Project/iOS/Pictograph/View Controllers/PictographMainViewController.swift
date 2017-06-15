@@ -285,7 +285,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
         } else {
             //Show message: encryption is enabled and the key is blank
-            showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.")
+            showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.", includeCopyButton: false)
         }
     }
     
@@ -308,7 +308,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
         } else {
             //Show message: encryption is enabled and the key is blank
-            showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.")
+            showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.", includeCopyButton: false)
         }
     }
     
@@ -433,7 +433,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             } catch let error {
 
                 //Catch the error
-                self.showMessageInAlertController("Error", message: error.localizedDescription)
+                self.showMessageInAlertController("Error", message: error.localizedDescription, includeCopyButton: false)
             }
         }
     }
@@ -461,7 +461,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             } catch let error {
                 
                 //Catch the error
-                self.showMessageInAlertController("Error", message: error.localizedDescription)
+                self.showMessageInAlertController("Error", message: error.localizedDescription, includeCopyButton: false)
             }
         }
     }
@@ -482,13 +482,13 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         coder.decode(image, encryptedWithPassword: providedPassword, hiddenStringPointer: &hiddenString, hiddenImagePointer: &hiddenImage, error: &error)
         
         guard error == nil else {
-            self.showMessageInAlertController("Error Decoding", message: error!.localizedDescription)
+            self.showMessageInAlertController("Error Decoding", message: error!.localizedDescription, includeCopyButton: false)
             return
         }
         
         if let decodedMessage = hiddenString {
             //Show the message if it was successfully decoded
-            self.showMessageInAlertController("Hidden Message", message: decodedMessage as String) { _ in
+            self.showMessageInAlertController("Hidden Message", message: decodedMessage as String, includeCopyButton: true) { _ in
                 
                 //After alert controller is dismissed, prompt the user for ratings if they haven't been already for this version
                 if #available(iOS 10.3, *), !PictographDataController.shared.hasUserBeenPromptedForRatings {
@@ -563,9 +563,18 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Shows the decoded message in an alert controller
-    func showMessageInAlertController(_ title: String, message: String, onDismiss completion: ((UIAlertAction) -> Void)? = nil) {
+    func showMessageInAlertController(_ title: String, message: String, includeCopyButton: Bool, onDismiss completion: ((UIAlertAction) -> Void)? = nil) {
         let showMessageController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        _ = showMessageController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: completion))
+        
+        _ = showMessageController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: completion))
+        
+        if includeCopyButton {
+            //Let the user copy the text
+            _ = showMessageController.addAction(UIAlertAction(title: "Copy Text", style: .default, handler: { _ in
+                let pasteboard = UIPasteboard.general
+                pasteboard.string = message
+            }))
+        }
         
         self.present(showMessageController, animated: true, completion: nil)
     }
@@ -622,7 +631,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.dismiss(animated: true, completion: nil)
         
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-            self.showMessageInAlertController("Error", message: "Couldn't get image")
+            self.showMessageInAlertController("Error", message: "Couldn't get image", includeCopyButton: false)
             return
         }
         
