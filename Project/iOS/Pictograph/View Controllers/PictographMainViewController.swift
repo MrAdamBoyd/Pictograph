@@ -16,9 +16,7 @@ import StoreKit
 
 //For image encoding
 //TODO: Conditionally set either image or string address when decoding, not just always a string
-//TODO: add option to copy text when decoding message
-//TODO: fix stringFromBits: method in the image coder
-//TODO: Verify hiding images in mac version
+//TODO: Fingerprint reader for password
 
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle, UIImagePickerControllerDelegate {
     

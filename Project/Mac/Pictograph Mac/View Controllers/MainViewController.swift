@@ -111,15 +111,17 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         alert.addButton(withTitle: "Cancel")
         
         let coder = PictographImageCoder()
+        let providedPassword = self.encryptionCheckbox.state == .on ? self.passwordTextfield.stringValue : ""
+        let message = self.messageTextField.stringValue
+        let image = self.mainImageView.image!
         
         let queue = DispatchQueue(label: "encoding", qos: .background)
         
         queue.async {
             do {
                 //Provide no password if encryption/decryption is off
-                let providedPassword = self.encryptionCheckbox.state == .on ? self.passwordTextfield.stringValue : ""
                 
-                let encodedImage = try coder.encode(message: self.messageTextField.stringValue, in: self.mainImageView.image!, encryptedWithPassword: providedPassword)
+                let encodedImage = try coder.encode(message: message, in: image, encryptedWithPassword: providedPassword)
                 let image = NSImage(data: encodedImage)
                 
                 //Hide the sheet

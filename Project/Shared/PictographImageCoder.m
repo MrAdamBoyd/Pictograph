@@ -527,34 +527,8 @@
     return bitArray;
 }
 
-/* Returns the string based on the length provided in the first 16 bits of the bit array */
--(NSString *)stringFromBits:(NSArray *)bitArray {
-    NSMutableString *message = [[NSMutableString alloc] init];
-    
-    NSArray *sizeInBits = [bitArray subarrayWithRange:NSMakeRange(0, bitCountForInfo)];
-    NSMutableString *sizeInBitsString = [[NSMutableString alloc] init];
-    
-    for (int sizeCounter = 0; sizeCounter < bitCountForInfo; sizeCounter++) {
-        //Creating a single string with the size, easily convertible to an int
-        [sizeInBitsString appendString:[NSString stringWithFormat:@"%@", [sizeInBits objectAtIndex:sizeCounter]]];
-    }
-    
-    NSArray *characterArrayInBits = [bitArray subarrayWithRange:NSMakeRange(bitCountForInfo, [bitArray count] - bitCountForInfo)];
-    for (int charBitCounter = 0; charBitCounter < [bitArray count] - bitCountForInfo; charBitCounter += bitCountForCharacter) {
-        //Going through each character
-        NSArray *singleCharacterArray = [characterArrayInBits subarrayWithRange:NSMakeRange(charBitCounter, bitCountForCharacter)];
-
-        long decimalRepresentationOfChar = [self longFromBits:singleCharacterArray];
-        char curChar = (char)decimalRepresentationOfChar;
-        
-        [message appendFormat:@"%c", curChar];
-    }
-    
-    return message;
-}
-
 /* Returns the long representation of a bit array
-   For example ("1101" -> 13) */
+   For example (["1", "1", "0", "1"] -> 13) */
 -(long)longFromBits:(NSArray *)bitArray {
     
     NSMutableString *singleCharacterArrayInBits = [[NSMutableString alloc] init];
