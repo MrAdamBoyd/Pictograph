@@ -508,7 +508,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         } else if let decodedImage = hiddenImage {
             
             //Present a custom sheet for the image
-            let createdWindow = HiddenImageView.createInWindow(from: self, with: decodedImage)
+            let createdWindow = HiddenImageView.createInWindow(from: self, showing: decodedImage)
             self.hiddenImageView = createdWindow.view
             self.hiddenImageWindow = createdWindow.window
         }

@@ -20,7 +20,7 @@ class HiddenImageView: UIView {
     ///
     /// - Parameter delegate: delegate for any actions
     /// - Returns: the window (which needs to be retained), and the view
-    static func createInWindow(from delegate: HiddenImageViewDelegate?, with image: UIImage) -> (window: UIWindow, view: HiddenImageView) {
+    static func createInWindow(from delegate: HiddenImageViewDelegate?, showing image: UIImage) -> (window: UIWindow, view: HiddenImageView) {
         let window = UIWindow.newWindow(statusBarStyle: .default)
         let hiddenImageView = HiddenImageView(frame: .zero)
         hiddenImageView.delegate = delegate
@@ -62,8 +62,8 @@ class HiddenImageView: UIView {
     
     fileprivate lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = UIFont(name: "Avenir-Medium", size: 22)
         $0.text = "Hidden Image"
+        $0.font = UIFont.systemFont(ofSize: 24)
         return $0
     }(UILabel(frame: .zero))
     
@@ -89,6 +89,8 @@ class HiddenImageView: UIView {
     
     fileprivate lazy var imageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.gray.cgColor
         return $0
     }(UIImageView(frame: .zero))
     
@@ -144,7 +146,7 @@ class HiddenImageView: UIView {
         
         //Imageview
         self.addSubview(self.imageView)
-        self.imageView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 20).isActive = true
+        self.imageView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 10).isActive = true
         self.imageView.leftAnchor.constraint(equalTo: self.popupView.leftAnchor, constant: 10).isActive = true
         self.imageView.rightAnchor.constraint(equalTo: self.popupView.rightAnchor, constant: -10).isActive = true
         self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 2/3).isActive = true
