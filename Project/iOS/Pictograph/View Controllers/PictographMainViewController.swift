@@ -15,23 +15,23 @@ import Photos
 import StoreKit
 
 //For image encoding
-//TODO: Conditionally set either image or string address when decoding, not just always a string
 //TODO: Fingerprint reader for password
 
-class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle, UIImagePickerControllerDelegate {
+class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle {
     
     //UI elements
-    let mainEncodeView = MainEncodingView()
-    var settingsNavVC: UINavigationController? //Stored to animate nightMode
+    private let mainEncodeView = MainEncodingView()
+    private var settingsNavVC: UINavigationController? //Stored to animate nightMode
+    private var imagePickerDidPickImage: ((UIImage) -> Void)?
     var currentImage: UIImage? {
         didSet {
             self.mainEncodeView.imageView.image = self.currentImage
             self.enableOrDisableButtons()
         }
     }
-    var dragDropManager: DragDropManager?
-    weak var hiddenImageView: HiddenImageView?
-    var hiddenImageWindow: UIWindow?
+    private var dragDropManager: DragDropManager?
+    private weak var hiddenImageView: HiddenImageView?
+    private var hiddenImageWindow: UIWindow?
     
     /// Checks to make sure the password settings are correct. Makes sure either encryption is disabled or encryption is enabled and the password isn't empty
     private var passwordSettingsValid: Bool {
@@ -293,9 +293,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     @objc func startEncodeImageProcess() {
         self.endEditingAndSetPassword()
         
-        //TODO: Choose image
-        let imageToEncode = #imageLiteral(resourceName: "ShareIcon")
-        self.encodeImage(imageToEncode)
+        self.determineHowToPresentImagePicker() { [weak self] image in
+            self?.encodeImage(image)
+        }
     }
     
     //Starting the decoding process
@@ -315,15 +315,21 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     //Showing the action sheet
     
     @objc func presentImageSelectActionSheet() {
-        self.determineHowToPresentImagePicker(haveCameraOption: true)
+        self.determineHowToPresentImagePicker() { [weak self] image in
+            DispatchQueue.main.async {
+                self?.currentImage = image
+            }
+        }
     }
     
     /// Determines how to show the image picker. If the device has the camera, shows a picker that lets the user determine if they want to use the camera or just pick from the library.
     ///
-    /// - Parameter showCamera: whether or not to have an option to pick the camera
-    func determineHowToPresentImagePicker(haveCameraOption showCamera: Bool) {
+    /// - parameter onImagePick: called with the image when the image is selected by the user
+    func determineHowToPresentImagePicker(onImagePick: @escaping (UIImage) -> Void) {
         
-        if UIImagePickerController.isSourceTypeAvailable(.camera) && showCamera {
+        self.imagePickerDidPickImage = onImagePick
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
             //Device has camera & library, show option to choose
            
             //If the device is an iPad, popup in the middle of screen
@@ -415,11 +421,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //After the user hit confirm
         SVProgressHUD.show()
         
-        let createdWindow = HiddenImageView.createInWindow(from: self, with: self.currentImage!)
-        self.hiddenImageView = createdWindow.view
-        self.hiddenImageWindow = createdWindow.window
-        return
-        
         //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             let coder = PictographImageCoder()
@@ -434,7 +435,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 self.currentImage = UIImage(data: encodedImage)
                 //Show the share sheet if the image exists
                 self.showShareSheet(with: encodedImage)
-
+                
             } catch let error {
 
                 //Catch the error
@@ -634,8 +635,10 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             }
         }
     }
+}
+
+extension PictographMainViewController: UIImagePickerControllerDelegate {
     
-    // MARK: - UIImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         self.dismiss(animated: true, completion: nil)
@@ -645,7 +648,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             return
         }
         
-        self.currentImage = image
+        self.imagePickerDidPickImage?(image)
+        self.imagePickerDidPickImage = nil
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

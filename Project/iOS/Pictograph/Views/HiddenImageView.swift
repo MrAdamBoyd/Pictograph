@@ -71,6 +71,9 @@ class HiddenImageView: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("Share Image", for: .normal)
         $0.setTitleColor(.blue, for: .normal)
+        $0.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.blue.cgColor
         return $0
     }(UIButton(frame: .zero))
     
@@ -78,6 +81,9 @@ class HiddenImageView: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("Close", for: .normal)
         $0.setTitleColor(.blue, for: .normal)
+        $0.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.blue.cgColor
         return $0
     }(UIButton(frame: .zero))
     
@@ -138,23 +144,25 @@ class HiddenImageView: UIView {
         
         //Imageview
         self.addSubview(self.imageView)
-        self.imageView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 10).isActive = true
+        self.imageView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 20).isActive = true
         self.imageView.leftAnchor.constraint(equalTo: self.popupView.leftAnchor, constant: 10).isActive = true
         self.imageView.rightAnchor.constraint(equalTo: self.popupView.rightAnchor, constant: -10).isActive = true
         self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 2/3).isActive = true
         
-        //Share Image button
-        self.addSubview(self.shareImageButton)
-        self.shareImageButton.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: -10).isActive = true
-        self.shareImageButton.leadingAnchor.constraint(equalTo: self.imageView.leadingAnchor).isActive = true
-        self.shareImageButton.trailingAnchor.constraint(equalTo: self.popupView.centerXAnchor).isActive = true
-        self.shareImageButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
-        
         //Close button
         self.addSubview(self.closeViewButton)
-        self.closeViewButton.centerYAnchor.constraint(equalTo: self.shareImageButton.centerYAnchor).isActive = true
-        self.closeViewButton.leadingAnchor.constraint(equalTo: self.popupView.centerXAnchor).isActive = true
-        self.closeViewButton.trailingAnchor.constraint(equalTo: self.imageView.trailingAnchor).isActive = true
+        self.closeViewButton.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20).isActive = true
+        self.closeViewButton.leadingAnchor.constraint(equalTo: self.imageView.leadingAnchor).isActive = true
+        self.closeViewButton.trailingAnchor.constraint(equalTo: self.popupView.centerXAnchor, constant: -10).isActive = true
+        self.closeViewButton.bottomAnchor.constraint(equalTo: self.popupView.bottomAnchor, constant: -20).isActive = true
+        self.closeViewButton.addTarget(self, action: #selector(self.closeButtonTapped), for: .touchUpInside)
+        
+        //Share Image button
+        self.addSubview(self.shareImageButton)
+        self.shareImageButton.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20).isActive = true
+        self.shareImageButton.leadingAnchor.constraint(equalTo: self.popupView.centerXAnchor, constant: 10).isActive = true
+        self.shareImageButton.trailingAnchor.constraint(equalTo: self.imageView.trailingAnchor).isActive = true
+        self.shareImageButton.addTarget(self, action: #selector(self.shareSheetTapped), for: .touchUpInside)
     }
     
     /// Animates the center popup
