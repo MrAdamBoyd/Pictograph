@@ -135,7 +135,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
                         //Then wait 1 second before showing the user that the message is done encoding
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                             //Alert the user
-                            self.showEncodedImage(encodedImage)
+                            self.showEncodedImage(encodedImage, message: "Image Encoded With Message")
                         }
                     }
                 }
@@ -186,7 +186,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
             
         } else if let decodedImage = hiddenImage {
             
-            //TODO: this
+            self.showEncodedImage(decodedImage.dataRepresentation(), message: "Hidden Image")
             
         }
     }
@@ -220,9 +220,10 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     /// Alert user that message has been encoded in the image
     ///
     /// - Parameter image: image that the message has been encoded in
-    func showEncodedImage(_ image: Data?) {
+    /// - Parameter message: message shown at the top of the alert
+    func showEncodedImage(_ image: Data?, message: String) {
         let alert = NSAlert()
-        alert.messageText = "Image Encoded With Message"
+        alert.messageText = message
         alert.informativeText = "Click \"Save Image\" to save the image to disk."
         alert.alertStyle = .informational
         alert.addButton(withTitle: "OK")
