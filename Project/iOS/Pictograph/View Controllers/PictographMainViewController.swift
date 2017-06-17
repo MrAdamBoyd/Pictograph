@@ -30,6 +30,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
     }
     var dragDropManager: DragDropManager?
+    weak var hiddenImageView: HiddenImageView?
+    var hiddenImageWindow: UIWindow?
     
     /// Checks to make sure the password settings are correct. Makes sure either encryption is disabled or encryption is enabled and the password isn't empty
     private var passwordSettingsValid: Bool {
@@ -291,8 +293,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     @objc func startEncodeImageProcess() {
         self.endEditingAndSetPassword()
         
-        //TODO: Remove ImageForTesting.png from Pictograph's target membership
-        let imageToEncode = #imageLiteral(resourceName: "ImageForTesting.png")
+        //TODO: Choose image
+        let imageToEncode = #imageLiteral(resourceName: "ShareIcon")
         self.encodeImage(imageToEncode)
     }
     
@@ -413,6 +415,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //After the user hit confirm
         SVProgressHUD.show()
         
+        let createdWindow = HiddenImageView.createInWindow(from: self, with: self.currentImage!)
+        self.hiddenImageView = createdWindow.view
+        self.hiddenImageWindow = createdWindow.window
+        return
+        
         //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             let coder = PictographImageCoder()
@@ -498,8 +505,13 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 
             }
         } else if let decodedImage = hiddenImage {
-            print("Show image here")
+            
+            //Present a custom sheet for the image
+            let createdWindow = HiddenImageView.createInWindow(from: self, with: decodedImage)
+            self.hiddenImageView = createdWindow.view
+            self.hiddenImageWindow = createdWindow.window
         }
+        
     }
     
     /// Builds the UIAlertController that will get the message to encode from the user
@@ -638,5 +650,34 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension PictographMainViewController: HiddenImageViewDelegate {
+    
+    //Let the user share the image from the share sheet
+    func showShareSheetFromHiddenImageView() {
+        self.closeHiddenImageView() {
+            guard let image = self.currentImage, let data = UIImagePNGRepresentation(image) else {
+                return
+            }
+            
+            self.showShareSheet(with: data)
+        }
+    }
+    
+    //Close the view
+    func closeHiddenImageView(_ completion: (() -> Void)?) {
+        DispatchQueue.main.async {
+            self.hiddenImageView?.animateCenterPopup(visible: false) {
+                UIView.animate(withDuration: 0.5, animations: { [unowned self] in
+                    self.hiddenImageWindow?.alpha = 0
+                    }, completion: { _ in
+                        self.hiddenImageView = nil
+                        self.hiddenImageWindow = nil
+                        completion?()
+                })
+            }
+        }
     }
 }
