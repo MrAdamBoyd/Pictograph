@@ -131,7 +131,7 @@ class MainEncodingView: UIScrollView {
     
     private func setUpEncryptionArea() {
         //Label for enabling encryption, location for views based off this view
-        encryptionLabel.text = "Use Encryption"
+        encryptionLabel.text = "Use Password"
         encryptionLabel.font = UIFont.boldSystemFont(ofSize: mainFontSize)
         encryptionLabel.textColor = UIColor.white
         encryptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -158,7 +158,7 @@ class MainEncodingView: UIScrollView {
         encryptionKeyField.isSecureTextEntry = !PictographDataController.shared.userShowPasswordOnScreen
         encryptionKeyField.backgroundColor = UIColor.white
         encryptionKeyField.font = UIFont.systemFont(ofSize: mainFontSize)
-        encryptionKeyField.placeholder = "Encryption Password"
+        encryptionKeyField.placeholder = "Password"
         encryptionKeyField.text = PictographDataController.shared.userEncryptionPassword
         encryptionKeyField.autocapitalizationType = .none
         encryptionKeyField.autocorrectionType = .no

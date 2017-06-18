@@ -301,7 +301,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         if self.passwordSettingsValid {
             
-            self.decodeMessage()
+            self.decodeDataInImage()
             
         } else {
             //Show message: encryption is enabled and the key is blank
@@ -422,8 +422,10 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
             let coder = PictographImageCoder()
             
-            //Hide the HUD
-            SVProgressHUD.dismiss()
+            defer {
+                //Hide the HUD
+                SVProgressHUD.dismiss()
+            }
             
             do {
                 let providedPassword = self.mainEncodeView.encryptionSwitch.isOn ? self.mainEncodeView.encryptionKeyField.text ?? "" : ""
@@ -470,7 +472,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     /// Decoding a message that is hidden in an image
-    func decodeMessage() {
+    func decodeDataInImage() {
         guard let image = self.currentImage else { return }
         
         //No need to show HUD because this doesn't take long
@@ -479,35 +481,42 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Provide no password if encryption/decryption is off
         let providedPassword = mainEncodeView.encryptionSwitch.isOn ? mainEncodeView.encryptionKeyField.text ?? "" : ""
         
-        var hiddenString: NSString?
-        var hiddenImage: UIImage?
-        var error: NSError?
-        coder.decode(image, encryptedWithPassword: providedPassword, hiddenStringPointer: &hiddenString, hiddenImagePointer: &hiddenImage, error: &error)
+        SVProgressHUD.show()
         
-        guard error == nil else {
-            self.showMessageInAlertController("Error Decoding", message: error!.localizedDescription, includeCopyButton: false)
-            return
-        }
-        
-        if let decodedMessage = hiddenString {
-            //Show the message if it was successfully decoded
-            self.showMessageInAlertController("Hidden Message", message: decodedMessage as String, includeCopyButton: true) { _ in
-                
-                //After alert controller is dismissed, prompt the user for ratings if they haven't been already for this version
-                if #available(iOS 10.3, *), !PictographDataController.shared.hasUserBeenPromptedForRatings {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        SKStoreReviewController.requestReview()
-                        PictographDataController.shared.setHasUserBeenPromptedForRatings()
-                    }
-                }
-                
-            }
-        } else if let decodedImage = hiddenImage {
+        //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+            var hiddenString: NSString?
+            var hiddenImage: UIImage?
+            var error: NSError?
+            coder.decode(image, encryptedWithPassword: providedPassword, hiddenStringPointer: &hiddenString, hiddenImagePointer: &hiddenImage, error: &error)
             
-            //Present a custom sheet for the image
-            let createdWindow = HiddenImageView.createInWindow(from: self, showing: decodedImage)
-            self.hiddenImageView = createdWindow.view
-            self.hiddenImageWindow = createdWindow.window
+            SVProgressHUD.dismiss()
+            
+            guard error == nil else {
+                self.showMessageInAlertController("Error Decoding", message: error!.localizedDescription, includeCopyButton: false)
+                return
+            }
+            
+            if let decodedMessage = hiddenString {
+                //Show the message if it was successfully decoded
+                self.showMessageInAlertController("Hidden Message", message: decodedMessage as String, includeCopyButton: true) { _ in
+                    
+                    //After alert controller is dismissed, prompt the user for ratings if they haven't been already for this version
+                    if #available(iOS 10.3, *), !PictographDataController.shared.hasUserBeenPromptedForRatings {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            SKStoreReviewController.requestReview()
+                            PictographDataController.shared.setHasUserBeenPromptedForRatings()
+                        }
+                    }
+                    
+                }
+            } else if let decodedImage = hiddenImage {
+                
+                //Present a custom sheet for the image
+                let createdWindow = HiddenImageView.createInWindow(from: self, showing: decodedImage)
+                self.hiddenImageView = createdWindow.view
+                self.hiddenImageWindow = createdWindow.window
+            }
         }
         
     }
