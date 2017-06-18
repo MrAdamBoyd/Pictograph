@@ -14,9 +14,6 @@ import AVFoundation
 import Photos
 import StoreKit
 
-//For image encoding
-//TODO: Fingerprint reader for password
-
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle {
     
     //UI elements

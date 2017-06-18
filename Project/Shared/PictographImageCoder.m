@@ -284,7 +284,7 @@
 }
 
     
-#if TARGET_OS_IPHONE
+//#if TARGET_OS_IPHONE
 //Saves the image to the graphics context and starts encoding the bits in that image
 - (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image arrayOfBits:(NSMutableArray *)arrayOfBits {
     //Right here we have all the bits that are needed to encode the data in the image
@@ -292,158 +292,190 @@
     NSUInteger imageWidth = [image getReconciledImageWidth];
     NSUInteger imageHeight = [image getReconciledImageHeight];
     
-    CGRect imageRect = CGRectMake(0, 0, imageWidth, imageHeight);
+//    CGRect imageRect = CGRectMake(0, 0, imageWidth, imageHeight);
+//
+//    UIGraphicsBeginImageContext(CGSizeMake(imageWidth, imageHeight));
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//
+    int numberOfPixelsNeeded = [self pixelCountForBit:(int)[arrayOfBits count]];
+    NSArray *arrayOfAllNeededColors = [self getRGBAFromImage:image atX:0 andY:0 count:numberOfPixelsNeeded];
     
-    UIGraphicsBeginImageContext(CGSizeMake(imageWidth, imageHeight));
-    CGContextRef context = UIGraphicsGetCurrentContext();
+//    /**
+//     *  When images are taken with the camera, sometimes they are given in incorrect image orientatin value (usually straight up images are given the orientation of right), so this deals with having them rotated incorrectly
+//     */
+//    if (image.imageOrientation == UIImageOrientationRight) {
+//        [image drawAtPoint:CGPointMake(0,0)];
+//
+//        //Save current status of graphics context
+//        CGContextSaveGState(context);
+//
+//    CGImageRef cgImage = [image getReconciledCGImageRef];
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    size_t bitsPerComponent = 8;
+    size_t bytesPerRow = bytesPerPixel * imageWidth;
+//    CGContextRef bitmap = CGBitmapContextCreate(NULL, imageWidth, imageHeight, bitsPerComponent, bytesPerRow, colorspace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+//
+//    //Drawing the image in the space
+//    CGContextDrawImage(bitmap, CGRectMake(0, 0, imageWidth, imageHeight), cgImage);
     
-    NSArray *arrayOfAllNeededColors = [self getRGBAFromImage:image atX:0 andY:0 count:[self pixelCountForBit:(int)[arrayOfBits count]]];
-    int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
+    unsigned char *pixelBuffer = [self getRawPixelDataForImage:image];
     
-    /**
-     *  When images are taken with the camera, sometimes they are given in incorrect image orientatin value (usually straight up images are given the orientation of right), so this deals with having them rotated incorrectly
-     */
-    if (image.imageOrientation == UIImageOrientationRight) {
-        [image drawAtPoint:CGPointMake(0,0)];
+    //This returns a (void *) of the pixel data from this image. By casting it as an array of UInt8, we can easily access the RGBA values of each pixel. This also makes it easy to iterate over the entire image as well.
+    //  (assuming i % 4 == 0)
+    //  pixelBuffer[i] is the alpha
+    //  pixelBuffer[i+1] is the red
+    //  pixelBuffer[i+2] is the green
+    //  pixelBuffer[i+3] is the blue
+    
+    int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each pixel
+    
+    //Need numberOfPixelsNeeded * 4 due to this array counting by components of each pixel (RGBA)
+    for (int i = 0; i < (numberOfPixelsNeeded * 4); i += 4) {
         
-        //Save current status of graphics context
-        CGContextSaveGState(context);
-
-        //Changing all pixel colors
-        for (int heightCounter = 1; heightCounter < imageHeight; heightCounter++) {
-            for (int widthCounter = 0; widthCounter < imageWidth; widthCounter++){
-                //Going through each bit 2 by 2, that means we need to encode the pixel at position
-                //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
-                
-                if (encodeCounter >= [arrayOfBits count]) {
-                    //If the message has been fully encoded, break
-                    CGContextRestoreGState(context);
-                    
-                    //Returning a PNG of the image, as PNG as lossless
-                    return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
-                }
-                
-                DLog(@"at %i, %i", widthCounter, (heightCounter - 1));
-                
-                encodeCounter = [self changePixelValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image withinContext:context startFromBottomLeft:false];
-            }
-        }
+        int pixelIndex = i / 4;
+        UInt8 newBlueValue = [self newPixelColorValueAtIndex:pixelIndex encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image];
         
-    } else {
-        //A lot of OS X libraries use the lower left corner as (0,0), this is transforming the image to be rightside up
-        //http://stackoverflow.com/questions/506622/cgcontextdrawimage-draws-image-upside-down-when-passed-uiimage-cgimage
-        CGContextTranslateCTM(context, 0, imageHeight);
-        CGContextScaleCTM(context, 1.0, -1.0);
-        CGContextDrawImage(context, imageRect, [image CGImage]);
-    
-        //Save current status of graphics context
-        CGContextSaveGState(context);
-
-        //Changing all the pixel colors
-        for (int heightCounter = (int)imageHeight; heightCounter >= 0; heightCounter--) {
-            for (int widthCounter = 0; widthCounter < imageWidth; widthCounter++){
-                //Going through each bit 2 by 2, that means we need to encode the pixel at position
-                //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
-                
-                if (encodeCounter >= [arrayOfBits count]) {
-                    //If the message has been fully encoded, break
-                    CGContextRestoreGState(context);
-                    
-                    //Returning a PNG of the image, as PNG as lossless
-                    return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
-                }
-                
-                DLog(@"Pixel change at %i, %i", widthCounter, (int)(imageHeight - heightCounter));
-                
-                encodeCounter = [self changePixelValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image withinContext:context startFromBottomLeft:true];
-            }
-        }
+        pixelBuffer[i+3] = newBlueValue;
+        
+        DLog(@"Changing pixel value at index %i", pixelIndex);
+        
+        encodeCounter += 2;
     }
     
-    CGContextRestoreGState(context);
-    return nil;
-}
-#else
-- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image arrayOfBits:(NSMutableArray *)arrayOfBits {
-    CGImageRef imageRef = [image getReconciledCGImageRef];
-    NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithCGImage: imageRef];
+    CGContextRef editedBitmap = CGBitmapContextCreate(pixelBuffer, imageWidth, imageHeight, bitsPerComponent, bytesPerRow, colorspace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     
-    NSArray *arrayOfAllNeededColors = [self getRGBAFromImage:image atX:0 andY:0 count:[self pixelCountForBit:(int)[arrayOfBits count]]];
-    
-    int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
-    PictographColor *pixelColor;
-    
-    NSUInteger imageWidth = [image getReconciledImageWidth];
-    NSUInteger imageHeight = [image getReconciledImageHeight];
-    
-    for (int heightCounter = 0; heightCounter < imageHeight; heightCounter++) {
-        for (int widthCounter = 0; widthCounter < imageWidth; widthCounter++) {
-            //Going through each bit 2 by 2, that means we need to encode the pixel at position
-            //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
-            
-            if (encodeCounter >= [arrayOfBits count] || self.isCancelled) {
-                //If the message has been fully encoded or if the operation is cancelled, break out
-                
-                return [imageRep representationUsingType:NSPNGFileType properties: [[NSDictionary alloc] init]];
-                
-            }
-            
-            DLog(@"Pixel change at %i, %i", widthCounter, heightCounter);
-            
-            pixelColor = [self newPixelColorValueAtWidth:widthCounter andHeight:(heightCounter + 1) encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image startFromBottomLeft:false];
-            
-            
-            /*
-             The next line is commented out and the next few (until encodeCounter +=...) are added as a workaround. I was getting a colorspace error when trying to use [imageRep setColor:]. Colorspace was -1 and component count was -1. I tried using this:
-             
-             CGFloat colorComponents[] = {red, green, newBlueValue, alpha};
-             return [PictographColor colorWithColorSpace:[NSColorSpace sRGBColorSpace] components:colorComponents count:4];
-             
-             but that didn't work either. This was the only workaround I could find that was relatively easy.
-             
-             */
-//            [imageRep setColor:pixelColor atX:widthCounter y:heightCounter];
-            CGFloat red, green, blue, alpha;
-            [pixelColor getRed:&red green:&green blue:&blue alpha:&alpha];
-            NSUInteger pix[4]; pix[0] = red * 255; pix[1] = green * 255; pix[2] = blue * 255; pix[3] = alpha * 255;
-            [imageRep setPixel:pix atX:widthCounter y:heightCounter];
-            
-            //2 bits are encoded per pixel, so per pixel, bump the encode counter by 2
-            encodeCounter += bitsChangedPerPixel;
-        }
-    }
-    
-    return nil;
-}
-#endif
+    CGImageRef outputImage = CGBitmapContextCreateImage(editedBitmap);
+    UIImage *encodedImage = [[UIImage alloc] initWithCGImage:outputImage];
+    return UIImagePNGRepresentation(encodedImage);
+        
 
-//Replaces the value of the color at the current width and height counter with the correct one from the array of bits that are needed to be encoded
-- (int)changePixelValueAtWidth:(int)widthCounter andHeight:(int)heightCounter encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image withinContext:(CGContextRef)context startFromBottomLeft:(BOOL)startFromBottomLeft {
-    PictographColor *newColorAtPixel = [self newPixelColorValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image startFromBottomLeft:startFromBottomLeft];
-    
-    CGFloat red, green, blue, alpha;
-    [newColorAtPixel getRed:&red green:&green blue:&blue alpha:&alpha];
-    
-    CGContextSetRGBFillColor(context, red, green, blue, alpha);
-    CGContextFillRect(context, CGRectMake(widthCounter, heightCounter - 1, 1, 1)); //Only filling in 1 pixel
-    
-    encodeCounter += bitsChangedPerPixel; //2 bits per pixel, so increase by 2
-    
-    return encodeCounter;
+//        //Changing all pixel colors
+//        for (int heightCounter = 1; heightCounter < imageHeight; heightCounter++) {
+//            for (int widthCounter = 0; widthCounter < imageWidth; widthCounter++){
+//                //Going through each bit 2 by 2, that means we need to encode the pixel at position
+//                //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
+//
+//                if (encodeCounter >= [arrayOfBits count]) {
+//                    //If the message has been fully encoded, break
+//                    CGContextRestoreGState(context);
+//
+//                    //Returning a PNG of the image, as PNG as lossless
+//                    return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
+//                }
+//
+//                DLog(@"at %i, %i", widthCounter, (heightCounter - 1));
+//
+//                encodeCounter = [self changePixelValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image withinContext:context startFromBottomLeft:false];
+//            }
+//        }
+//
+//    } else {
+//        //A lot of OS X libraries use the lower left corner as (0,0), this is transforming the image to be rightside up
+//        //http://stackoverflow.com/questions/506622/cgcontextdrawimage-draws-image-upside-down-when-passed-uiimage-cgimage
+//        CGContextTranslateCTM(context, 0, imageHeight);
+//        CGContextScaleCTM(context, 1.0, -1.0);
+//        CGContextDrawImage(context, imageRect, [image CGImage]);
+//
+//        //Save current status of graphics context
+//        CGContextSaveGState(context);
+//
+//        //Changing all the pixel colors
+//        for (int heightCounter = (int)imageHeight; heightCounter >= 0; heightCounter--) {
+//            for (int widthCounter = 0; widthCounter < imageWidth; widthCounter++){
+//                //Going through each bit 2 by 2, that means we need to encode the pixel at position
+//                //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
+//
+//                if (encodeCounter >= [arrayOfBits count]) {
+//                    //If the message has been fully encoded, break
+//                    CGContextRestoreGState(context);
+//
+//                    //Returning a PNG of the image, as PNG as lossless
+//                    return UIImagePNGRepresentation(UIGraphicsGetImageFromCurrentImageContext());
+//                }
+//
+//                DLog(@"Pixel change at %i, %i", widthCounter, (int)(imageHeight - heightCounter));
+//
+//                encodeCounter = [self changePixelValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image withinContext:context startFromBottomLeft:true];
+//            }
+//        }
+//    }
+//
+//    CGContextRestoreGState(context);
+//    return nil;
 }
+//#else
+//- (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image arrayOfBits:(NSMutableArray *)arrayOfBits {
+//    CGImageRef imageRef = [image getReconciledCGImageRef];
+//    NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithCGImage: imageRef];
+//
+//    NSArray *arrayOfAllNeededColors = [self getRGBAFromImage:image atX:0 andY:0 count:[self pixelCountForBit:(int)[arrayOfBits count]]];
+//
+//    int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each inner loop
+//    PictographColor *pixelColor;
+//
+//    NSUInteger imageWidth = [image getReconciledImageWidth];
+//    NSUInteger imageHeight = [image getReconciledImageHeight];
+//
+//    for (int heightCounter = 0; heightCounter < imageHeight; heightCounter++) {
+//        for (int widthCounter = 0; widthCounter < imageWidth; widthCounter++) {
+//            //Going through each bit 2 by 2, that means we need to encode the pixel at position
+//            //(encodeCounter/2 [assuming it's an array]) with data at encodeCounter and encodeCounter + 1
+//
+//            if (encodeCounter >= [arrayOfBits count] || self.isCancelled) {
+//                //If the message has been fully encoded or if the operation is cancelled, break out
+//
+//                return [imageRep representationUsingType:NSPNGFileType properties: [[NSDictionary alloc] init]];
+//
+//            }
+//
+//            DLog(@"Pixel change at %i, %i", widthCounter, heightCounter);
+//
+//            pixelColor = [self newPixelColorValueAtWidth:widthCounter andHeight:(heightCounter + 1) encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image startFromBottomLeft:false];
+//
+//
+//            /*
+//             The next line is commented out and the next few (until encodeCounter +=...) are added as a workaround. I was getting a colorspace error when trying to use [imageRep setColor:]. Colorspace was -1 and component count was -1. I tried using this:
+//
+//             CGFloat colorComponents[] = {red, green, newBlueValue, alpha};
+//             return [PictographColor colorWithColorSpace:[NSColorSpace sRGBColorSpace] components:colorComponents count:4];
+//
+//             but that didn't work either. This was the only workaround I could find that was relatively easy.
+//
+//             */
+////            [imageRep setColor:pixelColor atX:widthCounter y:heightCounter];
+//            CGFloat red, green, blue, alpha;
+//            [pixelColor getRed:&red green:&green blue:&blue alpha:&alpha];
+//            NSUInteger pix[4]; pix[0] = red * 255; pix[1] = green * 255; pix[2] = blue * 255; pix[3] = alpha * 255;
+//            [imageRep setPixel:pix atX:widthCounter y:heightCounter];
+//
+//            //2 bits are encoded per pixel, so per pixel, bump the encode counter by 2
+//            encodeCounter += bitsChangedPerPixel;
+//        }
+//    }
+//
+//    return nil;
+//}
+//#endif
+
+////Replaces the value of the color at the current width and height counter with the correct one from the array of bits that are needed to be encoded
+//- (int)changePixelValueAtWidth:(int)widthCounter andHeight:(int)heightCounter encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image withinContext:(CGContextRef)context startFromBottomLeft:(BOOL)startFromBottomLeft {
+//    PictographColor *newColorAtPixel = [self newPixelColorValueAtWidth:widthCounter andHeight:heightCounter encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image startFromBottomLeft:startFromBottomLeft];
+//
+//    CGFloat red, green, blue, alpha;
+//    [newColorAtPixel getRed:&red green:&green blue:&blue alpha:&alpha];
+//
+//    CGContextSetRGBFillColor(context, red, green, blue, alpha);
+//    CGContextFillRect(context, CGRectMake(widthCounter, heightCounter - 1, 1, 1)); //Only filling in 1 pixel
+//
+//    encodeCounter += bitsChangedPerPixel; //2 bits per pixel, so increase by 2
+//
+//    return encodeCounter;
+//}
 
 //Gets the color that the specified pixel should be
--(PictographColor *)newPixelColorValueAtWidth:(int)widthCounter andHeight:(int)heightCounter encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image startFromBottomLeft:(BOOL)startFromBottomLeft {
-    int currentPixelIndex;
+-(UInt8)newPixelColorValueAtIndex:(int)index encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image {
     
-    //If we're starting from the bottom left, take the height of the image into account, if not, can just use the height counter provided
-    if (startFromBottomLeft) {
-        currentPixelIndex = widthCounter * ((int)[image getReconciledImageHeight] - heightCounter + 1);
-    } else {
-        currentPixelIndex = widthCounter * heightCounter;
-    }
-    
-    PictographColor *colorOfCurrentPixel = [arrayOfAllNeededColors objectAtIndex:currentPixelIndex];
+    PictographColor *colorOfCurrentPixel = [arrayOfAllNeededColors objectAtIndex:index];
     CGFloat red, green, blue, alpha ;
     [colorOfCurrentPixel getRed:&red green:&green blue:&blue alpha:&alpha];
     
@@ -455,9 +487,8 @@
     [arrayOfBitsFromBlue replaceObjectAtIndex:7 withObject:arrayOfBits[encodeCounter + 1]];
     
     long newBlueLong = [self longFromBits:arrayOfBitsFromBlue];
-    CGFloat newBlueValue = (newBlueLong * 1.0) / maxIntFor8Bits;
 
-    return [PictographColor colorWithRed:red green:green blue:newBlueValue alpha:alpha];
+    return (UInt8)newBlueLong;
 }
 
 # pragma mark Helper methods used for hiding an image within another image
@@ -578,6 +609,12 @@
 }
 
 /* Returns the raw pixel data for a UIImage image */
+//This returns a (void *) of the pixel data from this image. By casting it as an array of unsigned char, we can easily access the RGBA values of each pixel. This also makes it easy to iterate over the entire image as well.
+//  (assuming i % 4 == 0)
+//  pixelBuffer[i] is the alpha
+//  pixelBuffer[i+1] is the red
+//  pixelBuffer[i+2] is the green
+//  pixelBuffer[i+3] is the blue
 -(unsigned char *)getRawPixelDataForImage:(PictographImage *)image {
     // First get the image into your data buffer
     
