@@ -130,8 +130,8 @@
     NSMutableData *dataFromImage = [[NSMutableData alloc] init];
     NSData *toReturn;
     
-    int firstPixelWithData = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize)];
-    NSArray *arrayOfColors = [self getRGBAFromImage:image atX:firstPixelWithData andY:0 count:[self pixelCountForBit:(int)numberOfBitsNeededForImage]];
+    int firstPixelWithHiddenData = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize)];
+    NSArray *arrayOfColors = [self getRGBAFromImage:image atX:firstPixelWithHiddenData andY:0 count:[self pixelCountForBit:(int)numberOfBitsNeededForImage]];
     
     for (PictographColor *color in arrayOfColors) {
         //Going through each pixel
@@ -318,14 +318,8 @@
 //    //Drawing the image in the space
 //    CGContextDrawImage(bitmap, CGRectMake(0, 0, imageWidth, imageHeight), cgImage);
     
+    //Aligns the pixel data to unsigned char * aka UInt. Each item in the array is a component of each pixel. So every 4 is a pixel. See docs for getRawPixelDataForImage:
     unsigned char *pixelBuffer = [self getRawPixelDataForImage:image];
-    
-    //This returns a (void *) of the pixel data from this image. By casting it as an array of UInt8, we can easily access the RGBA values of each pixel. This also makes it easy to iterate over the entire image as well.
-    //  (assuming i % 4 == 0)
-    //  pixelBuffer[i] is the alpha
-    //  pixelBuffer[i+1] is the red
-    //  pixelBuffer[i+2] is the green
-    //  pixelBuffer[i+3] is the blue
     
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each pixel
     
@@ -333,16 +327,16 @@
     for (int i = 0; i < (numberOfPixelsNeeded * 4); i += 4) {
         
         int pixelIndex = i / 4;
-        UInt8 newBlueValue = [self newPixelColorValueAtIndex:pixelIndex encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image];
+        UInt8 newBlueValue = [self newBlueComponentValueAtIndex:pixelIndex encodeCounter:encodeCounter arrayOfColors:arrayOfAllNeededColors arrayOfBits:arrayOfBits image:image];
         
-        pixelBuffer[i+3] = newBlueValue;
+        pixelBuffer[i+2] = newBlueValue;
         
         DLog(@"Changing pixel value at index %i", pixelIndex);
         
         encodeCounter += 2;
     }
     
-    CGContextRef editedBitmap = CGBitmapContextCreate(pixelBuffer, imageWidth, imageHeight, bitsPerComponent, bytesPerRow, colorspace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGContextRef editedBitmap = CGBitmapContextCreate(pixelBuffer, imageWidth, imageHeight, bitsPerComponent, bytesPerRow, colorspace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Little);
     
     CGImageRef outputImage = CGBitmapContextCreateImage(editedBitmap);
     UIImage *encodedImage = [[UIImage alloc] initWithCGImage:outputImage];
@@ -473,7 +467,7 @@
 //}
 
 //Gets the color that the specified pixel should be
--(UInt8)newPixelColorValueAtIndex:(int)index encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image {
+-(UInt8)newBlueComponentValueAtIndex:(int)index encodeCounter:(int)encodeCounter arrayOfColors:(NSArray *)arrayOfAllNeededColors arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image {
     
     PictographColor *colorOfCurrentPixel = [arrayOfAllNeededColors objectAtIndex:index];
     CGFloat red, green, blue, alpha ;
@@ -611,10 +605,10 @@
 /* Returns the raw pixel data for a UIImage image */
 //This returns a (void *) of the pixel data from this image. By casting it as an array of unsigned char, we can easily access the RGBA values of each pixel. This also makes it easy to iterate over the entire image as well.
 //  (assuming i % 4 == 0)
-//  pixelBuffer[i] is the alpha
-//  pixelBuffer[i+1] is the red
-//  pixelBuffer[i+2] is the green
-//  pixelBuffer[i+3] is the blue
+//  pixelBuffer[i] is the red
+//  pixelBuffer[i+1] is the green
+//  pixelBuffer[i+2] is the blue
+//  pixelBuffer[i+3] is the alpha
 -(unsigned char *)getRawPixelDataForImage:(PictographImage *)image {
     // First get the image into your data buffer
     
@@ -626,7 +620,7 @@
     unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
     NSUInteger bytesPerRow = bytesPerPixel * width;
     NSUInteger bitsPerComponent = 8;
-    CGContextRef context = CGBitmapContextCreate(rawData, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGContextRef context = CGBitmapContextCreate(rawData, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Little);
     CGColorSpaceRelease(colorSpace);
     
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
