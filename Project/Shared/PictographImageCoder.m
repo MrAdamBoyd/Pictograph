@@ -340,6 +340,12 @@
     
     CGImageRef outputImage = CGBitmapContextCreateImage(editedBitmap);
     UIImage *encodedImage = [[UIImage alloc] initWithCGImage:outputImage];
+    
+    //Freeing the memory
+    CGColorSpaceRelease(colorspace);
+    CGContextRelease(editedBitmap);
+    free(pixelBuffer);
+    
     return UIImagePNGRepresentation(encodedImage);
         
 
@@ -621,9 +627,11 @@
     NSUInteger bytesPerRow = bytesPerPixel * width;
     NSUInteger bitsPerComponent = 8;
     CGContextRef context = CGBitmapContextCreate(rawData, width, height, bitsPerComponent, bytesPerRow, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Little);
-    CGColorSpaceRelease(colorSpace);
     
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    
+    //Freeing the memory
+    CGColorSpaceRelease(colorSpace);
     CGContextRelease(context);
     
     return rawData;
