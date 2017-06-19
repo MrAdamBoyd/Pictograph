@@ -15,6 +15,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     @IBOutlet weak var passwordTextfield: NSTextField!
     
     @IBOutlet weak var hideMessageButton: NSButton!
+    @IBOutlet weak var hideImageButton: NSButton!
     @IBOutlet weak var showMessageButton: NSButton!
     @IBOutlet weak var messageTextField: NSTextField!
     
@@ -60,29 +61,18 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         self.imageSelectLabel.isHidden = imageValid
         self.saveImageButton.isEnabled = imageValid
         self.showMessageButton.isEnabled = encryptionValid && imageValid
+        self.hideImageButton.isEnabled = encryptionValid && imageValid
         self.hideMessageButton.isEnabled = encryptionValid && imageValid && hideMessageValid
     }
     
     // MARK: - User actions
     
     @IBAction func selectNewImageFromFileSystem(_ sender: Any) {
-        
-        guard !self.imageSelectPanelOpen else { return }
-        
-        self.imageSelectPanelOpen = true
-        
-        print("Getting image")
-        let panel = NSOpenPanel()
-        panel.allowedFileTypes = ["jpg", "JPG", "png", "PNG", "jpeg", "JPEG", "tiff", "TIFF"]
-        panel.beginSheetModal(for: self.view.window!) { [unowned self] result in
-            self.imageSelectPanelOpen = false
-            if let fileUrl = panel.url, result == .OK {
-                guard let image = NSImage(contentsOf: fileUrl) else { return }
-                
-                self.mainImageView.image = image
-            }
+        self.letUserChooseImage() { [weak self] image in
             
-            self.checkIfValid()
+            //If user chooses an image, set the image as the image view
+            self?.mainImageView.image = image
+            
         }
     }
     
@@ -100,45 +90,21 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     @IBAction func hideMessageAction(_ sender: Any) {
         print("User wants to hide message")
         
-        /// Alert that lets the user know the message is encoding
-        let alert = NSAlert()
-        alert.messageText = "Encoding..."
-        let spinner = NSProgressIndicator()
-        spinner.style = .spinning
-        spinner.startAnimation(self)
-        spinner.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        alert.accessoryView = spinner
-        alert.addButton(withTitle: "Cancel")
+        var alert: NSAlert?
         
         let coder = PictographImageCoder()
         let providedPassword = self.encryptionCheckbox.state == .on ? self.passwordTextfield.stringValue : ""
         let message = self.messageTextField.stringValue
         let image = self.mainImageView.image!
         
-        let queue = DispatchQueue(label: "encoding", qos: .background)
-        
-        queue.async {
+        self.performWorkOnEncodingQueue() {
             do {
                 //Provide no password if encryption/decryption is off
                 
-                let encodedImage = try coder.encode(message: message, in: image, encryptedWithPassword: providedPassword)
-                let image = NSImage(data: encodedImage)
+                let encodedImageData = try coder.encode(message: message, in: image, encryptedWithPassword: providedPassword)
+                let encodedImage = NSImage(data: encodedImageData)
                 
-                //Hide the sheet
-                DispatchQueue.main.async {
-                    self.view.window?.endSheet(alert.window)
-                    
-                    if !coder.isCancelled {
-                        //If the operation wasn't cancelled, set the image
-                        self.mainImageView.image = image
-                        
-                        //Then wait 1 second before showing the user that the message is done encoding
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            //Alert the user
-                            self.showEncodedImage(encodedImage, message: "Image Encoded With Message")
-                        }
-                    }
-                }
+                self.encodingWorkFinished(on: coder, for: encodedImage, imageData: encodedImageData, showingAlert: alert, messageToUser: "Image Encoded with Message")
             
             } catch let error {
                 
@@ -147,15 +113,40 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
             }
         }
         
-        //Show the loading modal
-        alert.beginSheetModal(for: self.view.window!) { response in
-            if response == NSApplication.ModalResponse.alertFirstButtonReturn {
-                //If the cancel button is clicked, cancel the operation
-                coder.isCancelled = true
+        alert = self.showEncodingAlert(for: coder)
+    }
+    
+    @IBAction func hideImageAction(_ sender: Any) {
+        print("User wants to hide image")
+        
+        self.letUserChooseImage() { [unowned self] imageToHide in
+            DispatchQueue.main.async {
+                var alert: NSAlert?
+                
+                let coder = PictographImageCoder()
+                let image = self.mainImageView.image!
+                
+                self.performWorkOnEncodingQueue() {
+                    do {
+                        //Provide no password if encryption/decryption is off
+                        
+                        let encodedImageData = try coder.encode(image: imageToHide, in: image)
+                        let encodedImage = NSImage(data: encodedImageData)
+                        
+                        self.encodingWorkFinished(on: coder, for: encodedImage, imageData: encodedImageData, showingAlert: alert, messageToUser: "Image Encoded with Image")
+                        
+                    } catch let error {
+                        
+                        //Catch the error
+                        self.showError(error)
+                    }
+                }
+                
+                alert = self.showEncodingAlert(for: coder)
             }
         }
     }
-
+    
     @IBAction func showMessageAction(_ sender: Any) {
         print("User wants to show message")
         guard let image = self.mainImageView.image else {
@@ -198,8 +189,94 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         self.helpWindowController?.window?.makeKeyAndOrderFront(self)
     }
     
-    // MARK: - Alerting user
+    // MARK: - Helper funcs
     
+    /// Opens up a panel that lets the user choose an image from the filesystem
+    ///
+    /// - Parameter completion: image that the user chose
+    private func letUserChooseImage(_ completion: @escaping (NSImage) -> Void) {
+        guard !self.imageSelectPanelOpen else { return }
+        
+        self.imageSelectPanelOpen = true
+        
+        print("Getting image")
+        let panel = NSOpenPanel()
+        panel.allowedFileTypes = ["jpg", "JPG", "png", "PNG", "jpeg", "JPEG", "tiff", "TIFF"]
+        panel.beginSheetModal(for: self.view.window!) { [unowned self] result in
+            self.imageSelectPanelOpen = false
+            if let fileUrl = panel.url, result == .OK {
+                guard let image = NSImage(contentsOf: fileUrl) else { return }
+                
+                completion(image)
+            }
+            
+            self.checkIfValid()
+        }
+    }
+    
+    /// Shows an alert to the user that the encoder is encoding
+    ///
+    /// - Parameter coder: coder that is encoding right now, so operation can be cancelled
+    /// - Returns: NSAlert that was created
+    private func showEncodingAlert(for coder: PictographImageCoder) -> NSAlert {
+        /// Alert that lets the user know the message is encoding
+        let alert = NSAlert()
+        alert.messageText = "Encoding..."
+        let spinner = NSProgressIndicator()
+        spinner.style = .spinning
+        spinner.startAnimation(self)
+        spinner.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        alert.accessoryView = spinner
+        alert.addButton(withTitle: "Cancel")
+        
+        //Show the loading modal
+        alert.beginSheetModal(for: self.view.window!) { response in
+            if response == NSApplication.ModalResponse.alertFirstButtonReturn {
+                //If the cancel button is clicked, cancel the operation
+                coder.isCancelled = true
+            }
+        }
+        
+        return alert
+    }
+    
+    /// Creates a background queue for the work to be done on and then runs the work on that queue
+    ///
+    /// - Parameter work: work to be done
+    private func performWorkOnEncodingQueue(_ work: @escaping () -> Void) {
+        let queue = DispatchQueue(label: "encoding", qos: .background)
+        queue.async(execute: work)
+    }
+    
+    /// Alerts the user that encoding is finished. Performs this on the main thread
+    ///
+    /// - Parameters:
+    ///   - coder: image coder that encoding was done with
+    ///   - image: image with image/message hidden inside of it
+    ///   - imageData: data representation of image
+    ///   - showingAlert: NSAlert that is showing the encoding spinner
+    ///   - messageToUser: message that should be shown to user when done
+    private func encodingWorkFinished(on coder: PictographImageCoder, for image: NSImage?, imageData: Data, showingAlert: NSAlert?, messageToUser: String) {
+        DispatchQueue.main.async { [unowned self] in
+            //Hide the sheet
+            if let alertWindow = showingAlert?.window {
+                self.view.window?.endSheet(alertWindow)
+            }
+            
+            if !coder.isCancelled {
+                //If the operation wasn't cancelled, set the image
+                self.mainImageView.image = image
+                
+                //Then wait 1 second before showing the user that the message is done encoding
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    //Alert the user
+                    self.showEncodedImage(imageData, message: messageToUser)
+                }
+            }
+        }
+    }
+    
+    // MARK: - Alerting user
     
     /// Shows an error to the user. If application isn't active, also sends NSUserNotification
     ///

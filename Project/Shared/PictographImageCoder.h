@@ -15,10 +15,8 @@
 
 @interface PictographImageCoder : NSObject
 
-#if TARGET_OS_OSX
 //If the operation should be cancelled and return with whatever progress has been made
 @property (atomic, assign) BOOL isCancelled;
-#endif
 
 //Messages
 

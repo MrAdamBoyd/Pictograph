@@ -14,10 +14,6 @@ import AVFoundation
 import Photos
 import StoreKit
 
-//TODO: Need to revert this commits for Xcode 9 (in that order)
-//git revert 9620ec5b1a8e354ce4cf54748583a7251bf6d872
-//git revert 38763a528b851097db095fb3db94a80379deff56
-
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle {
     
     //UI elements

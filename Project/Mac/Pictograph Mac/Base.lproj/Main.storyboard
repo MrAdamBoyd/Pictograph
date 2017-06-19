@@ -531,11 +531,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="Pictograph_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="520" height="283"/>
+                        <rect key="frame" x="0.0" y="0.0" width="520" height="329"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4t1-Co-IAH">
-                                <rect key="frame" x="278" y="247" width="115" height="18"/>
+                                <rect key="frame" x="278" y="293" width="115" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="aIF-W2-FaC"/>
                                 </constraints>
@@ -548,7 +548,7 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OuD-HM-Cre">
-                                <rect key="frame" x="280" y="212" width="220" height="22"/>
+                                <rect key="frame" x="280" y="258" width="220" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Encryption password" drawsBackground="YES" id="vBH-f0-hz8">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -556,7 +556,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zgS-Ql-1pe">
-                                <rect key="frame" x="274" y="235" width="232" height="32"/>
+                                <rect key="frame" x="274" y="281" width="232" height="32"/>
                                 <buttonCell key="cell" type="push" title="Hide Message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="T6j-h8-ati">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -566,8 +566,8 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-tX-xKW">
-                                <rect key="frame" x="274" y="199" width="232" height="32"/>
-                                <buttonCell key="cell" type="push" title="Show Message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OUq-F5-TgI">
+                                <rect key="frame" x="274" y="209" width="232" height="32"/>
+                                <buttonCell key="cell" type="push" title="Show Message or Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OUq-F5-TgI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <connections>
@@ -586,7 +586,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uU4-Mw-8nA">
-                                <rect key="frame" x="280" y="50" width="220" height="141"/>
+                                <rect key="frame" x="280" y="67" width="220" height="141"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="141" id="b04-GU-g49"/>
                                 </constraints>
@@ -617,13 +617,13 @@
                                 </connections>
                             </button>
                             <box boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="swn-tU-RwG">
-                                <rect key="frame" x="20" y="50" width="220" height="213"/>
+                                <rect key="frame" x="20" y="50" width="220" height="259"/>
                                 <view key="contentView" id="hT1-gp-HQf">
-                                    <rect key="frame" x="1" y="1" width="218" height="211"/>
+                                    <rect key="frame" x="1" y="1" width="218" height="257"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XKl-S6-Bh5">
-                                            <rect key="frame" x="20" y="97" width="178" height="17"/>
+                                            <rect key="frame" x="20" y="120" width="178" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Click or drag to select image" id="Fdw-Ng-qAT">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -631,11 +631,11 @@
                                             </textFieldCell>
                                         </textField>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="499" verticalCompressionResistancePriority="499" translatesAutoresizingMaskIntoConstraints="NO" id="1t2-zo-2lf">
-                                            <rect key="frame" x="0.0" y="0.0" width="218" height="211"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="218" height="257"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="gk7-LV-MkH"/>
                                         </imageView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="RnT-py-0oh" customClass="DragAndDropView" customModule="Pictograph_Mac" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="218" height="211"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="218" height="257"/>
                                         </customView>
                                     </subviews>
                                     <constraints>
@@ -655,6 +655,16 @@
                                 </constraints>
                                 <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.19895594418960244" colorSpace="calibratedRGB"/>
                             </box>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a3q-8x-T2h">
+                                <rect key="frame" x="274" y="245" width="232" height="32"/>
+                                <buttonCell key="cell" type="push" title="Hide Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4aO-pJ-osv">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="hideImageAction:" target="XfG-lQ-9wD" id="qvf-0X-lMB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="fUS-tX-xKW" firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" id="1Kt-Ro-or0"/>
@@ -662,6 +672,7 @@
                             <constraint firstItem="HuH-ct-1ed" firstAttribute="trailing" secondItem="1t2-zo-2lf" secondAttribute="trailing" id="8fp-JG-4zT"/>
                             <constraint firstItem="uU4-Mw-8nA" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="99V-pM-5aH"/>
                             <constraint firstAttribute="bottom" secondItem="swn-tU-RwG" secondAttribute="bottom" constant="50" id="ByR-dj-NyG"/>
+                            <constraint firstItem="a3q-8x-T2h" firstAttribute="trailing" secondItem="zgS-Ql-1pe" secondAttribute="trailing" id="Dpe-hA-Eju"/>
                             <constraint firstItem="3oF-LH-nVB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uU4-Mw-8nA" secondAttribute="bottom" constant="15" id="G99-NY-cem"/>
                             <constraint firstItem="4t1-Co-IAH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="20" id="GBW-fp-R0z"/>
                             <constraint firstItem="OuD-HM-Cre" firstAttribute="top" secondItem="4t1-Co-IAH" secondAttribute="bottom" constant="15" id="Gp0-Nu-yBv"/>
@@ -670,25 +681,28 @@
                             <constraint firstItem="4t1-Co-IAH" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Jod-Po-liP"/>
                             <constraint firstItem="zgS-Ql-1pe" firstAttribute="top" secondItem="swn-tU-RwG" secondAttribute="top" id="KdV-l3-GmE"/>
                             <constraint firstAttribute="trailing" secondItem="3oF-LH-nVB" secondAttribute="trailing" constant="5" id="Lul-nX-UIy"/>
+                            <constraint firstItem="uU4-Mw-8nA" firstAttribute="top" secondItem="fUS-tX-xKW" secondAttribute="bottom" constant="8" id="O3x-Mv-EFg"/>
                             <constraint firstItem="swn-tU-RwG" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="RHo-pq-2VT"/>
                             <constraint firstItem="NME-yD-sNV" firstAttribute="trailing" secondItem="1t2-zo-2lf" secondAttribute="centerX" id="RPe-pW-tzd"/>
                             <constraint firstItem="NME-yD-sNV" firstAttribute="leading" secondItem="1t2-zo-2lf" secondAttribute="leading" constant="-3" id="UBh-eR-myO"/>
                             <constraint firstItem="HuH-ct-1ed" firstAttribute="top" secondItem="1t2-zo-2lf" secondAttribute="bottom" constant="21" id="YJ3-Ps-NqN"/>
+                            <constraint firstItem="a3q-8x-T2h" firstAttribute="leading" secondItem="zgS-Ql-1pe" secondAttribute="leading" id="ZMJ-fg-Ouc"/>
                             <constraint firstItem="uU4-Mw-8nA" firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" id="ecO-Kc-vTn"/>
                             <constraint firstAttribute="centerX" secondItem="swn-tU-RwG" secondAttribute="trailing" constant="20" id="fwp-5O-6wM"/>
                             <constraint firstItem="fUS-tX-xKW" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="gQb-P2-3X0"/>
-                            <constraint firstItem="fUS-tX-xKW" firstAttribute="top" secondItem="zgS-Ql-1pe" secondAttribute="bottom" constant="15" id="jJE-uK-t7k"/>
                             <constraint firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" constant="20" id="jM6-4v-Dxk"/>
+                            <constraint firstItem="fUS-tX-xKW" firstAttribute="top" secondItem="a3q-8x-T2h" secondAttribute="bottom" constant="15" id="mPk-xf-Ogy"/>
                             <constraint firstItem="zgS-Ql-1pe" firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" id="mU6-1J-TzU"/>
                             <constraint firstItem="OuD-HM-Cre" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="mdj-rL-1sD"/>
                             <constraint firstItem="NME-yD-sNV" firstAttribute="top" secondItem="1t2-zo-2lf" secondAttribute="bottom" constant="21" id="qG6-V9-JjA"/>
-                            <constraint firstItem="uU4-Mw-8nA" firstAttribute="top" secondItem="fUS-tX-xKW" secondAttribute="bottom" constant="15" id="tWj-3m-6AH"/>
+                            <constraint firstItem="a3q-8x-T2h" firstAttribute="top" secondItem="zgS-Ql-1pe" secondAttribute="bottom" constant="15" id="tlr-bG-5IV"/>
                             <constraint firstItem="zgS-Ql-1pe" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="uWv-MD-7aD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dragAndDropView" destination="RnT-py-0oh" id="yeW-8H-a2r"/>
                         <outlet property="encryptionCheckbox" destination="4t1-Co-IAH" id="o76-f6-ek4"/>
+                        <outlet property="hideImageButton" destination="a3q-8x-T2h" id="LBS-qx-Xbl"/>
                         <outlet property="hideMessageButton" destination="zgS-Ql-1pe" id="5lH-vy-0PV"/>
                         <outlet property="imageSelectLabel" destination="XKl-S6-Bh5" id="p02-6T-pyO"/>
                         <outlet property="mainImageView" destination="1t2-zo-2lf" id="Dj3-1A-T1x"/>
@@ -702,7 +716,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="738"/>
+            <point key="canvasLocation" x="75" y="737.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="pO9-Q4-TPw">

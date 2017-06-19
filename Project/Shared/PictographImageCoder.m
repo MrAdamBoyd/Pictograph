@@ -26,9 +26,7 @@
 
 @implementation PictographImageCoder
 
-#if TARGET_OS_OSX
 @synthesize isCancelled;
-#endif
 
 #pragma mark Decoding a messages and images hidden in an image
 
@@ -303,6 +301,12 @@
     
     //Need numberOfPixelsNeeded * 4 due to this array counting by components of each pixel (RGBA)
     for (int i = 0; i < (numberOfPixelsNeeded * 4); i += 4) {
+        
+        
+        if ([self isCancelled]) {
+            //Break out of loop
+            break;
+        }
         
         int pixelIndex = i / 4;
         UInt8 newBlueComponent = [self newBlueComponentValueAtIndex:pixelIndex encodeCounter:encodeCounter arrayOfBlueComponents:arrayOfBlueComponents arrayOfBits:arrayOfBits image:image];
