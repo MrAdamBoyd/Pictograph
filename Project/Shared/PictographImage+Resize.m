@@ -23,7 +23,13 @@
     
     CGContextDrawImage(context, CGRectMake(0, 0, newSize.width, newSize.height), cgImage);
     
-    return [[UIImage alloc] initWithCGImage:CGBitmapContextCreateImage(context)];
+    UIImage *image = [[UIImage alloc] initWithCGImage:CGBitmapContextCreateImage(context)];
+    
+    //Free memory
+    CGColorSpaceRelease(colorRef);
+    CGContextRelease(context);
+    
+    return image;
 #else
     NSImage *sourceImage = [self copy];
     NSImage *smallImage = [[NSImage alloc] initWithSize: newSize];
