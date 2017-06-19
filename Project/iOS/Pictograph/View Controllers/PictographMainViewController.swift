@@ -17,18 +17,18 @@ import StoreKit
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle {
     
     //UI elements
-    private let mainEncodeView = MainEncodingView()
-    private var settingsNavVC: UINavigationController? //Stored to animate nightMode
-    private var imagePickerDidPickImage: ((UIImage) -> Void)?
+    fileprivate let mainEncodeView = MainEncodingView()
+    fileprivate var settingsNavVC: UINavigationController? //Stored to animate nightMode
+    fileprivate var imagePickerDidPickImage: ((UIImage) -> Void)?
     var currentImage: UIImage? {
         didSet {
             self.mainEncodeView.imageView.image = self.currentImage
             self.enableOrDisableButtons()
         }
     }
-    private var dragDropManager: DragDropManager?
-    private weak var hiddenImageView: HiddenImageView?
-    private var hiddenImageWindow: UIWindow?
+//    fileprivate var dragDropManager: DragDropManager?
+    fileprivate weak var hiddenImageView: HiddenImageView?
+    fileprivate var hiddenImageWindow: UIWindow?
     
     /// Checks to make sure the password settings are correct. Makes sure either encryption is disabled or encryption is enabled and the password isn't empty
     private var passwordSettingsValid: Bool {
@@ -80,14 +80,14 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.mainEncodeView.shareButton.addTarget(self, action: #selector(self.showShareSheetWithCurrentImage), for: .touchUpInside)
         
         //Drag and drop
-        if #available(iOS 11, *) {
-            self.dragDropManager = DragDropManager(imageView: self.mainEncodeView.imageView, in: self.view)
-            let dragInteraction = UIDragInteraction(delegate: self.dragDropManager!)
-            self.mainEncodeView.imageView.addInteraction(dragInteraction)
-            
-            let dropInteraction = UIDropInteraction(delegate: self.dragDropManager!)
-            self.mainEncodeView.imageView.addInteraction(dropInteraction)
-        }
+//        if #available(iOS 11, *) {
+//            self.dragDropManager = DragDropManager(imageView: self.mainEncodeView.imageView, in: self.view)
+//            let dragInteraction = UIDragInteraction(delegate: self.dragDropManager!)
+//            self.mainEncodeView.imageView.addInteraction(dragInteraction)
+//            
+//            let dropInteraction = UIDropInteraction(delegate: self.dragDropManager!)
+//            self.mainEncodeView.imageView.addInteraction(dropInteraction)
+//        }
         
         //Setting up the notifications for the settings
         NotificationCenter.default.addObserver(self, selector: #selector(self.showPasswordOnScreenChanged), name: NSNotification.Name(rawValue: pictographShowPasswordOnScreenSettingChangedNotification), object: nil)
@@ -363,13 +363,13 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         case .camera:
             
             //Getting permission from the camera
-            let mediaType: AVMediaType = .video //This is the type for the camera
+            let mediaType = AVMediaTypeVideo //This is the type for the camera
             
-            switch AVCaptureDevice.authorizationStatus(for: mediaType) {
+            switch AVCaptureDevice.authorizationStatus(forMediaType: mediaType) {
             case .authorized: self.createAndPresentPicker(withType: type)
             case .notDetermined, .denied, .restricted:
                 // Prompting user for the permission to use the camera.
-                AVCaptureDevice.requestAccess(for: mediaType) { granted in
+                AVCaptureDevice.requestAccess(forMediaType: mediaType) { granted in
                     if granted {
                         DispatchQueue.main.async {
                             self.createAndPresentPicker(withType: type)
