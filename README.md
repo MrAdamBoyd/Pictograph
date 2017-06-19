@@ -32,9 +32,14 @@ My website is [adamjboyd.com](http://www.adamjboyd.com).
 
 ## Changelog
 1.0: Initial Release
+
 1.1: iPad support
+
 1.2: Night mode
+
 1.3: Simplified UI
+
+1.4: Ability to hide images
 
 ## License
 
