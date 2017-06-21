@@ -53,11 +53,13 @@
     NSMutableArray *infoArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting information about the encoded message
-    const NSArray *first8PixelsBlueComponents = [self getBlueComponentsFromImage:image atX:0 andY:0 count:[self pixelCountForBit:bitCountForInfo]];
-    for (NSNumber *blueComponent in first8PixelsBlueComponents) {
+    unsigned char *first8PixelsBlueComponents = [self getBlueComponentsFromImage:image atX:0 andY:0 count:[self pixelCountForBit:bitCountForInfo]];
+    for (int i = 0; i < [self pixelCountForBit:bitCountForInfo]; i++) {
         //Going through each color that contains information about the message
-        [self addLastBitsFromBlueComponent:blueComponent toArray:infoArrayInBits];
+        [self addLastBitsFromBlueComponent:first8PixelsBlueComponents[i] toArray:infoArrayInBits];
     }
+    
+    free(first8PixelsBlueComponents);
     
     const long informationAboutString = [self longFromBits:infoArrayInBits];
     
@@ -114,13 +116,14 @@
     NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting the size of the string
-    NSArray *blueComponentsContainingSizeOfImage = [self getBlueComponentsFromImage:image atX:[self pixelCountForBit:bitCountForInfo] andY:0 count:[self pixelCountForBit:bitCountForHiddenDataSize]];
+    unsigned char *blueComponentsContainingSizeOfImage = [self getBlueComponentsFromImage:image atX:[self pixelCountForBit:bitCountForInfo] andY:0 count:[self pixelCountForBit:bitCountForHiddenDataSize]];
     
-    for (NSNumber *blueComponent in blueComponentsContainingSizeOfImage) {
+    for (int i = 0; i < [self pixelCountForBit:bitCountForHiddenDataSize]; i++) {
         //Going through each color that contains the size of the message
-        [self addLastBitsFromBlueComponent:blueComponent toArray:sizeArrayInBits];
+        [self addLastBitsFromBlueComponent:blueComponentsContainingSizeOfImage[i] toArray:sizeArrayInBits];
     }
     
+    free(blueComponentsContainingSizeOfImage);
     long numberOfBitsNeededForImage = [self longFromBits:sizeArrayInBits];
     
     //Going through all the pixels to get the char value
@@ -130,10 +133,11 @@
     NSData *toReturn;
     
     int firstPixelWithHiddenData = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize)];
-    NSArray *arrayOfBlueComponents = [self getBlueComponentsFromImage:image atX:firstPixelWithHiddenData andY:0 count:[self pixelCountForBit:(int)numberOfBitsNeededForImage]];
+    unsigned char *arrayOfBlueComponents = [self getBlueComponentsFromImage:image atX:firstPixelWithHiddenData andY:0 count:[self pixelCountForBit:(int)numberOfBitsNeededForImage]];
     
-    for (NSNumber *blueComponent in arrayOfBlueComponents) {
+    for (int i = 0; i < [self pixelCountForBit:(int)numberOfBitsNeededForImage]; i++) {
         //Going through each pixel
+        unsigned char blueComponent = arrayOfBlueComponents[i];
         [self addLastBitsFromBlueComponent:blueComponent toArray:arrayOfBitsForMessage];
         
         if ([arrayOfBitsForMessage count] == bitCountForCharacter) {
@@ -148,6 +152,8 @@
             [arrayOfBitsForMessage removeAllObjects]; //Reset the array for the next char
         }
     }
+    
+    free(arrayOfBlueComponents);
     
     if (isEncrypted) {
         //If message is encrypted, decrypt it and save it
@@ -172,8 +178,8 @@
 }
 
 //Adds the last 2 bits of the blue value from PictographColor color to the NSMutableArray array
-- (void)addLastBitsFromBlueComponent:(NSNumber *)blueComponent toArray:(NSMutableArray *)array {
-    NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:blueComponent.unsignedCharValue withSpaceFor:bitCountForCharacter];
+- (void)addLastBitsFromBlueComponent:(unsigned char)blueComponent toArray:(NSMutableArray *)array {
+    NSArray *arrayOfBitsFromBlue = [self binaryStringFromInteger:blueComponent withSpaceFor:bitCountForCharacter];
     
     [array addObject:[arrayOfBitsFromBlue objectAtIndex:6]];
     [array addObject:[arrayOfBitsFromBlue objectAtIndex:7]];
@@ -288,7 +294,7 @@
     NSUInteger imageHeight = [image getReconciledImageHeight];
     
     int numberOfPixelsNeeded = [self pixelCountForBit:(int)[arrayOfBits count]];
-    NSArray *arrayOfBlueComponents = [self getBlueComponentsFromImage:image atX:0 andY:0 count:numberOfPixelsNeeded];
+    unsigned char *arrayOfBlueComponents = [self getBlueComponentsFromImage:image atX:0 andY:0 count:numberOfPixelsNeeded];
     
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
     size_t bitsPerComponent = 8;
@@ -342,16 +348,16 @@
     CGColorSpaceRelease(colorspace);
     CGContextRelease(editedBitmap);
     free(pixelBuffer);
+    free(arrayOfBlueComponents);
     
     return dataRepresentationOfModifiedImage;
     
 }
 
 //Gets the color that the specified pixel should be
--(UInt8)newBlueComponentValueAtIndex:(int)index encodeCounter:(int)encodeCounter arrayOfBlueComponents:(NSArray *)arrayOfAllNeededBlueComponents arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image {
+-(UInt8)newBlueComponentValueAtIndex:(int)index encodeCounter:(int)encodeCounter arrayOfBlueComponents:(unsigned char *)arrayOfAllNeededBlueComponents arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image {
     
-    NSNumber *blueNSNumber = [arrayOfAllNeededBlueComponents objectAtIndex:index];
-    unsigned char blueComponent = blueNSNumber.unsignedCharValue;
+    unsigned char blueComponent = arrayOfAllNeededBlueComponents[index];
     
     //Changing the value of the blue byte
     NSMutableArray *arrayOfBitsFromBlue = [[NSMutableArray alloc] initWithArray:[self binaryStringFromInteger:blueComponent withSpaceFor:bitCountForCharacter]];
@@ -451,12 +457,12 @@
 /* Returns an array of PictographColors for the pixels starting at x, y for count number of pixels
    http://stackoverflow.com/questions/448125/how-to-get-pixel-data-from-a-uiimage-cocoa-touch-or-cgimage-core-graphics
    Used the above link as inspiration, but heavily modified */
--(NSArray *)getBlueComponentsFromImage:(PictographImage*)image atX:(int)x andY:(int)y count:(int)count {
+-(unsigned char *)getBlueComponentsFromImage:(PictographImage*)image atX:(int)x andY:(int)y count:(int)count {
     
     //Getting the raw data
     unsigned char *rawData = [self getRawPixelDataForImage:image];
     
-    NSMutableArray *blueComponentArray = [[NSMutableArray alloc] init];
+    unsigned char *blueComponentArray = (unsigned char*)malloc(count * sizeof(unsigned char));
     
     NSUInteger width = [image getReconciledImageWidth];
     
@@ -467,10 +473,8 @@
         //Getting the bits for each color space red, green, blue, and alpha
         unsigned char blueComponent = rawData[byteIndex + 2];
         
+        blueComponentArray[counter] = blueComponent;
         byteIndex += bytesPerPixel;
-        
-        [blueComponentArray addObject:[NSNumber numberWithUnsignedChar:blueComponent]];
-        
     }
     
     free(rawData);
