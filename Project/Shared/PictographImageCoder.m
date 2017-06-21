@@ -293,36 +293,11 @@
     NSUInteger imageWidth = [image getReconciledImageWidth];
     NSUInteger imageHeight = [image getReconciledImageHeight];
     
-    int numberOfPixelsNeeded = [self pixelCountForBit:(int)[arrayOfBits count]];
-    unsigned char *arrayOfBlueComponents = [self getBlueComponentsFromImage:image atX:0 andY:0 count:numberOfPixelsNeeded];
-    
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
     size_t bitsPerComponent = 8;
     size_t bytesPerRow = bytesPerPixel * imageWidth;
     
-    //Aligns the pixel data to unsigned char * aka UInt. Each item in the array is a component of each pixel. So every 4 is a pixel. See docs for getRawPixelDataForImage:
-    unsigned char *pixelBuffer = [self getRawPixelDataForImage:image];
-    
-    int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each pixel
-    
-    //Need numberOfPixelsNeeded * 4 due to this array counting by components of each pixel (RGBA)
-    for (int i = 0; i < (numberOfPixelsNeeded * 4); i += 4) {
-        
-        
-        if ([self isCancelled]) {
-            //Break out of loop
-            break;
-        }
-        
-        int pixelIndex = i / 4;
-        UInt8 newBlueComponent = [self newBlueComponentValueAtIndex:pixelIndex encodeCounter:encodeCounter arrayOfBlueComponents:arrayOfBlueComponents arrayOfBits:arrayOfBits image:image];
-        
-        pixelBuffer[i+2] = newBlueComponent;
-        
-        DLog(@"Changing pixel value at index %i", pixelIndex);
-        
-        encodeCounter += 2;
-    }
+    unsigned char *pixelBuffer = [self pixelBufferWithBlueComponentsChangedFrom:image arrayOfBits:arrayOfBits];
     
     CGContextRef editedBitmap = CGBitmapContextCreate(pixelBuffer, imageWidth, imageHeight, bitsPerComponent, bytesPerRow, colorspace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Little);
     
@@ -348,19 +323,43 @@
     CGColorSpaceRelease(colorspace);
     CGContextRelease(editedBitmap);
     free(pixelBuffer);
-    free(arrayOfBlueComponents);
     
     return dataRepresentationOfModifiedImage;
     
 }
 
-//Gets the color that the specified pixel should be
--(UInt8)newBlueComponentValueAtIndex:(int)index encodeCounter:(int)encodeCounter arrayOfBlueComponents:(unsigned char *)arrayOfAllNeededBlueComponents arrayOfBits:(NSArray *)arrayOfBits image:(PictographImage *)image {
+//Returns the pixel buffer for the entire image with all the necessary pixels changed for encoding the image or message
+-(unsigned char *)pixelBufferWithBlueComponentsChangedFrom:(PictographImage *)image arrayOfBits:(NSMutableArray *)arrayOfBits {
+    unsigned char *pixelBuffer = [self getRawPixelDataForImage:image];
     
-    unsigned char blueComponent = arrayOfAllNeededBlueComponents[index];
+    int numberOfPixelsNeeded = [self pixelCountForBit:(int)[arrayOfBits count]];
+    int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each pixel
+    
+    //Need numberOfPixelsNeeded * 4 due to this array counting by components of each pixel (RGBA)
+    for (int i = 0; i < (numberOfPixelsNeeded * 4); i += 4) {
+        
+        if ([self isCancelled]) {
+            //Break out of loop
+            break;
+        }
+        //Get the current blue value, change out the last bits, and then put the new value in the buffer again
+        unsigned char currentBlueValue = pixelBuffer[i+2];
+        unsigned char newBlueValue = [self newBlueComponentValueFrom:currentBlueValue encodeCounter:encodeCounter arrayOfBits:arrayOfBits];
+        pixelBuffer[i+2] = newBlueValue;
+        
+        DLog(@"Changing pixel value at index %i", i);
+        
+        encodeCounter += 2;
+    }
+    
+    return pixelBuffer;
+}
+
+//Gets the color that the specified pixel should be
+-(UInt8)newBlueComponentValueFrom:(unsigned char)currentBlueComponent encodeCounter:(int)encodeCounter  arrayOfBits:(NSArray *)arrayOfBits {
     
     //Changing the value of the blue byte
-    NSMutableArray *arrayOfBitsFromBlue = [[NSMutableArray alloc] initWithArray:[self binaryStringFromInteger:blueComponent withSpaceFor:bitCountForCharacter]];
+    NSMutableArray *arrayOfBitsFromBlue = [[NSMutableArray alloc] initWithArray:[self binaryStringFromInteger:currentBlueComponent withSpaceFor:bitCountForCharacter]];
     
     //Changing the least significant bits of the blue byte
     [arrayOfBitsFromBlue replaceObjectAtIndex:6 withObject:arrayOfBits[encodeCounter]];
