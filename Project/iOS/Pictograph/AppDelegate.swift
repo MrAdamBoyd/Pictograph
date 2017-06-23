@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Sets the font attributes of the bar button items
         UIBarButtonItem.appearance().setTitleTextAttributes([
-            NSAttributedStringKey.foregroundColor.rawValue: UIColor.white
+            NSAttributedStringKey.foregroundColor: UIColor.white
             ], for: UIControlState())
         
         //Setting up Fabric

@@ -33,7 +33,9 @@ class DragDropManager: NSObject, UIDragInteractionDelegate, UIDropInteractionDel
     //User moving the image over, saying we want to copy it if the image is dragged within the imageview
     @available(iOS 11.0, *)
     func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
-        let dropLocation = session.location(in: self.view)
+        guard let view = self.view else { return UIDropProposal(operation: .cancel) }
+        
+        let dropLocation = session.location(in: view)
         let operation: UIDropOperation
         
         if self.imageView?.frame.contains(dropLocation) ?? false {
