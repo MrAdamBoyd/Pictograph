@@ -23,6 +23,7 @@
 #define componentsPerPixel 4
 #define maxIntFor8Bits 255
 #define maxFloatFor8Bits 255.0
+#define blueComponentIndex 2
 
 @implementation PictographImageCoder
 
@@ -343,9 +344,9 @@
             break;
         }
         //Get the current blue value, change out the last bits, and then put the new value in the buffer again
-        unsigned char currentBlueValue = pixelBuffer[i+2];
+        unsigned char currentBlueValue = pixelBuffer[i+blueComponentIndex];
         unsigned char newBlueValue = [self newBlueComponentValueFrom:currentBlueValue encodeCounter:encodeCounter arrayOfBits:arrayOfBits];
-        pixelBuffer[i+2] = newBlueValue;
+        pixelBuffer[i+blueComponentIndex] = newBlueValue;
         
         DLog(@"Changing pixel value at index %i", i);
         
@@ -493,8 +494,8 @@
     
     CGImageRef imageRef = [image getReconciledCGImageRef];
     
-    NSUInteger width = CGImageGetWidth(imageRef);
-    NSUInteger height = CGImageGetHeight(imageRef);
+    NSUInteger width = [image getReconciledImageWidth];
+    NSUInteger height = [image getReconciledImageHeight];
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     unsigned char *rawData = (unsigned char*) malloc(height * width * componentsPerPixel * sizeof(unsigned char));
     NSUInteger bytesPerRow = bytesPerPixel * width;
