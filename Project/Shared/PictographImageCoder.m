@@ -221,16 +221,6 @@
 
 #pragma mark Helper methods for encoding a message in an image
 
-//- (PictographImage *)rotatedImageFromImage:(PictographImage *)image {
-//    NSUInteger imageWidth = [image getReconciledImageWidth];
-//    NSUInteger imageHeight = [image getReconciledImageHeight];
-//
-//    CGRect imageRect = CGRectMake(0, 0, imageWidth, imageHeight);
-//
-//    UIGraphicsBeginImageContext(CGSizeMake(imageWidth, imageHeight));
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//}
-
 //Encodes UIImage image with the data. Returns modified UIImage or NSImage
 - (NSData * _Nullable)encodeData:(NSData * _Nonnull)data dataIsImage:(BOOL)dataIsImage inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
     
