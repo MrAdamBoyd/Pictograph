@@ -17,7 +17,7 @@ class PictographSettingsTableViewCell: UITableViewCell {
     var settingsSwitch = UISwitch()
     fileprivate var handler: ((Bool) -> Void)?
     
-    //MARK: - UITableViewCell
+    // MARK: - UITableViewCell
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -46,7 +46,7 @@ class PictographSettingsTableViewCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    //MARK: - Custom methods
+    // MARK: - Custom methods
     func setTitle(_ title: String, switchStartsOn isOn: Bool, withHandler handler: @escaping ((_ enabledOrNot: Bool) -> Void)) {
         mainLabel.text = title
         settingsSwitch.isOn = isOn

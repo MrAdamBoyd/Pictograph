@@ -34,7 +34,7 @@ class MainEncodingView: UIScrollView {
     let encodeImageButton = PictographHighlightButton()
     let decodeButton = PictographHighlightButton()
     
-    //MARK: - UIView
+    // MARK: - UIView
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

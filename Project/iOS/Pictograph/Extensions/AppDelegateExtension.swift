@@ -11,7 +11,7 @@
 import UIKit
 
 //some random number
-private let blurViewtag = 198489
+private let blurViewtag = 198_489
 
 extension AppDelegate {
     

@@ -14,8 +14,8 @@ private let introViewTitleFont = UIFont.systemFont(ofSize: 35)
 private let introViewDescFont = UIFont.systemFont(ofSize: 20)
 private let introViewTitleY = UIScreen.main.bounds.height - 50
 private let introViewDescY = UIScreen.main.bounds.height - 100
-private let introPage1Color = UIColor(red: 24/255.0, green: 120/255.0, blue: 217/255.0, alpha: 1)
-private let introPage2Color = UIColor(red: 220/255.0, green: 141/255.0, blue: 56/255.0, alpha: 1)
+private let introPage1Color = #colorLiteral(red: 0.09411764706, green: 0.4705882353, blue: 0.8509803922, alpha: 1)
+private let introPage2Color = #colorLiteral(red: 0.862745098, green: 0.5529411765, blue: 0.2196078431, alpha: 1)
 
 class IntroView {
     class func buildIntroViews() -> [EAIntroPage] {

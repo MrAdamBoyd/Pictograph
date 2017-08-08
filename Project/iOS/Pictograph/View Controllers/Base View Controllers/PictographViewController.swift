@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-let mainAppColor = UIColor(red: 220/255.0, green: 0, blue: 0, alpha: 1)
+let mainAppColor = #colorLiteral(red: 0.862745098, green: 0, blue: 0, alpha: 1)
 let mainAppColorHighlighted = mainAppColor.withAlphaComponent(0.5)
 
-let mainAppColorNight = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
+let mainAppColorNight = #colorLiteral(red: 0.1294117647, green: 0.1294117647, blue: 0.1294117647, alpha: 1)
 let mainAppColorNightHighlighted = mainAppColorNight.withAlphaComponent(0.5)
 
 class PictographViewController: UIViewController {

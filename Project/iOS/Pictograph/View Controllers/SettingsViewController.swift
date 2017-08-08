@@ -15,7 +15,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
     
     var tableView = UITableView(frame: CGRect.zero, style: .grouped)
     
-    //MARK: - UIViewController
+    // MARK: - UIViewController
     
     override func viewDidLoad() {
         
@@ -38,7 +38,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
         self.view.addConstraint(NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0))
     }
     
-    //MARK: - UITableViewDataSource
+    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = PictographSettingsTableViewCell()
         
@@ -95,7 +95,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
         return SettingsFooterView.heightForFooter
     }
     
-    //MARK: - UITableViewDelegate
+    // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return SettingsFooterView()

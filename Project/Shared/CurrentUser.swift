@@ -26,7 +26,7 @@ class CurrentUser: NSObject, NSCoding, NSSecureCoding {
     
     override init() { super.init() }
     
-    //MARK: - NSCoding
+    // MARK: - NSCoding
     required init?(coder aDecoder: NSCoder) {
         //Variables in from start
         
@@ -86,7 +86,7 @@ class CurrentUser: NSObject, NSCoding, NSSecureCoding {
         aCoder.encode(shouldStoreImagesNumber, forKey: shouldStoreImagesKey)
     }
     
-    //MARK: - NSSecureCoding
+    // MARK: - NSSecureCoding
     class var supportsSecureCoding: Bool {
         return true
     }

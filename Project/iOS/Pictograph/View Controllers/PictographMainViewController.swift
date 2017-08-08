@@ -35,7 +35,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         return (!PictographDataController.shared.userEncryptionPassword.isEmpty && PictographDataController.shared.userEncryptionIsEnabled) || !PictographDataController.shared.userEncryptionIsEnabled
     }
     
-    //MARK: - UIViewController
+    // MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,8 +166,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     func buildAccessoryButton() -> UIView {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
         button.setTitle("Paste from clipboard", for: UIControlState())
-        button.backgroundColor = UIColor(colorLiteralRed: 150/256, green: 150/256, blue: 150/256, alpha: 1)
-        button.setTitleColor(UIColor(colorLiteralRed: 75/256, green: 75/256, blue: 75/256, alpha: 1), for: .highlighted)
+        button.backgroundColor = #colorLiteral(red: 0.5882352941, green: 0.5882352941, blue: 0.5882352941, alpha: 1)
+        button.setTitleColor(#colorLiteral(red: 0.2941176471, green: 0.2941176471, blue: 0.2941176471, alpha: 1), for: .normal)
         button.addTarget(self, action: #selector(self.pasteFromClipboard), for: .touchUpInside)
         
         return button
@@ -184,11 +184,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 alertVC.textFields![0].text = pasteString
                 
                 //Need to manually enable the confirm button because pasting doesn't trigger the notification
-                for action in alertVC.actions {
-                    if action.style == .default {
-                        action.isEnabled = true
-                        return
-                    }
+                if let action = alertVC.actions.first(where: { $0.style == .default }) {
+                    action.isEnabled = true
                 }
             }
         }
@@ -206,7 +203,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
     }
     
-    //MARK: - UITextFieldDelegate
+    // MARK: - UITextFieldDelegate
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.endEditingAndSetPassword()
     }
@@ -217,7 +214,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     
-    //MARK: - EAIntroDelegate
+    // MARK: - EAIntroDelegate
     func introWillFinish(_ introView: EAIntroView!, wasSkipped: Bool) {
         PictographDataController.shared.userFirstTimeOpeningApp = false
 
@@ -228,7 +225,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    //MARK: - Custom methods
+    // MARK: - Custom methods
     
     /// Shows the intro views for the app that explain what the app does
     ///
@@ -530,14 +527,24 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         let getMessageController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         
+        var textFieldObserver: Any?
+        
         //Saving the confirmAction so it can be enabled/disabled
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
+            if let observer = textFieldObserver {
+                NotificationCenter.default.removeObserver(observer)
+            }
             self.encodeMessage(getMessageController.textFields!.first!.text!)
         }
+        
         getMessageController.addAction(confirmAction)
         
         //Set current action to none
-        getMessageController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        getMessageController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            if let observer = textFieldObserver {
+                NotificationCenter.default.removeObserver(observer)
+            }
+        })
         
         //Building the text field with the correct settings
         getMessageController.addTextField(configurationHandler: { textField in
@@ -546,7 +553,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             textField.inputAccessoryView = self.buildAccessoryButton()
             
             //Confirm is only enabled if there is text
-            NotificationCenter.default.addObserver(forName: Notification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { notification -> Void in
+            textFieldObserver = NotificationCenter.default.addObserver(forName: Notification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { _ in
                 //Enabled when the text isn't blank
                 confirmAction.isEnabled = (textField.text != "")
             }
@@ -596,7 +603,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.present(showMessageController, animated: true, completion: nil)
     }
     
-    //MARK: - Methods for when the settings change
+    // MARK: - Methods for when the settings change
     
     @objc func showPasswordOnScreenChanged() {
         //Set the opposite of what it currently is

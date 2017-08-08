@@ -49,7 +49,7 @@ class DragAndDropView: NSView {
         self.isReceivingDrag = false
         let pasteBoard = draggingInfo.draggingPasteboard()
         
-        if let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: filteringOptions) as? [URL], urls.count > 0 {
+        if let urls = pasteBoard.readObjects(forClasses: [NSURL.self], options: filteringOptions) as? [URL], !urls.isEmpty {
             self.delegate?.userDraggedFile(urls.first)
             return true
         }

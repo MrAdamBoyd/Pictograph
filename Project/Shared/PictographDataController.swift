@@ -40,7 +40,7 @@ class PictographDataController: NSObject {
     }
     
     
-    //MARK: - CurrentUser methods
+    // MARK: - CurrentUser methods
     
     //Saving the user and settings to disk
     func saveCurrentUser() {
@@ -121,7 +121,7 @@ class PictographDataController: NSObject {
         }
     }
     
-    //MARK: - Asking user to rate the app
+    // MARK: - Asking user to rate the app
     
     /// This is the userdefaults key for this version of the app. Using a different key for each version
     fileprivate var thisVersionRatingKey: String {
@@ -145,14 +145,14 @@ class PictographDataController: NSObject {
     }
     
     
-    //MARK: - analytics methods
+    // MARK: - analytics methods
     
     //Record a message encrypted event
     @objc func analyticsEncodeSend(_ encrypted: Bool) {
         let encryptedOrNot = encrypted ? "Encrypted" : "Unencrypted"
     
         #if os(iOS)
-            Answers.logCustomEvent(withName: "Encode Message", customAttributes: ["Encryption" : encryptedOrNot])
+            Answers.logCustomEvent(withName: "Encode Message", customAttributes: ["Encryption": encryptedOrNot])
         #endif
     }
     
@@ -161,11 +161,11 @@ class PictographDataController: NSObject {
         let encryptedOrNot = encrypted ? "Encrypted" : "Unencrypted"
     
         #if os(iOS)
-            Answers.logCustomEvent(withName: "Decode Message", customAttributes: ["Encryption" : encryptedOrNot])
+            Answers.logCustomEvent(withName: "Decode Message", customAttributes: ["Encryption": encryptedOrNot])
         #endif
     }
     
-    //MARK: - Other methods
+    // MARK: - Other methods
     
     //Opens the website in Safari
     func goToWebsite() {

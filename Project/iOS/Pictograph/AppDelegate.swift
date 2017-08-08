@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //This sets the font attributes of the titles and back button text
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor.rawValue: UIColor.white
+            NSAttributedStringKey.foregroundColor: UIColor.white
         ]
         
         //Sets the font attributes of the bar button items
