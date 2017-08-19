@@ -330,6 +330,7 @@
     //Freeing the memory
     CGColorSpaceRelease(colorspace);
     CGContextRelease(editedBitmap);
+    CGImageRelease(outputImage);
     free(pixelBuffer);
     
     return dataRepresentationOfModifiedImage;
