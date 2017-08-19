@@ -202,6 +202,11 @@
 
 //Encodes an image within another image
 - (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image error:(NSError * _Nullable * _Nullable)error {
+    
+    #if TARGET_OS_IPHONE
+    hiddenImage = [self rotatedUIImageFromImage:hiddenImage];
+    #endif
+    
     const CGSize originalSize = CGSizeMake([hiddenImage getReconciledImageWidth], [hiddenImage getReconciledImageHeight]);
     CGSize newSize = [self determineSizeForHidingImage:hiddenImage withinImage:image];
     
@@ -291,15 +296,12 @@
 - (NSData *)saveImageToGraphicsContextAndEncodeBitsInImage:(PictographImage *)image arrayOfBits:(NSMutableArray *)arrayOfBits {
     //Right here we have all the bits that are needed to encode the data in the image
     
+    #if TARGET_OS_IPHONE
+    image = [self rotatedUIImageFromImage:image];
+    #endif
+    
     NSUInteger imageWidth = [image getReconciledImageWidth];
     NSUInteger imageHeight = [image getReconciledImageHeight];
-    
-    #if TARGET_OS_IPHONE
-    //UIImages taken with the iPhone camera have an orientation of right even though they are straight up. This causes the image to be distored when restored from the bitmap. This corrects the image orientation.
-    UIGraphicsBeginImageContext(CGSizeMake(imageWidth, imageHeight));
-    [image drawAtPoint:CGPointMake(0,0)];
-    image = UIGraphicsGetImageFromCurrentImageContext();
-    #endif
     
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
     size_t bitsPerComponent = 8;
@@ -380,6 +382,23 @@
 }
 
 # pragma mark Helper methods used for hiding an image within another image
+
+#if TARGET_OS_IPHONE
+/**
+UIImages taken with the iPhone camera have an orientation of right even though they are straight up. This causes the image to be distored when restored from the bitmap. This corrects the image orientation.
+
+ @param image image to rotate
+ @return rotated image
+ */
+- (UIImage *)rotatedUIImageFromImage:(UIImage *)image {
+    NSUInteger imageWidth = [image getReconciledImageWidth];
+    NSUInteger imageHeight = [image getReconciledImageHeight];
+    
+    UIGraphicsBeginImageContext(CGSizeMake(imageWidth, imageHeight));
+    [image drawAtPoint:CGPointMake(0,0)];
+    return UIGraphicsGetImageFromCurrentImageContext();
+}
+#endif
 
 /**
  Determines the size that the hidden image will need to be in order to fit in the original image. Instead of figuring out the exact size that will make the image fit, it cuts the scale factor in half each time. Starting with 1, then 1/2, then 1/4 etc

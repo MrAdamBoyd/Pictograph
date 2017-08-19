@@ -89,6 +89,7 @@ class HiddenImageView: UIView {
     
     fileprivate lazy var imageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.contentMode = .scaleAspectFit
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray.cgColor
         return $0
