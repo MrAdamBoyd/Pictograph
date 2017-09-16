@@ -394,7 +394,6 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
 
 }
 
-
 extension MainViewController: PictographImageCoderProgressDelegate {
     func pictographImageCoderDidUpdateProgress(_ progress: Float) {
         DispatchQueue.main.async {

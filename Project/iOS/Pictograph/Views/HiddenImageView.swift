@@ -14,51 +14,21 @@ protocol HiddenImageViewDelegate: class {
     func closeHiddenImageView(_ completion: (() -> Void)?)
 }
 
-class HiddenImageView: UIView {
+class HiddenImageView: PictographModalView {
     
     /// Displays a new hidden image view in a new uiwindow
     ///
     /// - Parameter delegate: delegate for any actions
     /// - Returns: the window (which needs to be retained), and the view
     static func createInWindow(from delegate: HiddenImageViewDelegate?, showing image: UIImage) -> (window: UIWindow, view: HiddenImageView) {
-        let window = UIWindow.newWindow(statusBarStyle: .default)
-        let hiddenImageView = HiddenImageView(frame: .zero)
-        hiddenImageView.delegate = delegate
         
-        hiddenImageView.translatesAutoresizingMaskIntoConstraints = false
-        window.addSubview(hiddenImageView)
-        window.alpha = 0
-        window.isHidden = false
-        
-        hiddenImageView.widthAnchor.constraint(equalTo: window.widthAnchor).isActive = true
-        hiddenImageView.heightAnchor.constraint(equalTo: window.heightAnchor).isActive = true
-        hiddenImageView.centerXAnchor.constraint(equalTo: window.centerXAnchor).isActive = true
-        hiddenImageView.centerYAnchor.constraint(equalTo: window.centerYAnchor).isActive = true
-        
-        hiddenImageView.imageView.image = image
-        
-        //Animating the window to be visible and the popup in
-        UIView.animate(withDuration: 0.5, animations: {
-            window.alpha = 1
-        }, completion: { _ in
-            hiddenImageView.animateCenterPopup(visible: true, completion: nil)
-        })
-        
-        return (window: window, view: hiddenImageView)
+        let view = HiddenImageView(frame: .zero)
+        view.delegate = delegate
+        view.imageView.image = image
+        return PictographModalView.createViewInWindow(viewToShow: view)
     }
     
     // MARK: - Subviews
-    fileprivate lazy var backgroundView: UIView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = UIColor.black.withAlphaComponent(0.65)
-        return $0
-    }(UIVisualEffectView(frame: .zero))
-    
-    fileprivate lazy var popupView: UIView = {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .white
-        return $0
-    }(UIView(frame: .zero))
     
     fileprivate lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -98,47 +68,12 @@ class HiddenImageView: UIView {
     // MARK: - Properties
     
     weak var delegate: HiddenImageViewDelegate?
-    var popupCenterConstraint: NSLayoutConstraint!
-    
-    var popupNonVisibleCenterPosition: CGFloat {
-        return UIScreen.main.bounds.height
-    }
     
     // MARK: - Functions
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setUpSubviewConstraints()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.setUpSubviewConstraints()
-    }
-    
     /// Adds all subviews to self and sets up the constraints. Does not start animation
-    fileprivate func setUpSubviewConstraints() {
-        
-        //Background view
-        self.addSubview(self.backgroundView)
-        self.backgroundView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        self.backgroundView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.backgroundView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        self.backgroundView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        
-        //Popup view
-        self.addSubview(self.popupView)
-        self.popupView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        self.popupView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
-        self.popupCenterConstraint = self.popupView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: self.popupNonVisibleCenterPosition)
-        self.popupCenterConstraint.isActive = true
-        
-        self.popupView.layer.masksToBounds = false
-        self.popupView.layer.borderColor = UIColor.gray.cgColor
-        self.popupView.layer.borderWidth = 1
-        self.popupView.layer.shadowOpacity = 0.25
-        self.popupView.layer.shadowRadius = 1
-        self.popupView.layer.shadowOffset = CGSize.zero
+    override func setUpSubviewConstraints() {
+        super.setUpSubviewConstraints()
         
         //Title label
         self.addSubview(self.titleLabel)
@@ -166,22 +101,6 @@ class HiddenImageView: UIView {
         self.shareImageButton.leadingAnchor.constraint(equalTo: self.popupView.centerXAnchor, constant: 10).isActive = true
         self.shareImageButton.trailingAnchor.constraint(equalTo: self.imageView.trailingAnchor).isActive = true
         self.shareImageButton.addTarget(self, action: #selector(self.shareSheetTapped), for: .touchUpInside)
-    }
-    
-    /// Animates the center popup
-    ///
-    /// - Parameter visible: Makes the popup visible if true, false otherwise
-    func animateCenterPopup(visible: Bool, completion: (() -> Void)?) {
-        DispatchQueue.main.async { [unowned self] in
-            let newConstant = visible ? 0 : self.popupNonVisibleCenterPosition
-            self.popupCenterConstraint.constant = newConstant
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                self.layoutIfNeeded()
-            }, completion: { _ in
-                completion?()
-            })
-        }
     }
     
     // MARK: - Actions

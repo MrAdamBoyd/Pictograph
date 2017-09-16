@@ -38,6 +38,8 @@
 		666A96B71E41836900107630 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */; };
 		666AD9CA1E41828C006B37FB /* PictographDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B4381BDDB91800235E04 /* PictographDataController.swift */; };
 		666DF8C31EA31D94009BBEC2 /* PictographImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */; };
+		6684A46C1F6D8DC700CAF31D /* WorkProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6684A46B1F6D8DC700CAF31D /* WorkProgressView.swift */; };
+		6684A46E1F6D8DD300CAF31D /* PictographModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6684A46D1F6D8DD300CAF31D /* PictographModalView.swift */; };
 		6699CAD51EEF890500F57B65 /* UILabel+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */; };
 		6699CAD61EEF890700F57B65 /* UILabel+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */; };
 		66B187441C553D660057259F /* CreatesNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B187431C553D660057259F /* CreatesNavigationTitle.swift */; };
@@ -161,6 +163,8 @@
 		6658833A1BBCC72A00CA21A9 /* PictographUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictographUITests.m; sourceTree = "<group>"; };
 		6658833C1BBCC72A00CA21A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		667EB69F1EDCCC240035ED4B /* Pictograph_Mac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pictograph_Mac-Bridging-Header.h"; sourceTree = "<group>"; };
+		6684A46B1F6D8DC700CAF31D /* WorkProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkProgressView.swift; sourceTree = "<group>"; };
+		6684A46D1F6D8DD300CAF31D /* PictographModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictographModalView.swift; sourceTree = "<group>"; };
 		6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+ConvenienceInit.swift"; sourceTree = "<group>"; };
 		669DFD0E1BD561FA00A0BAC2 /* EncodingErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodingErrors.h; sourceTree = "<group>"; };
 		66A1B2881EA1824300AB5822 /* PictographImage+Reconciliation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PictographImage+Reconciliation.h"; sourceTree = "<group>"; };
@@ -322,6 +326,8 @@
 				6647B4431BDF0B7E00235E04 /* PictographSettingsTableViewCell.swift */,
 				6647B4471BDF230A00235E04 /* SettingsFooterView.swift */,
 				66E4056E1EF49BF400217B3C /* HiddenImageView.swift */,
+				6684A46B1F6D8DC700CAF31D /* WorkProgressView.swift */,
+				6684A46D1F6D8DD300CAF31D /* PictographModalView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1092,6 +1098,7 @@
 				666DF8C31EA31D94009BBEC2 /* PictographImageCoder.m in Sources */,
 				6647B43B1BDDCE9800235E04 /* PictographMainViewController.swift in Sources */,
 				66E4056F1EF49BF400217B3C /* HiddenImageView.swift in Sources */,
+				6684A46E1F6D8DD300CAF31D /* PictographModalView.swift in Sources */,
 				6647B4441BDF0B7E00235E04 /* PictographSettingsTableViewCell.swift in Sources */,
 				66DF573A1EEBA01C0062D876 /* DragDropManager.swift in Sources */,
 				66BAF6271EF21E8500B3C4B7 /* PictographImage+Resize.m in Sources */,
@@ -1101,6 +1108,7 @@
 				66E4056D1EF49B8200217B3C /* UIWindow+NewWindow.swift in Sources */,
 				6647B4391BDDB91900235E04 /* PictographDataController.swift in Sources */,
 				660BA0601BDDAB0E00605EE8 /* PictographHighlightButton.swift in Sources */,
+				6684A46C1F6D8DC700CAF31D /* WorkProgressView.swift in Sources */,
 				660BA01B1BDDA59F00605EE8 /* AppDelegate.swift in Sources */,
 				6600697C1C5531A700BA1672 /* UIImage+CreateImageFromColor.swift in Sources */,
 				66E227C81EA3189B0089CD48 /* PictographImage+Reconciliation.m in Sources */,

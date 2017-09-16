@@ -27,8 +27,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
     }
     private var dragDropManager: DragDropManager?
-    private weak var hiddenImageView: HiddenImageView?
-    private var hiddenImageWindow: UIWindow?
+    private weak var currentlyShowingModal: PictographModalView?
+    private var currentlyShowingModalWindow: UIWindow?
+    private var currentCoder: PictographImageCoder?
     
     /// Checks to make sure the password settings are correct. Makes sure either encryption is disabled or encryption is enabled and the password isn't empty
     private var passwordSettingsValid: Bool {
@@ -414,10 +415,10 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         //After the user hit confirm
         SVProgressHUD.show()
+        let coder = PictographImageCoder(delegate: self)
         
-        //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
+        //Dispatching the task after a small amount of time as per SVProgressHUD's recommendation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            let coder = PictographImageCoder(delegate: self)
             
             defer {
                 //Hide the HUD
@@ -511,8 +512,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 
                 //Present a custom sheet for the image
                 let createdWindow = HiddenImageView.createInWindow(from: self, showing: decodedImage)
-                self.hiddenImageView = createdWindow.view
-                self.hiddenImageWindow = createdWindow.window
+                self.currentlyShowingModal = createdWindow.view
+                self.currentlyShowingModalWindow = createdWindow.window
             }
         }
         
@@ -603,6 +604,28 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.present(showMessageController, animated: true, completion: nil)
     }
     
+    /// Creates a background queue for the work to be done on and then runs the work on that queue
+    ///
+    /// - Parameter coder: PictographImageCoder that is doing the work
+    /// - Parameter work: work to be done
+    private func performWorkOnEncodingQueue(for coder: PictographImageCoder, _ work: @escaping () -> Void) {
+        self.currentCoder = coder
+        let queue = DispatchQueue(label: "encoding", qos: .background)
+        queue.async(execute: work)
+    }
+    
+    func closeCurrentlyShowingModal(completion: (() -> Void)?) {
+        self.currentlyShowingModal?.animateCenterPopup(visible: false) {
+            UIView.animate(withDuration: 0.5, animations: { [unowned self] in
+                self.currentlyShowingModalWindow?.alpha = 0
+                }, completion: { _ in
+                    self.currentlyShowingModal = nil
+                    self.currentlyShowingModalWindow = nil
+                    completion?()
+            })
+        }
+    }
+    
     // MARK: - Methods for when the settings change
     
     @objc func showPasswordOnScreenChanged() {
@@ -686,21 +709,23 @@ extension PictographMainViewController: HiddenImageViewDelegate {
     //Close the view
     func closeHiddenImageView(_ completion: (() -> Void)?) {
         DispatchQueue.main.async {
-            self.hiddenImageView?.animateCenterPopup(visible: false) {
-                UIView.animate(withDuration: 0.5, animations: { [unowned self] in
-                    self.hiddenImageWindow?.alpha = 0
-                    }, completion: { _ in
-                        self.hiddenImageView = nil
-                        self.hiddenImageWindow = nil
-                        completion?()
-                })
-            }
+            self.closeCurrentlyShowingModal(completion: completion)
+        }
+    }
+}
+
+extension PictographMainViewController: WorkProgressViewDelegate {
+    func workProgressViewDidCancelWork(_ completion: (() -> Void)?) {
+        self.currentCoder?.isCancelled = true
+        DispatchQueue.main.async {
+            self.closeCurrentlyShowingModal(completion: completion)
         }
     }
 }
 
 extension PictographMainViewController: PictographImageCoderProgressDelegate {
     func pictographImageCoderDidUpdateProgress(_ progress: Float) {
-        print("HEYYYYYYY \(progress)")
+        guard let workProgressView = self.currentlyShowingModal as? WorkProgressView else { return }
+        workProgressView.progressView.setProgress(progress, animated: true)
     }
 }
