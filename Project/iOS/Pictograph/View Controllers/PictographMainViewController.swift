@@ -14,6 +14,8 @@ import AVFoundation
 import Photos
 import StoreKit
 
+//TODO: Investigate pasting from clipboard
+
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle {
     
     //UI elements
@@ -432,6 +434,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
 
                 //Catch the error
                 self.showMessageInAlertController("Error", message: error.localizedDescription, includeCopyButton: false)
+                self.currentCoder = nil
             }
         }
     }
@@ -460,6 +463,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 
                 //Catch the error
                 self.showMessageInAlertController("Error", message: error.localizedDescription, includeCopyButton: false)
+                self.currentCoder = nil
             }
         }
     }
@@ -482,6 +486,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
             guard error == nil else {
                 self.showMessageInAlertController("Error Decoding", message: error!.localizedDescription, includeCopyButton: false)
+                self.currentCoder = nil
                 return
             }
             

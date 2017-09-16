@@ -61,7 +61,7 @@ class WorkProgressView: PictographModalView {
         self.titleLabel.topAnchor.constraint(equalTo: self.popupView.topAnchor, constant: 10).isActive = true
         
         self.addSubview(self.progressView)
-        self.progressView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 10).isActive = true
+        self.progressView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 20).isActive = true
         self.progressView.leftAnchor.constraint(equalTo: self.popupView.leftAnchor, constant: 10).isActive = true
         self.progressView.rightAnchor.constraint(equalTo: self.popupView.rightAnchor, constant: -10).isActive = true
         self.progressView.heightAnchor.constraint(equalToConstant: 5).isActive = true
