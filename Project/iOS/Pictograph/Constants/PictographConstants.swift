@@ -10,3 +10,5 @@ import Foundation
 
 let pictographShowPasswordOnScreenSettingChangedNotification = "pictographShowPasswordOnScreenSettingChangedNotification"
 let pictographNightModeSettingChangedNotification = "pictographNightModeSettingChangedNotification"
+
+let modalPresentingAnimationDuration: TimeInterval = (1/3)

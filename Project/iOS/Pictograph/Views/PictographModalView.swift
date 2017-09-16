@@ -28,7 +28,7 @@ class PictographModalView: UIView {
         viewToShow.centerYAnchor.constraint(equalTo: window.centerYAnchor).isActive = true
         
         //Animating the window to be visible and the popup in
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: modalPresentingAnimationDuration, animations: {
             window.alpha = 1
         }, completion: { _ in
             viewToShow.animateCenterPopup(visible: true, completion: nil)
@@ -103,7 +103,7 @@ class PictographModalView: UIView {
             let newConstant = visible ? 0 : self.popupNonVisibleCenterPosition
             self.popupCenterConstraint.constant = newConstant
             
-            UIView.animate(withDuration: 0.5, animations: {
+            UIView.animate(withDuration: modalPresentingAnimationDuration, animations: {
                 self.layoutIfNeeded()
             }, completion: { _ in
                 completion?()

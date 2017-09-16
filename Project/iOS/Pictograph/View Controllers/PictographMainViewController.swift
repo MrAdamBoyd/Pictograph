@@ -14,8 +14,6 @@ import AVFoundation
 import Photos
 import StoreKit
 
-//TODO: Investigate pasting from clipboard
-
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle {
     
     //UI elements
@@ -157,41 +155,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         self.mainEncodeView.shareButton.isEnabled = imageExists
         self.mainEncodeView.shareButton.imageView?.alpha = imageExists ? 1 : 0.5
-    }
-    
-    // MARK: - Paste from clipboard button
-    
-    /**
-     Builds the button that is the input accessory view that is above the keyboard
-     
-     - returns:  button for accessory keyboard view
-     */
-    func buildAccessoryButton() -> UIView {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40))
-        button.setTitle("Paste from clipboard", for: UIControlState())
-        button.backgroundColor = #colorLiteral(red: 0.5882352941, green: 0.5882352941, blue: 0.5882352941, alpha: 1)
-        button.setTitleColor(#colorLiteral(red: 0.2941176471, green: 0.2941176471, blue: 0.2941176471, alpha: 1), for: .normal)
-        button.addTarget(self, action: #selector(self.pasteFromClipboard), for: .touchUpInside)
-        
-        return button
-    }
-    
-    /**
-     Pastes the text from the clipboard in the showing alert vc, if it exists
-     */
-    @objc func pasteFromClipboard() {
-        if let alertVC = self.presentedViewController as? UIAlertController {
-            let pasteString = UIPasteboard.general.string
-            
-            if let pasteString = pasteString, !pasteString.isEmpty {
-                alertVC.textFields![0].text = pasteString
-                
-                //Need to manually enable the confirm button because pasting doesn't trigger the notification
-                if let action = alertVC.actions.first(where: { $0.style == .default }) {
-                    action.isEnabled = true
-                }
-            }
-        }
     }
     
     
@@ -533,10 +496,24 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             if let observer = textFieldObserver {
                 NotificationCenter.default.removeObserver(observer)
             }
-            self.encodeMessage(getMessageController.textFields!.first!.text!)
+            self.encodeMessage(getMessageController.textFields?.first?.text ?? "")
         }
         
         getMessageController.addAction(confirmAction)
+        
+        //Paste action
+        let pasteFromClipboardAction = UIAlertAction(title: "Use Text from Clipboard", style: .default) { _ in
+            if let observer = textFieldObserver {
+                NotificationCenter.default.removeObserver(observer)
+            }
+            self.encodeMessage(UIPasteboard.general.string ?? "")
+        }
+        pasteFromClipboardAction.isEnabled = false
+        if let pasteText = UIPasteboard.general.string, pasteText != "" {
+            pasteFromClipboardAction.isEnabled = true
+        }
+        
+        getMessageController.addAction(pasteFromClipboardAction)
         
         //Set current action to none
         getMessageController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
@@ -549,7 +526,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         getMessageController.addTextField(configurationHandler: { textField in
             textField.placeholder = placeHolder
             confirmAction.isEnabled = false
-            textField.inputAccessoryView = self.buildAccessoryButton()
             
             //Confirm is only enabled if there is text
             textFieldObserver = NotificationCenter.default.addObserver(forName: Notification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { _ in
@@ -615,7 +591,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             self.currentlyShowingModalWindow = createdWindow.window
         }
         let queue = DispatchQueue(label: "encoding", qos: .background)
-        queue.async(execute: work)
+        queue.asyncAfter(wallDeadline: .now() + modalPresentingAnimationDuration, execute: work)
     }
     
     /// Called when the work is finished.
@@ -634,7 +610,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     func closeCurrentlyShowingModal(completion: (() -> Void)?) {
         self.currentlyShowingModal?.animateCenterPopup(visible: false) {
-            UIView.animate(withDuration: 0.5, animations: { [unowned self] in
+            UIView.animate(withDuration: modalPresentingAnimationDuration, animations: { [unowned self] in
                 self.currentlyShowingModalWindow?.alpha = 0
                 }, completion: { _ in
                     self.currentlyShowingModal = nil
