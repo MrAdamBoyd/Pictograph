@@ -69,8 +69,8 @@ class WorkProgressView: PictographModalView {
         //Cancel button
         self.addSubview(self.cancelWorkButton)
         self.cancelWorkButton.topAnchor.constraint(equalTo: self.progressView.bottomAnchor, constant: 20).isActive = true
-        self.cancelWorkButton.leadingAnchor.constraint(equalTo: self.progressView.leadingAnchor).isActive = true
-        self.cancelWorkButton.trailingAnchor.constraint(equalTo: self.popupView.centerXAnchor, constant: -10).isActive = true
+        self.cancelWorkButton.widthAnchor.constraint(equalTo: self.popupView.widthAnchor, multiplier: 0.5).isActive = true
+        self.cancelWorkButton.centerXAnchor.constraint(equalTo: self.popupView.centerXAnchor).isActive = true
         self.cancelWorkButton.bottomAnchor.constraint(equalTo: self.popupView.bottomAnchor, constant: -20).isActive = true
         self.cancelWorkButton.addTarget(self, action: #selector(self.cancelWorkTapped), for: .touchUpInside)
     }

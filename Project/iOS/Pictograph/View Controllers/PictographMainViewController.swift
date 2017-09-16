@@ -410,28 +410,23 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     /// Encodes an image with the currently selected image
     ///
     /// - Parameter messageToEncode: message that should be encoded
-    func encodeMessage(_ messageToEncode: String) {
+    private func encodeMessage(_ messageToEncode: String) {
         guard let image = self.currentImage else { return }
         
-        //After the user hit confirm
-        SVProgressHUD.show()
         let coder = PictographImageCoder(delegate: self)
+        let providedPassword = self.mainEncodeView.encryptionSwitch.isOn ? self.mainEncodeView.encryptionKeyField.text ?? "" : ""
         
-        //Dispatching the task after a small amount of time as per SVProgressHUD's recommendation
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            
-            defer {
-                //Hide the HUD
-                SVProgressHUD.dismiss()
-            }
+        self.performWorkOnEncodingQueue(for: coder, showProgressModal: true) {
             
             do {
-                let providedPassword = self.mainEncodeView.encryptionSwitch.isOn ? self.mainEncodeView.encryptionKeyField.text ?? "" : ""
                 
                 let encodedImage = try coder.encode(message: messageToEncode, in: image, encryptedWithPassword: providedPassword)
-                self.currentImage = UIImage(data: encodedImage)
-                //Show the share sheet if the image exists
-                self.showShareSheet(with: encodedImage)
+                
+                self.workFinished { [unowned self] in
+                    self.currentImage = UIImage(data: encodedImage)
+                    //Show the share sheet if the image exists
+                    self.showShareSheet(with: encodedImage)
+                }
                 
             } catch let error {
 
@@ -441,25 +436,25 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
     }
     
-    func encodeImage(_ imageToHide: UIImage) {
+    /// Hides provided image within the currently selected image
+    ///
+    /// - Parameter imageToHide: image that will be hidden within another image
+    private func encodeImage(_ imageToHide: UIImage) {
         guard let image = self.currentImage else { return }
+
+        let coder = PictographImageCoder(delegate: self)
         
-        //After the user hit confirm
-        SVProgressHUD.show(withStatus: "This might take a while...")
-        
-        //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            let coder = PictographImageCoder(delegate: self)
-            
-            //Hide the HUD
-            SVProgressHUD.dismiss()
+        self.performWorkOnEncodingQueue(for: coder, showProgressModal: true) {
             
             do {
                 
                 let encodedImage = try coder.encode(image: imageToHide, in: image)
-                self.currentImage = UIImage(data: encodedImage)
-                //Show the share sheet if the image exists
-                self.showShareSheet(with: encodedImage)
+                
+                self.workFinished { [unowned self] in
+                    self.currentImage = UIImage(data: encodedImage)
+                    //Show the share sheet if the image exists
+                    self.showShareSheet(with: encodedImage)
+                }
                 
             } catch let error {
                 
@@ -470,7 +465,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     /// Decoding a message that is hidden in an image
-    func decodeDataInImage() {
+    private func decodeDataInImage() {
         guard let image = self.currentImage else { return }
         
         //No need to show HUD because this doesn't take long
@@ -479,41 +474,39 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Provide no password if encryption/decryption is off
         let providedPassword = mainEncodeView.encryptionSwitch.isOn ? mainEncodeView.encryptionKeyField.text ?? "" : ""
         
-        SVProgressHUD.show()
-        
-        //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+        self.performWorkOnEncodingQueue(for: coder, showProgressModal: true) {
             var hiddenString: NSString?
             var hiddenImage: UIImage?
             var error: NSError?
             coder.decode(image, encryptedWithPassword: providedPassword, hiddenStringPointer: &hiddenString, hiddenImagePointer: &hiddenImage, error: &error)
-            
-            SVProgressHUD.dismiss()
             
             guard error == nil else {
                 self.showMessageInAlertController("Error Decoding", message: error!.localizedDescription, includeCopyButton: false)
                 return
             }
             
-            if let decodedMessage = hiddenString {
-                //Show the message if it was successfully decoded
-                self.showMessageInAlertController("Hidden Message", message: decodedMessage as String, includeCopyButton: true) { _ in
-                    
-                    //After alert controller is dismissed, prompt the user for ratings if they haven't been already for this version
-                    if #available(iOS 10.3, *), !PictographDataController.shared.hasUserBeenPromptedForRatings {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            SKStoreReviewController.requestReview()
-                            PictographDataController.shared.setHasUserBeenPromptedForRatings()
-                        }
-                    }
-                    
-                }
-            } else if let decodedImage = hiddenImage {
+            self.workFinished { [unowned self] in
                 
-                //Present a custom sheet for the image
-                let createdWindow = HiddenImageView.createInWindow(from: self, showing: decodedImage)
-                self.currentlyShowingModal = createdWindow.view
-                self.currentlyShowingModalWindow = createdWindow.window
+                if let decodedMessage = hiddenString {
+                    //Show the message if it was successfully decoded
+                    self.showMessageInAlertController("Hidden Message", message: decodedMessage as String, includeCopyButton: true) { _ in
+                        
+                        //After alert controller is dismissed, prompt the user for ratings if they haven't been already for this version
+                        if #available(iOS 10.3, *), !PictographDataController.shared.hasUserBeenPromptedForRatings {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                SKStoreReviewController.requestReview()
+                                PictographDataController.shared.setHasUserBeenPromptedForRatings()
+                            }
+                        }
+                        
+                    }
+                } else if let decodedImage = hiddenImage {
+                    
+                    //Present a custom sheet for the image
+                    let createdWindow = HiddenImageView.createInWindow(from: self, showing: decodedImage)
+                    self.currentlyShowingModal = createdWindow.view
+                    self.currentlyShowingModalWindow = createdWindow.window
+                }
             }
         }
         
@@ -607,11 +600,31 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     /// Creates a background queue for the work to be done on and then runs the work on that queue
     ///
     /// - Parameter coder: PictographImageCoder that is doing the work
+    /// - Parameter showProgressModal: if true, creates and animates in the progress modal
     /// - Parameter work: work to be done
-    private func performWorkOnEncodingQueue(for coder: PictographImageCoder, _ work: @escaping () -> Void) {
+    private func performWorkOnEncodingQueue(for coder: PictographImageCoder, showProgressModal: Bool, _ work: @escaping () -> Void) {
         self.currentCoder = coder
+        if showProgressModal {
+            let createdWindow = WorkProgressView.createInWindow(from: self)
+            self.currentlyShowingModal = createdWindow.view
+            self.currentlyShowingModalWindow = createdWindow.window
+        }
         let queue = DispatchQueue(label: "encoding", qos: .background)
         queue.async(execute: work)
+    }
+    
+    /// Called when the work is finished.
+    ///
+    /// - Parameter performIfNotCancelled: work to perform if the coder's work was not cancelled
+    private func workFinished(performIfNotCancelled: @escaping () -> Void) {
+        let isCancelled = self.currentCoder?.isCancelled ?? true
+        self.currentCoder = nil
+        
+        self.closeCurrentlyShowingModal() {
+            if !isCancelled {
+                performIfNotCancelled()
+            }
+        }
     }
     
     func closeCurrentlyShowingModal(completion: (() -> Void)?) {
@@ -725,7 +738,9 @@ extension PictographMainViewController: WorkProgressViewDelegate {
 
 extension PictographMainViewController: PictographImageCoderProgressDelegate {
     func pictographImageCoderDidUpdateProgress(_ progress: Float) {
-        guard let workProgressView = self.currentlyShowingModal as? WorkProgressView else { return }
-        workProgressView.progressView.setProgress(progress, animated: true)
+        DispatchQueue.main.async {
+            guard let workProgressView = self.currentlyShowingModal as? WorkProgressView else { return }
+            workProgressView.progressView.setProgress(progress, animated: true)
+        }
     }
 }
