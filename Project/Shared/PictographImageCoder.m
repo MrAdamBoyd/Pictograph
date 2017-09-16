@@ -28,6 +28,15 @@
 @implementation PictographImageCoder
 
 @synthesize isCancelled;
+@synthesize delegate;
+
+- (id _Nonnull)initWithDelegate:(id<PictographImageCoderProgressDelegate> _Nullable)delegate {
+    if (self = [super init]) {
+        self.delegate = delegate;
+    }
+    
+    return self;
+}
 
 #pragma mark Decoding a messages and images hidden in an image
 
@@ -345,6 +354,7 @@
     
     int numberOfPixelsNeeded = [self pixelCountForBit:(int)[arrayOfBits count]];
     int encodeCounter = 0; //Counter which bit we are encoding, goes up 2 with each pixel
+    int oneHundredthStep = fmax(numberOfPixelsNeeded / 100, 1); //To determine percentage
     
     //Need numberOfPixelsNeeded * 4 due to this array counting by components of each pixel (RGBA)
     for (int i = 0; i < (numberOfPixelsNeeded * 4); i += 4) {
@@ -358,7 +368,12 @@
         unsigned char newBlueValue = [self newBlueComponentValueFrom:currentBlueValue encodeCounter:encodeCounter arrayOfBits:arrayOfBits];
         pixelBuffer[i+blueComponentIndex] = newBlueValue;
         
-        DLog(@"Changing pixel value at index %i", i);
+        DLog(@"Changing pixel value at index %i", (i / 4));
+        
+        if ((i / 4) % oneHundredthStep == 0 && self.delegate != nil) {
+            float percentDone = i / (float)(numberOfPixelsNeeded * 4);
+            [[self delegate] pictographImageCoderDidUpdateProgress:percentDone];
+        }
         
         encodeCounter += 2;
     }

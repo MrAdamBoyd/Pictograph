@@ -12,11 +12,16 @@
 #import "PictographImage+Reconciliation.h"
 #import "Global.h"
 #import "PictographImage+Resize.h"
+#import "PictographImageCoderProgressDelegate.h"
 
 @interface PictographImageCoder : NSObject
 
 //If the operation should be cancelled and return with whatever progress has been made
 @property (atomic, assign) BOOL isCancelled;
+
+@property (nonatomic, weak) id<PictographImageCoderProgressDelegate> _Nullable delegate;
+
+- (id _Nonnull)initWithDelegate:(id<PictographImageCoderProgressDelegate> _Nullable)delegate;
 
 //Messages
 

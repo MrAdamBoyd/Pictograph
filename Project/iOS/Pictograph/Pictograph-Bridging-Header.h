@@ -12,5 +12,6 @@
 #import <Crashlytics/Crashlytics.h>
 #import "PictographImageCoder.h"
 #import "PictographImage+Reconciliation.h"
+#import "PictographImageCoderProgressDelegate.h"
 
 #endif /* Pictograph_Bridging_Header_h */

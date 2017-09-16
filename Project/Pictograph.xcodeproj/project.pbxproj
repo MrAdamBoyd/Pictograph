@@ -124,6 +124,7 @@
 		660BA05F1BDDAB0D00605EE8 /* PictographHighlightButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictographHighlightButton.swift; sourceTree = "<group>"; };
 		660BA0611BDDAE9D00605EE8 /* PictographInsetTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictographInsetTextField.swift; sourceTree = "<group>"; };
 		660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		660CD3F31F6A0B4500B44384 /* PictographImageCoderProgressDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictographImageCoderProgressDelegate.h; sourceTree = "<group>"; };
 		6615984D1EDCCF2B009A2E79 /* ImageForTesting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageForTesting.png; sourceTree = "<group>"; };
 		662CFC851BC2215F00A9FF28 /* PictographImageCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = PictographImageCoder.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PictographImageCoder.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -510,6 +511,7 @@
 				66A1B2891EA1824300AB5822 /* PictographImage+Reconciliation.m */,
 				662CFC851BC2215F00A9FF28 /* PictographImageCoder.h */,
 				662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */,
+				660CD3F31F6A0B4500B44384 /* PictographImageCoderProgressDelegate.h */,
 				66BAF6251EF21E8500B3C4B7 /* PictographImage+Resize.h */,
 				66BAF6261EF21E8500B3C4B7 /* PictographImage+Resize.m */,
 			);

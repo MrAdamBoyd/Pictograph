@@ -417,7 +417,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            let coder = PictographImageCoder()
+            let coder = PictographImageCoder(delegate: self)
             
             defer {
                 //Hide the HUD
@@ -448,7 +448,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         //Dispatching the task after  small amount of time as per SVProgressHUD's recommendation
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-            let coder = PictographImageCoder()
+            let coder = PictographImageCoder(delegate: self)
             
             //Hide the HUD
             SVProgressHUD.dismiss()
@@ -473,7 +473,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         guard let image = self.currentImage else { return }
         
         //No need to show HUD because this doesn't take long
-        let coder = PictographImageCoder()
+        let coder = PictographImageCoder(delegate: self)
         
         //Provide no password if encryption/decryption is off
         let providedPassword = mainEncodeView.encryptionSwitch.isOn ? mainEncodeView.encryptionKeyField.text ?? "" : ""
@@ -696,5 +696,11 @@ extension PictographMainViewController: HiddenImageViewDelegate {
                 })
             }
         }
+    }
+}
+
+extension PictographMainViewController: PictographImageCoderProgressDelegate {
+    func pictographImageCoderDidUpdateProgress(_ progress: Float) {
+        print("HEYYYYYYY \(progress)")
     }
 }

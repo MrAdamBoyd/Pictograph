@@ -27,6 +27,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     var imageSelectPanelOpen: Bool = false
     
     var helpWindowController: NSWindowController?
+    weak var progressIndicator: NSProgressIndicator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +93,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         
         var alert: NSAlert?
         
-        let coder = PictographImageCoder()
+        let coder = PictographImageCoder(delegate: self)
         let providedPassword = self.encryptionCheckbox.state == .on ? self.passwordTextfield.stringValue : ""
         let message = self.messageTextField.stringValue
         let image = self.mainImageView.image!
@@ -123,7 +124,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
             DispatchQueue.main.async {
                 var alert: NSAlert?
                 
-                let coder = PictographImageCoder()
+                let coder = PictographImageCoder(delegate: self)
                 let image = self.mainImageView.image!
                 
                 self.performWorkOnEncodingQueue() {
@@ -155,7 +156,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         
         //No need to show HUD because this doesn't take long
         
-        let coder = PictographImageCoder()
+        let coder = PictographImageCoder(delegate: self)
         
         //Provide no password if encryption/decryption is off
         let providedPassword = self.encryptionCheckbox.state == .on ? self.passwordTextfield.stringValue : ""
@@ -222,11 +223,13 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         /// Alert that lets the user know the message is encoding
         let alert = NSAlert()
         alert.messageText = "Encoding..."
-        let spinner = NSProgressIndicator()
-        spinner.style = .spinning
-        spinner.startAnimation(self)
-        spinner.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        alert.accessoryView = spinner
+        let progressBar = NSProgressIndicator()
+        self.progressIndicator = progressBar
+        progressBar.maxValue = 1
+        progressBar.isIndeterminate = false
+        progressBar.startAnimation(self)
+        progressBar.frame = CGRect(x: 0, y: 0, width: 300, height: 50)
+        alert.accessoryView = progressBar
         alert.addButton(withTitle: "Cancel")
         
         //Show the loading modal
@@ -262,6 +265,8 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
             if let alertWindow = showingAlert?.window {
                 self.view.window?.endSheet(alertWindow)
             }
+            
+            self.progressIndicator = nil
             
             if !coder.isCancelled {
                 //If the operation wasn't cancelled, set the image
@@ -387,4 +392,13 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         }
     }
 
+}
+
+
+extension MainViewController: PictographImageCoderProgressDelegate {
+    func pictographImageCoderDidUpdateProgress(_ progress: Float) {
+        DispatchQueue.main.async {
+            self.progressIndicator?.doubleValue = Double(progress) //Progress comes in with a max value of 1
+        }
+    }
 }
