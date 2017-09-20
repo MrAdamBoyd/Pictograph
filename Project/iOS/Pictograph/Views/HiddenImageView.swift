@@ -72,8 +72,8 @@ class HiddenImageView: PictographModalView {
     // MARK: - Functions
     
     /// Adds all subviews to self and sets up the constraints. Does not start animation
-    override func setUpSubviewConstraints() {
-        super.setUpSubviewConstraints()
+    override func setUpSubviewConstraints(for window: UIWindow) {
+        super.setUpSubviewConstraints(for: window)
         
         //Title label
         self.addSubview(self.titleLabel)
@@ -85,7 +85,12 @@ class HiddenImageView: PictographModalView {
         self.imageView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 10).isActive = true
         self.imageView.leftAnchor.constraint(equalTo: self.popupView.leftAnchor, constant: 10).isActive = true
         self.imageView.rightAnchor.constraint(equalTo: self.popupView.rightAnchor, constant: -10).isActive = true
-        self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 2/3).isActive = true
+        if window.traitCollection.verticalSizeClass == .compact {
+            //Limit the height of the image view if compact
+            self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 1/3).isActive = true
+        } else {
+            self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 2/3).isActive = true
+        }
         
         //Close button
         self.addSubview(self.closeViewButton)

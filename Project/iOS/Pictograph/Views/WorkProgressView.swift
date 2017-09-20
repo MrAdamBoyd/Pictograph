@@ -52,8 +52,8 @@ class WorkProgressView: PictographModalView {
     weak var delegate: WorkProgressViewDelegate?
     
     /// Adds all subviews to self and sets up the constraints. Does not start animation
-    override func setUpSubviewConstraints() {
-        super.setUpSubviewConstraints()
+    override func setUpSubviewConstraints(for window: UIWindow) {
+        super.setUpSubviewConstraints(for: window)
         
         //Title label
         self.addSubview(self.titleLabel)

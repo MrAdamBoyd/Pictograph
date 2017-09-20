@@ -16,6 +16,7 @@ class PictographModalView: UIView {
     /// - Returns: the window (which needs to be retained), and the view
     static func createViewInWindow<T: PictographModalView>(viewToShow: T) -> (window: UIWindow, view: T) {
         let window = UIWindow.newWindow(statusBarStyle: .default)
+        viewToShow.setUpSubviewConstraints(for: window)
         
         viewToShow.translatesAutoresizingMaskIntoConstraints = false
         window.addSubview(viewToShow)
@@ -61,16 +62,15 @@ class PictographModalView: UIView {
     // MARK: - Initializing
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setUpSubviewConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.setUpSubviewConstraints()
     }
     
     /// Adds all subviews to self and sets up the constraints. Does not start animation
-    func setUpSubviewConstraints() {
+    /// NOTE: Must be called manually
+    func setUpSubviewConstraints(for window: UIWindow) {
         
         //Background view
         self.addSubview(self.backgroundView)
@@ -81,8 +81,14 @@ class PictographModalView: UIView {
         
         //Popup view
         self.addSubview(self.popupView)
-        self.popupView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
-        self.popupView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
+        if window.traitCollection.horizontalSizeClass == .regular {
+            //If view is wide, limit the width
+            self.popupView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            self.popupView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
+        } else {
+            self.popupView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 20).isActive = true
+            self.popupView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -20).isActive = true
+        }
         self.popupCenterConstraint = self.popupView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: self.popupNonVisibleCenterPosition)
         self.popupCenterConstraint.isActive = true
         
