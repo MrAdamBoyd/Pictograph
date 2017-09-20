@@ -14,7 +14,7 @@ import AVFoundation
 import Photos
 import StoreKit
 
-class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate, CreatesNavigationTitle {
+class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate {
     
     //UI elements
     private let mainEncodeView = MainEncodingView()
@@ -42,20 +42,29 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         super.viewDidLoad()
         
         self.navigationItem.title = "Pictograph"
-        self.navigationItem.titleView = self.createNavigationTitle("Pictograph")
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.openSettings))
         
         //Adding all the UI elements to the screen
-        self.mainEncodeView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 64)
+        self.mainEncodeView.contentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height - 64)
         self.mainEncodeView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(mainEncodeView)
         
         //0px from bottom of topBar, 0px from left, right, bottom
-        self.mainEncodeView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.mainEncodeView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.mainEncodeView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.mainEncodeView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        if #available(iOS 11.0, *) {
+            self.mainEncodeView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+            self.mainEncodeView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+            self.mainEncodeView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+            self.mainEncodeView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+            
+            //Large titles for iOS 11
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        } else {
+            self.mainEncodeView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+            self.mainEncodeView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+            self.mainEncodeView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+            self.mainEncodeView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        }
         
         //Setting up the actions for the elements
         self.mainEncodeView.encodeMessageButton.addTarget(self, action: #selector(self.startEncodeMessageProcess), for: .touchUpInside)

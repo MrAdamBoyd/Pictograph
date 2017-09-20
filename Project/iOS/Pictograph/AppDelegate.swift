@@ -35,10 +35,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSAttributedStringKey.foregroundColor: UIColor.white
         ]
         
+        if #available(iOS 11.0, *) {
+            UINavigationBar.appearance().largeTitleTextAttributes =
+                [NSAttributedStringKey.foregroundColor: UIColor.white]
+        }
+        
         //Sets the font attributes of the bar button items
         UIBarButtonItem.appearance().setTitleTextAttributes([
             NSAttributedStringKey.foregroundColor: UIColor.white
-            ], for: UIControlState())
+        ], for: UIControlState())
         
         //Setting up Fabric
         Fabric.with([Crashlytics()])
