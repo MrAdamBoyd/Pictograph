@@ -19,6 +19,10 @@ private let encryptionVerticalMargin: CGFloat = 15
 
 class MainEncodingView: UIScrollView {
     
+    var contentHeight: CGFloat {
+        return 15 + 260 + ((UIScreen.main.bounds.width - (2 * encryptionMargin)) / 2) + 15
+    }
+    
     //UI elements
     let elementContainer = UIView()
     let imageView = UIImageView()
@@ -46,7 +50,7 @@ class MainEncodingView: UIScrollView {
         self.alwaysBounceVertical = true
         
         self.addSubview(self.elementContainer)
-        self.elementContainer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: max(UIScreen.main.bounds.height - 64, 300))
+        self.elementContainer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: self.contentHeight)
         
         self.setUpImageView()
         

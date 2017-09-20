@@ -46,7 +46,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.openSettings))
         
         //Adding all the UI elements to the screen
-        self.mainEncodeView.contentSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height - 64)
+        self.mainEncodeView.contentSize = CGSize(width: self.view.frame.size.width, height: self.mainEncodeView.contentHeight)
         self.mainEncodeView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(mainEncodeView)
         
@@ -115,8 +115,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         super.viewWillTransition(to: size, with: coordinator)
         
         //Adjusting the content size of the scroll view when the device rotates
-        self.mainEncodeView.elementContainer.frame = CGRect(x: 0, y: 0, width: size.width, height: max(size.height-44, 320))
-        self.mainEncodeView.contentSize = CGSize(width: size.width, height: max(size.height-64, 320))
+        self.mainEncodeView.elementContainer.frame = CGRect(x: 0, y: 0, width: size.width, height: self.mainEncodeView.contentHeight)
+        self.mainEncodeView.contentSize = CGSize(width: size.width, height: self.mainEncodeView.contentHeight)
     }
     
     // MARK: - UIScrollViewDelegate
