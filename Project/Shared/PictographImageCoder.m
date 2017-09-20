@@ -147,10 +147,19 @@
     int firstPixelWithHiddenData = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize)];
     unsigned char *arrayOfBlueComponents = [self getBlueComponentsFromImage:image atX:firstPixelWithHiddenData andY:0 count:[self pixelCountForBit:(int)numberOfBitsNeededForImage]];
     
+    int pixelCount = [self pixelCountForBit:(int)numberOfBitsNeededForImage];
+    
+    int oneHundredthStep = fmax(pixelCount / 100, 1); //To determine percentage
+    
     for (int i = 0; i < [self pixelCountForBit:(int)numberOfBitsNeededForImage]; i++) {
         //Going through each pixel
         unsigned char blueComponent = arrayOfBlueComponents[i];
         [self addLastBitsFromBlueComponent:blueComponent toArray:arrayOfBitsForMessage];
+        
+        if (i % oneHundredthStep == 0 && self.delegate != nil) {
+            float percentDone = i / (float)(pixelCount);
+            [[self delegate] pictographImageCoderDidUpdateProgress:percentDone];
+        }
         
         if ([arrayOfBitsForMessage count] == bitCountForCharacter) {
             //If there are now enough bits to make a char
