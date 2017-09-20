@@ -152,9 +152,16 @@
     int oneHundredthStep = fmax(pixelCount / 100, 1); //To determine percentage
     
     for (int i = 0; i < [self pixelCountForBit:(int)numberOfBitsNeededForImage]; i++) {
+        if ([self isCancelled]) {
+            //Break out of loop
+            break;
+        }
+        
         //Going through each pixel
         unsigned char blueComponent = arrayOfBlueComponents[i];
         [self addLastBitsFromBlueComponent:blueComponent toArray:arrayOfBitsForMessage];
+        
+        DLog(@"Reading pixel value at index %i", i);
         
         if (i % oneHundredthStep == 0 && self.delegate != nil) {
             float percentDone = i / (float)(pixelCount);
