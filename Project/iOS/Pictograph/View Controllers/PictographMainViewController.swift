@@ -414,7 +414,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
             do {
                 
-                let encodedImage = try coder.encode(image: imageToHide, in: image)
+                let encodedImage = try coder.encode(image: imageToHide, in: image, shrinkImageMore: PictographDataController.shared.shrinkEncodedImages)
                 
                 self.workFinished { [unowned self] in
                     self.currentImage = UIImage(data: encodedImage)

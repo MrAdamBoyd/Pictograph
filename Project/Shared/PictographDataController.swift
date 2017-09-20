@@ -121,6 +121,17 @@ class PictographDataController: NSObject {
         }
     }
     
+    var shrinkEncodedImages: Bool {
+        get {
+            return self.user.shrinkEncodedImages
+        }
+        set {
+            print("Setting shrink encoded images: \(newValue)")
+            self.user.shrinkEncodedImages = newValue
+            self.saveCurrentUser()
+        }
+    }
+    
     // MARK: - Asking user to rate the app
     
     /// This is the userdefaults key for this version of the app. Using a different key for each version

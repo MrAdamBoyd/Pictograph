@@ -131,7 +131,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
                     do {
                         //Provide no password if encryption/decryption is off
                         
-                        let encodedImageData = try coder.encode(image: imageToHide, in: image)
+                        let encodedImageData = try coder.encode(image: imageToHide, in: image, shrinkImageMore: false)
                         let encodedImage = NSImage(data: encodedImageData)
                         
                         self.encodingWorkFinished(on: coder, for: encodedImage, imageData: encodedImageData, showingAlert: alert, messageToUser: "Image Encoded with Image")

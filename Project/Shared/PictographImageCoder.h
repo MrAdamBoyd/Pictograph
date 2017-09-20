@@ -53,9 +53,10 @@
  
  @param hiddenImage image to encode in the image
  @param image image to hide the image in
+ @param shrinkImageMore if true, shrinks the image more for faster encoding
  @param error pointer to an error
  @return NSData representation of the UIImage or NSImage with the message encoded in the image's pixels
  */
-- (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image error:(NSError * _Nullable * _Nullable)error NS_SWIFT_NAME(encode(image:in:));
+- (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image shrinkImageMore:(BOOL)shrinkImageMore error:(NSError * _Nullable * _Nullable)error NS_SWIFT_NAME(encode(image:in:shrinkImageMore:));
 
 @end

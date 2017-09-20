@@ -25,6 +25,8 @@
 #define maxFloatFor8Bits 255.0
 #define blueComponentIndex 2
 
+#define extraImageShrinkingFactor 2 //Would make image 2x smaller for both height and width (4x less pixels)
+
 @implementation PictographImageCoder
 
 @synthesize isCancelled;
@@ -210,14 +212,14 @@
 }
 
 //Encodes an image within another image
-- (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image error:(NSError * _Nullable * _Nullable)error {
+- (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image shrinkImageMore:(BOOL)shrinkImageMore error:(NSError * _Nullable * _Nullable)error {
     
     #if TARGET_OS_IPHONE
     hiddenImage = [self rotatedUIImageFromImage:hiddenImage];
     #endif
     
     const CGSize originalSize = CGSizeMake([hiddenImage getReconciledImageWidth], [hiddenImage getReconciledImageHeight]);
-    CGSize newSize = [self determineSizeForHidingImage:hiddenImage withinImage:image];
+    CGSize newSize = [self determineSizeForHidingImage:hiddenImage withinImage:image shrinkImageMore:shrinkImageMore];
     
     PictographImage *imageToHide = hiddenImage;
     
@@ -420,9 +422,10 @@ UIImages taken with the iPhone camera have an orientation of right even though t
  
  @param hiddenImage image to hide
  @param image image that the hiddenImage will be hidden in
+ @param shrinkImageMore if true, shrinks image by extra factor for faster encoding
  @return factor that hiddenImage needs to be scaled by
  */
-- (CGSize)determineSizeForHidingImage:(PictographImage *)hiddenImage withinImage:(PictographImage *)image {
+- (CGSize)determineSizeForHidingImage:(PictographImage *)hiddenImage withinImage:(PictographImage *)image shrinkImageMore:(BOOL)shrinkImageMore {
     const NSUInteger numberOfPixelsInMainImage = [image getReconciledImageWidth] * [image getReconciledImageHeight];
     CGFloat scaleFactor = 1;
     
@@ -435,6 +438,12 @@ UIImages taken with the iPhone camera have an orientation of right even though t
         
         hiddenImageSize = CGSizeMake([hiddenImage getReconciledImageWidth] * scaleFactor, [hiddenImage getReconciledImageHeight] * scaleFactor);
         pixelsNeededForHiddenImage = [self numberOfPixelsNeededToHideImageOfSize:hiddenImageSize];
+    }
+    
+    if (shrinkImageMore) {
+        //Scale the image down again if the user wants faster encoding
+        scaleFactor = scaleFactor / extraImageShrinkingFactor;
+        hiddenImageSize = CGSizeMake([hiddenImage getReconciledImageWidth] * scaleFactor, [hiddenImage getReconciledImageHeight] * scaleFactor);
     }
     
     return hiddenImageSize;

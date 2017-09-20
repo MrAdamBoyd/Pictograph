@@ -15,6 +15,7 @@ private let encryptionPasswordKey = "kEncryptionKey"
 private let showPasswordOnScreenKey = "showPasswordOnScreenKey"
 private let nightModeEnabledKey = "nightModeEnabledKey"
 private let shouldStoreImagesKey = "shouldStoreImagesKey"
+private let shrinkEncodedImagesKey = "shrinkEncodedImages"
 
 class CurrentUser: NSObject, NSCoding, NSSecureCoding {
     var firstTimeOpeningApp: Bool = true
@@ -23,6 +24,7 @@ class CurrentUser: NSObject, NSCoding, NSSecureCoding {
     var showPasswordOnScreen: Bool = true
     var nightModeEnabled: Bool = false
     var shouldStoreImages: Bool = true //iOS only, stores images once
+    var shrinkEncodedImages: Bool = true
     
     override init() { super.init() }
     
@@ -65,6 +67,11 @@ class CurrentUser: NSObject, NSCoding, NSSecureCoding {
             self.shouldStoreImages = shouldStoreImagesNumber.boolValue
         }
         
+        //Variables added in 1.5
+        if let shrinkEncodedImagesNumber = aDecoder.decodeObject(of: NSNumber.self, forKey: shrinkEncodedImagesKey) {
+            self.shrinkEncodedImages = shrinkEncodedImagesNumber.boolValue
+        }
+        
     }
     
     func encode(with aCoder: NSCoder) {
@@ -84,6 +91,9 @@ class CurrentUser: NSObject, NSCoding, NSSecureCoding {
         
         let shouldStoreImagesNumber = NSNumber(value: self.shouldStoreImages)
         aCoder.encode(shouldStoreImagesNumber, forKey: shouldStoreImagesKey)
+        
+        let shrinkEncodedImagesNumber = NSNumber(value: self.shrinkEncodedImages)
+        aCoder.encode(shrinkEncodedImagesNumber, forKey: shrinkEncodedImagesKey)
     }
     
     // MARK: - NSSecureCoding

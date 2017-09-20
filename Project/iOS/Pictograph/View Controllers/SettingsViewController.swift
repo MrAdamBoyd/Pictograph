@@ -67,7 +67,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
                     self.navigationController?.navigationBar.barTintColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
                 })
             })
-        default:
+        case 2:
             //Row 2
             //Should store images switch
             cell.setTitle("Should Store Images", switchStartsOn: PictographDataController.shared.userShouldStoreImages, withHandler: {(enabledOrNot: Bool) -> Void in
@@ -76,14 +76,23 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
                 PictographDataController.shared.userShouldStoreImages = enabledOrNot
                 print("Should store images: \(PictographDataController.shared.userShouldStoreImages)")
             })
+        default:
+            //Row 3
+            //Should store images switch
+            cell.setTitle("Lower Quality Encoding", switchStartsOn: PictographDataController.shared.shrinkEncodedImages, withHandler: {(enabledOrNot: Bool) -> Void in
+                
+                //Changing the setting for showing the password on screen
+                PictographDataController.shared.shrinkEncodedImages = enabledOrNot
+                print("Should shrink images: \(PictographDataController.shared.shrinkEncodedImages)")
+            })
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //Only 3 cells for now
-        return 3
+        //Only 4 cells for now
+        return 4
     }
     
     //Immediately deselect cell when selected
