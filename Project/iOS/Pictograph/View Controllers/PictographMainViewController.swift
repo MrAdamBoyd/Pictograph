@@ -403,10 +403,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 }
                 
             } catch let error {
-
-                //Catch the error
-                self.showMessageInAlertController("Error", message: error.localizedDescription, includeCopyButton: false)
-                self.currentCoder = nil
+                self.closeCurrentlyShowingModal() {
+                    //Catch the error
+                    self.showMessageInAlertController("Error", message: error.localizedDescription, includeCopyButton: false)
+                    self.currentCoder = nil
+                }
             }
         }
     }
@@ -432,10 +433,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 }
                 
             } catch let error {
-                
-                //Catch the error
-                self.showMessageInAlertController("Error", message: error.localizedDescription, includeCopyButton: false)
-                self.currentCoder = nil
+                self.closeCurrentlyShowingModal() {
+                    //Catch the error
+                    self.showMessageInAlertController("Error", message: error.localizedDescription, includeCopyButton: false)
+                    self.currentCoder = nil
+                }
             }
         }
     }
@@ -457,8 +459,10 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             coder.decode(image, encryptedWithPassword: providedPassword, hiddenStringPointer: &hiddenString, hiddenImagePointer: &hiddenImage, error: &error)
             
             guard error == nil else {
-                self.showMessageInAlertController("Error Decoding", message: error!.localizedDescription, includeCopyButton: false)
-                self.currentCoder = nil
+                self.closeCurrentlyShowingModal() {
+                    self.showMessageInAlertController("Error Decoding", message: error!.localizedDescription, includeCopyButton: false)
+                    self.currentCoder = nil
+                }
                 return
             }
             
