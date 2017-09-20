@@ -50,7 +50,7 @@ class MainEncodingView: UIScrollView {
         self.alwaysBounceVertical = true
         
         self.addSubview(self.elementContainer)
-        self.elementContainer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: self.contentHeight)
+        self.setScrollViewContentSize(width: UIScreen.main.bounds.width)
         
         self.setUpImageView()
         
@@ -63,6 +63,14 @@ class MainEncodingView: UIScrollView {
         self.setUpEncodeImageButton()
         
         self.setUpDecodeButton()
+    }
+    
+    /// Sets up how large the content size of the elements in the encoding view are
+    ///
+    /// - Parameter width: width to use
+    func setScrollViewContentSize(width: CGFloat) {
+        self.elementContainer.frame = CGRect(x: 0, y: 0, width: width, height: self.contentHeight)
+        self.contentSize = CGSize(width: width, height: self.contentHeight)
     }
     
     // MARK: Adding elements

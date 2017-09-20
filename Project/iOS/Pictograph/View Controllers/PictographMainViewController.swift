@@ -45,10 +45,9 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(self.openSettings))
         
-        //Adding all the UI elements to the screen
-        self.mainEncodeView.contentSize = CGSize(width: self.view.frame.size.width, height: self.mainEncodeView.contentHeight)
         self.mainEncodeView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(mainEncodeView)
+        self.mainEncodeView.setScrollViewContentSize(width: self.view.frame.size.width)
         
         //0px from bottom of topBar, 0px from left, right, bottom
         if #available(iOS 11.0, *) {
@@ -108,15 +107,13 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         super.viewWillAppear(animated)
         
         self.changeNightMode()
-        self.mainEncodeView.contentSize.width = UIScreen.main.bounds.width
+        self.mainEncodeView.setScrollViewContentSize(width: self.view.frame.size.width)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        //Adjusting the content size of the scroll view when the device rotates
-        self.mainEncodeView.elementContainer.frame = CGRect(x: 0, y: 0, width: size.width, height: self.mainEncodeView.contentHeight)
-        self.mainEncodeView.contentSize = CGSize(width: size.width, height: self.mainEncodeView.contentHeight)
+        self.mainEncodeView.setScrollViewContentSize(width: size.width)
     }
     
     // MARK: - UIScrollViewDelegate
