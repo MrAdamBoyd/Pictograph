@@ -67,7 +67,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         //Setting up the actions for the elements
         self.mainEncodeView.encodeButton.addTarget(self, action: #selector(self.startEncodeMessageProcess), for: .touchUpInside)
-        self.mainEncodeView.encodeImageButton.addTarget(self, action: #selector(self.startEncodeImageProcess), for: .touchUpInside)
+        //TODO: Set new action
+//        self.mainEncodeView.encodeImageButton.addTarget(self, action: #selector(self.startEncodeImageProcess), for: .touchUpInside)
         self.mainEncodeView.decodeButton.addTarget(self, action: #selector(self.startDecodeProcess), for: .touchUpInside)
         self.mainEncodeView.encryptionKeyField.delegate = self
         self.mainEncodeView.encryptionSwitch.addTarget(self, action: #selector(self.switchToggled(_:)), for: .valueChanged)
@@ -151,10 +152,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         self.mainEncodeView.encodeButton.isEnabled = imageExists
         self.mainEncodeView.encodeButton.alpha = imageExists ? 1 : 0.5
-        
-        let encryptionEnabled = PictographDataController.shared.userEncryptionIsEnabled
-        self.mainEncodeView.encodeImageButton.isEnabled = imageExists && !encryptionEnabled
-        self.mainEncodeView.encodeImageButton.alpha = !encryptionEnabled && imageExists ? 1 : 0.5
         
         self.mainEncodeView.decodeButton.isEnabled = imageExists
         self.mainEncodeView.decodeButton.alpha = imageExists ? 1 : 0.5
@@ -655,23 +652,23 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Setting the color of the keyboard
         self.mainEncodeView.encryptionKeyField.keyboardAppearance = nightMode ? .dark : .default
         
-        for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.encodeImageButton, self.mainEncodeView.decodeButton] {
+        for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.decodeButton] {
             
             //Button background
-            button.backgroundColor = nightMode ? mainAppColorNight : UIColor.white
+            button?.backgroundColor = nightMode ? mainAppColorNight : UIColor.white
             
-            button.highlightColor = nightMode ? mainAppColorNight : UIColor.white
+            button?.highlightColor = nightMode ? mainAppColorNight : UIColor.white
             
             //Text color
-            button.setTitleColor(nightMode ? UIColor.white : mainAppColor, for: .normal)
-            button.setTitleColor(nightMode ? UIColor.white.withAlphaComponent(0.5) : mainAppColorHighlighted, for: .highlighted)
+            button?.setTitleColor(nightMode ? UIColor.white : mainAppColor, for: .normal)
+            button?.setTitleColor(nightMode ? UIColor.white.withAlphaComponent(0.5) : mainAppColorHighlighted, for: .highlighted)
             
             if nightMode {
                 //Add a border
-                button.layer.borderColor = UIColor.white.cgColor
-                button.layer.borderWidth = 1
+                button?.layer.borderColor = UIColor.white.cgColor
+                button?.layer.borderWidth = 1
             } else {
-                button.layer.borderWidth = 0
+                button?.layer.borderWidth = 0
             }
         }
     }

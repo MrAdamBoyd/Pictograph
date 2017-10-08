@@ -23,39 +23,50 @@ class MainEncodingView: UIScrollView {
     }
     
     //UI elements
-    let elementContainer = UIView()
-    let imageView = UIImageView()
-    let smallTapSelectImageLabel = UILabel()
-    let largeTapSelectImageLabel = UILabel()
-    let shareButton = UIButton()
-    let borderBelowImage = UIView()
-    let encryptionLabel = UILabel()
-    let encryptionKeyField = PictographInsetTextField()
-    let encryptionSwitch = UISwitch()
-    let encryptionInfoViewBorder = UIView()
-    let encodeButton = PictographHighlightButton()
-    let encodeImageButton = PictographHighlightButton() //TODO: Delete
-    let decodeButton = PictographHighlightButton()
+    weak var elementContainer: UIView!
+    weak var imageView: UIImageView!
+    weak var smallTapSelectImageLabel: UILabel!
+    weak var largeTapSelectImageLabel: UILabel!
+    weak var shareButton: UIButton!
+    weak var borderBelowImage: UIView!
+    weak var encryptionLabel: UILabel!
+    weak var encryptionKeyField: PictographInsetTextField!
+    weak var encryptionSwitch: UISwitch!
+    weak var encryptionInfoViewBorder: UIView!
+    weak var encodeButton: PictographHighlightButton!
+    weak var decodeButton: PictographHighlightButton!
     
     // MARK: - UIView
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        self.commonInit()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.commonInit()
+    }
+    
+    private func commonInit() {
         self.alwaysBounceVertical = true
         
-        self.addSubview(self.elementContainer)
+        let elementContainer = UIView()
+        self.elementContainer = elementContainer
+        self.addSubview(elementContainer)
         self.setScrollViewContentSize(width: UIScreen.main.bounds.width)
         
         self.setUpImageView()
         
+        self.setUpImageViewLabels()
+        
         self.setUpShareButton()
         
         self.setUpEncryptionArea()
+        
+        self.setUpEncryptionAreaBorder()
         
         self.setUpEncodeButton()
         
@@ -73,6 +84,9 @@ class MainEncodingView: UIScrollView {
     // MARK: Adding elements
     
     private func setUpImageView() {
+        let imageView = UIImageView()
+        self.imageView = imageView
+        
         //Image view, location for views based off this view
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.layer.borderColor = UIColor.white.cgColor
@@ -85,8 +99,13 @@ class MainEncodingView: UIScrollView {
         self.imageView.leftAnchor.constraint(equalTo: self.elementContainer.leftAnchor, constant: encryptionMargin).isActive = true
         self.imageView.rightAnchor.constraint(equalTo: self.elementContainer.rightAnchor, constant: -encryptionMargin).isActive = true
         self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 0.5, constant: 0).isActive = true
-        
+    }
+    
+    private func setUpImageViewLabels() {
         //Border between image and buttons
+        let borderBelowImage = UIView()
+        self.borderBelowImage = borderBelowImage
+        
         self.borderBelowImage.backgroundColor = UIColor.white
         self.borderBelowImage.translatesAutoresizingMaskIntoConstraints = false
         self.elementContainer.addSubview(self.borderBelowImage)
@@ -97,6 +116,9 @@ class MainEncodingView: UIScrollView {
         self.borderBelowImage.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
         //Small select image label
+        let smallTapSelectImageLabel = UILabel()
+        self.smallTapSelectImageLabel = smallTapSelectImageLabel
+        
         self.smallTapSelectImageLabel.textAlignment = .center
         self.smallTapSelectImageLabel.text = "Tap to Select Image"
         self.smallTapSelectImageLabel.textColor = UIColor.white
@@ -111,6 +133,9 @@ class MainEncodingView: UIScrollView {
         
         
         //Large select image label
+        let largeTapSelectImageLabel = UILabel()
+        self.largeTapSelectImageLabel = largeTapSelectImageLabel
+        
         self.largeTapSelectImageLabel.textAlignment = .center
         self.largeTapSelectImageLabel.text = "Tap to Select Image"
         self.largeTapSelectImageLabel.textColor = UIColor.white
@@ -123,6 +148,9 @@ class MainEncodingView: UIScrollView {
     }
     
     private func setUpShareButton() {
+        let shareButton = UIButton()
+        self.shareButton = shareButton
+        
         self.shareButton.setImage(#imageLiteral(resourceName: "ShareIcon"), for: .normal)
         self.shareButton.layer.cornerRadius = 20
         self.shareButton.backgroundColor = .white
@@ -140,12 +168,13 @@ class MainEncodingView: UIScrollView {
     
     private func setUpEncryptionArea() {
         //Label for enabling encryption, location for views based off this view
+        let encryptionLabel = UILabel()
+        self.encryptionLabel = encryptionLabel
         encryptionLabel.text = "Use Password"
         encryptionLabel.font = UIFont.boldSystemFont(ofSize: mainFontSize)
         encryptionLabel.textColor = UIColor.white
         encryptionLabel.translatesAutoresizingMaskIntoConstraints = false
         self.elementContainer.addSubview(encryptionLabel)
-        
         
         //25 from left and below the image border
         self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .left, relatedBy: .equal, toItem:self.elementContainer, attribute: .left, multiplier:1, constant:encryptionMargin))
@@ -153,6 +182,8 @@ class MainEncodingView: UIScrollView {
         
         
         //Switch for enabling encryption
+        let encryptionSwitch = UISwitch()
+        self.encryptionSwitch = encryptionSwitch
         encryptionSwitch.isOn = PictographDataController.shared.userEncryptionIsEnabled
         encryptionSwitch.translatesAutoresizingMaskIntoConstraints = false
         self.elementContainer.addSubview(encryptionSwitch)
@@ -162,6 +193,8 @@ class MainEncodingView: UIScrollView {
         self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionSwitch, attribute: .centerY, relatedBy: .equal, toItem: encryptionLabel, attribute: .centerY, multiplier: 1, constant: 0))
         
         //Textfield where encryption key is stored
+        let encryptionKeyField = PictographInsetTextField()
+        self.encryptionKeyField = encryptionKeyField
         encryptionKeyField.alpha = PictographDataController.shared.userEncryptionIsEnabled ? 1.0 : 0.5
         encryptionKeyField.isEnabled = PictographDataController.shared.userEncryptionIsEnabled
         encryptionKeyField.isSecureTextEntry = !PictographDataController.shared.userShowPasswordOnScreen
@@ -178,9 +211,12 @@ class MainEncodingView: UIScrollView {
         self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .top, relatedBy: .equal, toItem:encryptionLabel, attribute:.bottom, multiplier:1, constant:encryptionVerticalMargin))
         self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .left, relatedBy:.equal, toItem:self.elementContainer, attribute: .left, multiplier:1, constant:encryptionMargin))
         self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .right, relatedBy: .equal, toItem:self.elementContainer, attribute: .right, multiplier:1, constant:-encryptionMargin))
-        
-        
+    }
+    
+    private func setUpEncryptionAreaBorder() {
         //Border between text label and switch for enabling and disabling encryption
+        let encryptionInfoViewBorder = UIView()
+        self.encryptionInfoViewBorder = encryptionInfoViewBorder
         encryptionInfoViewBorder.backgroundColor = UIColor.white
         encryptionInfoViewBorder.translatesAutoresizingMaskIntoConstraints = false
         self.elementContainer.addSubview(encryptionInfoViewBorder)
@@ -193,6 +229,9 @@ class MainEncodingView: UIScrollView {
     }
     
     private func setUpEncodeButton() {
+        let encodeButton = PictographHighlightButton()
+        self.encodeButton = encodeButton
+        
         encodeButton.setTitle("Hide Message or Image", for: .normal)
         encodeButton.isEnabled = false
         encodeButton.alpha = 0.5
@@ -211,6 +250,9 @@ class MainEncodingView: UIScrollView {
     }
     
     private func setUpDecodeButton() {
+        let decodeButton = PictographHighlightButton()
+        self.decodeButton = decodeButton
+        
         decodeButton.setTitle("Show Message or Image", for: .normal)
         decodeButton.isEnabled = false
         decodeButton.alpha = 0.5
