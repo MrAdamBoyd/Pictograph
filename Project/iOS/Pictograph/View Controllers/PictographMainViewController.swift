@@ -244,7 +244,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         
         if self.passwordSettingsValid {
           
-            let createdWindow = EncodeModalView.createInWindow(from: self)
+            let createdWindow = EncodeModalView.createInWindow(from: self, message: nil, image: nil)
             self.currentlyShowingModal = createdWindow.view
             self.currentlyShowingModalWindow = createdWindow.window
             //TODO: Need that func anymore?
@@ -708,6 +708,16 @@ extension PictographMainViewController: HiddenImageViewDelegate, EncodeModalView
             }
             
             //TODO: Add action here
+        }
+    }
+    
+    func userWantsToSelectImageForEncoding(currentMessage: String?) {
+        self.closeCurrentlyShowingModal() {
+            self.determineHowToPresentImagePicker() { [weak self] image in
+                let createdWindow = EncodeModalView.createInWindow(from: self, message: currentMessage, image: image)
+                self?.currentlyShowingModal = createdWindow.view
+                self?.currentlyShowingModalWindow = createdWindow.window
+            }
         }
     }
     

@@ -11,6 +11,7 @@ import UIKit
 
 protocol EncodeModalViewDelegate: class {
     func encode(message: String?, hiddenImage: UIImage?)
+    func userWantsToSelectImageForEncoding(currentMessage: String?)
     func closeModalViewFromModal(_ completion: (() -> Void)?)
 }
 
@@ -19,11 +20,15 @@ class EncodeModalView: PictographModalView {
     /// Displays a new hidden image view in a new uiwindow
     ///
     /// - Parameter delegate: delegate for any actions
+    /// - Parameter message: if not nil, sets the message in the textfield
+    /// - Parameter image: if not nil, sets the image in the imageview
     /// - Returns: the window (which needs to be retained), and the view
-    static func createInWindow(from delegate: EncodeModalViewDelegate?) -> (window: UIWindow, view: EncodeModalView) {
+    static func createInWindow(from delegate: EncodeModalViewDelegate?, message: String?, image: UIImage?) -> (window: UIWindow, view: EncodeModalView) {
         
         let view = EncodeModalView(frame: .zero)
         view.delegate = delegate
+        view.messageTextField.text = message
+        view.imageView.image = image
         return PictographModalView.createViewInWindow(viewToShow: view)
     }
     
@@ -139,6 +144,6 @@ class EncodeModalView: PictographModalView {
     }
     
     @objc func selectImageTapped() {
-        //TODO: Tie in
+        self.delegate?.userWantsToSelectImageForEncoding(currentMessage: self.messageTextField.text)
     }
 }
