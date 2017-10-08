@@ -66,9 +66,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
         
         //Setting up the actions for the elements
-        self.mainEncodeView.encodeButton.addTarget(self, action: #selector(self.startEncodeMessageProcess), for: .touchUpInside)
-        //TODO: Set new action
-//        self.mainEncodeView.encodeImageButton.addTarget(self, action: #selector(self.startEncodeImageProcess), for: .touchUpInside)
+        self.mainEncodeView.encodeButton.addTarget(self, action: #selector(self.startEncodeProcess), for: .touchUpInside)
         self.mainEncodeView.decodeButton.addTarget(self, action: #selector(self.startDecodeProcess), for: .touchUpInside)
         self.mainEncodeView.encryptionKeyField.delegate = self
         self.mainEncodeView.encryptionSwitch.addTarget(self, action: #selector(self.switchToggled(_:)), for: .valueChanged)
@@ -239,7 +237,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Starting the encode process
-    @objc func startEncodeMessageProcess() {
+    @objc func startEncodeProcess() {
         self.endEditingAndSetPassword()
         
         if self.passwordSettingsValid {
@@ -247,21 +245,10 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             let createdWindow = EncodeModalView.createInWindow(from: self, message: nil, image: nil)
             self.currentlyShowingModal = createdWindow.view
             self.currentlyShowingModalWindow = createdWindow.window
-            //TODO: Need that func anymore?
-//            self.showGetMessageController("Enter your message", withPlaceHolder: "Your message here")
             
         } else {
             //Show message: encryption is enabled and the key is blank
             showMessageInAlertController("No Encryption Key", message: "Encryption is enabled but your password is blank, please enter a password.", includeCopyButton: false)
-        }
-    }
-    
-    //Starting the process for the user to encode an image within another image
-    @objc func startEncodeImageProcess() {
-        self.endEditingAndSetPassword()
-        
-        self.determineHowToPresentImagePicker() { [weak self] image in
-            self?.encodeImage(image)
         }
     }
     
@@ -490,63 +477,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             }
         }
         
-    }
-    
-    /// Builds the UIAlertController that will get the message to encode from the user
-    ///
-    /// - Parameters:
-    ///   - title: title of the UIAlertController
-    ///   - placeHolder: placeholder to have in the textbox
-    func showGetMessageController(_ title: String, withPlaceHolder placeHolder: String) {
-        
-        let getMessageController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-        
-        var textFieldObserver: Any?
-        
-        //Saving the confirmAction so it can be enabled/disabled
-        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
-            if let observer = textFieldObserver {
-                NotificationCenter.default.removeObserver(observer)
-            }
-            self.encodeMessage(getMessageController.textFields?.first?.text ?? "", imageToEncode: nil)
-        }
-        
-        getMessageController.addAction(confirmAction)
-        
-        //Paste action
-        let pasteFromClipboardAction = UIAlertAction(title: "Use Text from Clipboard", style: .default) { _ in
-            if let observer = textFieldObserver {
-                NotificationCenter.default.removeObserver(observer)
-            }
-            self.encodeMessage(UIPasteboard.general.string ?? "", imageToEncode: nil)
-        }
-        pasteFromClipboardAction.isEnabled = false
-        if let pasteText = UIPasteboard.general.string, pasteText != "" {
-            pasteFromClipboardAction.isEnabled = true
-        }
-        
-        getMessageController.addAction(pasteFromClipboardAction)
-        
-        //Set current action to none
-        getMessageController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            if let observer = textFieldObserver {
-                NotificationCenter.default.removeObserver(observer)
-            }
-        })
-        
-        //Building the text field with the correct settings
-        getMessageController.addTextField(configurationHandler: { textField in
-            textField.placeholder = placeHolder
-            confirmAction.isEnabled = false
-            
-            //Confirm is only enabled if there is text
-            textFieldObserver = NotificationCenter.default.addObserver(forName: Notification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { _ in
-                //Enabled when the text isn't blank
-                confirmAction.isEnabled = (textField.text != "")
-            }
-        })
-        
-        self.present(getMessageController, animated: true, completion: nil)
     }
     
     /// Shows the share sheet with the image that's currently being stored
