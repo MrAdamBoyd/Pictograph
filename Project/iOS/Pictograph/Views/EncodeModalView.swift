@@ -36,6 +36,14 @@ class EncodeModalView: PictographModalView {
         return $0
     }(UILabel(frame: .zero))
     
+    private lazy var messageTextField: PictographInsetTextField = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.placeholder = "Enter text here"
+        $0.layer.borderColor = UIColor.gray.cgColor
+        $0.layer.borderWidth = 1
+        return $0
+    }(PictographInsetTextField(frame: .zero))
+    
     fileprivate lazy var encodeButton: PictographModalButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("Start", for: .normal)
@@ -47,6 +55,13 @@ class EncodeModalView: PictographModalView {
         $0.setTitle("Close", for: .normal)
         return $0
     }(PictographModalButton(frame: .zero))
+    
+    fileprivate lazy var imageInstructionLabel: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "Tap to Select Image"
+        $0.font = UIFont.systemFont(ofSize: 16)
+        return $0
+    }(UILabel(frame: .zero))
     
     fileprivate lazy var imageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -71,9 +86,15 @@ class EncodeModalView: PictographModalView {
         self.titleLabel.centerXAnchor.constraint(equalTo: self.popupView.centerXAnchor).isActive = true
         self.titleLabel.topAnchor.constraint(equalTo: self.popupView.topAnchor, constant: 10).isActive = true
         
+        //Message text field
+        self.addSubview(self.messageTextField)
+        self.messageTextField.leftAnchor.constraint(equalTo: self.popupView.leftAnchor, constant: 10).isActive = true
+        self.messageTextField.rightAnchor.constraint(equalTo: self.popupView.rightAnchor, constant: -10).isActive = true
+        self.messageTextField.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 10).isActive = true
+        
         //Imageview
         self.addSubview(self.imageView)
-        self.imageView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 10).isActive = true
+        self.imageView.topAnchor.constraint(equalTo: self.messageTextField.bottomAnchor, constant: 10).isActive = true
         self.imageView.leftAnchor.constraint(equalTo: self.popupView.leftAnchor, constant: 10).isActive = true
         self.imageView.rightAnchor.constraint(equalTo: self.popupView.rightAnchor, constant: -10).isActive = true
         if window.traitCollection.verticalSizeClass == .compact {
@@ -82,6 +103,10 @@ class EncodeModalView: PictographModalView {
         } else {
             self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 2/3).isActive = true
         }
+        
+        self.addSubview(self.imageInstructionLabel)
+        self.imageInstructionLabel.centerXAnchor.constraint(equalTo: self.imageView.centerXAnchor).isActive = true
+        self.imageInstructionLabel.centerYAnchor.constraint(equalTo: self.imageView.centerYAnchor).isActive = true
         
         //Close button
         self.addSubview(self.closeViewButton)
@@ -109,4 +134,3 @@ class EncodeModalView: PictographModalView {
         self.delegate?.encode(message: nil, hiddenImage: self.imageView.image)
     }
 }
-
