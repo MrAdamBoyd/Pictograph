@@ -40,13 +40,14 @@
 /**
  Encodes a message inside of an image
 
- @param message message to encode in the image
+ @param message message to encode in the image, optionl
+ @param hiddenImage image to encode in the image, optional
  @param image image to hide the message in
  @param password password to encrypt the message with. Sets the encrypt bit to true. If null, assume no password
  @param error pointer to an error
  @return NSData representation of the UIImage or NSImage with the message encoded in the image's pixels
  */
-- (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error NS_SWIFT_NAME(encode(message:in:encryptedWithPassword:));
+- (NSData * _Nullable)encodeMessage:(NSString * _Nullable)message hiddenImage:(PictographImage * _Nullable)hiddenImage inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error NS_SWIFT_NAME(encode(message:hiddenImage:in:encryptedWithPassword:));
 
 /**
  Encodes an image inside of an image

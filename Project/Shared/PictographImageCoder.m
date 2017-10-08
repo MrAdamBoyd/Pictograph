@@ -216,7 +216,7 @@
 #pragma mark Encoding messages and images
 
 //Encodes UIImage image with message message. Returns the modified UIImage or NSImage
-- (NSData * _Nullable)encodeMessage:(NSString * _Nonnull)message inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
+- (NSData * _Nullable)encodeMessage:(NSString * _Nullable)message hiddenImage:(PictographImage * _Nullable)hiddenImage inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
     
     DLog("Encoding message: %@, with password %@", message, password);
     

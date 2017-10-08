@@ -379,10 +379,11 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.present(picker, animated: true, completion: nil)
     }
     
-    /// Encodes an image with the currently selected image
+    /// Encodes an image with the currently selected image. Either messageToEncode or imageToEncode should not be nil
     ///
-    /// - Parameter messageToEncode: message that should be encoded
-    private func encodeMessage(_ messageToEncode: String) {
+    /// - Parameter messageToEncode: message that will be encoded, optional
+    /// - Parameter imageToEncode: image that will be encoded, optional
+    private func encodeMessage(_ messageToEncode: String?, imageToEncode: UIImage?) {
         guard let image = self.currentImage else { return }
         
         let coder = PictographImageCoder(delegate: self)
@@ -392,7 +393,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
             do {
                 
-                let encodedImage = try coder.encode(message: messageToEncode, in: image, encryptedWithPassword: providedPassword)
+                let encodedImage = try coder.encode(message: messageToEncode, hiddenImage: imageToEncode, in: image, encryptedWithPassword: providedPassword)
                 
                 self.workFinished { [unowned self] in
                     self.currentImage = UIImage(data: encodedImage)
@@ -507,7 +508,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             if let observer = textFieldObserver {
                 NotificationCenter.default.removeObserver(observer)
             }
-            self.encodeMessage(getMessageController.textFields?.first?.text ?? "")
+            self.encodeMessage(getMessageController.textFields?.first?.text ?? "", imageToEncode: nil)
         }
         
         getMessageController.addAction(confirmAction)
@@ -517,7 +518,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             if let observer = textFieldObserver {
                 NotificationCenter.default.removeObserver(observer)
             }
-            self.encodeMessage(UIPasteboard.general.string ?? "")
+            self.encodeMessage(UIPasteboard.general.string ?? "", imageToEncode: nil)
         }
         pasteFromClipboardAction.isEnabled = false
         if let pasteText = UIPasteboard.general.string, pasteText != "" {
@@ -707,7 +708,7 @@ extension PictographMainViewController: HiddenImageViewDelegate, EncodeModalView
                 return
             }
             
-            //TODO: Add action here
+            self.encodeMessage(message, imageToEncode: hiddenImage)
         }
     }
     
