@@ -34,7 +34,6 @@ class MainEncodingView: UIScrollView {
     let encryptionSwitch = UISwitch()
     let encryptionInfoViewBorder = UIView()
     let encodeButton = PictographHighlightButton()
-    let encodeImageButton = PictographHighlightButton() //TODO: Delete
     let decodeButton = PictographHighlightButton()
     
     // MARK: - UIView
