@@ -37,15 +37,11 @@ class WorkProgressView: PictographModalView {
         return $0
     }(UIProgressView(frame: .zero))
     
-    fileprivate lazy var cancelWorkButton: UIButton = {
+    fileprivate lazy var cancelWorkButton: PictographModalButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("Cancel", for: .normal)
-        $0.setTitleColor(.blue, for: .normal)
-        $0.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.blue.cgColor
         return $0
-    }(UIButton(frame: .zero))
+    }(PictographModalButton(frame: .zero))
     
     // MARK: - Properties
     

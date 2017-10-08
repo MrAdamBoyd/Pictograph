@@ -37,25 +37,17 @@ class HiddenImageView: PictographModalView {
         return $0
     }(UILabel(frame: .zero))
     
-    fileprivate lazy var shareImageButton: UIButton = {
+    fileprivate lazy var shareImageButton: PictographModalButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("Share Image", for: .normal)
-        $0.setTitleColor(.blue, for: .normal)
-        $0.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.blue.cgColor
         return $0
-    }(UIButton(frame: .zero))
+    }(PictographModalButton(frame: .zero))
     
-    fileprivate lazy var closeViewButton: UIButton = {
+    fileprivate lazy var closeViewButton: PictographModalButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.setTitle("Close", for: .normal)
-        $0.setTitleColor(.blue, for: .normal)
-        $0.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.blue.cgColor
         return $0
-    }(UIButton(frame: .zero))
+    }(PictographModalButton(frame: .zero))
     
     fileprivate lazy var imageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
