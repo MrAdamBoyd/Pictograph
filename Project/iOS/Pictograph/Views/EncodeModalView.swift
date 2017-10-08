@@ -68,6 +68,11 @@ class EncodeModalView: PictographModalView {
         $0.contentMode = .scaleAspectFit
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.gray.cgColor
+        
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.selectImageTapped))
+        $0.isUserInteractionEnabled = true
+        $0.addGestureRecognizer(tapGR)
+        
         return $0
     }(UIImageView(frame: .zero))
     
@@ -104,7 +109,7 @@ class EncodeModalView: PictographModalView {
             self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 2/3).isActive = true
         }
         
-        self.addSubview(self.imageInstructionLabel)
+        self.insertSubview(self.imageInstructionLabel, belowSubview: self.imageView)
         self.imageInstructionLabel.centerXAnchor.constraint(equalTo: self.imageView.centerXAnchor).isActive = true
         self.imageInstructionLabel.centerYAnchor.constraint(equalTo: self.imageView.centerYAnchor).isActive = true
         
@@ -131,5 +136,9 @@ class EncodeModalView: PictographModalView {
     
     @objc func startEncodingTapped() {
         self.delegate?.encode(message: self.messageTextField.text, hiddenImage: self.imageView.image)
+    }
+    
+    @objc func selectImageTapped() {
+        //TODO: Tie in
     }
 }
