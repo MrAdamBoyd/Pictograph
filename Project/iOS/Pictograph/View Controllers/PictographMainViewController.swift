@@ -380,37 +380,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
             do {
                 
-                let encodedImage = try coder.encode(message: messageToEncode, hiddenImage: imageToEncode, in: image, encryptedWithPassword: providedPassword)
-                
-                self.workFinished { [unowned self] in
-                    self.currentImage = UIImage(data: encodedImage)
-                    //Show the share sheet if the image exists
-                    self.showShareSheet(with: encodedImage)
-                }
-                
-            } catch let error {
-                self.closeCurrentlyShowingModal() {
-                    //Catch the error
-                    self.showMessageInAlertController("Error", message: error.localizedDescription, includeCopyButton: false)
-                    self.currentCoder = nil
-                }
-            }
-        }
-    }
-    
-    /// Hides provided image within the currently selected image
-    ///
-    /// - Parameter imageToHide: image that will be hidden within another image
-    private func encodeImage(_ imageToHide: UIImage) {
-        guard let image = self.currentImage else { return }
-
-        let coder = PictographImageCoder(delegate: self)
-        
-        self.performWorkOnEncodingQueue(for: coder, showProgressModal: true) {
-            
-            do {
-                
-                let encodedImage = try coder.encode(image: imageToHide, in: image, shrinkImageMore: PictographDataController.shared.shrinkEncodedImages)
+                let encodedImage = try coder.encode(message: messageToEncode, hiddenImage: imageToEncode, shrinkImageMore: PictographDataController.shared.shrinkEncodedImages, in: image, encryptedWithPassword: providedPassword)
                 
                 self.workFinished { [unowned self] in
                     self.currentImage = UIImage(data: encodedImage)

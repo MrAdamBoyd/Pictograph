@@ -38,26 +38,16 @@
 
 
 /**
- Encodes a message inside of an image
+ Encodes a message and/or image inside of an image
 
  @param message message to encode in the image, optionl
  @param hiddenImage image to encode in the image, optional
+ @param shrinkImageMore if true, shrinks the image more for faster encoding
  @param image image to hide the message in
  @param password password to encrypt the message with. Sets the encrypt bit to true. If null, assume no password
  @param error pointer to an error
  @return NSData representation of the UIImage or NSImage with the message encoded in the image's pixels
  */
-- (NSData * _Nullable)encodeMessage:(NSString * _Nullable)message hiddenImage:(PictographImage * _Nullable)hiddenImage inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error NS_SWIFT_NAME(encode(message:hiddenImage:in:encryptedWithPassword:));
-
-/**
- Encodes an image inside of an image
- 
- @param hiddenImage image to encode in the image
- @param image image to hide the image in
- @param shrinkImageMore if true, shrinks the image more for faster encoding
- @param error pointer to an error
- @return NSData representation of the UIImage or NSImage with the message encoded in the image's pixels
- */
-- (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image shrinkImageMore:(BOOL)shrinkImageMore error:(NSError * _Nullable * _Nullable)error NS_SWIFT_NAME(encode(image:in:shrinkImageMore:));
+- (NSData * _Nullable)encodeMessage:(NSString * _Nullable)message hiddenImage:(PictographImage * _Nullable)hiddenImage shrinkImageMore:(BOOL)shrinkImageMore inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error NS_SWIFT_NAME(encode(message:hiddenImage:shrinkImageMore:in:encryptedWithPassword:));
 
 @end

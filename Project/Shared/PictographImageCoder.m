@@ -84,7 +84,8 @@
      (0) 00000000 00000000 - Normal message, proceed as normal
      (1) 00000000 00000001 - Encrypted message
      (2) 00000000 00000010 - Normal image, proceed as normal
-     (3) 00000000 00000011 - NOT SUPPORTED: Images can't be encrypted
+     (3) 00000000 00000011 - Normal message, also hidden image
+     (4) 00000000 00000100 - Encrypted message, also hidden image
      */
     switch (informationAboutString) {
         case 0:
@@ -216,45 +217,46 @@
 #pragma mark Encoding messages and images
 
 //Encodes UIImage image with message message. Returns the modified UIImage or NSImage
-- (NSData * _Nullable)encodeMessage:(NSString * _Nullable)message hiddenImage:(PictographImage * _Nullable)hiddenImage inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
+- (NSData * _Nullable)encodeMessage:(NSString * _Nullable)message hiddenImage:(PictographImage * _Nullable)hiddenImage shrinkImageMore:(BOOL)shrinkImageMore inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
     
     DLog("Encoding message: %@, with password %@", message, password);
     
-    //Converting emoji to the unicode scalars
-    NSData *unicodeMessageData = [message dataUsingEncoding:NSNonLossyASCIIStringEncoding];
+    NSData *unicodeMessageData;
+    NSData *dataFromImageToHide;
     
-    return [self encodeData:unicodeMessageData dataIsImage:NO inImage:image encryptedWithPassword:password error:error];
-    
-}
-
-//Encodes an image within another image
-- (NSData * _Nullable)encodeImage:(PictographImage * _Nonnull)hiddenImage inImage:(PictographImage * _Nonnull)image shrinkImageMore:(BOOL)shrinkImageMore error:(NSError * _Nullable * _Nullable)error {
-    
-    #if TARGET_OS_IPHONE
-    hiddenImage = [self rotatedUIImageFromImage:hiddenImage];
-    #endif
-    
-    const CGSize originalSize = CGSizeMake([hiddenImage getReconciledImageWidth], [hiddenImage getReconciledImageHeight]);
-    CGSize newSize = [self determineSizeForHidingImage:hiddenImage withinImage:image shrinkImageMore:shrinkImageMore];
-    
-    PictographImage *imageToHide = hiddenImage;
-    
-    if (originalSize.width != newSize.width && originalSize.height != newSize.height) {
-        //If the hidden image needs to be resized
-        DLog(@"Hidden image needs to be this size, resizing: width: %f, height: %f", newSize.width, newSize.height);
-        
-        imageToHide = [imageToHide scaledImageWithNewSize:newSize];
+    if (message) {
+        //Converting emoji to the unicode scalars
+        unicodeMessageData = [message dataUsingEncoding:NSNonLossyASCIIStringEncoding];
     }
     
-    NSData *dataFromImageToHide = [imageToHide dataRepresentation];
+    if (hiddenImage) {
+        #if TARGET_OS_IPHONE
+        hiddenImage = [self rotatedUIImageFromImage:hiddenImage];
+        #endif
+        
+        const CGSize originalSize = CGSizeMake([hiddenImage getReconciledImageWidth], [hiddenImage getReconciledImageHeight]);
+        CGSize newSize = [self determineSizeForHidingImage:hiddenImage withinImage:image shrinkImageMore:shrinkImageMore];
+        
+        PictographImage *imageToHide = hiddenImage;
+        
+        if (originalSize.width != newSize.width && originalSize.height != newSize.height) {
+            //If the hidden image needs to be resized
+            DLog(@"Hidden image needs to be this size, resizing: width: %f, height: %f", newSize.width, newSize.height);
+            
+            imageToHide = [imageToHide scaledImageWithNewSize:newSize];
+        }
+        
+        dataFromImageToHide = [imageToHide dataRepresentation];
+    }
     
-    return [self encodeData:dataFromImageToHide dataIsImage:YES inImage:image encryptedWithPassword:@"" error:error];
+    return [self encodeMessageData:unicodeMessageData imageData:dataFromImageToHide inImage:image encryptedWithPassword:password error:error];
+    
 }
 
 #pragma mark Helper methods for encoding a message in an image
 
 //Encodes UIImage image with the data. Returns modified UIImage or NSImage
-- (NSData * _Nullable)encodeData:(NSData * _Nonnull)data dataIsImage:(BOOL)dataIsImage inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
+- (NSData * _Nullable)encodeMessageData:(NSData * _Nonnull)messageData imageData:(NSData * _Nullable)imageData inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
     
     NSData *dataToEncode;
     
@@ -263,11 +265,11 @@
     if (encryptedBool) {
         //If the user wants to encrypt the string, encrypt it
         NSError *error;
-        dataToEncode = [RNEncryptor encryptData:data withSettings:kRNCryptorAES256Settings password:password error:&error];
+        dataToEncode = [RNEncryptor encryptData:messageData withSettings:kRNCryptorAES256Settings password:password error:&error];
         
     } else {
         //No need to encode
-        dataToEncode = data;
+        dataToEncode = messageData;
     }
     
     /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
@@ -296,11 +298,12 @@
      (0) 00000000 00000000 - Normal message, proceed as normal
      (1) 00000000 00000001 - Encrypted message
      (2) 00000000 00000010 - Normal image, proceed as normal
-     (3) 00000000 00000011 - NOT SUPPORTED: Images can't be encrypted
+     (3) 00000000 00000011 - Normal message, also hidden image
+     (4) 00000000 00000100 - Encrypted message, also hidden image
      */
     
     int encryptedOrNotBit = encryptedBool ? 1 : 0;
-    encryptedOrNotBit += dataIsImage ? 2 : 0;
+    encryptedOrNotBit += imageData ? 2 : 0;
     
     [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:encryptedOrNotBit withSpaceFor:bitCountForInfo]]; //16 bits for future proofing
     
