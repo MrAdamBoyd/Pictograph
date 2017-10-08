@@ -38,6 +38,8 @@
 		666A96B71E41836900107630 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660BA0651BDDB1AE00605EE8 /* CurrentUser.swift */; };
 		666AD9CA1E41828C006B37FB /* PictographDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6647B4381BDDB91800235E04 /* PictographDataController.swift */; };
 		666DF8C31EA31D94009BBEC2 /* PictographImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 662CFC861BC2215F00A9FF28 /* PictographImageCoder.m */; };
+		667607BC1F8A8A3C00E4080E /* EncodeModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667607BB1F8A8A3C00E4080E /* EncodeModalView.swift */; };
+		667607BE1F8A8C8800E4080E /* PictographModalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667607BD1F8A8C8800E4080E /* PictographModalButton.swift */; };
 		6684A46C1F6D8DC700CAF31D /* WorkProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6684A46B1F6D8DC700CAF31D /* WorkProgressView.swift */; };
 		6684A46E1F6D8DD300CAF31D /* PictographModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6684A46D1F6D8DD300CAF31D /* PictographModalView.swift */; };
 		6699CAD51EEF890500F57B65 /* UILabel+ConvenienceInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6699CAD41EEF890500F57B65 /* UILabel+ConvenienceInit.swift */; };
@@ -161,6 +163,8 @@
 		665883361BBCC72A00CA21A9 /* PictographUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PictographUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6658833A1BBCC72A00CA21A9 /* PictographUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PictographUITests.m; sourceTree = "<group>"; };
 		6658833C1BBCC72A00CA21A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		667607BB1F8A8A3C00E4080E /* EncodeModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodeModalView.swift; sourceTree = "<group>"; };
+		667607BD1F8A8C8800E4080E /* PictographModalButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictographModalButton.swift; sourceTree = "<group>"; };
 		667EB69F1EDCCC240035ED4B /* Pictograph_Mac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pictograph_Mac-Bridging-Header.h"; sourceTree = "<group>"; };
 		6684A46B1F6D8DC700CAF31D /* WorkProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkProgressView.swift; sourceTree = "<group>"; };
 		6684A46D1F6D8DD300CAF31D /* PictographModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictographModalView.swift; sourceTree = "<group>"; };
@@ -324,6 +328,8 @@
 				6647B4431BDF0B7E00235E04 /* PictographSettingsTableViewCell.swift */,
 				6647B4471BDF230A00235E04 /* SettingsFooterView.swift */,
 				66E4056E1EF49BF400217B3C /* HiddenImageView.swift */,
+				667607BB1F8A8A3C00E4080E /* EncodeModalView.swift */,
+				667607BD1F8A8C8800E4080E /* PictographModalButton.swift */,
 				6684A46B1F6D8DC700CAF31D /* WorkProgressView.swift */,
 				6684A46D1F6D8DD300CAF31D /* PictographModalView.swift */,
 			);
@@ -1090,6 +1096,7 @@
 				6684A46E1F6D8DD300CAF31D /* PictographModalView.swift in Sources */,
 				6647B4441BDF0B7E00235E04 /* PictographSettingsTableViewCell.swift in Sources */,
 				66DF573A1EEBA01C0062D876 /* DragDropManager.swift in Sources */,
+				667607BC1F8A8A3C00E4080E /* EncodeModalView.swift in Sources */,
 				66BAF6271EF21E8500B3C4B7 /* PictographImage+Resize.m in Sources */,
 				6647B43D1BDEF5BF00235E04 /* IntroView.swift in Sources */,
 				6647B4481BDF230A00235E04 /* SettingsFooterView.swift in Sources */,
@@ -1107,6 +1114,7 @@
 				660BA0661BDDB1AE00605EE8 /* CurrentUser.swift in Sources */,
 				6647B4411BDF052E00235E04 /* PictographViewController.swift in Sources */,
 				660069791C552C6100BA1672 /* AppDelegateExtension.swift in Sources */,
+				667607BE1F8A8C8800E4080E /* PictographModalButton.swift in Sources */,
 				6647B44D1BDF2CE700235E04 /* MainEncodingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

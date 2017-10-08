@@ -1,30 +1,29 @@
 //
-//  HiddenImageView.swift
+//  EncodeModalView.swift
 //  Pictograph
 //
-//  Created by Adam Boyd on 2017/6/16.
+//  Created by Adam Boyd on 2017/10/8.
 //  Copyright © 2017 Adam Boyd. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-protocol HiddenImageViewDelegate: class {
-    func showShareSheetFromHiddenImageView()
+protocol EncodeModalViewDelegate: class {
+    func encode(message: String?, hiddenImage: UIImage?)
     func closeModalViewFromModal(_ completion: (() -> Void)?)
 }
 
-class HiddenImageView: PictographModalView {
+class EncodeModalView: PictographModalView {
     
     /// Displays a new hidden image view in a new uiwindow
     ///
     /// - Parameter delegate: delegate for any actions
     /// - Returns: the window (which needs to be retained), and the view
-    static func createInWindow(from delegate: HiddenImageViewDelegate?, showing image: UIImage) -> (window: UIWindow, view: HiddenImageView) {
+    static func createInWindow(from delegate: EncodeModalViewDelegate?) -> (window: UIWindow, view: EncodeModalView) {
         
-        let view = HiddenImageView(frame: .zero)
+        let view = EncodeModalView(frame: .zero)
         view.delegate = delegate
-        view.imageView.image = image
         return PictographModalView.createViewInWindow(viewToShow: view)
     }
     
@@ -32,14 +31,14 @@ class HiddenImageView: PictographModalView {
     
     fileprivate lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.text = "Hidden Image"
+        $0.text = "Encode"
         $0.font = UIFont.systemFont(ofSize: 24)
         return $0
     }(UILabel(frame: .zero))
     
-    fileprivate lazy var shareImageButton: UIButton = {
+    fileprivate lazy var encodeButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setTitle("Share Image", for: .normal)
+        $0.setTitle("Start", for: .normal)
         $0.setTitleColor(.blue, for: .normal)
         $0.setTitleColor(UIColor.blue.withAlphaComponent(0.5), for: .highlighted)
         $0.layer.borderWidth = 1
@@ -67,7 +66,7 @@ class HiddenImageView: PictographModalView {
     
     // MARK: - Properties
     
-    weak var delegate: HiddenImageViewDelegate?
+    weak var delegate: EncodeModalViewDelegate?
     
     // MARK: - Functions
     
@@ -101,11 +100,11 @@ class HiddenImageView: PictographModalView {
         self.closeViewButton.addTarget(self, action: #selector(self.closeButtonTapped), for: .touchUpInside)
         
         //Share Image button
-        self.addSubview(self.shareImageButton)
-        self.shareImageButton.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20).isActive = true
-        self.shareImageButton.leadingAnchor.constraint(equalTo: self.popupView.centerXAnchor, constant: 10).isActive = true
-        self.shareImageButton.trailingAnchor.constraint(equalTo: self.imageView.trailingAnchor).isActive = true
-        self.shareImageButton.addTarget(self, action: #selector(self.shareSheetTapped), for: .touchUpInside)
+        self.addSubview(self.encodeButton)
+        self.encodeButton.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20).isActive = true
+        self.encodeButton.leadingAnchor.constraint(equalTo: self.popupView.centerXAnchor, constant: 10).isActive = true
+        self.encodeButton.trailingAnchor.constraint(equalTo: self.imageView.trailingAnchor).isActive = true
+        self.encodeButton.addTarget(self, action: #selector(self.startEncodingTapped), for: .touchUpInside)
     }
     
     // MARK: - Actions
@@ -113,7 +112,9 @@ class HiddenImageView: PictographModalView {
         self.delegate?.closeModalViewFromModal(nil)
     }
     
-    @objc func shareSheetTapped() {
-        self.delegate?.showShareSheetFromHiddenImageView()
+    @objc func startEncodingTapped() {
+        //TODO: Set message
+        self.delegate?.encode(message: nil, hiddenImage: self.imageView.image)
     }
 }
+

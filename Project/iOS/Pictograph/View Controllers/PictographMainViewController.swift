@@ -243,8 +243,12 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.endEditingAndSetPassword()
         
         if self.passwordSettingsValid {
-            
-            self.showGetMessageController("Enter your message", withPlaceHolder: "Your message here")
+          
+            let createdWindow = EncodeModalView.createInWindow(from: self)
+            self.currentlyShowingModal = createdWindow.view
+            self.currentlyShowingModalWindow = createdWindow.window
+            //TODO: Need that func anymore?
+//            self.showGetMessageController("Enter your message", withPlaceHolder: "Your message here")
             
         } else {
             //Show message: encryption is enabled and the key is blank
@@ -694,11 +698,15 @@ extension PictographMainViewController: UIImagePickerControllerDelegate {
     }
 }
 
-extension PictographMainViewController: HiddenImageViewDelegate {
+extension PictographMainViewController: HiddenImageViewDelegate, EncodeModalViewDelegate {
+    
+    func encode(message: String?, hiddenImage: UIImage?) {
+        //TODO: Tie this in
+    }
     
     //Let the user share the image from the share sheet
     func showShareSheetFromHiddenImageView() {
-        self.closeHiddenImageView() {
+        self.closeModalViewFromModal() {
             guard let image = self.currentImage, let data = UIImagePNGRepresentation(image) else {
                 return
             }
@@ -708,7 +716,7 @@ extension PictographMainViewController: HiddenImageViewDelegate {
     }
     
     //Close the view
-    func closeHiddenImageView(_ completion: (() -> Void)?) {
+    func closeModalViewFromModal(_ completion: (() -> Void)?) {
         DispatchQueue.main.async {
             self.closeCurrentlyShowingModal(completion: completion)
         }
