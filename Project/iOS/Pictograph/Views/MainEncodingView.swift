@@ -12,7 +12,6 @@ private let mainFontSize: CGFloat = 20
 
 private let bigButtonHeight: CGFloat = 50
 private let buttonBorderWidth: CGFloat = 0.5
-private let buttonCenterMargin: CGFloat = 5
 
 private let encryptionMargin: CGFloat = 25
 private let encryptionVerticalMargin: CGFloat = 15
@@ -34,8 +33,8 @@ class MainEncodingView: UIScrollView {
     let encryptionKeyField = PictographInsetTextField()
     let encryptionSwitch = UISwitch()
     let encryptionInfoViewBorder = UIView()
-    let encodeMessageButton = PictographHighlightButton()
-    let encodeImageButton = PictographHighlightButton()
+    let encodeButton = PictographHighlightButton()
+    let encodeImageButton = PictographHighlightButton() //TODO: Delete
     let decodeButton = PictographHighlightButton()
     
     // MARK: - UIView
@@ -58,9 +57,7 @@ class MainEncodingView: UIScrollView {
         
         self.setUpEncryptionArea()
         
-        self.setUpEncodeMessageButton()
-        
-        self.setUpEncodeImageButton()
+        self.setUpEncodeButton()
         
         self.setUpDecodeButton()
     }
@@ -195,42 +192,22 @@ class MainEncodingView: UIScrollView {
         self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionInfoViewBorder, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1))
     }
     
-    private func setUpEncodeMessageButton() {
-        encodeMessageButton.setTitle("Hide Message", for: .normal)
-        encodeMessageButton.isEnabled = false
-        encodeMessageButton.alpha = 0.5
-        encodeMessageButton.translatesAutoresizingMaskIntoConstraints = false
+    private func setUpEncodeButton() {
+        encodeButton.setTitle("Hide Message or Image", for: .normal)
+        encodeButton.isEnabled = false
+        encodeButton.alpha = 0.5
+        encodeButton.translatesAutoresizingMaskIntoConstraints = false
         
         //Setting the corner radius
-        encodeMessageButton.layer.cornerRadius = 2.0
+        encodeButton.layer.cornerRadius = 2.0
         
-        self.elementContainer.addSubview(encodeMessageButton)
+        self.elementContainer.addSubview(encodeButton)
         
         //20px from border, 40px from left, right, 60px tall
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeMessageButton, attribute: .top, relatedBy: .equal, toItem: encryptionInfoViewBorder, attribute: .bottom, multiplier: 1, constant: encryptionVerticalMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeMessageButton, attribute: .left, relatedBy: .equal, toItem: self.elementContainer, attribute: .left, multiplier: 1, constant: encryptionMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeMessageButton, attribute: .right, relatedBy: .equal, toItem: self.elementContainer, attribute: .centerX, multiplier: 1, constant: -buttonCenterMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeMessageButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: bigButtonHeight))
-    }
-    
-    private func setUpEncodeImageButton() {
-        self.encodeImageButton.setTitle("Hide Image", for: .normal)
-        self.encodeImageButton.isEnabled = false
-        self.encodeImageButton.alpha = 0.5
-        self.encodeImageButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        //Corner radius
-        self.encodeImageButton.layer.cornerRadius = 2
-        
-        self.elementContainer.addSubview(self.encodeImageButton)
-        
-        //20px from encodeButton, 40px from left, right, 60px tall
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeImageButton, attribute: .top, relatedBy: .equal, toItem: encryptionInfoViewBorder, attribute: .bottom, multiplier: 1, constant: encryptionVerticalMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeImageButton, attribute: .left, relatedBy: .equal, toItem: self.elementContainer, attribute: .centerX, multiplier: 1, constant: buttonCenterMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeImageButton, attribute: .right, relatedBy: .equal, toItem: self.elementContainer, attribute: .right, multiplier: 1, constant: -encryptionMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item: encodeImageButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: bigButtonHeight))
-        
-        
+        encodeButton.topAnchor.constraint(equalTo: encryptionInfoViewBorder.bottomAnchor, constant: encryptionVerticalMargin).isActive = true
+        encodeButton.leftAnchor.constraint(equalTo: self.elementContainer.leftAnchor, constant: encryptionMargin).isActive = true
+        encodeButton.rightAnchor.constraint(equalTo: self.elementContainer.rightAnchor, constant: -encryptionMargin).isActive = true
+        self.encodeButton.heightAnchor.constraint(equalToConstant: bigButtonHeight).isActive = true
     }
     
     private func setUpDecodeButton() {
@@ -245,9 +222,9 @@ class MainEncodingView: UIScrollView {
         self.elementContainer.addSubview(decodeButton)
         
         //20px from encodeButton, 40px from left, right, 60px tall
-        self.decodeButton.leftAnchor.constraint(equalTo: self.encodeMessageButton.leftAnchor).isActive = true
-        self.decodeButton.rightAnchor.constraint(equalTo: self.encodeImageButton.rightAnchor).isActive = true
-        self.decodeButton.topAnchor.constraint(equalTo: self.encodeMessageButton.bottomAnchor, constant: encryptionVerticalMargin).isActive = true
+        self.decodeButton.leftAnchor.constraint(equalTo: self.encodeButton.leftAnchor).isActive = true
+        self.decodeButton.rightAnchor.constraint(equalTo: self.encodeButton.rightAnchor).isActive = true
+        self.decodeButton.topAnchor.constraint(equalTo: self.encodeButton.bottomAnchor, constant: encryptionVerticalMargin).isActive = true
         self.decodeButton.heightAnchor.constraint(equalToConstant: bigButtonHeight).isActive = true
     }
 }

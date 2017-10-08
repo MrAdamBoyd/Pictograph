@@ -66,7 +66,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
         
         //Setting up the actions for the elements
-        self.mainEncodeView.encodeMessageButton.addTarget(self, action: #selector(self.startEncodeMessageProcess), for: .touchUpInside)
+        self.mainEncodeView.encodeButton.addTarget(self, action: #selector(self.startEncodeMessageProcess), for: .touchUpInside)
         self.mainEncodeView.encodeImageButton.addTarget(self, action: #selector(self.startEncodeImageProcess), for: .touchUpInside)
         self.mainEncodeView.decodeButton.addTarget(self, action: #selector(self.startDecodeProcess), for: .touchUpInside)
         self.mainEncodeView.encryptionKeyField.delegate = self
@@ -149,8 +149,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         self.mainEncodeView.largeTapSelectImageLabel.isHidden = imageExists
         self.mainEncodeView.smallTapSelectImageLabel.isHidden = !imageExists
         
-        self.mainEncodeView.encodeMessageButton.isEnabled = imageExists
-        self.mainEncodeView.encodeMessageButton.alpha = imageExists ? 1 : 0.5
+        self.mainEncodeView.encodeButton.isEnabled = imageExists
+        self.mainEncodeView.encodeButton.alpha = imageExists ? 1 : 0.5
         
         let encryptionEnabled = PictographDataController.shared.userEncryptionIsEnabled
         self.mainEncodeView.encodeImageButton.isEnabled = imageExists && !encryptionEnabled
@@ -655,7 +655,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         //Setting the color of the keyboard
         self.mainEncodeView.encryptionKeyField.keyboardAppearance = nightMode ? .dark : .default
         
-        for button in [self.mainEncodeView.encodeMessageButton, self.mainEncodeView.encodeImageButton, self.mainEncodeView.decodeButton] {
+        for button in [self.mainEncodeView.encodeButton, self.mainEncodeView.encodeImageButton, self.mainEncodeView.decodeButton] {
             
             //Button background
             button.backgroundColor = nightMode ? mainAppColorNight : UIColor.white
