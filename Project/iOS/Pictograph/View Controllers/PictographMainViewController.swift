@@ -701,12 +701,19 @@ extension PictographMainViewController: UIImagePickerControllerDelegate {
 extension PictographMainViewController: HiddenImageViewDelegate, EncodeModalViewDelegate {
     
     func encode(message: String?, hiddenImage: UIImage?) {
-        //TODO: Tie this in
+        self.closeCurrentlyShowingModal() {
+            guard (message != nil && message! != "") || hiddenImage != nil else {
+                self.showMessageInAlertController("Error", message: "Need either a message or an image to encode", includeCopyButton: false)
+                return
+            }
+            
+            //TODO: Add action here
+        }
     }
     
     //Let the user share the image from the share sheet
     func showShareSheetFromHiddenImageView() {
-        self.closeModalViewFromModal() {
+        self.closeCurrentlyShowingModal() {
             guard let image = self.currentImage, let data = UIImagePNGRepresentation(image) else {
                 return
             }

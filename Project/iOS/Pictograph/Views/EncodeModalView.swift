@@ -130,7 +130,6 @@ class EncodeModalView: PictographModalView {
     }
     
     @objc func startEncodingTapped() {
-        //TODO: Set message
-        self.delegate?.encode(message: nil, hiddenImage: self.imageView.image)
+        self.delegate?.encode(message: self.messageTextField.text, hiddenImage: self.imageView.image)
     }
 }
