@@ -26,6 +26,12 @@ class HiddenImageView: PictographModalView {
         view.delegate = delegate
         view.imageView.image = image
         
+        if image == nil {
+            //Disable the button if image is nil
+            view.shareImageButton.isEnabled = false
+            view.shareImageButton.alpha = 0.5
+        }
+        
         if let message = message, message != "" {
             view.hiddenMessageLabel.text = message as String
             view.hiddenMessageLabel.textColor = .black
@@ -38,7 +44,7 @@ class HiddenImageView: PictographModalView {
     
     fileprivate lazy var titleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.text = "Hidden Image"
+        $0.text = "Hidden in Image"
         $0.font = UIFont.systemFont(ofSize: 24)
         return $0
     }(UILabel(frame: .zero))
@@ -72,7 +78,7 @@ class HiddenImageView: PictographModalView {
     
     fileprivate lazy var hiddenMessageLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.text = "No Message Hidden"
+        $0.text = noHiddenMessageString
         $0.textColor = .gray
         $0.font = UIFont.systemFont(ofSize: 16)
         return $0

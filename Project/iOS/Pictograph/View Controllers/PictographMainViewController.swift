@@ -15,8 +15,7 @@ import Photos
 import StoreKit
 
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate {
-    
-    //TODO: In encode image modal, need a way to copy the message as well. Disable button for sharing when there is no image
+    //TODO: macOS
     
     //UI elements
     private let mainEncodeView = MainEncodingView()
@@ -430,15 +429,6 @@ class PictographMainViewController: PictographViewController, UINavigationContro
                 let createdWindow = HiddenImageView.createInWindow(from: self, showing: hiddenImage, message: hiddenString)
                 self.currentlyShowingModal = createdWindow.view
                 self.currentlyShowingModalWindow = createdWindow.window
-                
-                //TODO: Get the ratings working
-//                //After alert controller is dismissed, prompt the user for ratings if they haven't been already for this version
-//                if #available(iOS 10.3, *), !PictographDataController.shared.hasUserBeenPromptedForRatings {
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                        SKStoreReviewController.requestReview()
-//                        PictographDataController.shared.setHasUserBeenPromptedForRatings()
-//                    }
-//                }
             }
         }
         
@@ -520,6 +510,15 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             UIView.animate(withDuration: modalPresentingAnimationDuration, animations: { [unowned self] in
                 self.currentlyShowingModalWindow?.alpha = 0
                 }, completion: { _ in
+                    if self.currentlyShowingModal is HiddenImageView {
+                        //After alert controller is dismissed, prompt the user for ratings if they haven't been already for this version
+                        if #available(iOS 10.3, *), !PictographDataController.shared.hasUserBeenPromptedForRatings {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                SKStoreReviewController.requestReview()
+                                PictographDataController.shared.setHasUserBeenPromptedForRatings()
+                            }
+                        }
+                    }
                     self.currentlyShowingModal = nil
                     self.currentlyShowingModalWindow = nil
                     completion?()

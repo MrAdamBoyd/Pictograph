@@ -15,7 +15,7 @@ protocol EncodeModalViewDelegate: class {
     func closeModalViewFromModal(_ completion: (() -> Void)?)
 }
 
-class EncodeModalView: PictographModalView {
+class EncodeModalView: PictographModalView, UITextFieldDelegate {
     
     /// Displays a new hidden image view in a new uiwindow
     ///
@@ -43,6 +43,7 @@ class EncodeModalView: PictographModalView {
     
     private lazy var messageTextField: PictographInsetTextField = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.delegate = self
         $0.placeholder = "Enter text here"
         $0.layer.borderColor = UIColor.gray.cgColor
         $0.layer.borderWidth = 1
@@ -87,9 +88,17 @@ class EncodeModalView: PictographModalView {
     
     // MARK: - Functions
     
+    //For ending editing when touched
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.endEditing(true)
+    }
+    
     /// Adds all subviews to self and sets up the constraints. Does not start animation
     override func setUpSubviewConstraints(for window: UIWindow) {
         super.setUpSubviewConstraints(for: window)
+        
+        self.messageTextField.returnKeyType = .done
         
         //Title label
         self.addSubview(self.titleLabel)
@@ -145,5 +154,12 @@ class EncodeModalView: PictographModalView {
     
     @objc func selectImageTapped() {
         self.delegate?.userWantsToSelectImageForEncoding(currentMessage: self.messageTextField.text)
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.endEditing(true)
+        return false
     }
 }

@@ -12,3 +12,5 @@ let pictographShowPasswordOnScreenSettingChangedNotification = "pictographShowPa
 let pictographNightModeSettingChangedNotification = "pictographNightModeSettingChangedNotification"
 
 let modalPresentingAnimationDuration: TimeInterval = (1/3)
+
+let noHiddenMessageString = "No Message Hidden"
