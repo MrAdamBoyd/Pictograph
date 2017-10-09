@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13122.17"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -437,6 +437,9 @@
                         <rect key="contentRect" x="196" y="240" width="269" height="285"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
                         <value key="minSize" type="size" width="269" height="285"/>
+                        <connections>
+                            <outlet property="delegate" destination="aRx-vW-JcS" id="ZzV-cp-bEF"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="R0B-uW-mG0" kind="relationship" relationship="window.shadowedContentViewController" id="KCh-xL-MCX"/>
@@ -455,7 +458,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KuA-vK-hhw">
-                                <rect key="frame" x="18" y="241" width="214" height="24"/>
+                                <rect key="frame" x="18" y="241" width="215" height="24"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="What is steganography?" id="IRN-j9-Nap">
                                     <font key="font" metaFont="system" size="20"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -472,7 +475,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IKW-nX-an6">
-                                <rect key="frame" x="18" y="102" width="97" height="24"/>
+                                <rect key="frame" x="18" y="102" width="98" height="24"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Encryption" id="knw-3i-H2a">
                                     <font key="font" metaFont="system" size="20"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -517,6 +520,9 @@
                         <rect key="contentRect" x="196" y="240" width="500" height="300"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="480" height="283"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="WLW-nc-y1b"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -557,7 +563,7 @@
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zgS-Ql-1pe">
                                 <rect key="frame" x="274" y="281" width="232" height="32"/>
-                                <buttonCell key="cell" type="push" title="Hide Message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="T6j-h8-ati">
+                                <buttonCell key="cell" type="push" title="Hide Message Or Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="T6j-h8-ati">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -566,7 +572,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-tX-xKW">
-                                <rect key="frame" x="274" y="209" width="232" height="32"/>
+                                <rect key="frame" x="274" y="245" width="232" height="32"/>
                                 <buttonCell key="cell" type="push" title="Show Message or Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OUq-F5-TgI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -586,9 +592,9 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uU4-Mw-8nA">
-                                <rect key="frame" x="280" y="67" width="220" height="141"/>
+                                <rect key="frame" x="280" y="56" width="220" height="188"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="141" id="b04-GU-g49"/>
+                                    <constraint firstAttribute="height" constant="188" id="b04-GU-g49"/>
                                 </constraints>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Message in Image" drawsBackground="YES" id="ZKb-r1-YE6">
                                     <font key="font" metaFont="system"/>
@@ -655,16 +661,6 @@
                                 </constraints>
                                 <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.19895594418960244" colorSpace="calibratedRGB"/>
                             </box>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a3q-8x-T2h">
-                                <rect key="frame" x="274" y="245" width="232" height="32"/>
-                                <buttonCell key="cell" type="push" title="Hide Image" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4aO-pJ-osv">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="hideImageAction:" target="XfG-lQ-9wD" id="qvf-0X-lMB"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="fUS-tX-xKW" firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" id="1Kt-Ro-or0"/>
@@ -672,7 +668,6 @@
                             <constraint firstItem="HuH-ct-1ed" firstAttribute="trailing" secondItem="1t2-zo-2lf" secondAttribute="trailing" id="8fp-JG-4zT"/>
                             <constraint firstItem="uU4-Mw-8nA" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="99V-pM-5aH"/>
                             <constraint firstAttribute="bottom" secondItem="swn-tU-RwG" secondAttribute="bottom" constant="50" id="ByR-dj-NyG"/>
-                            <constraint firstItem="a3q-8x-T2h" firstAttribute="trailing" secondItem="zgS-Ql-1pe" secondAttribute="trailing" id="Dpe-hA-Eju"/>
                             <constraint firstItem="3oF-LH-nVB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uU4-Mw-8nA" secondAttribute="bottom" constant="15" id="G99-NY-cem"/>
                             <constraint firstItem="4t1-Co-IAH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" constant="20" id="GBW-fp-R0z"/>
                             <constraint firstItem="OuD-HM-Cre" firstAttribute="top" secondItem="4t1-Co-IAH" secondAttribute="bottom" constant="15" id="Gp0-Nu-yBv"/>
@@ -686,23 +681,20 @@
                             <constraint firstItem="NME-yD-sNV" firstAttribute="trailing" secondItem="1t2-zo-2lf" secondAttribute="centerX" id="RPe-pW-tzd"/>
                             <constraint firstItem="NME-yD-sNV" firstAttribute="leading" secondItem="1t2-zo-2lf" secondAttribute="leading" constant="-3" id="UBh-eR-myO"/>
                             <constraint firstItem="HuH-ct-1ed" firstAttribute="top" secondItem="1t2-zo-2lf" secondAttribute="bottom" constant="21" id="YJ3-Ps-NqN"/>
-                            <constraint firstItem="a3q-8x-T2h" firstAttribute="leading" secondItem="zgS-Ql-1pe" secondAttribute="leading" id="ZMJ-fg-Ouc"/>
                             <constraint firstItem="uU4-Mw-8nA" firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" id="ecO-Kc-vTn"/>
                             <constraint firstAttribute="centerX" secondItem="swn-tU-RwG" secondAttribute="trailing" constant="20" id="fwp-5O-6wM"/>
                             <constraint firstItem="fUS-tX-xKW" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="gQb-P2-3X0"/>
                             <constraint firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" constant="20" id="jM6-4v-Dxk"/>
-                            <constraint firstItem="fUS-tX-xKW" firstAttribute="top" secondItem="a3q-8x-T2h" secondAttribute="bottom" constant="15" id="mPk-xf-Ogy"/>
                             <constraint firstItem="zgS-Ql-1pe" firstAttribute="trailing" secondItem="OuD-HM-Cre" secondAttribute="trailing" id="mU6-1J-TzU"/>
                             <constraint firstItem="OuD-HM-Cre" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="mdj-rL-1sD"/>
                             <constraint firstItem="NME-yD-sNV" firstAttribute="top" secondItem="1t2-zo-2lf" secondAttribute="bottom" constant="21" id="qG6-V9-JjA"/>
-                            <constraint firstItem="a3q-8x-T2h" firstAttribute="top" secondItem="zgS-Ql-1pe" secondAttribute="bottom" constant="15" id="tlr-bG-5IV"/>
+                            <constraint firstItem="fUS-tX-xKW" firstAttribute="top" secondItem="zgS-Ql-1pe" secondAttribute="bottom" constant="15" id="rrd-ek-3Ki"/>
                             <constraint firstItem="zgS-Ql-1pe" firstAttribute="leading" secondItem="4t1-Co-IAH" secondAttribute="leading" id="uWv-MD-7aD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="dragAndDropView" destination="RnT-py-0oh" id="yeW-8H-a2r"/>
                         <outlet property="encryptionCheckbox" destination="4t1-Co-IAH" id="o76-f6-ek4"/>
-                        <outlet property="hideImageButton" destination="a3q-8x-T2h" id="LBS-qx-Xbl"/>
                         <outlet property="hideMessageButton" destination="zgS-Ql-1pe" id="5lH-vy-0PV"/>
                         <outlet property="imageSelectLabel" destination="XKl-S6-Bh5" id="p02-6T-pyO"/>
                         <outlet property="mainImageView" destination="1t2-zo-2lf" id="Dj3-1A-T1x"/>
@@ -729,6 +721,9 @@
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
                         <value key="minSize" type="size" width="250" height="270"/>
                         <value key="maxSize" type="size" width="250" height="270"/>
+                        <connections>
+                            <outlet property="delegate" destination="PKX-xy-tay" id="yfG-D2-rcX"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="ee8-IU-RUT" kind="relationship" relationship="window.shadowedContentViewController" id="LhX-nB-YpT"/>

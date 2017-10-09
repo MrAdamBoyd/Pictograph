@@ -15,7 +15,6 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     @IBOutlet weak var passwordTextfield: NSTextField!
     
     @IBOutlet weak var hideMessageButton: NSButton!
-    @IBOutlet weak var hideImageButton: NSButton!
     @IBOutlet weak var showMessageButton: NSButton!
     @IBOutlet weak var messageTextField: NSTextField!
     
@@ -57,13 +56,10 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     
         let imageValid = self.mainImageView.image != nil
         
-        let hideMessageValid = !self.messageTextField.stringValue.isEmpty
-        
         self.imageSelectLabel.isHidden = imageValid
         self.saveImageButton.isEnabled = imageValid
         self.showMessageButton.isEnabled = encryptionValid && imageValid
-        self.hideImageButton.isEnabled = encryptionValid && imageValid
-        self.hideMessageButton.isEnabled = encryptionValid && imageValid && hideMessageValid
+        self.hideMessageButton.isEnabled = encryptionValid && imageValid
     }
     
     // MARK: - User actions
@@ -89,49 +85,22 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     }
     
     @IBAction func hideMessageAction(_ sender: Any) {
-        print("User wants to hide message")
-        
-        var alert: NSAlert?
-        
-        let coder = PictographImageCoder(delegate: self)
-        let providedPassword = self.encryptionCheckbox.state == .on ? self.passwordTextfield.stringValue : ""
-        let message = self.messageTextField.stringValue
-        let image = self.mainImageView.image!
-        
-        self.performWorkOnEncodingQueue() {
-            do {
-                //Provide no password if encryption/decryption is off
-                
-                let encodedImageData = try coder.encode(message: message, in: image, encryptedWithPassword: providedPassword)
-                let encodedImage = NSImage(data: encodedImageData)
-                
-                self.encodingWorkFinished(on: coder, for: encodedImage, imageData: encodedImageData, showingAlert: alert, messageToUser: "Image Encoded with Message")
-            
-            } catch let error {
-                
-                //Catch the error
-                self.showError(error)
-            }
-        }
-        
-        alert = self.showEncodingAlert(for: coder)
-    }
-    
-    @IBAction func hideImageAction(_ sender: Any) {
-        print("User wants to hide image")
+        print("User wants to hide image or message")
         
         self.letUserChooseImage() { [unowned self] imageToHide in
             DispatchQueue.main.async {
                 var alert: NSAlert?
                 
                 let coder = PictographImageCoder(delegate: self)
+                let providedPassword = self.encryptionCheckbox.state == .on ? self.passwordTextfield.stringValue : ""
+                let message = self.messageTextField.stringValue
                 let image = self.mainImageView.image!
                 
                 self.performWorkOnEncodingQueue() {
                     do {
                         //Provide no password if encryption/decryption is off
                         
-                        let encodedImageData = try coder.encode(image: imageToHide, in: image, shrinkImageMore: false)
+                        let encodedImageData = try coder.encode(message: message, hiddenImage: imageToHide, shrinkImageMore: false, in: image, encryptedWithPassword: providedPassword)
                         let encodedImage = NSImage(data: encodedImageData)
                         
                         self.encodingWorkFinished(on: coder, for: encodedImage, imageData: encodedImageData, showingAlert: alert, messageToUser: "Image Encoded with Image")
@@ -171,16 +140,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
             return
         }
         
-        if let decodedMessage = hiddenString {
-            
-            self.messageTextField.stringValue = decodedMessage as String
-            self.showDecodedMessage(decodedMessage as String)
-            
-        } else if let decodedImage = hiddenImage {
-            
-            self.showEncodedImage(decodedImage.dataRepresentation(), message: "Hidden Image")
-            
-        }
+        self.showSaveImagePrompt(for: hiddenImage?.dataRepresentation(), message: hiddenString as String?, topText: "Hidden in Image")
     }
     
     @IBAction func helpButtonAction(_ sender: Any) {
@@ -192,10 +152,29 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     
     // MARK: - Helper funcs
     
+    /// Asks the user, in an NSAlert, if they want to hide an image
+    ///
+    /// - Parameter completion: image that the user chose
+    private func letUserChooseImage(_ completion: @escaping (NSImage?) -> Void) {
+        /// Alert that lets the user know the message is encoding
+        let alert = NSAlert()
+        alert.messageText = "Want to hide an image?"
+        alert.addButton(withTitle: "No")
+        
+        //Show the loading modal
+        alert.beginSheetModal(for: self.view.window!) { response in
+            if response == NSApplication.ModalResponse.alertFirstButtonReturn {
+                self.showFileChoosePanel(completion)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    
     /// Opens up a panel that lets the user choose an image from the filesystem
     ///
     /// - Parameter completion: image that the user chose
-    private func letUserChooseImage(_ completion: @escaping (NSImage) -> Void) {
+    private func showFileChoosePanel(_ completion: @escaping (NSImage?) -> Void) {
         guard !self.imageSelectPanelOpen else { return }
         
         self.imageSelectPanelOpen = true
@@ -275,7 +254,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
                 //Then wait 1 second before showing the user that the message is done encoding
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     //Alert the user
-                    self.showEncodedImage(imageData, message: messageToUser)
+                    self.showSaveImagePrompt(for: imageData, message: messageToUser, topText: "Encoded Image")
                 }
             }
         }
@@ -302,16 +281,25 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     /// Alert user that message has been encoded in the image
     ///
     /// - Parameter image: image that the message has been encoded in
-    /// - Parameter message: message shown at the top of the alert
-    func showEncodedImage(_ image: Data?, message: String) {
+    /// - Parameter message: informative text shown at the top of the alert
+    /// - Parameter topText: main text shown at the top of the alert
+    func showSaveImagePrompt(for image: Data?, message: String?, topText: String) {
         let alert = NSAlert()
-        alert.messageText = message
-        alert.informativeText = "Click \"Save Image\" to save the image to disk."
-        alert.alertStyle = .informational
+        var informativeTextToShow = "No Hidden Message"
+        if let message = message, message != "" {
+            informativeTextToShow = message
+        }
+        alert.messageText = topText
         alert.addButton(withTitle: "OK")
-        alert.addButton(withTitle: "Save Image")
+        alert.alertStyle = .informational
+        alert.informativeText = informativeTextToShow
+        
+        if image != nil {
+            alert.messageText.append(": Click \"Save Image\" to save the image to disk.")
+            alert.addButton(withTitle: "Save Image")
+        }
         alert.beginSheetModal(for: self.view.window!) { [unowned self] response in
-            if response != NSApplication.ModalResponse.alertFirstButtonReturn {
+            if response != NSApplication.ModalResponse.alertFirstButtonReturn && image != nil {
                 //First button is the rightmost button. The OK button in this case.
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -323,22 +311,6 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         
         if !NSApplication.shared.isActive {
             self.showNotificationWith(message: "Message Encoded", informativeText: nil)
-        }
-    }
-    
-    /// Informs the user that the message has been decoded from the image succesfully. If application isn't active, also sends NSUserNotification
-    ///
-    /// - Parameter message: decoded message
-    func showDecodedMessage(_ message: String) {
-        let alert = NSAlert()
-        alert.messageText = "Message Decoded"
-        alert.informativeText = message
-        alert.alertStyle = .informational
-        alert.addButton(withTitle: "OK")
-        alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
-        
-        if !NSApplication.shared.isActive {
-            self.showNotificationWith(message: "Message Decoded", informativeText: message)
         }
     }
     

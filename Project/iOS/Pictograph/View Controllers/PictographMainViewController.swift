@@ -15,7 +15,7 @@ import Photos
 import StoreKit
 
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate {
-    //TODO: macOS
+    //TODO: Incorrect offsets for encoding? Need to include the bits for settings and space?
     
     //UI elements
     private let mainEncodeView = MainEncodingView()

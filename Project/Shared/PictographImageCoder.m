@@ -314,6 +314,14 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     } else if (messageData) {
         //No need to encrypt
         messageDataToEncode = messageData;
+    } else if (encryptedBool) {
+        DLog(@"Encryption is enabled but no password provided");
+        
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"A password was used but no message was sent. A message is needed if encryption is enabled."};
+        
+        *error = [NSError errorWithDomain:PictographErrorDomain code:NoPasswordProvidedError userInfo:userInfo];
+        
+        return nil;
     }
     
     /* Note: the actual number of pixels needed is higher than this
@@ -655,7 +663,7 @@ UIImages taken with the iPhone camera have an orientation of right even though t
  @param messageData message data if any is being encoded
  @param imageData image data if any is being encoded
  @param isEncrypted if message should be encrypted
- @return
+ @return correct settings bit
  */
 - (int)determineSettingsBitsForMessageData:(NSData * _Nullable)messageData imageData:(NSData * _Nullable)imageData isEncrypted:(BOOL)isEncrypted {
     int bit = -1;
