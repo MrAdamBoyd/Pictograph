@@ -27,6 +27,16 @@
 
 #define extraImageShrinkingFactor 2 //Would make image 2x smaller for both height and width (4x less pixels)
 
+typedef NS_ENUM(NSInteger, PictographEncodingOptions)
+{
+    PictographEncodingOptionsNone = -1,
+    PictographEncodingOptionsUnencryptedMessage,
+    PictographEncodingOptionsEncryptedMessage,
+    PictographEncodingOptionsUnencryptedImage,
+    PictographEncodingOptionsUnencryptedMessageWithImage,
+    PictographEncodingOptionsEncryptedMessageWithImage
+};
+
 @implementation PictographImageCoder
 
 @synthesize isCancelled;
