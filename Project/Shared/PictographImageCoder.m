@@ -55,20 +55,23 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
 //Decodes a string from an image. Returns nil if there is no message in the image or if there was an error
 - (void)decodeImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password hiddenStringPointer:(NSString * _Nullable * _Nullable)hiddenString hiddenImagePointer:(PictographImage * _Nullable * _Nullable)hiddenImage error:(NSError * _Nullable * _Nullable)error {
     
-    BOOL dataIsImage;
-    NSData *dataFromImage = [self decodeDataInImage:image encryptedWithPassword:password dataIsImage:&dataIsImage error:error];
+    NSData *hiddenMessageData;
+    NSData *hiddenImageData;
+    [self decodeDataInImage:image encryptedWithPassword:password hiddenMessageData:&hiddenMessageData hiddenImageData:&hiddenImageData error:error];
     
-    if (dataIsImage) {
-        *hiddenImage = [[PictographImage alloc] initWithData:dataFromImage];
-    } else {
+    if (hiddenMessageData) {
         //In addition to converting the string back to a readable version, this converts any unicode scalars back to readable format (like emoji)
-        *hiddenString = [[NSString alloc] initWithData:dataFromImage encoding:NSNonLossyASCIIStringEncoding];
+        *hiddenString = [[NSString alloc] initWithData:hiddenMessageData encoding:NSNonLossyASCIIStringEncoding];
+    }
+    
+    if (hiddenImageData) {
+        *hiddenImage = [[PictographImage alloc] initWithData:hiddenImageData];
     }
 }
 
 //Decodes UIImage image. Returns the encoded data in the image
 //Password handler has no parameters and returns an NSString *
-- (NSData * _Nullable)decodeDataInImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password dataIsImage:(BOOL *)dataIsImage error:(NSError * _Nullable * _Nullable)error {
+- (void)decodeDataInImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password hiddenMessageData:(NSData *_Nullable*_Nullable)hiddenMessageData hiddenImageData:(NSData *_Nullable*_Nullable)hiddenImageData error:(NSError * _Nullable * _Nullable)error {
     
     DLog("Decoding image with password %@", password);
     
@@ -83,80 +86,121 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     
     free(first8PixelsBlueComponents);
     
-    const long informationAboutString = [self longFromBits:infoArrayInBits];
+    const long settingsBits = [self longFromBits:infoArrayInBits];
     
-    BOOL dataIsEncrypted = NO;
-    *dataIsImage = NO;
+    BOOL messageIsEncrypted = NO;
     
     /*
      NOTE: See function definiton for determineSettingsBitsForMessageData to see how this works
      */
-    switch (informationAboutString) {
-        case 0:
-            dataIsEncrypted = NO;
+    switch (settingsBits) {
+        case PictographEncodingOptionsUnencryptedMessage:
+            messageIsEncrypted = NO;
             break;
             
-        case 1:
-            dataIsEncrypted = YES;
+        case PictographEncodingOptionsEncryptedMessage:
+            messageIsEncrypted = YES;
             
             if ([password isEqualToString:@""]) {
                 //The message is encrypted and the user has no password entered, alert user
                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"The image you provided is encrypted and you didn't provide a password. Please enter the password."};
                 *error = [NSError errorWithDomain:PictographErrorDomain code:NoPasswordProvidedError userInfo:userInfo];
-                return nil;
+                return;
             }
             
             break;
             
-        case 2:
-            *dataIsImage = YES;
+        case PictographEncodingOptionsUnencryptedImage:
+            break;
+            
+        case PictographEncodingOptionsUnencryptedMessageWithImage:
+            break;
+            
+        case PictographEncodingOptionsEncryptedMessageWithImage:
+            messageIsEncrypted = YES;
+            
+            if ([password isEqualToString:@""]) {
+                //The message is encrypted and the user has no password entered, alert user
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"The image you provided is encrypted and you didn't provide a password. Please enter the password."};
+                *error = [NSError errorWithDomain:PictographErrorDomain code:NoPasswordProvidedError userInfo:userInfo];
+                return;
+            }
+            
             break;
             
         default: {
             //If there was an error, alert the user
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"The image you provided does not contain a hidden message."};
             *error = [NSError errorWithDomain:PictographErrorDomain code:NoMessageInImageError userInfo:userInfo];
-            return nil;
+            return;
         }
     }
     
     //Sending the analytics
-    [[PictographDataController shared] analyticsDecodeSend:dataIsEncrypted];
+    [[PictographDataController shared] analyticsDecodeSend:messageIsEncrypted];
     
     //Message is not encrypted, send with blank password
-    return [self dataFromImage:image needsPassword:dataIsEncrypted password:password error:error];
+    [self dataFromImage:image needsPassword:messageIsEncrypted password:password hiddenMessageData:hiddenMessageData hiddenImageData:hiddenImageData error:error];
 }
 
 //Returns the message from the image given an optional password
-- (NSData *)dataFromImage:(PictographImage *)image needsPassword:(BOOL)isEncrypted password:(NSString *)password error:(NSError **)error {
+- (void)dataFromImage:(PictographImage *)image needsPassword:(BOOL)isEncrypted password:(NSString *)password hiddenMessageData:(NSData *_Nullable*_Nullable)hiddenMessageData hiddenImageData:(NSData *_Nullable*_Nullable)hiddenImageData error:(NSError *_Nullable*_Nullable)error {
     
-    NSMutableArray *sizeArrayInBits = [[NSMutableArray alloc] init];
     
     //Getting the size of the string
-    unsigned char *blueComponentsContainingSizeOfImage = [self getBlueComponentsFromImage:image atX:[self pixelCountForBit:bitCountForInfo] andY:0 count:[self pixelCountForBit:bitCountForHiddenDataSize]];
+    NSMutableArray *messageSizeArrayInBits = [[NSMutableArray alloc] init];
+    unsigned char *blueComponentsContainingSizeOfMessage = [self getBlueComponentsFromImage:image atX:[self pixelCountForBit:bitCountForInfo] andY:0 count:[self pixelCountForBit:bitCountForHiddenDataSize]];
     
     for (int i = 0; i < [self pixelCountForBit:bitCountForHiddenDataSize]; i++) {
         //Going through each color that contains the size of the message
-        [self addLastBitsFromBlueComponent:blueComponentsContainingSizeOfImage[i] toArray:sizeArrayInBits];
+        [self addLastBitsFromBlueComponent:blueComponentsContainingSizeOfMessage[i] toArray:messageSizeArrayInBits];
+    }
+    
+    free(blueComponentsContainingSizeOfMessage);
+    long numberOfBitsNeededForMessage = [self longFromBits:messageSizeArrayInBits];
+    
+    //Getting the size of any hidden image
+    NSMutableArray *imageSizeArrayInBits = [[NSMutableArray alloc] init];
+    unsigned char *blueComponentsContainingSizeOfImage = [self getBlueComponentsFromImage:image atX:[self pixelCountForBit:bitCountForInfo + bitCountForHiddenDataSize] andY:0 count:[self pixelCountForBit:bitCountForHiddenDataSize]];
+    
+    for (int i = 0; i < [self pixelCountForBit:bitCountForHiddenDataSize]; i++) {
+        //Going through each color that contains the size of the message
+        [self addLastBitsFromBlueComponent:blueComponentsContainingSizeOfImage[i] toArray:imageSizeArrayInBits];
     }
     
     free(blueComponentsContainingSizeOfImage);
-    long numberOfBitsNeededForImage = [self longFromBits:sizeArrayInBits];
+    long numberOfBitsNeededForImage = [self longFromBits:imageSizeArrayInBits];
+    //TODO: Also, getDataFromPixelsAtX doesn't work. X and Y coordinates not needed? Pass in bit count
+    
+    if (numberOfBitsNeededForMessage > 0) {
+        *hiddenMessageData = [self getDataFromPixlesWithBitCountOffset:0 fromImage:image numberOfBitsToGet:numberOfBitsNeededForMessage totalBitsForLogging:(numberOfBitsNeededForMessage + numberOfBitsNeededForImage) isEncrypted:isEncrypted withPassword:password isMessage:YES error:error];
+    }
+    
+    if (numberOfBitsNeededForImage > 0 && !*error && ![self isCancelled]) {
+        *hiddenImageData = [self getDataFromPixlesWithBitCountOffset:numberOfBitsNeededForMessage fromImage:image numberOfBitsToGet:numberOfBitsNeededForImage totalBitsForLogging:(numberOfBitsNeededForMessage + numberOfBitsNeededForImage) isEncrypted:isEncrypted withPassword:password isMessage:NO error:error];
+    }
+    
+    //Sending the analytics
+    [[PictographDataController shared] analyticsDecodeSend:isEncrypted];
+
+}
+
+//This goes through a range of pixels and transforms the last two bits from each blue value into a usable NSData reference. Makes the delegate call for logging
+-(NSData *_Nullable)getDataFromPixlesWithBitCountOffset:(long)bitCountOffset fromImage:(PictographImage *_Nonnull)image numberOfBitsToGet:(long)numberOfBitsToGet totalBitsForLogging:(long)totalBitCount isEncrypted:(BOOL)isEncrypted withPassword:(NSString *_Nonnull)password isMessage:(BOOL)isMessage error:(NSError * _Nullable * _Nullable)error {
     
     //Going through all the pixels to get the char value
-    
     NSMutableArray *arrayOfBitsForMessage = [[NSMutableArray alloc] init];
     NSMutableData *dataFromImage = [[NSMutableData alloc] init];
     NSData *toReturn;
     
-    int firstPixelWithHiddenData = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize)];
-    unsigned char *arrayOfBlueComponents = [self getBlueComponentsFromImage:image atX:firstPixelWithHiddenData andY:0 count:[self pixelCountForBit:(int)numberOfBitsNeededForImage]];
+    int firstPixelWithHiddenData = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize + bitCountForHiddenDataSize + (int)bitCountOffset)];
+    unsigned char *arrayOfBlueComponents = [self getBlueComponentsFromImage:image atX:firstPixelWithHiddenData andY:0 count:[self pixelCountForBit:(int)numberOfBitsToGet]];
     
-    int pixelCount = [self pixelCountForBit:(int)numberOfBitsNeededForImage];
-    
+    int pixelCount = [self pixelCountForBit:(int)totalBitCount];
+    int startingPixelCount = [self pixelCountForBit:(int)bitCountOffset];
     int oneHundredthStep = fmax(pixelCount / 100, 1); //To determine percentage
     
-    for (int i = 0; i < [self pixelCountForBit:(int)numberOfBitsNeededForImage]; i++) {
+    for (int i = 0; i < [self pixelCountForBit:(int)numberOfBitsToGet]; i++) {
         if ([self isCancelled]) {
             //Break out of loop
             break;
@@ -169,7 +213,7 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
         DLog(@"Reading pixel value at index %i", i);
         
         if (i % oneHundredthStep == 0 && self.delegate != nil) {
-            float percentDone = i / (float)(pixelCount);
+            float percentDone = (i + startingPixelCount) / (float)(pixelCount);
             [[self delegate] pictographImageCoderDidUpdateProgress:percentDone];
         }
         
@@ -188,7 +232,7 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     
     free(arrayOfBlueComponents);
     
-    if (isEncrypted) {
+    if (isEncrypted && isMessage) {
         //If message is encrypted, decrypt it and save it
         NSError *decryptError = nil;
         toReturn = [RNDecryptor decryptData:dataFromImage withPassword:password error:&decryptError];
@@ -203,11 +247,7 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
         toReturn = dataFromImage;
     }
     
-    //Sending the analytics
-    [[PictographDataController shared] analyticsDecodeSend:isEncrypted];
-    
     return toReturn;
-
 }
 
 //Adds the last 2 bits of the blue value from PictographColor color to the NSMutableArray array
