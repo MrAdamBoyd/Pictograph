@@ -78,14 +78,8 @@
     BOOL dataIsEncrypted = NO;
     *dataIsImage = NO;
     
-    //Using 16 bits for future proofing
-    //Only using 2 bits right now
     /*
-     (0) 00000000 00000000 - Normal message, proceed as normal
-     (1) 00000000 00000001 - Encrypted message
-     (2) 00000000 00000010 - Normal image, proceed as normal
-     (3) 00000000 00000011 - Normal message, also hidden image
-     (4) 00000000 00000100 - Encrypted message, also hidden image
+     NOTE: See function definiton for determineSettingsBitsForMessageData to see how this works
      */
     switch (informationAboutString) {
         case 0:
@@ -235,7 +229,7 @@
         #endif
         
         const CGSize originalSize = CGSizeMake([hiddenImage getReconciledImageWidth], [hiddenImage getReconciledImageHeight]);
-        CGSize newSize = [self determineSizeForHidingImage:hiddenImage withinImage:image shrinkImageMore:shrinkImageMore];
+        const CGSize newSize = [self determineSizeForHidingImage:hiddenImage withinImage:image shrinkImageMore:shrinkImageMore];
         
         PictographImage *imageToHide = hiddenImage;
         
@@ -258,24 +252,35 @@
 //Encodes UIImage image with the data. Returns modified UIImage or NSImage
 - (NSData * _Nullable)encodeMessageData:(NSData * _Nonnull)messageData imageData:(NSData * _Nullable)imageData inImage:(PictographImage * _Nonnull)image encryptedWithPassword:(NSString * _Nonnull)password error:(NSError * _Nullable * _Nullable)error {
     
-    NSData *dataToEncode;
+    NSData *messageDataToEncode;
     
     BOOL encryptedBool = ![password isEqualToString:@""];
     
-    if (encryptedBool) {
+    if (encryptedBool && messageData) {
         //If the user wants to encrypt the string, encrypt it
         NSError *error;
-        dataToEncode = [RNEncryptor encryptData:messageData withSettings:kRNCryptorAES256Settings password:password error:&error];
+        messageDataToEncode = [RNEncryptor encryptData:messageData withSettings:kRNCryptorAES256Settings password:password error:&error];
         
-    } else {
-        //No need to encode
-        dataToEncode = messageData;
+    } else if (messageData) {
+        //No need to encrypt
+        messageDataToEncode = messageData;
     }
     
-    /* Note: the actual number of pixels needed is higher than this because the length of the string needs to be
-     stored, but this isn't included in the calculations */
-    long bitsNeededForData = [dataToEncode length] * bitCountForCharacter; //8 bits to a char
-    long numberOfPixelsNeeded = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize + (int)bitsNeededForData)];
+    /* Note: the actual number of pixels needed is higher than this
+     because the length of the string and/or image needs to be stored,
+     but this isn't included in the calculations */
+    long bitsNeededForMessageData = 0;
+    if (messageDataToEncode) {
+        bitsNeededForMessageData = [messageDataToEncode length] * bitCountForCharacter;
+    }
+    
+    long bitsNeededForImageData = 0;
+    if (imageData) {
+        bitsNeededForImageData = [imageData length];
+    }
+    
+    long bitsNeededForAllData = bitsNeededForMessageData + bitsNeededForImageData;
+    long numberOfPixelsNeeded = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize + (int)bitsNeededForAllData)];
     
     if (([image getReconciledImageHeight] * [image getReconciledImageWidth]) <= numberOfPixelsNeeded) {
         //Makes sure the image is large enough to handle the message
@@ -292,30 +297,29 @@
      giving a maximum size of 2^16 bits, or 65536 chars. Preceded by 8 bits of information regarding message */
     NSMutableArray *arrayOfBits = [[NSMutableArray alloc] init];
     
-    //Using 16 bits for future proofing
-    //Only using 1 bit right now
     /*
-     (0) 00000000 00000000 - Normal message, proceed as normal
-     (1) 00000000 00000001 - Encrypted message
-     (2) 00000000 00000010 - Normal image, proceed as normal
-     (3) 00000000 00000011 - Normal message, also hidden image
-     (4) 00000000 00000100 - Encrypted message, also hidden image
+     NOTE: See function definiton for determineSettingsBitsForMessageData to see how this works
      */
+    int settingsBit = [self determineSettingsBitsForMessageData:messageDataToEncode imageData:imageData isEncrypted:encryptedBool];
     
-    int encryptedOrNotBit = encryptedBool ? 1 : 0;
-    encryptedOrNotBit += imageData ? 2 : 0;
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:settingsBit withSpaceFor:bitCountForInfo]]; //16 bits for future proofing
     
-    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:encryptedOrNotBit withSpaceFor:bitCountForInfo]]; //16 bits for future proofing
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)bitsNeededForMessageData withSpaceFor:bitCountForHiddenDataSize]]; //64 bits for message size
     
-    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)bitsNeededForData withSpaceFor:bitCountForHiddenDataSize]]; //64 bits for size
+    [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)bitsNeededForImageData withSpaceFor:bitCountForHiddenDataSize]]; //64 bits for image size
     
-    const char *bytes = [dataToEncode bytes];
-    for (int charIndex = 0; charIndex < [dataToEncode length]; charIndex++) {
-        //Going through each character
-        
-        char curChar = bytes[charIndex];
-        [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:curChar withSpaceFor:bitCountForCharacter]]; //Only 8 bits needed for chars
-        
+    //Going through the data and adding the bits that need to be encoded
+    for (NSData *_Nullable data in @[messageDataToEncode, imageData]) {
+        if (data) {
+            const char *bytes = [data bytes];
+            for (int charIndex = 0; charIndex < [data length]; charIndex++) {
+                //Going through each character
+                
+                char curChar = bytes[charIndex];
+                [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:curChar withSpaceFor:bitCountForCharacter]]; //Only 8 bits needed for chars
+                
+            }
+        }
     }
     
     return [self saveImageToGraphicsContextAndEncodeBitsInImage:image arrayOfBits:arrayOfBits];
@@ -481,7 +485,7 @@ UIImages taken with the iPhone camera have an orientation of right even though t
     NSUInteger bitsNeededToEncodeEntireImage = bitsNeededPerPixel * imageSize.width * imageSize.height;
     
     //16 bits for info about image, 64 bits for number of bits needed
-    NSUInteger totalBitsToEncode = bitCountForInfo + bitCountForHiddenDataSize + bitsNeededToEncodeEntireImage;
+    NSUInteger totalBitsToEncode = bitCountForInfo + bitCountForHiddenDataSize + bitCountForHiddenDataSize + bitsNeededToEncodeEntireImage;
     
     return totalBitsToEncode / bitsChangedPerPixel;
 }
@@ -579,6 +583,40 @@ UIImages taken with the iPhone camera have an orientation of right even though t
     CGContextRelease(context);
     
     return rawData;
+}
+
+#pragma mark Settings bits
+
+/**
+ Pictograph uses a 16 bit settings number to determine how to encrypt/decrypt a message
+ 
+ (0) 00000000 00000000 - Unencrypted message
+ (1) 00000000 00000001 - Encrypted message
+ (2) 00000000 00000010 - Unencrypted image
+ (3) 00000000 00000011 - Unencrypted message with hidden image
+ (4) 00000000 00000100 - Encrypted message with hidden image
+ 
+ @param messageData message data if any is being encoded
+ @param imageData image data if any is being encoded
+ @param isEncrypted if message should be encrypted
+ @return
+ */
+- (int)determineSettingsBitsForMessageData:(NSData * _Nullable)messageData imageData:(NSData * _Nullable)imageData isEncrypted:(BOOL)isEncrypted {
+    int bit = -1;
+    
+    if (messageData) {
+        bit++;
+        
+        if (isEncrypted) {
+            bit++;
+        }
+    }
+    
+    if (imageData) {
+        bit += 3;
+    }
+    
+    return bit;
 }
 
 #pragma mark Dealing with bits
