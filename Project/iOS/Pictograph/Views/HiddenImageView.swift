@@ -20,11 +20,17 @@ class HiddenImageView: PictographModalView {
     ///
     /// - Parameter delegate: delegate for any actions
     /// - Returns: the window (which needs to be retained), and the view
-    static func createInWindow(from delegate: HiddenImageViewDelegate?, showing image: UIImage) -> (window: UIWindow, view: HiddenImageView) {
+    static func createInWindow(from delegate: HiddenImageViewDelegate?, showing image: UIImage?, message: NSString?) -> (window: UIWindow, view: HiddenImageView) {
         
         let view = HiddenImageView(frame: .zero)
         view.delegate = delegate
         view.imageView.image = image
+        
+        if let message = message, message != "" {
+            view.hiddenMessageLabel.text = message as String
+            view.hiddenMessageLabel.textColor = .black
+        }
+        
         return PictographModalView.createViewInWindow(viewToShow: view)
     }
     
@@ -57,6 +63,21 @@ class HiddenImageView: PictographModalView {
         return $0
     }(UIImageView(frame: .zero))
     
+    fileprivate lazy var noHiddenImageLabel: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "No Hidden Image"
+        $0.font = UIFont.systemFont(ofSize: 16)
+        return $0
+    }(UILabel(frame: .zero))
+    
+    fileprivate lazy var hiddenMessageLabel: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.text = "No Message Hidden"
+        $0.textColor = .gray
+        $0.font = UIFont.systemFont(ofSize: 16)
+        return $0
+    }(UILabel(frame: .zero))
+    
     // MARK: - Properties
     
     weak var delegate: HiddenImageViewDelegate?
@@ -84,9 +105,19 @@ class HiddenImageView: PictographModalView {
             self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 2/3).isActive = true
         }
         
+        //No hidden image label
+        self.insertSubview(self.noHiddenImageLabel, belowSubview: self.imageView)
+        self.noHiddenImageLabel.centerXAnchor.constraint(equalTo: self.imageView.centerXAnchor).isActive = true
+        self.noHiddenImageLabel.centerYAnchor.constraint(equalTo: self.imageView.centerYAnchor).isActive = true
+        
+        self.addSubview(self.hiddenMessageLabel)
+        self.hiddenMessageLabel.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20).isActive = true
+        self.hiddenMessageLabel.leadingAnchor.constraint(equalTo: self.imageView.leadingAnchor).isActive = true
+        self.hiddenMessageLabel.trailingAnchor.constraint(equalTo: self.imageView.trailingAnchor).isActive = true
+        
         //Close button
         self.addSubview(self.closeViewButton)
-        self.closeViewButton.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20).isActive = true
+        self.closeViewButton.topAnchor.constraint(equalTo: self.hiddenMessageLabel.bottomAnchor, constant: 20).isActive = true
         self.closeViewButton.leadingAnchor.constraint(equalTo: self.imageView.leadingAnchor).isActive = true
         self.closeViewButton.trailingAnchor.constraint(equalTo: self.popupView.centerXAnchor, constant: -10).isActive = true
         self.closeViewButton.bottomAnchor.constraint(equalTo: self.popupView.bottomAnchor, constant: -20).isActive = true
@@ -94,7 +125,7 @@ class HiddenImageView: PictographModalView {
         
         //Share Image button
         self.addSubview(self.shareImageButton)
-        self.shareImageButton.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20).isActive = true
+        self.shareImageButton.topAnchor.constraint(equalTo: self.hiddenMessageLabel.bottomAnchor, constant: 20).isActive = true
         self.shareImageButton.leadingAnchor.constraint(equalTo: self.popupView.centerXAnchor, constant: 10).isActive = true
         self.shareImageButton.trailingAnchor.constraint(equalTo: self.imageView.trailingAnchor).isActive = true
         self.shareImageButton.addTarget(self, action: #selector(self.shareSheetTapped), for: .touchUpInside)

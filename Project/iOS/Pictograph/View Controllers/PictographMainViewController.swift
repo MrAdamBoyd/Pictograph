@@ -424,26 +424,19 @@ class PictographMainViewController: PictographViewController, UINavigationContro
             
             self.workFinished { [unowned self] in
                 
-                if let decodedMessage = hiddenString {
-                    //Show the message if it was successfully decoded
-                    self.showMessageInAlertController("Hidden Message", message: decodedMessage as String, includeCopyButton: true) { _ in
-                        
-                        //After alert controller is dismissed, prompt the user for ratings if they haven't been already for this version
-                        if #available(iOS 10.3, *), !PictographDataController.shared.hasUserBeenPromptedForRatings {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                SKStoreReviewController.requestReview()
-                                PictographDataController.shared.setHasUserBeenPromptedForRatings()
-                            }
-                        }
-                        
-                    }
-                } else if let decodedImage = hiddenImage {
-                    
-                    //Present a custom sheet for the image
-                    let createdWindow = HiddenImageView.createInWindow(from: self, showing: decodedImage)
-                    self.currentlyShowingModal = createdWindow.view
-                    self.currentlyShowingModalWindow = createdWindow.window
-                }
+                //Present a custom sheet for the image
+                let createdWindow = HiddenImageView.createInWindow(from: self, showing: hiddenImage, message: hiddenString)
+                self.currentlyShowingModal = createdWindow.view
+                self.currentlyShowingModalWindow = createdWindow.window
+                
+                //TODO: Get the ratings working
+//                //After alert controller is dismissed, prompt the user for ratings if they haven't been already for this version
+//                if #available(iOS 10.3, *), !PictographDataController.shared.hasUserBeenPromptedForRatings {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                        SKStoreReviewController.requestReview()
+//                        PictographDataController.shared.setHasUserBeenPromptedForRatings()
+//                    }
+//                }
             }
         }
         
