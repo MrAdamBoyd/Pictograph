@@ -358,17 +358,23 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     
     [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:(int)bitsNeededForImageData withSpaceFor:bitCountForHiddenDataSize]]; //64 bits for image size
     
+    NSMutableArray *arrayOfDataToEncode = [[NSMutableArray alloc] init];
+    if (messageDataToEncode) {
+        [arrayOfDataToEncode addObject:messageDataToEncode];
+    }
+    if (imageData) {
+        [arrayOfDataToEncode addObject:imageData];
+    }
+    
     //Going through the data and adding the bits that need to be encoded
-    for (NSData *_Nullable data in @[messageDataToEncode, imageData]) {
-        if (data) {
-            const char *bytes = [data bytes];
-            for (int charIndex = 0; charIndex < [data length]; charIndex++) {
-                //Going through each character
-                
-                char curChar = bytes[charIndex];
-                [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:curChar withSpaceFor:bitCountForCharacter]]; //Only 8 bits needed for chars
-                
-            }
+    for (NSData *data in arrayOfDataToEncode) {
+        const char *bytes = [data bytes];
+        for (int charIndex = 0; charIndex < [data length]; charIndex++) {
+            //Going through each character
+            
+            char curChar = bytes[charIndex];
+            [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:curChar withSpaceFor:bitCountForCharacter]]; //Only 8 bits needed for chars
+            
         }
     }
     

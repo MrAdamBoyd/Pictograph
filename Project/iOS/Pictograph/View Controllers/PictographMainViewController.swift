@@ -16,6 +16,8 @@ import StoreKit
 
 class PictographMainViewController: PictographViewController, UINavigationControllerDelegate, UITextFieldDelegate, UIScrollViewDelegate, EAIntroDelegate {
     
+    //TODO: In encode image modal, need a way to copy the message as well. Disable button for sharing when there is no image
+    
     //UI elements
     private let mainEncodeView = MainEncodingView()
     private var settingsNavVC: UINavigationController? //Stored to animate nightMode
