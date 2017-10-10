@@ -170,13 +170,12 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     
     free(blueComponentsContainingSizeOfImage);
     long numberOfBitsNeededForImage = [self longFromBits:imageSizeArrayInBits];
-    //TODO: Also, getDataFromPixelsAtX doesn't work. X and Y coordinates not needed? Pass in bit count
     
     if (numberOfBitsNeededForMessage > 0) {
         *hiddenMessageData = [self getDataFromPixlesWithBitCountOffset:0 fromImage:image numberOfBitsToGet:numberOfBitsNeededForMessage totalBitsForLogging:(numberOfBitsNeededForMessage + numberOfBitsNeededForImage) isEncrypted:isEncrypted withPassword:password isMessage:YES error:error];
     }
     
-    if (numberOfBitsNeededForImage > 0 && !*error && ![self isCancelled]) {
+    if (numberOfBitsNeededForImage > 0 && !*error) {
         *hiddenImageData = [self getDataFromPixlesWithBitCountOffset:numberOfBitsNeededForMessage fromImage:image numberOfBitsToGet:numberOfBitsNeededForImage totalBitsForLogging:(numberOfBitsNeededForMessage + numberOfBitsNeededForImage) isEncrypted:isEncrypted withPassword:password isMessage:NO error:error];
     }
     
@@ -268,7 +267,7 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     NSData *unicodeMessageData;
     NSData *dataFromImageToHide;
     
-    if (message) {
+    if (message && ![message isEqualToString:@""]) {
         //Converting emoji to the unicode scalars
         unicodeMessageData = [message dataUsingEncoding:NSNonLossyASCIIStringEncoding];
     }
@@ -304,9 +303,9 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     
     NSData *messageDataToEncode;
     
-    BOOL encryptedBool = ![password isEqualToString:@""];
+    BOOL isEncrypted = ![password isEqualToString:@""];
     
-    if (encryptedBool && messageData) {
+    if (isEncrypted && messageData) {
         //If the user wants to encrypt the string, encrypt it
         NSError *error;
         messageDataToEncode = [RNEncryptor encryptData:messageData withSettings:kRNCryptorAES256Settings password:password error:&error];
@@ -314,7 +313,7 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     } else if (messageData) {
         //No need to encrypt
         messageDataToEncode = messageData;
-    } else if (encryptedBool) {
+    } else if (isEncrypted) {
         DLog(@"Encryption is enabled but no password provided");
         
         NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"A password was used but no message was sent. A message is needed if encryption is enabled."};
@@ -324,9 +323,7 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
         return nil;
     }
     
-    /* Note: the actual number of pixels needed is higher than this
-     because the length of the string and/or image needs to be stored,
-     but this isn't included in the calculations */
+    //Calculating the number of bits needed to store the message and hidden image
     long bitsNeededForMessageData = 0;
     if (messageDataToEncode) {
         bitsNeededForMessageData = [messageDataToEncode length] * bitCountForCharacter;
@@ -338,7 +335,7 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     }
     
     long bitsNeededForAllData = bitsNeededForMessageData + bitsNeededForImageData;
-    long numberOfPixelsNeeded = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize + (int)bitsNeededForAllData)];
+    long numberOfPixelsNeeded = [self pixelCountForBit:(bitCountForInfo + bitCountForHiddenDataSize + bitCountForHiddenDataSize + (int)bitsNeededForAllData)];
     
     if (([image getReconciledImageHeight] * [image getReconciledImageWidth]) <= numberOfPixelsNeeded) {
         //Makes sure the image is large enough to handle the message
@@ -358,7 +355,7 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     /*
      NOTE: See function definiton for determineSettingsBitsForMessageData to see how this works
      */
-    int settingsBit = [self determineSettingsBitsForMessageData:messageDataToEncode imageData:imageData isEncrypted:encryptedBool];
+    int settingsBit = [self determineSettingsBitsForMessageData:messageDataToEncode imageData:imageData isEncrypted:isEncrypted];
     
     [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:settingsBit withSpaceFor:bitCountForInfo]]; //16 bits for future proofing
     
