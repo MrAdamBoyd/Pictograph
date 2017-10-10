@@ -30,6 +30,8 @@ class HiddenImageView: PictographModalView {
             //Disable the button if image is nil
             view.shareImageButton.isEnabled = false
             view.shareImageButton.alpha = 0.5
+        } else {
+            view.noHiddenImageLabel.isHidden = true
         }
         
         if let message = message, message != "" {

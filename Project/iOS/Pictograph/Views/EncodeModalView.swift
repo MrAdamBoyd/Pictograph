@@ -29,6 +29,9 @@ class EncodeModalView: PictographModalView, UITextFieldDelegate {
         view.delegate = delegate
         view.messageTextField.text = message
         view.imageView.image = image
+        if image != nil {
+            view.imageInstructionLabel.isHidden = true
+        }
         return PictographModalView.createViewInWindow(viewToShow: view)
     }
     
