@@ -331,7 +331,7 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     
     long bitsNeededForImageData = 0;
     if (imageData) {
-        bitsNeededForImageData = [imageData length];
+        bitsNeededForImageData = [imageData length] * bitCountForCharacter;
     }
     
     long bitsNeededForAllData = bitsNeededForMessageData + bitsNeededForImageData;
@@ -379,7 +379,6 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
             
             char curChar = bytes[charIndex];
             [arrayOfBits addObjectsFromArray:[self binaryStringFromInteger:curChar withSpaceFor:bitCountForCharacter]]; //Only 8 bits needed for chars
-            
         }
     }
     
