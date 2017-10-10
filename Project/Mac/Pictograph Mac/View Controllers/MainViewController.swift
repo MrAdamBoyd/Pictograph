@@ -65,7 +65,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     // MARK: - User actions
     
     @IBAction func selectNewImageFromFileSystem(_ sender: Any) {
-        self.letUserChooseImage() { [weak self] image in
+        self.letUserChooseImage(force: true) { [weak self] image in
             
             //If user chooses an image, set the image as the image view
             self?.mainImageView.image = image
@@ -87,7 +87,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     @IBAction func hideMessageAction(_ sender: Any) {
         print("User wants to hide image or message")
         
-        self.letUserChooseImage() { [unowned self] imageToHide in
+        self.letUserChooseImage(force: false) { [unowned self] imageToHide in
             DispatchQueue.main.async {
                 var alert: NSAlert?
                 
@@ -154,11 +154,18 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     
     /// Asks the user, in an NSAlert, if they want to hide an image
     ///
+    /// - Parameter force: if true, doesn't ask user first
     /// - Parameter completion: image that the user chose
-    private func letUserChooseImage(_ completion: @escaping (NSImage?) -> Void) {
+    private func letUserChooseImage(force: Bool, _ completion: @escaping (NSImage?) -> Void) {
+        if force {
+            self.showFileChoosePanel(completion)
+            return
+        }
+        
         /// Alert that lets the user know the message is encoding
         let alert = NSAlert()
         alert.messageText = "Want to hide an image?"
+        alert.addButton(withTitle: "Yes")
         alert.addButton(withTitle: "No")
         
         //Show the loading modal
