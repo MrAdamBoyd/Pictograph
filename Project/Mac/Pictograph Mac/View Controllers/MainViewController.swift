@@ -96,6 +96,11 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
                 let message = self.messageTextField.stringValue
                 let image = self.mainImageView.image!
                 
+                guard message != "" || imageToHide != nil else {
+                    self.showError(with: "Either a message or image needs to be encoded")
+                    return
+                }
+                
                 self.performWorkOnEncodingQueue() {
                     do {
                         //Provide no password if encryption/decryption is off
@@ -108,7 +113,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
                     } catch let error {
                         
                         //Catch the error
-                        self.showError(error)
+                        self.showError(with: error.localizedDescription)
                     }
                 }
                 
@@ -136,7 +141,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
         coder.decode(image, encryptedWithPassword: providedPassword, hiddenStringPointer: &hiddenString, hiddenImagePointer: &hiddenImage, error: &error)
         
         guard error == nil else {
-            self.showError(error!)
+            self.showError(with: error!.localizedDescription)
             return
         }
         
@@ -271,17 +276,17 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
     
     /// Shows an error to the user. If application isn't active, also sends NSUserNotification
     ///
-    /// - Parameter error: error to show
-    func showError(_ error: Error) {
+    /// - Parameter errorDescription: description of error to show
+    func showError(with errorDescription: String) {
         let alert = NSAlert()
         alert.messageText = "Error"
-        alert.informativeText = error.localizedDescription
+        alert.informativeText = errorDescription
         alert.alertStyle = .informational
         alert.addButton(withTitle: "OK")
         alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
         
         if !NSApplication.shared.isActive {
-            self.showNotificationWith(message: "Error", informativeText: error.localizedDescription)
+            self.showNotificationWith(message: "Error", informativeText: errorDescription)
         }
     }
     
@@ -336,7 +341,7 @@ class MainViewController: NSViewController, NSTextFieldDelegate, DraggingDelegat
                 do {
                     try image?.write(to: filePath)
                 } catch let error {
-                    self.showError(error)
+                    self.showError(with: error.localizedDescription)
                 }
             }
         }
