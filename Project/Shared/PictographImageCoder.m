@@ -42,9 +42,9 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
 @synthesize isCancelled;
 @synthesize delegate;
 
-- (id _Nonnull)initWithDelegate:(id<PictographImageCoderProgressDelegate> _Nullable)delegate {
+- (id _Nonnull)initWithDelegate:(id<PictographImageCoderProgressDelegate> _Nullable)initialDelegate {
     if (self = [super init]) {
-        self.delegate = delegate;
+        self.delegate = initialDelegate;
     }
     
     return self;
@@ -307,8 +307,11 @@ typedef NS_ENUM(NSInteger, PictographEncodingOptions)
     
     if (isEncrypted && messageData) {
         //If the user wants to encrypt the string, encrypt it
-        NSError *error;
-        messageDataToEncode = [RNEncryptor encryptData:messageData withSettings:kRNCryptorAES256Settings password:password error:&error];
+        messageDataToEncode = [RNEncryptor encryptData:messageData withSettings:kRNCryptorAES256Settings password:password error:error];
+        
+        if (*error) {
+            return nil;
+        }
         
     } else if (messageData) {
         //No need to encrypt
