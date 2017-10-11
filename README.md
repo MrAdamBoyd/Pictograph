@@ -43,6 +43,10 @@ My website is [adamjboyd.com](http://www.adamjboyd.com).
 
 1.4: Ability to hide images
 
+1.5: iOS 11 support/design changes
+
+1.6: Ability to hide a message and an image at the same time
+
 ## License
 
 MIT
