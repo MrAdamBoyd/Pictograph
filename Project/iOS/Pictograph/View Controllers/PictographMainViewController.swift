@@ -122,7 +122,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         }
     }
     
-    @objc func openSettings() {
+    @objc
+    func openSettings() {
         //Setting the title, button title, and action
         let settings = SettingsViewController.createWithNavigationController()
         self.settingsNavVC = settings
@@ -214,7 +215,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
         return true
     }
     
-    @objc func switchToggled(_ sender: AnyObject) {
+    @objc
+    func switchToggled(_ sender: AnyObject) {
         let mySwitch = sender as! UISwitch
         self.setEncryptionEnabled(mySwitch.isOn)
     }
@@ -237,7 +239,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Starting the encode process
-    @objc func startEncodeProcess() {
+    @objc
+    func startEncodeProcess() {
         self.endEditingAndSetPassword()
         
         if self.passwordSettingsValid {
@@ -253,7 +256,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     //Starting the decoding process
-    @objc func startDecodeProcess() {
+    @objc
+    func startDecodeProcess() {
         self.endEditingAndSetPassword()
         
         if self.passwordSettingsValid {
@@ -268,7 +272,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     //Showing the action sheet
     
-    @objc func presentImageSelectActionSheet() {
+    @objc
+    func presentImageSelectActionSheet() {
         self.determineHowToPresentImagePicker() { [weak self] image in
             DispatchQueue.main.async {
                 self?.currentImage = image
@@ -434,7 +439,8 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     }
     
     /// Shows the share sheet with the image that's currently being stored
-    @objc private func showShareSheetWithCurrentImage() {
+    @objc
+    private func showShareSheetWithCurrentImage() {
         guard let image = self.currentImage, let data = UIImagePNGRepresentation(image) else { return }
         self.showShareSheet(with: data)
     }
@@ -527,13 +533,15 @@ class PictographMainViewController: PictographViewController, UINavigationContro
     
     // MARK: - Methods for when the settings change
     
-    @objc func showPasswordOnScreenChanged() {
+    @objc
+    func showPasswordOnScreenChanged() {
         //Set the opposite of what it currently is
         mainEncodeView.encryptionKeyField.isSecureTextEntry = !mainEncodeView.encryptionKeyField.isSecureTextEntry
     }
     
     //Animates night mode changing when on an iPad
-    @objc func changeNightModeAnimated() {
+    @objc
+    func changeNightModeAnimated() {
         UIView.animate(withDuration: 0.5, animations: { () -> Void in
             self.changeNightMode()
             self.settingsNavVC?.popoverPresentationController?.backgroundColor = PictographDataController.shared.userNightModeIsEnabled ? mainAppColorNight : mainAppColor
@@ -574,7 +582,7 @@ class PictographMainViewController: PictographViewController, UINavigationContro
 
 extension PictographMainViewController: UIImagePickerControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         
         self.dismiss(animated: true, completion: nil)
         

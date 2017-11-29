@@ -71,7 +71,8 @@ class WorkProgressView: PictographModalView {
         self.cancelWorkButton.addTarget(self, action: #selector(self.cancelWorkTapped), for: .touchUpInside)
     }
     
-    @objc func cancelWorkTapped() {
+    @objc
+    func cancelWorkTapped() {
         self.delegate?.workProgressViewDidCancelWork(nil)
     }
 }

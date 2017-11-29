@@ -63,7 +63,7 @@ class DragAndDropView: NSView {
         if isReceivingDrag {
             NSColor.selectedControlColor.set()
             
-            let path = NSBezierPath(rect:bounds)
+            let path = NSBezierPath(rect: bounds)
             path.lineWidth = 5
             path.stroke()
         }

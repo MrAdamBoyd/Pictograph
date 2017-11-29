@@ -63,7 +63,7 @@ class SettingsFooterView: UIView {
         addSubview(madeByLabel)
         
         //10px below version, center x
-        addConstraint(NSLayoutConstraint(item: madeByLabel, attribute: .top, relatedBy: .equal, toItem: appVersionLabel, attribute: .bottom, multiplier: 1, constant:10))
+        addConstraint(NSLayoutConstraint(item: madeByLabel, attribute: .top, relatedBy: .equal, toItem: appVersionLabel, attribute: .bottom, multiplier: 1, constant: 10))
         addConstraint(NSLayoutConstraint(item: madeByLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         
         
@@ -101,7 +101,8 @@ class SettingsFooterView: UIView {
     }
     
     //Opens my website in Safari
-    @objc func openWebsiteURL() {
+    @objc
+    func openWebsiteURL() {
         PictographDataController.shared.goToWebsite()
     }
 }

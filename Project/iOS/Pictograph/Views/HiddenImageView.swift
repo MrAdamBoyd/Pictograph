@@ -140,11 +140,13 @@ class HiddenImageView: PictographModalView {
     }
     
     // MARK: - Actions
-    @objc func closeButtonTapped() {
+    @objc
+    func closeButtonTapped() {
         self.delegate?.closeModalViewFromModal(nil)
     }
     
-    @objc func shareSheetTapped() {
+    @objc
+    func shareSheetTapped() {
         self.delegate?.showShareSheetFromHiddenImageView()
     }
 }

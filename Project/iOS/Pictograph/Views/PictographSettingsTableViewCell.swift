@@ -55,7 +55,8 @@ class PictographSettingsTableViewCell: UITableViewCell {
     }
     
     //Function that is called when the switch is changed
-    @objc func switchToggled(_ sender: AnyObject) {
+    @objc
+    func switchToggled(_ sender: AnyObject) {
         let mySwitch = sender as! UISwitch
         let enabledOrDisabled = mySwitch.isOn
         

@@ -147,8 +147,8 @@ class MainEncodingView: UIScrollView {
         
         
         //25 from left and below the image border
-        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .left, relatedBy: .equal, toItem:self.elementContainer, attribute: .left, multiplier:1, constant:encryptionMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionLabel, attribute: .top, relatedBy: .equal, toItem: self.borderBelowImage, attribute: .top, multiplier:1, constant:encryptionVerticalMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionLabel, attribute: .left, relatedBy: .equal, toItem: self.elementContainer, attribute: .left, multiplier: 1, constant: encryptionMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionLabel, attribute: .top, relatedBy: .equal, toItem: self.borderBelowImage, attribute: .top, multiplier: 1, constant: encryptionVerticalMargin))
         
         
         //Switch for enabling encryption
@@ -174,9 +174,9 @@ class MainEncodingView: UIScrollView {
         self.elementContainer.addSubview(encryptionKeyField)
         
         //50px from left, right, -80px (above) center y
-        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .top, relatedBy: .equal, toItem:encryptionLabel, attribute:.bottom, multiplier:1, constant:encryptionVerticalMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .left, relatedBy:.equal, toItem:self.elementContainer, attribute: .left, multiplier:1, constant:encryptionMargin))
-        self.elementContainer.addConstraint(NSLayoutConstraint(item:encryptionKeyField, attribute: .right, relatedBy: .equal, toItem:self.elementContainer, attribute: .right, multiplier:1, constant:-encryptionMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionKeyField, attribute: .top, relatedBy: .equal, toItem: encryptionLabel, attribute: .bottom, multiplier: 1, constant: encryptionVerticalMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionKeyField, attribute: .left, relatedBy: .equal, toItem: self.elementContainer, attribute: .left, multiplier: 1, constant: encryptionMargin))
+        self.elementContainer.addConstraint(NSLayoutConstraint(item: encryptionKeyField, attribute: .right, relatedBy: .equal, toItem: self.elementContainer, attribute: .right, multiplier: 1, constant: -encryptionMargin))
         
         
         //Border between text label and switch for enabling and disabling encryption

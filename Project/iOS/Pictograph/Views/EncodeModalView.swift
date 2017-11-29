@@ -147,15 +147,18 @@ class EncodeModalView: PictographModalView, UITextFieldDelegate {
     }
     
     // MARK: - Actions
-    @objc func closeButtonTapped() {
+    @objc
+    func closeButtonTapped() {
         self.delegate?.closeModalViewFromModal(nil)
     }
     
-    @objc func startEncodingTapped() {
+    @objc
+    func startEncodingTapped() {
         self.delegate?.encode(message: self.messageTextField.text, hiddenImage: self.imageView.image)
     }
     
-    @objc func selectImageTapped() {
+    @objc
+    func selectImageTapped() {
         self.delegate?.userWantsToSelectImageForEncoding(currentMessage: self.messageTextField.text)
     }
     
