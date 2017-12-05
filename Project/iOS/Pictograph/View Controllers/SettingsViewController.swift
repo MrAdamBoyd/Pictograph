@@ -35,7 +35,7 @@ class SettingsViewController: PictographViewController, UITableViewDataSource, U
         if #available(iOS 11.0, *) {
             self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
             self.tableView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
-            self.tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+            self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
             self.tableView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
             
             //Setting up the nav bar for iOS 11, with large titles
